@@ -1,0 +1,15 @@
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+M:\NEFESH\MYNYTasks\Tasks\Repository\bin\Debug\net6.0\Repository.deps.json
+M:\NEFESH\MYNYTasks\Tasks\Repository\bin\Debug\net6.0\Repository.dll
+M:\NEFESH\MYNYTasks\Tasks\Repository\bin\Debug\net6.0\Repository.pdb
+M:\NEFESH\MYNYTasks\Tasks\Repository\bin\Debug\net6.0\Entities.dll
+M:\NEFESH\MYNYTasks\Tasks\Repository\bin\Debug\net6.0\Entities.pdb
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.dll
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\refint\Repository.dll
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\Repository.pdb
+M:\NEFESH\MYNYTasks\Tasks\Repository\obj\Debug\net6.0\ref\Repository.dll

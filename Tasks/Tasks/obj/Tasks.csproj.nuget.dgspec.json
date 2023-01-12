@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "M:\\text\\Tasks\\Tasks\\Tasks.csproj": {}
+    "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj": {}
   },
   "projects": {
-    "M:\\text\\Tasks\\Tasks\\Tasks.csproj": {
+    "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\text\\Tasks\\Tasks\\Tasks.csproj",
-        "projectName": "Tasks",
-        "projectPath": "M:\\text\\Tasks\\Tasks\\Tasks.csproj",
-        "packagesPath": "C:\\Users\\214085573\\.nuget\\packages\\",
-        "outputPath": "M:\\text\\Tasks\\Tasks\\obj\\",
+        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj",
+        "projectName": "Entities",
+        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
+        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\214085573\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,6 +32,206 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj",
+        "projectName": "Repository",
+        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
+        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj": {
+                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj",
+        "projectName": "Service",
+        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
+        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj": {
+                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj",
+        "projectName": "Tasks",
+        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj",
+        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
+        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj": {
+                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
