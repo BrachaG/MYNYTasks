@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/ny-tasks/dist
+/ny-tasks/tmp
+/ny-tasks/out-tsc
+/ny-tasks/bazel-out
+
+# Node
+/ny-tasks/node_modules
+/ny-tasks/npm-debug.log
+/ny-tasks/yarn-error.log
+
+# IDEs and editors
+/ny-tasks/.idea/
+/ny-tasks/.project
+/ny-tasks/.classpath
+/ny-tasks/.c9/
+*.launch
+/ny-tasks/.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/ny-tasks/.angular/cache
+/ny-tasks/.sass-cache/
+/ny-tasks/connect.lock
+/ny-tasks/coverage
+/ny-tasks/libpeerconnection.log
+/ny-tasks/testem.log
+/ny-tasks/typings
+
+# System files
+/ny-tasks/.DS_Store
+/ny-tasks/Thumbs.db
