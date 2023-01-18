@@ -9,7 +9,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SliderModule} from 'primeng/slider';
 import {DialogModule} from 'primeng/dialog';
 import {MultiSelectModule} from 'primeng/multiselect';
@@ -17,12 +17,14 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {ToastModule} from 'primeng/toast';
 import {StyleClassModule} from 'primeng/styleclass';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -40,8 +42,9 @@ import {StyleClassModule} from 'primeng/styleclass';
     InputTextModule,
     ProgressBarModule,
     StyleClassModule,
-    FormsModule
-    
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

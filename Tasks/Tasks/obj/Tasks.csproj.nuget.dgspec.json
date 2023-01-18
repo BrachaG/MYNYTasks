@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj": {}
+    "M:\\NY\\Tasks\\Tasks\\Tasks.csproj": {}
   },
   "projects": {
-    "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj": {
+    "M:\\NY\\Tasks\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj",
+        "projectUniqueName": "M:\\NY\\Tasks\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
-        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\obj\\",
+        "projectPath": "M:\\NY\\Tasks\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\214085573\\.nuget\\packages\\",
+        "outputPath": "M:\\NY\\Tasks\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\214085573\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -62,20 +62,20 @@
         }
       }
     },
-    "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj": {
+    "M:\\NY\\Tasks\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj",
+        "projectUniqueName": "M:\\NY\\Tasks\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
-        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\obj\\",
+        "projectPath": "M:\\NY\\Tasks\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\214085573\\.nuget\\packages\\",
+        "outputPath": "M:\\NY\\Tasks\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\214085573\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -90,8 +90,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj": {
-                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Entities\\Entities.csproj"
+              "M:\\NY\\Tasks\\Entities\\Entities.csproj": {
+                "projectPath": "M:\\NY\\Tasks\\Entities\\Entities.csproj"
               }
             }
           }
@@ -138,20 +138,20 @@
         }
       }
     },
-    "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj": {
+    "M:\\NY\\Tasks\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj",
+        "projectUniqueName": "M:\\NY\\Tasks\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
-        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\obj\\",
+        "projectPath": "M:\\NY\\Tasks\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\214085573\\.nuget\\packages\\",
+        "outputPath": "M:\\NY\\Tasks\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\214085573\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -166,8 +166,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj": {
-                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Repository\\Repository.csproj"
+              "M:\\NY\\Tasks\\Repository\\Repository.csproj": {
+                "projectPath": "M:\\NY\\Tasks\\Repository\\Repository.csproj"
               }
             }
           }
@@ -200,20 +200,20 @@
         }
       }
     },
-    "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj": {
+    "M:\\NY\\Tasks\\Tasks\\Tasks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj",
+        "projectUniqueName": "M:\\NY\\Tasks\\Tasks\\Tasks.csproj",
         "projectName": "Tasks",
-        "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\Tasks.csproj",
-        "packagesPath": "C:\\Users\\214121071\\.nuget\\packages\\",
-        "outputPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Tasks\\obj\\",
+        "projectPath": "M:\\NY\\Tasks\\Tasks\\Tasks.csproj",
+        "packagesPath": "C:\\Users\\214085573\\.nuget\\packages\\",
+        "outputPath": "M:\\NY\\Tasks\\Tasks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\214121071\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\214085573\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -228,8 +228,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj": {
-                "projectPath": "M:\\NEFESH\\MYNYTasks\\Tasks\\Service\\Service.csproj"
+              "M:\\NY\\Tasks\\Service\\Service.csproj": {
+                "projectPath": "M:\\NY\\Tasks\\Service\\Service.csproj"
               }
             }
           }
