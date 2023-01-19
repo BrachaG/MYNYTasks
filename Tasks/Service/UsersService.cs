@@ -2,6 +2,7 @@
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 
 namespace Service
 {
@@ -22,26 +23,24 @@ namespace Service
                                              new SqlParameter("nvAddress",""),
                                              new SqlParameter("iPort",0)
                                              };
-            List<SqlParameter> p = new List<SqlParameter> { 
+            List<SqlParameter> p = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)},
                                              { new SqlParameter("nvAddress","")},
             { new SqlParameter("iPort", 0)}
-                                         };
-            try
+
+                };
+            DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("ed_sys_User_SLCT", p);
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
             {
-                var a = await _SqlDataAccess.ExecuteDatasetSP("ed_sys_User_SLCT", p);
+                User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    user.lBranches = ObjectGenerator<CodeTable>.GeneratListFromDataRowCollection(ds.Tables[1].Rows);
+                return user;
             }
-            catch(Exception ex)
-            {
-                var b = ex.Message;
-            }
+            else return new User() { iUserId = -1 };
             return null;
-            //return await _SqlDataAccess.ExecuteScalarSP("ed_sys_User_SLCT", parameters);
-
-            ////return await _SqlDataAccess.ExecuteDatatableSP("ed_sys_User_SLCT", p); 
-
-
         }
     }
+
 }

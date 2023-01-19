@@ -1,3 +1,4 @@
+using AutoMapper;
 using Repository;
 using Service;
 
@@ -14,7 +15,14 @@ builder.Services.AddSingleton<IUsersService, UsersService>();
 builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 
+var mapperConfig = new MapperConfiguration(mc => {
+    mc.AddProfile(new MappingProfile());
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -22,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 
