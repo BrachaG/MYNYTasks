@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUsersService, UsersService>();
+builder.Services.AddSingleton<ISurveysService, SurveysService>();
 builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 

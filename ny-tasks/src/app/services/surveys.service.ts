@@ -10,7 +10,7 @@ export class SurveysService {
   constructor(private http:HttpClient) { }
   getSurveys(): Observable<any> {
     {
-        let url: string = `api/Users/GetById?userName=${userName}&password=${code}`;
+        let url: string = `api/Surveys/GetSurveysByUserId`;
         return this.http.get<any>(url);
 }}
 }
