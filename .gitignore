@@ -1,5 +1,22 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+
+/Tasks/.vs
+/Task/.vs/Tasks/
+/Tasks/Tasks/bin
+/Tasks/Tasks/obj
+
+/Tasks/Entities/bin
+/Tasks/Entities/obj
+
+/Tasks/Repository/bin
+/Tasks/Repository/obj
+
+/Tasks/Service/bin
+/Tasks/Service/obj
+
+
+
 # Compiled output
 /ny-tasks/dist
 /ny-tasks/tmp
@@ -40,3 +57,8 @@
 # System files
 /ny-tasks/.DS_Store
 /ny-tasks/Thumbs.db
+
+
+
+
+
