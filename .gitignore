@@ -40,3 +40,20 @@
 # System files
 /ny-tasks/.DS_Store
 /ny-tasks/Thumbs.db
+
+
+/Tasks/.vs
+/Tasks/Tasks/bin
+/Tasks/Tasks/obj
+
+/Tasks/Entities/bin
+/Tasks/Entities/obj
+
+/Tasks/Repository/bin
+/Tasks/Repository/obj
+
+/Tasks/Service/bin
+/Tasks/Service/obj
+
+
+
