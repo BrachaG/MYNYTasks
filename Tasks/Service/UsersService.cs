@@ -8,11 +8,11 @@ namespace Service
 {
     public class UsersService : IUsersService
     {
-        IUsersRepository _UsersRepository;
+       
         ISqlDataAccess _SqlDataAccess;
-        public UsersService(IUsersRepository UsersRepository, ISqlDataAccess SqlDataAccess)
+        public UsersService( ISqlDataAccess SqlDataAccess)
         {
-            _UsersRepository = UsersRepository;
+           
             _SqlDataAccess =SqlDataAccess;
         }
         public async Task<Object> GetById(string userName, string password)

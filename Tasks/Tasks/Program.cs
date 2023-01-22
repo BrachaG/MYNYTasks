@@ -12,17 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUsersService, UsersService>();
-builder.Services.AddSingleton<IUsersRepository, UsersRepository>();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-var mapperConfig = new MapperConfiguration(mc => {
-    mc.AddProfile(new MappingProfile());
-});
-IMapper mapper = mapperConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

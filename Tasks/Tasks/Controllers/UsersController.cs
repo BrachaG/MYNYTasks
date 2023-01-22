@@ -29,7 +29,7 @@ namespace Tasks.Controllers
         // GET api/<UsersController>/5
         [HttpGet]
         public async Task<object> GetById([FromQuery] string userName, [FromQuery] string password)
-        {
+       {
             return await _UsersService.GetById(userName, password);
         }
 

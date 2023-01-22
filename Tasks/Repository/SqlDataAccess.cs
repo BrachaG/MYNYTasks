@@ -205,7 +205,8 @@ public class SqlDataAccess : ISqlDataAccess
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
                 if (p != null)
-                {base    
+                {
+                    base
                     // Check for derived output value with no value assigned
                     if ((p.Direction == ParameterDirection.InputOutput ||
                         p.Direction == ParameterDirection.Input) &&
