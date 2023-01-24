@@ -4,12 +4,13 @@ using System.Data;
 
 namespace Service
 {
-    public class Mapper : Profile
+    public class Mapper: Profile
     {
+        
         public Mapper()
         {
-            CreateMap<DataRow, User>();      
-
+            CreateMap<DataRow, User>();
+            CreateMap<DataRow, CodeTable>();
         }
 
     }

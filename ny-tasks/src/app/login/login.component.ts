@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { userModel } from 'src/models/users.model';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
      })
   }
   async login(){ 
-    await this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: any) => {
+    await this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
       this.user = res;
     })
    console.log(this.user);

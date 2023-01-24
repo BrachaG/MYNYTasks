@@ -14,7 +14,7 @@ namespace Repository;
 public class SqlDataAccess : ISqlDataAccess
 {
     static IConfiguration _Configuration;
-    static string connectionString = "Server=srv2\\pupils;Database=NefeshYehudi;Trusted_Connection=True;";
+    static string connectionString = "Server=DESKTOP-B61M7D6;Database=NefeshYehudi;Trusted_Connection=True;";
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
@@ -206,7 +206,7 @@ public class SqlDataAccess : ISqlDataAccess
             foreach (SqlParameter p in commandParameters)
                 if (p != null)
                 {
-                    base
+                    
                     // Check for derived output value with no value assigned
                     if ((p.Direction == ParameterDirection.InputOutput ||
                         p.Direction == ParameterDirection.Input) &&

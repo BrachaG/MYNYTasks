@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,19 +13,22 @@ namespace Service
 {
     public abstract class ObjectGenerator<T> where T : new()
     {
-        static IMapper _mapper;
-        public  ObjectGenerator(IMapper mapper)
+      static IMapper _mapper;
+        public ObjectGenerator(IMapper mapper)
         {
 
             _mapper = mapper;
         }
         //return T object full data from DataRow
         //Good for select queries
-       
+
 
         public static T GeneratFromDataRow(DataRow dr)
         {
-            T obj = _mapper.Map<DataRow,T>(dr);
+
+
+            T obj =new T();
+            obj = _mapper.Map<DataRow, T>(dr);
             return obj;
         }
         //get DataSet, call GeneratFromDataRow() in repeat and return list T
@@ -41,6 +45,10 @@ namespace Service
 
 
         }
+
+
+
+
+
     }
 }
-

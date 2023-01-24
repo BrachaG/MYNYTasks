@@ -11,6 +11,7 @@ namespace Entities
 
   public class User
     {
+        
         public int iUserId { get; set; }
         public string nvUserName { get; set; }
         public string nvPassword { get; set; }
@@ -20,7 +21,7 @@ namespace Entities
         public int iReportedHoursTypeId { get; set; }
         public int iContinueContactPermissionId { get; set; }
         public int iWorkerId { get; set; }
-        public List<CodeTable> lBranches { get; set; }
+        public List<CodeTable>? lBranches { get; set; } = new List<CodeTable>();
         public int iBranchId { get; set; }
         public DateTime? dtValidityDate { get; set; }
         public DateTime? dtLatestentering { get; set; }

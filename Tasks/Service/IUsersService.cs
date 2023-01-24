@@ -5,6 +5,6 @@ namespace Service
 {
     public interface IUsersService
     {
-        Task<object> GetById(string userName, string password);
+        Task<User> GetById(string userName, string password);
     }
 }

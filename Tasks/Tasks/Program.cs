@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IUsersService, UsersService>();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(typeof(Service.Mapper));
 
 var app = builder.Build();
 
