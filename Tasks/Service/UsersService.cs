@@ -9,11 +9,14 @@ namespace Service
 {
     public class UsersService : IUsersService
     {
-        IMapper _mapper;
+    
         ISqlDataAccess _SqlDataAccess;
-        public UsersService(ISqlDataAccess SqlDataAccess, IMapper mapper)
+        IObjectGenerator<User> _userObjectGenerator;
+        IObjectGenerator<CodeTable> _codeTableGenerator;
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator)
         {
-            _mapper = mapper;
+            _userObjectGenerator = userObjectGenerator;
+            _codeTableGenerator = codeTableGenerator;
             _SqlDataAccess = SqlDataAccess;
         }
         public async Task<User> GetById(string userName, string password)
@@ -34,9 +37,9 @@ namespace Service
             DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
             {
-                User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+                User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                 if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-                    user.lBranches = ObjectGenerator<CodeTable>.GeneratListFromDataRowCollection(ds.Tables[1].Rows);
+                    user.lBranches = _codeTableGenerator.GeneratListFromDataRowCollection(ds.Tables[1].Rows);
                 return  user;
             }
             else return new User() { iUserId = -1 };

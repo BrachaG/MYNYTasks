@@ -12,6 +12,5 @@ namespace Service
             CreateMap<DataRow, User>();
             CreateMap<DataRow, CodeTable>();
         }
-
     }
 }

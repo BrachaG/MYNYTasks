@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 
 namespace Service
-{
-    public abstract class ObjectGenerator<T> where T : new()
+{  
+    public class ObjectGenerator<T>: IObjectGenerator<T> where T : new()
     {
-      static IMapper _mapper;
+       IMapper _mapper;
         public ObjectGenerator(IMapper mapper)
         {
 
@@ -23,7 +23,7 @@ namespace Service
         //Good for select queries
 
 
-        public static T GeneratFromDataRow(DataRow dr)
+        public  T GeneratFromDataRow(DataRow dr)
         {
 
 
@@ -32,7 +32,7 @@ namespace Service
             return obj;
         }
         //get DataSet, call GeneratFromDataRow() in repeat and return list T
-        public static List<T> GeneratListFromDataRowCollection(DataRowCollection collection)
+        public List<T> GeneratListFromDataRowCollection(DataRowCollection collection)
         {
             List<T> rows = new List<T>();
             foreach (DataRow dr in collection)

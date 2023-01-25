@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public interface IObjectGenerator<T>
+    public interface IObjectGenerator<T> where T : new()
     {
         public T GeneratFromDataRow(DataRow dr);
         public List<T> GeneratListFromDataRowCollection(DataRowCollection collection);
