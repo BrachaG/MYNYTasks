@@ -8,7 +8,7 @@ import { userModel } from 'src/models/users.model';
 })
 export class UsersService {
  constructor(private http: HttpClient) { }
-  getUserById(userName:string,code:string): Observable<any> {
+  getUserById(userName:string,code:string): Observable<userModel> {
     {
         let url: string = `api/Users/GetById?userName=${userName}&password=${code}`;
         return this.http.get<userModel>(url);

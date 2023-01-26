@@ -18,5 +18,4 @@ export class userModel {
   nvUserMail: string = "";
   nvUserPhone: string = "";
   iActivityPermissionId: number = 0;
-  nvGuide: string = "";
 }

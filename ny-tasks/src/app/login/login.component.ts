@@ -24,9 +24,13 @@ export class LoginComponent implements OnInit {
      })
   }
   async login(){ 
-    await this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
+   await this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
       this.user = res;
     })
+    if(this.user.iUserId>=0)
+    alert("welcome")
+    else
+    alert("not permission")
    console.log(this.user);
    
   }

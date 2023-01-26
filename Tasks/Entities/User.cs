@@ -29,7 +29,7 @@ namespace Entities
         public string nvUserMail { get; set; }
         public string nvUserPhone { get; set; }
         public int iActivityPermissionId { get; set; }
-        public string nvGuide { get; set; }
+       
 
     }
 }
