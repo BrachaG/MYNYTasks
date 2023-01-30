@@ -16,7 +16,7 @@ namespace Service
             _codeTableGenerator = codeTableGenerator;
 
         }
-        public async Task<List<Survey>> GetSurveysByUserId()
+        public async Task<List<Survey>> Get()
         {
 
             try

@@ -18,7 +18,7 @@ namespace Tasks.Controllers
         [HttpGet("GetSurveysByUserId")]
         public async Task<List<Survey>> GetSurveysByUserId()
         {
-            return await _SurveysService.GetSurveysByUserId();
+            return await _SurveysService.Get();
         }
     }
 }
