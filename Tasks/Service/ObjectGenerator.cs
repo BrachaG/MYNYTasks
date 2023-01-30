@@ -25,10 +25,10 @@ namespace Service
             return obj;
         }
         //get DataSet, call GeneratFromDataRow() in repeat and return list T
-        public List<T> GeneratListFromDataRowCollection(DataRowCollection collection)
+        public List<T> GeneratListFromDataTable(DataTable dt)
         {
             List<T> rows = new List<T>();
-            foreach (DataRow dr in collection)
+            foreach (DataRow dr in dt.Rows)
             {
 
                 T obj = GeneratFromDataRow(dr);

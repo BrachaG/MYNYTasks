@@ -19,7 +19,6 @@ namespace Service
         }
         public async Task<User> GetById(string userName, string password)
         {
-            //return await _UsersRepository.GetById(userName, password);
             SqlParameter[] parameters = {new SqlParameter("nvUserName",userName),
                                              new SqlParameter("nvPassword",password),
                                              new SqlParameter("nvAddress",""),
@@ -37,7 +36,7 @@ namespace Service
             {
                 User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                 if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-                    user.lBranches = _codeTableGenerator.GeneratListFromDataRowCollection(ds.Tables[1].Rows);
+                    user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
                 return user;
             }
             else return new User() { iUserId = -1 };
