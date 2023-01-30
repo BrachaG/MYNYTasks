@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using Service;
-using Entities;
 
 namespace Tasks.Controllers
 {
