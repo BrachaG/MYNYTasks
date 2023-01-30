@@ -15,6 +15,6 @@ namespace Repository
         public Task<object> ExecuteScalarSP(string spName, params SqlParameter[] commandParameters);
         public Task<DataTable> ExecuteDatatableSP(string spName, List<SqlParameter> SPParameters);
 
-
+       
     }
 }

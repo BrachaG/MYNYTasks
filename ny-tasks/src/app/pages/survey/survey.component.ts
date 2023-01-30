@@ -15,15 +15,6 @@ export class SurveyComponent implements OnInit{
     
     constructor(private surveyService:SurveysService) { }
 
-    selectedSurvey: Survey={
-        name: '',
-        questions: 0,
-        responders: 0,
-        endDate: new Date,
-        retaliation: '',
-        surveyLink: ''
-    };
-
 
     ngOnInit() {
         this.surveys.push({name:"שופטים - פרסומא תצוגות", questions:3, responders:6, endDate:new Date("2020-10-14"), retaliation:'0 ש"ח', surveyLink:"http://seker.live/#/?p=10"})

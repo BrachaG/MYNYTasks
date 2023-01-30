@@ -16,7 +16,6 @@ namespace Service
         }
         public async Task<Object> GetById(string userName, string password)
         {
-            //return await _UsersRepository.GetById(userName, password);
             SqlParameter[] parameters = {new SqlParameter("nvUserName",userName),
                                              new SqlParameter("nvPassword",password),
                                              new SqlParameter("nvAddress",""),
