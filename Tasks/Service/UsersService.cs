@@ -1,15 +1,13 @@
-﻿using AutoMapper;
-using Entities;
+﻿using Entities;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Serialization;
 
 namespace Service
 {
     public class UsersService : IUsersService
     {
-    
+
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<User> _userObjectGenerator;
         IObjectGenerator<CodeTable> _codeTableGenerator;
@@ -40,9 +38,9 @@ namespace Service
                 User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                 if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
                     user.lBranches = _codeTableGenerator.GeneratListFromDataRowCollection(ds.Tables[1].Rows);
-                return  user;
+                return user;
             }
             else return new User() { iUserId = -1 };
         }
     }
-    }
+}

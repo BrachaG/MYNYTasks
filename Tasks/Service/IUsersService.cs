@@ -1,5 +1,4 @@
 ﻿using Entities;
-using System.Data;
 
 namespace Service
 {

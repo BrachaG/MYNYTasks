@@ -1,19 +1,12 @@
 ﻿using AutoMapper;
-using Entities;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Service
-{  
-    public class ObjectGenerator<T>: IObjectGenerator<T> where T : new()
+{
+    public class ObjectGenerator<T> : IObjectGenerator<T> where T : new()
     {
-       IMapper _mapper;
+        IMapper _mapper;
         public ObjectGenerator(IMapper mapper)
         {
 
@@ -23,11 +16,11 @@ namespace Service
         //Good for select queries
 
 
-        public  T GeneratFromDataRow(DataRow dr)
+        public T GeneratFromDataRow(DataRow dr)
         {
 
 
-            T obj =new T();
+            T obj = new T();
             obj = _mapper.Map<DataRow, T>(dr);
             return obj;
         }

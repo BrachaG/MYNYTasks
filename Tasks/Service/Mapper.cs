@@ -4,13 +4,13 @@ using System.Data;
 
 namespace Service
 {
-    public class Mapper: Profile
+    public class Mapper : Profile
     {
-        
+
         public Mapper()
         {
 
- 
+
             CreateMap<DataRow, CodeTable>()
                           .ForMember(
                         dest => dest.iId,
@@ -81,9 +81,9 @@ namespace Service
                     dest => dest.iActivityPermissionId,
                     opt => opt.MapFrom(src => src["iActivityPermissionId"])
                 );
-               
+
         }
 
     }
 
-    }
+}

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities
+﻿namespace Entities
 {
 
-    
 
-  public class User
+
+    public class User
     {
-        
+
         public int iUserId { get; set; }
         public string nvUserName { get; set; }
         public string nvPassword { get; set; }
@@ -29,7 +23,7 @@ namespace Entities
         public string nvUserMail { get; set; }
         public string nvUserPhone { get; set; }
         public int iActivityPermissionId { get; set; }
-       
+
 
     }
 }
