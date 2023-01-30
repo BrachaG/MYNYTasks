@@ -7,11 +7,13 @@ namespace Repository;
 
 public class SqlDataAccess : ISqlDataAccess
 {
-    static IConfiguration _Configuration;
-    static string connectionString = _Configuration.GetConnectionString(default);
+    IConfiguration _Configuration;
+    readonly string connectionString; 
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
+        
+        connectionString = _Configuration.GetConnectionString("DefaultConnection");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
