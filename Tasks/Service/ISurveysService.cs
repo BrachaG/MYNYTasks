@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Service
 {
     public interface ISurveysService
     {
-        Task<DataTable> GetSurveysByUserId();
+        Task<List<Survey>> GetSurveysByUserId();
     }
 }

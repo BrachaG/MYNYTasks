@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using Service;
+using Entities;
 
 namespace Tasks.Controllers
 {
@@ -17,7 +18,7 @@ namespace Tasks.Controllers
 
         }
         [HttpGet("GetSurveysByUserId")]
-        public async Task<DataTable> GetSurveysByUserId()
+        public async Task<List<Survey>> GetSurveysByUserId()
         {
             return await _SurveysService.GetSurveysByUserId();
         }

@@ -1,4 +1,5 @@
-﻿using Repository;
+﻿using Entities;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,17 +12,25 @@ namespace Service
     public class SurveysService : ISurveysService
     {
         ISqlDataAccess _SqlDataAccess;
-        public SurveysService(ISqlDataAccess SqlDataAccess)
+        IObjectGenerator<Survey> _surveyObjectGenerator;
+        IObjectGenerator<CodeTable> _codeTableGenerator;
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
+            _surveyObjectGenerator = surveyObjectGenerator;
+            _codeTableGenerator = codeTableGenerator;
+
         }
-        public async  Task<DataTable> GetSurveysByUserId()
+        public async Task<List<Survey>> GetSurveysByUserId()
         {
 
             try
             {
-                DataTable surveys = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT",null);
-               
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
+                List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
+
+                return surveys;
+
             }
             catch (Exception ex)
             {

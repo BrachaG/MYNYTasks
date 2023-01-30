@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UsersService } from 'src/app/services/users.service';
-
+import { userModel } from 'src/models/users.model';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +23,17 @@ export class LoginComponent implements OnInit {
       code: new FormControl(),
      })
   }
-  async login(){ 
-    await this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: any) => {
+   login(){ 
+    this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
       this.user = res;
+      if(this.user.iUserId>=0)
+      alert("welcome")
+      else
+      alert("not permission")
+     console.log(this.user);
     })
-   console.log(this.user);
+    
+   
    
   }
 }
