@@ -8,24 +8,20 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
-        IObjectGenerator<CodeTable> _codeTableGenerator;
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator)
+       
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
-            _surveyObjectGenerator = surveyObjectGenerator;
-            _codeTableGenerator = codeTableGenerator;
-
+            _surveyObjectGenerator = surveyObjectGenerator;   
         }
+
         public async Task<List<Survey>> Get()
         {
-
             try
             {
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
-
                 return surveys;
-
             }
             catch (Exception ex)
             {

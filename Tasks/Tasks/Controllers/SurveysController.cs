@@ -15,8 +15,8 @@ namespace Tasks.Controllers
             _SurveysService = SurveysService;
 
         }
-        [HttpGet("GetSurveysByUserId")]
-        public async Task<List<Survey>> GetSurveysByUserId()
+        [HttpGet("Get")]
+        public async Task<List<Survey>> Get()
         {
             return await _SurveysService.Get();
         }
