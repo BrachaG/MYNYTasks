@@ -6,13 +6,10 @@ namespace Service
 {
     public class Mapper : Profile
     {
-
         public Mapper()
         {
-
-
             CreateMap<DataRow, CodeTable>()
-                          .ForMember(
+                    .ForMember(
                         dest => dest.iId,
                         opt => opt.MapFrom(src => src["iId"])
                     )
@@ -81,9 +78,6 @@ namespace Service
                     dest => dest.iActivityPermissionId,
                     opt => opt.MapFrom(src => src["iActivityPermissionId"])
                 );
-
         }
-
     }
-
 }

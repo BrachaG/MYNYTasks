@@ -9,39 +9,25 @@ namespace Service
         IMapper _mapper;
         public ObjectGenerator(IMapper mapper)
         {
-
             _mapper = mapper;
         }
-        //return T object full data from DataRow
-        //Good for select queries
-
-
+       
         public T GeneratFromDataRow(DataRow dr)
         {
-
-
             T obj = new T();
             obj = _mapper.Map<DataRow, T>(dr);
             return obj;
         }
-        //get DataSet, call GeneratFromDataRow() in repeat and return list T
         public List<T> GeneratListFromDataRowCollection(DataRowCollection collection)
         {
             List<T> rows = new List<T>();
             foreach (DataRow dr in collection)
             {
-
                 T obj = GeneratFromDataRow(dr);
                 rows.Add(obj);
             }
             return rows;
 
-
         }
-
-
-
-
-
     }
 }

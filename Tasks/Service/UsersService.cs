@@ -7,7 +7,6 @@ namespace Service
 {
     public class UsersService : IUsersService
     {
-
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<User> _userObjectGenerator;
         IObjectGenerator<CodeTable> _codeTableGenerator;
@@ -17,23 +16,15 @@ namespace Service
             _codeTableGenerator = codeTableGenerator;
             _SqlDataAccess = SqlDataAccess;
         }
+        int str;
         public async Task<User> GetById(string userName, string password)
         {
-            //return await _UsersRepository.GetById(userName, password);
-            SqlParameter[] parameters = {new SqlParameter("nvUserName",userName),
-                                             new SqlParameter("nvPassword",password),
-                                             new SqlParameter("nvAddress",""),
-                                             new SqlParameter("iPort",0)
-                                             };
-            List<SqlParameter> p = new List<SqlParameter> {
+            List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
-
-
-
                 };
-            DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
+            DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", parameters);
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"]).ToString())
             {
                 User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                 if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
