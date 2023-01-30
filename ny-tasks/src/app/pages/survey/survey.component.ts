@@ -18,8 +18,8 @@ export class SurveyComponent implements OnInit{
        this.getSurveysByUserId();
     }
 
-    async getSurveysByUserId(){
-         await this.surveyService.getSurveys().subscribe((res: any) => {
+     getSurveysByUserId(){
+           this.surveyService.getSurveys().subscribe((res: any) => {
             this.surveys = res;
           })
          console.log(this.surveys);

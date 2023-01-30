@@ -11,7 +11,7 @@ export class SurveysService {
   constructor(private http:HttpClient) { }
   getSurveys(): Observable<Survey[]> {
     {
-        let url: string = `/api/Surveys/Get`;
+        let url: string = `api/Surveys/Get`;
         return this.http.get<Survey[]>(url);
 }}
 }
