@@ -27,8 +27,8 @@ namespace Tasks.Controllers
              }*/
 
         // GET api/<UsersController>/5
-        [HttpGet]
-        public async Task<User> GetById([FromQuery] string userName, [FromQuery] string password)
+        [HttpGet("Get")]
+        public async Task<User> GetById( string userName, string password)
        {
             return await _UsersService.GetById(userName, password);
         }

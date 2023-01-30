@@ -10,7 +10,7 @@ export class UsersService {
  constructor(private http: HttpClient) { }
   getUserById(userName:string,code:string): Observable<userModel> {
     {
-        let url: string = `api/Users/GetById?userName=${userName}&password=${code}`;
+        let url: string = `api/Users/Get?userName=${userName}&password=${code}`;
         return this.http.get<userModel>(url);
 }}
 }
