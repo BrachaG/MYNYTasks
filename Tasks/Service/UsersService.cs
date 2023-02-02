@@ -43,11 +43,11 @@ namespace Service
                     user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
                 string userToken = GenarateToken(user);
                 user.token = userToken;
+                user.iUserId = 0;
                 return user;
             }
-            else return new User() { iUserId = -1 };
+            else return null;
         }
-
 
         private static string GenarateToken(User user)
         {

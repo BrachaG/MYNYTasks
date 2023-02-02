@@ -9,8 +9,6 @@ namespace Service
 
         public Mapper()
         {
-
-
             CreateMap<DataRow, CodeTable>()
                           .ForMember(
                         dest => dest.iId,
