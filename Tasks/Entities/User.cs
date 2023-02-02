@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class User:IEntitiy
+    public class User:IEntity
     {   
         public int iUserId { get; set; }
         public string nvUserName { get; set; }
