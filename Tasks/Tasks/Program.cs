@@ -1,7 +1,8 @@
 using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Service;
-using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,62 +29,52 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//, RequestDelegate next
-void HandleGetRequest(IApplicationBuilder app)
-{
+//void HandleGetRequest(IApplicationBuilder app)
+//{
     app.Use(async (context, next) =>
     {
-        string authHeader = context.Request.Headers["Authorization"];
-
-        if (authHeader != null)
+        if (!context.Request.Path.Equals("/api/Users/Get"))
         {
-            //Reading the JWT middle part           
-            int startPoint = authHeader.IndexOf(".") + 1;
-            int endPoint = authHeader.LastIndexOf(".");
+            string authHeader = context.Request.Headers["Authorization"];
 
-            var tokenString = authHeader
-                .Substring(startPoint, endPoint - startPoint).Split(".");
-            var token = tokenString[0].ToString() + "==";
-
-            var credentialString = Encoding.UTF8
-                .GetString(Convert.FromBase64String(token));
-
-            // Splitting the data from Jwt
-            var credentials = credentialString.Split(new char[] { ':', ',' });
-
-            // Trim this Username and UserRole.
-            var userRule = credentials[5].Replace("\"", "");
-            var userName = credentials[3].Replace("\"", "");
-
-            // Identity Principal
-            var claims = new[]
+            if (authHeader != null)
             {
-               new Claim("name", userName),
-               new Claim(ClaimTypes.Role, userRule),
-           };
-            var identity = new ClaimsIdentity(claims, "basic");
-            context.User = new ClaimsPrincipal(identity);
+                //Reading the JWT middle part           
+                var tokenHandler = new JwtSecurityTokenHandler();
+
+                try
+                {
+                    tokenHandler.ValidateToken(authHeader, new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    }, out SecurityToken validatedToken);
+
+                    JwtSecurityToken jwtToken = (JwtSecurityToken)validatedToken;
+
+                    string user = jwtToken.Claims.First(x => x.Type == "User").Value;
+                    
+                }
+                catch
+                {
+                    throw new Exception();
+                }
+            }
         }
         //Pass to the next middleware
         await next(context);
     });
 
-};
-
-app.MapWhen(context => !context.Request.Path.Equals("/api/Users/Get"), HandleGetRequest);
-
+//};
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-
+//app.MapWhen(context => !context.Request.Path.Equals("/api/Users/Get"), HandleGetRequest);
 
 app.Run();
-
-
-
-
-
-
