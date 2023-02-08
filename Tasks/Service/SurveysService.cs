@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Http;
 using Repository;
 using System.Data;
 
@@ -8,9 +9,10 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
-       
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator)
+        IHttpContextAccessor _httpContextAccessor;
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor;
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;   
         }
@@ -19,6 +21,9 @@ namespace Service
         {
             try
             {
+                string usertoken = _httpContextAccessor.HttpContext.Items["User"].ToString();
+                User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(usertoken);
+                int userId= user.iUserId;
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return surveys;

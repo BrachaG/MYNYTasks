@@ -3,7 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Text;
+using System.Web.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator<>));
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddSingleton<ISurveysService, SurveysService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //builder.Services.AddAutoMapper(typeof(Service.Mapper));
 
@@ -36,7 +39,6 @@ if (app.Environment.IsDevelopment())
         if (!context.Request.Path.Equals("/api/Users/Get"))
         {
             string authHeader = context.Request.Headers["Authorization"];
-
             if (authHeader != null)
             {
                 //Reading the JWT middle part           
@@ -54,16 +56,31 @@ if (app.Environment.IsDevelopment())
                     }, out SecurityToken validatedToken);
 
                     JwtSecurityToken jwtToken = (JwtSecurityToken)validatedToken;
+                    if (jwtToken == null)
+                    {
+                        throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                    }
 
                     string user = jwtToken.Claims.First(x => x.Type == "User").Value;
-                    
+                    context.Items["User"]=user;
+                    if (user == null)
+                    {
+                       throw new HttpResponseException(HttpStatusCode.Unauthorized);
+                    }
                 }
                 catch
                 {
-                    throw new Exception();
+                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
                 }
             }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+
+
         }
+        
         //Pass to the next middleware
         await next(context);
     });
@@ -74,7 +91,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-//app.MapWhen(context => !context.Request.Path.Equals("/api/Users/Get"), HandleGetRequest);
 
 app.Run();

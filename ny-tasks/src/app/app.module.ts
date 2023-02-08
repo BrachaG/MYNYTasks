@@ -19,7 +19,7 @@ import { ToastModule} from 'primeng/toast';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './interceptor';
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
   declarations: [
