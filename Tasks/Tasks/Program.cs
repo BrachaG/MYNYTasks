@@ -32,8 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//void HandleGetRequest(IApplicationBuilder app)
-//{
+
     app.Use(async (context, next) =>
     {
         if (!context.Request.Path.Equals("/api/Users/Get"))
@@ -81,11 +80,10 @@ if (app.Environment.IsDevelopment())
 
         }
         
-        //Pass to the next middleware
         await next(context);
     });
 
-//};
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
