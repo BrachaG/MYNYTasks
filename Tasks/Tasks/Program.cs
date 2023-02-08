@@ -1,9 +1,10 @@
 using AutoMapper;
+using NLog.Web;
 using Repository;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseNLog();
 // Add services to the container.
 
 builder.Services.AddControllers();
