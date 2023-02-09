@@ -1,5 +1,7 @@
 ﻿using Entities;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Tokens;
+using NLog;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;

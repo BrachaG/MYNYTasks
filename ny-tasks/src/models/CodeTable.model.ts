@@ -1,4 +1,4 @@
-export class CodeTable {
-    iId: number = 0;
-    nvName: string = "";
+export interface CodeTable {
+    iId: number;
+    nvName: string ;
   }

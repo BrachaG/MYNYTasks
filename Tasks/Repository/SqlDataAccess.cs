@@ -7,11 +7,13 @@ namespace Repository;
 
 public class SqlDataAccess : ISqlDataAccess
 {
-    static IConfiguration _Configuration;
-    static string connectionString = "Server=srv2\\pupils;Database=NefeshYehudi;Trusted_Connection=True;";
+    IConfiguration _Configuration;
+    readonly string connectionString; 
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
+        
+        connectionString = _Configuration.GetConnectionString("DefaultConnection");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
@@ -19,17 +21,11 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-            //ConnectionOpen(connection);
-            //// SqlConnectDB.OpenDBConnection(connection, SqlConnectDB.SessionConnectionID);
-            ///_Configuration.GetSection("ConnectionStrings:DefaultConnection");
             connection.ConnectionString = connectionString;
             connection.Open();
-
-            // Call the overload that takes a connection in place of the connection string
             return await ExecuteDatasetSP(connection, spName, SPParameters);
         }
     }
-
 
     private async Task<DataSet> ExecuteDatasetSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
@@ -58,10 +54,6 @@ public class SqlDataAccess : ISqlDataAccess
             return ds;
         }
     }
-
-
-
-
     private async Task PrepareCommand(SqlCommand command, SqlConnection connection,
            SqlTransaction transaction, CommandType commandType, string commandText,
            List<SqlParameter> commandParameters, bool mustCloseConnection)
@@ -227,7 +219,6 @@ public class SqlDataAccess : ISqlDataAccess
         }
     }
 
-
     private async Task<DataTable> ExecuteDatatableSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
         if (connection == null) throw new ArgumentNullException("connection");
@@ -255,12 +246,5 @@ public class SqlDataAccess : ISqlDataAccess
             return ds;
         }
     }
-
-
-
-
-
-
-
     #endregion  ExecuteDatasetSP
 }

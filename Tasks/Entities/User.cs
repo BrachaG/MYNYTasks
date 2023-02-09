@@ -1,11 +1,7 @@
 ﻿namespace Entities
 {
-
-
-
-    public class User
-    {
-
+    public class User:IEntity
+    {   
         public int iUserId { get; set; }
         public string nvUserName { get; set; }
         public string nvPassword { get; set; }

@@ -18,6 +18,7 @@ namespace Service
 
         public T GeneratFromDataRow(DataRow dr)
         {
+
             T obj = new T();
             obj = _mapper.Map<DataRow, T>(dr);
             return obj;
@@ -34,12 +35,6 @@ namespace Service
             }
             return rows;
 
-
         }
-
-
-
-
-
     }
 }
