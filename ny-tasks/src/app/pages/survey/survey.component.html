@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table #dt1 [value]="surveys" selectionMode="single" [(selection)]="selectedSurvey" dataKey="id" styleClass="p-datatable-surveyss"
+    <p-table #dt1 [value]="surveys" selectionMode="single" dataKey="id" styleClass="p-datatable-surveyss"
         [rows]="10" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
         <ng-template pTemplate="header">
             <tr>

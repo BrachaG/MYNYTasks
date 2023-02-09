@@ -1,13 +1,21 @@
+import { CodeTable } from "./CodeTable.model";
 
-export class userModel{
-  iPersonId :number=0;
-  nvUserName :String ="";
-  nvPasswordperty :String ="";
-  nvPasswordHint :String ="";
-  iLastUpdateUserId:number=0;
-  dtLastUpdateDate:Date=new Date();
-  iSysRowStatus :number=0;
-  iPersonStatusId :number=0;
-  iAdvancedOptionsId :number=0;
-  iValidUserNameStatus :number=0;
+export interface user {
+  iUserId: number ;
+  nvUserName: string ;
+  nvPassword: string ;
+  iUserStatus: number;
+  iOrganizationId: number;
+  iPermissionLevelId: number ;
+  iReportedHoursTypeId: number ;
+  iContinueContactPermissionId: number ;
+  iWorkerId: number ;
+  lBranches: CodeTable;
+  iBranchId: number ;
+  dtValidityDate: Date ;
+  dtLatestentering: Date ;
+  isConcentratedReport: number ;
+  nvUserMail: string ;
+  nvUserPhone: string;
+  iActivityPermissionId: number ;
 }

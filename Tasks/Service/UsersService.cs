@@ -1,47 +1,54 @@
 ﻿using Entities;
+using Microsoft.Extensions.Logging;
+using NLog;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+
 
 namespace Service
 {
     public class UsersService : IUsersService
     {
-        IUsersRepository _UsersRepository;
         ISqlDataAccess _SqlDataAccess;
-        public UsersService(IUsersRepository UsersRepository, ISqlDataAccess SqlDataAccess)
+        IObjectGenerator<User> _userObjectGenerator;
+        IObjectGenerator<CodeTable> _codeTableGenerator;
+        ILogger<UsersService> _logger;
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger)
+
         {
-            _UsersRepository = UsersRepository;
-            _SqlDataAccess =SqlDataAccess;
+            _userObjectGenerator = userObjectGenerator;
+            _codeTableGenerator = codeTableGenerator;
+            _SqlDataAccess = SqlDataAccess;
+            _logger = logger;
+
         }
-        public async Task<Object> GetById(string userName, string password)
+        int result;
+        public async Task<User> GetById(string userName, string password)
         {
-            //return await _UsersRepository.GetById(userName, password);
-            SqlParameter[] parameters = {new SqlParameter("nvUserName",userName),
-                                             new SqlParameter("nvPassword",password),
-                                             new SqlParameter("nvAddress",""),
-                                             new SqlParameter("iPort",0)
-                                             };
-            List<SqlParameter> p = new List<SqlParameter> { 
+            List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
-                                             { new SqlParameter("nvPassword", password)},
-                                             { new SqlParameter("nvAddress","")},
-            { new SqlParameter("iPort", 0)}
-                                         };
+                                             { new SqlParameter("nvPassword", password)}
+                };
             try
             {
-                var a = await _SqlDataAccess.ExecuteDatasetSP("ed_sys_User_SLCT", p);
-            }
-            catch(Exception ex)
+                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", parameters);
+         
+            
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"].ToString(),out result))
             {
-                var b = ex.Message;
+                User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                    user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
+                return user;
             }
-            return null;
-            //return await _SqlDataAccess.ExecuteScalarSP("ed_sys_User_SLCT", parameters);
-
-            ////return await _SqlDataAccess.ExecuteDatatableSP("ed_sys_User_SLCT", p); 
-
-
+            else return new User() { iUserId = -1 };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug("This is a debug message");
+                return new User() { iUserId = -1 };
+            }
         }
     }
 }
