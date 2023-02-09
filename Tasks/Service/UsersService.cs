@@ -44,7 +44,7 @@ namespace Service
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(" message: {0} timestamp :{1}", ex, DateTime.UtcNow);
+                _logger.LogDebug("This is a debug message");
                 return new User() { iUserId = -1 };
             }
         }
