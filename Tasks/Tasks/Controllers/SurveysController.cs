@@ -1,11 +1,13 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Service;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,Authorize]
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;

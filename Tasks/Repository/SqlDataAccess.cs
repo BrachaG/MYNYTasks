@@ -8,7 +8,7 @@ namespace Repository;
 public class SqlDataAccess : ISqlDataAccess
 {
     static IConfiguration _Configuration;
-    static string connectionString = "Server=WINDOWS-12E1SVH;Database=NefeshYehudi;Trusted_Connection=True;";
+    static string connectionString = "Server=srv2\\pupils;Database=NefeshYehudi;Trusted_Connection=True;";
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
