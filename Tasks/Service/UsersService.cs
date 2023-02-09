@@ -13,13 +13,13 @@ namespace Service
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<User> _userObjectGenerator;
         IObjectGenerator<CodeTable> _codeTableGenerator;
-        ILogger <UsersService> _logger;
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger)
+        
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator)
         {
             _userObjectGenerator = userObjectGenerator;
             _codeTableGenerator = codeTableGenerator;
             _SqlDataAccess = SqlDataAccess;
-            _logger = logger;
+         
         }
         int result;
         public async Task<User> GetById(string userName, string password)
