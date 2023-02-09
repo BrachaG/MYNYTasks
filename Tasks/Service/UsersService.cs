@@ -1,6 +1,6 @@
 ﻿using Entities;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Tokens;
+using Microsoft.IdentityModel.Tokens;
 using NLog;
 using Repository;
 using System.Data;

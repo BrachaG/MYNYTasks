@@ -31,12 +31,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     builder.Services.AddAuthentication(opt =>
     {
-       
         opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(options =>
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:7149/api/Surveys");
+      
         //string authHeader = request.Headers["Authorization"];
         options.TokenValidationParameters = new TokenValidationParameters
         {
