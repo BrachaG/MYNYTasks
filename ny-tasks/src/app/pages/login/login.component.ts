@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UsersService } from 'src/app/services/users.service';
-import { userModel } from 'src/models/users.model';
-
+import { user } from 'src/models/users.model';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
      })
   }
    login(){ 
-    this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
+    this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: user) => {
       this.user = res;
       if(this.user.iUserId>=0)
       alert("welcome")
