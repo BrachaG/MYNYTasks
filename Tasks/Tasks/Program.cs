@@ -35,11 +35,17 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(options =>
     {
-      
+
         //string authHeader = request.Headers["Authorization"];
         options.TokenValidationParameters = new TokenValidationParameters
         {
-           
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer ="nefesh",
+            ValidAudience = "localhost:4200",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"))
         };
     });
 
@@ -108,6 +114,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

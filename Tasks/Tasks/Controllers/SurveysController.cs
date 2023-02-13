@@ -20,6 +20,7 @@ namespace Tasks.Controllers
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
         {
+            var a = User.Claims;
             return await _SurveysService.Get();
         }
     }

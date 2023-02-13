@@ -1,7 +1,6 @@
-﻿using Entities;
-using Microsoft.Extensions.Logging;
+﻿
+using Entities;
 using Microsoft.IdentityModel.Tokens;
-using NLog;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
@@ -53,16 +52,24 @@ namespace Service
 
         private static string GenarateToken(User user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             string jsonString = System.Text.Json.JsonSerializer.Serialize(user);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("User", jsonString) }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+
+            var claims = new List<Claim>
+    {
+            new Claim(JwtRegisteredClaimNames.Sub, jsonString),
+        
+    };
+
+            var token = new JwtSecurityToken(
+                issuer: "nefesh",
+                audience: "localhost:4200",
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(30),
+                signingCredentials: credentials
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
         }
     }

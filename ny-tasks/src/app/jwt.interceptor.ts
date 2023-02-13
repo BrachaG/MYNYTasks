@@ -8,7 +8,8 @@ export class JwtInterceptor implements HttpInterceptor {
     // If there is a token, add it to the authorization header
     if (token) {
       const modifiedReq = req.clone({
-        headers: req.headers.set('Authorization',token),
+        headers: req.headers.set('Authorization',`Bearer ${token}`),
+        // headers["Authorization"] = `Bearer ${token}`,
       });
       return next.handle(modifiedReq);
     }
