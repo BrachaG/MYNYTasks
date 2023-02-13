@@ -33,9 +33,10 @@ namespace Service
             try
             {
                 DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", parameters);
-         
-            
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"].ToString(),out result))
+                _logger.LogInformation("This is a debug message");
+                _logger.LogInformation("This is a debug message");
+
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"].ToString(),out result))
             {
                 User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                 if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
@@ -46,7 +47,7 @@ namespace Service
             }
             catch (Exception ex)
             {
-                _logger.LogDebug("This is a debug message");
+                _logger.LogInformation("This is a debug message");
                 return new User() { iUserId = -1 };
             }
         }
