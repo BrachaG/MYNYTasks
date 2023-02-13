@@ -24,7 +24,6 @@ namespace Tasks.Controllers
             var user = User.Claims;
             var a = user.Where(u => u.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Select(c => c.Value);    
             string userId = a.ToList()[0];
-            user = User.Claims;
             return await _SurveysService.Get(userId);
         }
     }
