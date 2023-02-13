@@ -17,13 +17,11 @@ namespace Service
             _surveyObjectGenerator = surveyObjectGenerator;   
         }
 
-        public async Task<List<Survey>> Get()
+        public async Task<List<Survey>> Get(string userId)
         {
             try
             {
-                string usertoken = _httpContextAccessor.HttpContext.Items["User"].ToString();
-                User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(usertoken);
-                int userId= user.iUserId;
+                
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return surveys;

@@ -54,12 +54,12 @@ namespace Service
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(user);
+            string jsonString = user.iUserId.ToString();
+            //string jsonString = System.Text.Json.JsonSerializer.Serialize(user);
 
             var claims = new List<Claim>
     {
             new Claim(JwtRegisteredClaimNames.Sub, jsonString),
-        
     };
 
             var token = new JwtSecurityToken(
@@ -71,5 +71,5 @@ namespace Service
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        }
     }
+}

@@ -58,61 +58,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.Use(async (context, next) =>
-//{
-//    if (!context.Request.Path.Equals("/api/Users/Get"))
-//    {
-//        string authHeader = context.Request.Headers["Authorization"];
-//        if (authHeader != null)
-//        {
-//            //Reading the JWT middle part           
-//            var tokenHandler = new JwtSecurityTokenHandler();
-
-//            try
-//            {
-//                tokenHandler.ValidateToken(authHeader, new TokenValidationParameters
-//                {
-//                    ValidateIssuerSigningKey = true,
-//                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
-//                    ValidateIssuer = false,
-//                    ValidateAudience = false,
-//                    ClockSkew = TimeSpan.Zero
-//                }, out SecurityToken validatedToken);
-
-//                JwtSecurityToken jwtToken = (JwtSecurityToken)validatedToken;
-//                if (jwtToken == null)
-//                {
-//                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
-//                }
-
-//                string user = jwtToken.Claims.First(x => x.Type == "User").Value;
-//                context.Items["User"] = user;
-//                if (user == null)
-//                {
-
-//                    throw new HttpResponseException(HttpStatusCode.Unauthorized);
-//                }
-//            }
-//            catch
-//            {
-//                throw new HttpResponseException(HttpStatusCode.Unauthorized);
-//            }
-//        }
-//        else
-//        {
-//            throw new HttpResponseException(HttpStatusCode.Unauthorized);
-//            //  throw new UnauthorizedAccessException();
-//            //return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status401Unauthorized, "My error message");
-
-//        }
-
-
-//    }
-
-//    await next(context);
-//});
-
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
