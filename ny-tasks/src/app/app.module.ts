@@ -20,11 +20,15 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
