@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent {
-  display=true;
+ 
 
 }

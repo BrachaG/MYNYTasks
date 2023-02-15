@@ -1,7 +1,11 @@
 .bar-button{
-    background-color: white;
-    
+    color: rgb(250, 94, 94);
 }
 .bar-button:focus{
-    background-color: blue;
+    color: rgb(88, 171, 226);
+    
+}
+.p-button-text{
+    border: none;
+    color: rgb(0, 0, 0);
 }
