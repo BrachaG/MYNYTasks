@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
+using Microsoft.Extensions.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -36,14 +38,13 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }).AddJwtBearer(options =>
     {
 
-        //string authHeader = request.Headers["Authorization"];
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer ="nefesh",
+            ValidIssuer = "nefesh",
             ValidAudience = "localhost:4200",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"))
         };

@@ -26,8 +26,8 @@ namespace Service
             _codeTableGenerator = codeTableGenerator;
             _SqlDataAccess = SqlDataAccess;
             _Configuration = Configuration;
-            Issure = _Configuration.GetSection("Issure").Value;
-            Audience = _Configuration.GetSection("Audience").Value;
+            Issure = _Configuration["JWTParams:Issure"];
+            Audience = _Configuration["JWTParams:Audience"];
         }
         public async Task<User> GetById(string userName, string password)
         {
