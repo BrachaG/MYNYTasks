@@ -1,5 +1,6 @@
 ﻿
 using Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Repository;
 using System.Data;
@@ -16,11 +17,17 @@ namespace Service
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<User> _userObjectGenerator;
         IObjectGenerator<CodeTable> _codeTableGenerator;
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator)
+        IConfiguration _Configuration;
+        readonly string Issure;
+        readonly string Audience;
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, IConfiguration Configuration)
         {
             _userObjectGenerator = userObjectGenerator;
             _codeTableGenerator = codeTableGenerator;
             _SqlDataAccess = SqlDataAccess;
+            _Configuration = Configuration;
+            Issure = _Configuration.GetSection("Issure").Value;
+            Audience = _Configuration.GetSection("Audience").Value;
         }
         public async Task<User> GetById(string userName, string password)
         {
@@ -50,7 +57,7 @@ namespace Service
             else return null;
         }
 
-        private static string GenarateToken(User user)
+        private string GenarateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -63,8 +70,8 @@ namespace Service
     };
 
             var token = new JwtSecurityToken(
-                issuer: "nefesh",
-                audience: "localhost:4200",
+                issuer: Issure,
+                audience:Audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: credentials
