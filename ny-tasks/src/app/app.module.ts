@@ -19,12 +19,18 @@ import {ToastModule} from 'primeng/toast';
 import {StyleClassModule} from 'primeng/styleclass';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import {SidebarModule} from 'primeng/sidebar';
+import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    LoginComponent
+    LoginComponent,
+    SideBarComponent,
+    BarButtonsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     StyleClassModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SidebarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

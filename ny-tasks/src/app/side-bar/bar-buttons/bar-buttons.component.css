@@ -1,0 +1,7 @@
+.bar-button{
+    background-color: white;
+    
+}
+.bar-button:focus{
+    background-color: blue;
+}
