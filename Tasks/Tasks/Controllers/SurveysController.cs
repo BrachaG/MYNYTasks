@@ -12,18 +12,38 @@ namespace Tasks.Controllers
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
-
-        public SurveysController(ISurveysService SurveysService)
+        IConfiguration _Configuration;
+        
+        public SurveysController(ISurveysService SurveysService, IConfiguration Configuration)
         {
             _SurveysService = SurveysService;
-
+           
         }
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
         {
+
             var user = User.Claims;
-            var a = user.Where(u => u.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Select(c => c.Value);    
-            string userId = a.ToList()[0];
+            string? userId= null;
+            if (user != null)
+            {
+                const string nameIdentifierClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+                var nameIdentifierClaim = user.FirstOrDefault(c => c.Type == nameIdentifierClaimType);
+                if (nameIdentifierClaim != null)
+                {
+                    userId = nameIdentifierClaim.Value;
+                }
+                else
+                {
+                    throw new Exception();
+                    // handle case where nameidentifier claim is missing
+                }
+            }
+            else
+            {
+                throw new Exception();
+                // handle case where user claims are missing
+            }
             return await _SurveysService.Get(userId);
         }
     }
