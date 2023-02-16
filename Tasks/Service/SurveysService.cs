@@ -8,14 +8,12 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
-       
         public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
-            _surveyObjectGenerator = surveyObjectGenerator;   
+            _surveyObjectGenerator = surveyObjectGenerator;
         }
-
-        public async Task<List<Survey>> Get()
+        public async Task<List<Survey>> Get(string userId)
         {
             try
             {

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Entities": {
+      "commandName": "Project",
+      "remoteDebugEnabled": true
+    }
+  }
+}

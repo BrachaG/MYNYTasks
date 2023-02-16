@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { user } from 'src/models/users.model';
-import { UsersService } from '../services/users.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
+import { userModel } from 'src/models/users.model';
+
 
 @Component({
   selector: 'app-login',
@@ -9,31 +11,34 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user:any
-  constructor( private srv :UsersService) { 
+  user: any
+  constructor(private srv: UsersService,private router:Router) {
   }
 
   frmUsers: FormGroup = new FormGroup({
     userName: new FormControl(''),
     code: new FormControl(''),
-   } )
+  })
   ngOnInit(): void {
-    this.frmUsers=new FormGroup({
-      userName:new FormControl(),
+    this.frmUsers = new FormGroup({
+      userName: new FormControl(),
       code: new FormControl(),
-     })
-  }
-   login(){ 
-    this.srv.getUserById(this.frmUsers.controls['userName'].value,this.frmUsers.controls['code'].value).subscribe((res: user) => {
-      this.user = res;
-      if(this.user.iUserId>=0)
-      alert("welcome")
-      else
-      alert("not permission")
-     console.log(this.user);
     })
-    
-   
-   
+  }
+  login() {
+    this.srv.getUserById(this.frmUsers.controls['userName'].value, this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
+      this.user = res;
+      if (this.user != null) {
+        localStorage.setItem("jwt-token", this.user.token)
+        this.router.navigateByUrl("surveys");
+
+      }
+      else
+        alert("not permission")
+      console.log(this.user);
+    })
+
+
+
   }
 }
