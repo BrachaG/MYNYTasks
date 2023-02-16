@@ -13,7 +13,6 @@ namespace Service
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
         }
-
         public async Task<List<Survey>> Get(string userId)
         {
             try
