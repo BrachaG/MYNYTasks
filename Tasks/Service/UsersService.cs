@@ -37,7 +37,6 @@ namespace Service
             List<SqlParameter> p = new List<SqlParameter> {
                                              { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
-
                 };
             DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
