@@ -10,17 +10,14 @@ namespace Tasks.Controllers
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
-        IConfiguration _Configuration;
 
-        public SurveysController(ISurveysService SurveysService, IConfiguration Configuration)
+        public SurveysController(ISurveysService SurveysService)
         {
             _SurveysService = SurveysService;
-
         }
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
         {
-
             var user = User.Claims;
             string? userId = null;
             if (user != null)
