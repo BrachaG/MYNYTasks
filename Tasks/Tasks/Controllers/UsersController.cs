@@ -10,15 +10,18 @@ namespace Tasks.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        ILogger<UsersController> _logger;
         IUsersService _UsersService;
-        public UsersController(IUsersService UsersService)
+        public UsersController(IUsersService UsersService, ILogger<UsersController> logger)
         {
+            _logger = logger;
             _UsersService = UsersService;
 
         }
         [HttpGet("Get")]
         public async Task<User> GetById(string userName, string password)
         {
+            _logger.LogDebug($"User name is: {userName} Password is: {password}  In login");
             return await _UsersService.GetById(userName, password);
         }
     }

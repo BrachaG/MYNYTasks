@@ -9,15 +9,18 @@ namespace Tasks.Controllers
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
-
-        public SurveysController(ISurveysService SurveysService)
+        ILogger<SurveysController> _logger;
+        public SurveysController(ISurveysService SurveysService, ILogger<SurveysController> logger)
         {
+             
             _SurveysService = SurveysService;
+            _logger = logger;
 
         }
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
         {
+            _logger.LogDebug("Get survey");
             return await _SurveysService.Get();
         }
     }
