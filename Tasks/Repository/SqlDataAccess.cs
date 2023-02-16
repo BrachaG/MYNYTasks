@@ -8,11 +8,11 @@ namespace Repository;
 public class SqlDataAccess : ISqlDataAccess
 {
     IConfiguration _Configuration;
-    readonly string connectionString; 
+    readonly string connectionString;
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
-        
+
         connectionString = _Configuration.GetConnectionString("DefaultConnection");
     }
     #region ExecuteDatasetSP

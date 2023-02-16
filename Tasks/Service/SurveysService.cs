@@ -14,14 +14,13 @@ namespace Service
         {
             _httpContextAccessor = httpContextAccessor;
             _SqlDataAccess = SqlDataAccess;
-            _surveyObjectGenerator = surveyObjectGenerator;   
+            _surveyObjectGenerator = surveyObjectGenerator;
         }
 
         public async Task<List<Survey>> Get(string userId)
         {
             try
             {
-                
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return surveys;
