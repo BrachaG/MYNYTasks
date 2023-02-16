@@ -14,7 +14,6 @@ namespace Tasks.Controllers
         public UsersController(IUsersService UsersService)
         {
             _UsersService = UsersService;
-
         }
         [HttpGet("Get")]
         public async Task<User> GetById(string userName, string password)

@@ -62,7 +62,7 @@ namespace Service
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             string jsonString = user.iUserId.ToString();
-
+            //var claims1 = ClaimsIdentity(new[] { new Claim("Id", Guid.NewGuid().ToString()),new Claim(JwtRegisteredClaimNames.Sub, jsonString) });
             var claims = new List<Claim>
     {
             new Claim(JwtRegisteredClaimNames.Sub, jsonString),

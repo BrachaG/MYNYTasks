@@ -1,7 +1,11 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Service;
+using ServiceStack.Host;
+using System.Net;
+
 
 namespace Tasks.Controllers
 {
@@ -17,27 +21,20 @@ namespace Tasks.Controllers
         }
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
-        {
-            var user = User.Claims;
+        {   
+
+            string Type = JwtRegisteredClaimNames.Sub;
+            var user = User.Claims.FirstOrDefault(c => c.Type == Type);
             string? userId = null;
             if (user != null)
             {
-                string nameIdentifierClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
-                var nameIdentifierClaim = user.FirstOrDefault(c => c.Type == nameIdentifierClaimType);
-                if (nameIdentifierClaim != null)
-                {
-                    userId = nameIdentifierClaim.Value;
-                }
-                else
-                {
-                    throw new Exception();
-                    // handle case where nameidentifier claim is missing
-                }
+                userId = user.Value;
             }
             else
             {
-                throw new Exception();
-                // handle case where user claims are missing
+                Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                throw new HttpException();
+
             }
             return await _SurveysService.Get(userId);
         }
