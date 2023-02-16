@@ -10,9 +10,8 @@ namespace Service
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
         IHttpContextAccessor _httpContextAccessor;
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, IHttpContextAccessor httpContextAccessor)
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator)
         {
-            _httpContextAccessor = httpContextAccessor;
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
         }
