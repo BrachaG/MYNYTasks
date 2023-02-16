@@ -22,20 +22,8 @@ namespace Tasks.Controllers
         [HttpGet("Get")]
         public async Task<List<Survey>> Get()
         {   
-
             string Type = JwtRegisteredClaimNames.Sub;
-            var user = User.Claims.FirstOrDefault(c => c.Type == Type);
-            string? userId = null;
-            if (user != null)
-            {
-                userId = user.Value;
-            }
-            else
-            {
-                Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                throw new HttpException();
-
-            }
+            string userId =  User.Claims.FirstOrDefault(c => c.Type == Type).Value;
             return await _SurveysService.Get(userId);
         }
     }
