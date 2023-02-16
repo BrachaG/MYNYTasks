@@ -1,5 +1,4 @@
-﻿
-using Entities;
+﻿using Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Repository;
@@ -38,7 +37,7 @@ namespace Service
             List<SqlParameter> p = new List<SqlParameter> {
                                              { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
-                                             
+
                 };
             DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
@@ -53,17 +52,13 @@ namespace Service
             }
             else return null;
         }
-
         private string GenarateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             string jsonString = user.iUserId.ToString();
             var claims = new List<Claim>
-    {
-            new Claim(JwtRegisteredClaimNames.Sub, jsonString),
-    };
-
+             { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
             var token = new JwtSecurityToken(
                 issuer: Issure,
                 audience: Audience,
