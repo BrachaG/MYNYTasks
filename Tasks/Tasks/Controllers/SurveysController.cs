@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Service;
-using ServiceStack.Host;
-using System.Net;
-
 
 namespace Tasks.Controllers
 {

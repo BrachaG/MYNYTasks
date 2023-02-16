@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Microsoft.AspNetCore.Http;
 using Repository;
 using System.Data;
 
@@ -9,7 +8,6 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
-        IHttpContextAccessor _httpContextAccessor;
         public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
