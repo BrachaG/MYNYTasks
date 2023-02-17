@@ -4,19 +4,17 @@ using NLog.Web;
 using Repository;
 using Service;
 
-var logger = NLog.LogManager
-    .Setup()
-    .LoadConfigurationFromAppSettings()
-    .GetCurrentClassLogger();
+
+  
 
 try { 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
-builder.Logging.ClearProviders();
+//builder.Logging.ClearProviders();
 
 // log youe application at trace level 
-builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+//builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
 
 // Register the NLog service
 builder.Host.UseNLog();
@@ -52,8 +50,7 @@ app.Run();
 }
 
 catch (Exception ex)
-{
-    logger.Error(ex);
+{   
     throw;
 }
 finally

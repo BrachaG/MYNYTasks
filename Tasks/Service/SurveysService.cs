@@ -20,6 +20,7 @@ namespace Service
 
         public async Task<List<Survey>> Get()
         {
+            _logger.LogDebug("in Get all Surveys");
             try
             {
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);

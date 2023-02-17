@@ -26,6 +26,7 @@ namespace Service
         int result;
         public async Task<User> GetById(string userName, string password)
         {
+            _logger.LogDebug($"User name is: {userName} Password is: {password} Login, In GetById of UserService");
             List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
@@ -44,7 +45,7 @@ namespace Service
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "in userService, login, get, when trying to approach to database");
+                _logger.LogError(ex, "in UserService, Login, Get, When trying to approach to Database");
                 return new User() { iUserId = -1 };
             }
         }

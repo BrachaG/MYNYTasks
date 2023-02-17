@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using Microsoft.Extensions.Logging;
 using System.Data;
 using System.Reflection;
 
@@ -7,6 +8,7 @@ namespace Service
 {
     public class Mapper : Profile
     {
+        ILogger<Mapper> _logger;
         public static T MapDataRowToEntity<T>(DataRow row) where T : new()
         {
             T entity = new T();
@@ -28,7 +30,8 @@ namespace Service
             CreateMap<DataRow, User>()
              .ConvertUsing(row => MapDataRowToEntity<User>(row));
             CreateMap<DataRow, CodeTable>()
-             .ConvertUsing(row => MapDataRowToEntity<CodeTable>(row));          
+             .ConvertUsing(row => MapDataRowToEntity<CodeTable>(row));
+            
         }
     }
 }

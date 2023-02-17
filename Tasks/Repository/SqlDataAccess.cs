@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,10 +8,12 @@ namespace Repository;
 
 public class SqlDataAccess : ISqlDataAccess
 {
+    ILogger<SqlDataAccess> _logger;
     IConfiguration _Configuration;
     readonly string connectionString; 
-    public SqlDataAccess(IConfiguration Configuration)
+    public SqlDataAccess(IConfiguration Configuration, ILogger<SqlDataAccess> logger)
     {
+        _logger = logger;
         _Configuration = Configuration;
         
         connectionString = _Configuration.GetConnectionString("Home");
@@ -18,6 +21,7 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
     {
+        _logger.LogDebug($"spName name is: {spName} SPParameters is: {SPParameters}  In ExecuteDatasetSP of sqlDataAccess returns DataSet");
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
@@ -29,6 +33,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task<DataSet> ExecuteDatasetSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
+        _logger.LogDebug($"connection is: {connection} spName name is: {spName} SPParameters is: {SPParameters}  In ExecuteDatasetSP of sqlDataAccess returns DataSet");
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution
@@ -58,6 +63,8 @@ public class SqlDataAccess : ISqlDataAccess
            SqlTransaction transaction, CommandType commandType, string commandText,
            List<SqlParameter> commandParameters, bool mustCloseConnection)
     {
+        _logger.LogDebug($"command name is: {command} connection is: {connection} transaction is: {transaction} commandType is: {commandType} commandText is: {commandText} " +
+            "commandParameters is: {commandParameters} mustCloseConnection is: {mustCloseConnection} In PrepareCommand of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
             throw new ArgumentNullException("commandText");
@@ -95,6 +102,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task AttachParameters(SqlCommand command, List<SqlParameter> commandParameters)
     {
+        _logger.LogDebug($"command is: {command}  commandParameters is: {commandParameters}  In AttachParameters of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
@@ -114,6 +122,7 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteScalarSP
     public async Task<object> ExecuteScalarSP(string spName, params SqlParameter[] commandParameters)
     {
+        _logger.LogDebug($"spName is: {spName} commandParameters name is: {commandParameters} commandParameters is: {commandParameters}  In ExecuteScalarSP of sqlDataAccess returns Scalar");
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
@@ -128,6 +137,7 @@ public class SqlDataAccess : ISqlDataAccess
     }
     private async Task<object> ExecuteScalarSP(SqlConnection connection, string spName, params SqlParameter[] commandParameters)
     {
+        _logger.LogDebug($"connection is: {connection} spName name is: {spName} commandParameters is: {commandParameters}  In ExecuteScalarSP of sqlDataAccess returns Scalar");
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution\\
@@ -151,6 +161,8 @@ public class SqlDataAccess : ISqlDataAccess
             SqlTransaction transaction, CommandType commandType, string commandText,
             SqlParameter[] commandParameters, bool mustCloseConnection)
     {
+        _logger.LogDebug($"command name is: {command} connection is: {connection} transaction is: {transaction} commandType is: {commandType} commandText is: {commandText} " +
+            "commandParameters is: {commandParameters} mustCloseConnection is: {mustCloseConnection} In PrepareCommand of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
             throw new ArgumentNullException("commandText");
@@ -187,6 +199,7 @@ public class SqlDataAccess : ISqlDataAccess
     }
     private async Task AttachParameters(SqlCommand command, SqlParameter[] commandParameters)
     {
+        _logger.LogDebug($"command is: {command} commandParameters name is: {commandParameters}  In AttachParameters of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
@@ -205,6 +218,7 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteDatatableSP
     public async Task<DataTable> ExecuteDatatableSP(string spName, List<SqlParameter> SPParameters)
     {
+        _logger.LogDebug($"spName is: {spName} SPParameters name is: {SPParameters}   In ExecuteDatatableSP of sqlDataAccess returns DataTable");
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
@@ -221,6 +235,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task<DataTable> ExecuteDatatableSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
+        _logger.LogDebug($"connection is: {connection} spName name is: {spName} SPParameters is: {SPParameters}  In ExecuteDatatableSP of sqlDataAccess returns DataTable");
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution
