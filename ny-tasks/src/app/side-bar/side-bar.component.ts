@@ -7,12 +7,11 @@ import { Component } from '@angular/core';
 })
 export class SideBarComponent {
   currentRoute: string = '';
-  buttons=['דשבורד','יעדים','משימות']
+  buttons=['לוח אישי','יעדים','משימות','משובים'];
   constructor() { }
 
   navigateTo(route: string) {
     this.currentRoute = route;
     // this.router.navigateByUrl(route);
   }
-
 }
