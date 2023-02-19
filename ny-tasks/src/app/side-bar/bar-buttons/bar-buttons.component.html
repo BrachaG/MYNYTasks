@@ -1,2 +1,7 @@
 
-<button  label="Cancel" class="bar-button" > aaa</button>
+<!-- <button  label="Cancel" class="bar-button" > aaa</button> -->
+ <div> <button (click)="handleClick()"  [ngClass]="{'active' :isActive , 'notactive':!isActive  }" >
+{{ label }}
+</button>
+  </div>
+  <!-- [ngStyle]="{'color': isActive ? 'white' : 'blue'}" -->

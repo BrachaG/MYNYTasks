@@ -1,4 +1,4 @@
-.bar-button{
+/* .bar-button{
     color: rgb(250, 94, 94);
 }
 .bar-button:focus{
@@ -8,4 +8,42 @@
 .p-button-text{
     border: none;
     color: rgb(0, 0, 0);
+} */
+
+.active{
+    color: rgb(35, 155, 196);
+    background-color: transparent;
+    margin: 15px;
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom:1px;
+    border-width: 4px;
+    border-color: rgb(35, 155, 196);
+    width: 90%;
+    
+   
 }
+.notactive{
+    color: azure;
+    border: none;
+    background-color: transparent;
+    margin: 15px;
+    width: 90%;
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
