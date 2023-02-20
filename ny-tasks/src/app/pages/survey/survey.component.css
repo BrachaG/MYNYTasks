@@ -1,1 +1,35 @@
+#background{
+    background-color: #F5F8FD;
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    overflow-y: scroll;
 
+
+}
+#title{
+    width: 55px;
+height: 21px;
+
+/* H1 Medium */
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+text-align: right;
+letter-spacing: -0.011em;
+
+/* blue3 */
+
+color: #1E2959;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
