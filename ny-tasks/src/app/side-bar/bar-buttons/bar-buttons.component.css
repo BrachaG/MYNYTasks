@@ -13,6 +13,11 @@
     width: 90%; 
     margin: 15px;  
     background-color: transparent;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
 }
 .active{
     color: rgb(35, 155, 196);

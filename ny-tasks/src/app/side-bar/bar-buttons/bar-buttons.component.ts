@@ -10,6 +10,7 @@ export class BarButtonsComponent {
   @Input() label='';
   @Output() clicked = new EventEmitter<void>();
   @Input() isActive = false;
+  @Input() icon='';
   handleClick() {
     this.clicked.emit();
   }

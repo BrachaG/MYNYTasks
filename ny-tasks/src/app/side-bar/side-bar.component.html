@@ -1,8 +1,8 @@
 
 <!-- <p-sidebar [visible]="true" " position="right"  class="side-bar" [modal]="false"><app-bar-buttons></app-bar-buttons></p-sidebar> -->
-<h1>side bar</h1>
-<p-sidebar [visible]="true" [style]="{backgroundColor:'rgb(25, 25, 100)' } " [blockScroll]="true" [modal]="false" position="right" [showCloseIcon]="false" >
-    <app-bar-buttons *ngFor="let button of buttons" [label]="button" (clicked)="navigateTo(button.toLowerCase())" [isActive]="button.toLowerCase() === currentRoute"></app-bar-buttons>
+<p-sidebar [visible]="true" [style]="{backgroundColor:'#16163A',border:'none'} " [blockScroll]="true" [modal]="false" position="right" [showCloseIcon]="false" >
+   <div id="logo"></div>
+  <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]" (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
   </p-sidebar>
   pi-send
   pi-question-circle

@@ -25,9 +25,7 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-            //ConnectionOpen(connection);
-            //// SqlConnectDB.OpenDBConnection(connection, SqlConnectDB.SessionConnectionID);
-            ///_Configuration.GetSection("ConnectionStrings:DefaultConnection");
+
             connection.ConnectionString = connectionString;
             connection.Open();
 
