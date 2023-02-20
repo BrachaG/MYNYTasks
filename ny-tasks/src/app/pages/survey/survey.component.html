@@ -1,14 +1,19 @@
 <div id="background">
+    <div id="container">
     <h1 id="title">משובים</h1>
-    <p-table [value]="surveys" [tableStyle]="{'min-width': '50rem'}">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>שם המשוב</th>
-                <th>תאריך הפצה</th>
-                <th>כמות משיבים</th>
-                <th>מספר שאלות</th>
-                <th>תגמול</th>
-                <th>קישור</th>
+    <h4 id="sumSurveys" class="h4">{{sum}} סך הכל</h4>
+    </div>
+    <div id="surveysTable">
+    <p-table  [value]="surveys" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template   pTemplate="header" >
+            <div id="up-border"></div>
+            <tr id="header">
+                <th class="head">שם המשוב</th>
+                <th class="head">תאריך הפצה</th>
+                <th class="head">כמות משיבים</th>
+                <th class="head">מספר שאלות</th>
+                <th class="head">תגמול</th>
+                <th class="head">קישור</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>
@@ -22,4 +27,5 @@
             </tr>
         </ng-template>
     </p-table>
+</div>
 </div>

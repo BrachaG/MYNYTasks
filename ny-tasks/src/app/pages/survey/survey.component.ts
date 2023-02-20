@@ -12,7 +12,7 @@ import { Survey } from 'src/models/survey.model';
 })
 export class SurveyComponent implements OnInit{
     surveys:Survey[]=[];
-    
+    sum:number =0;
     constructor(private surveyService:SurveysService) { }
 
     ngOnInit() { 
@@ -22,6 +22,7 @@ export class SurveyComponent implements OnInit{
      getSurveysByUserId(){
            this.surveyService.getSurveys().subscribe((res: any) => {
             this.surveys = res;
+            this.sum =this.surveys.length;
           })
          console.log(this.surveys);
     }

@@ -13,7 +13,7 @@ public class SqlDataAccess : ISqlDataAccess
     {
         _Configuration = Configuration;
 
-        connectionString = _Configuration.GetConnectionString("tovi");
+        connectionString = _Configuration.GetConnectionString("yaeli");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
