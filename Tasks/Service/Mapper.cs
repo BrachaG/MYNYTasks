@@ -8,7 +8,6 @@ namespace Service
 {
     public class Mapper : Profile
     {
-        ILogger<Mapper> _logger;
         public static T MapDataRowToEntity<T>(DataRow row) where T : new()
         {
             T entity = new T();
