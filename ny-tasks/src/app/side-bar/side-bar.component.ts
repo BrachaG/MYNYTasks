@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SideBarComponent {
   currentRoute: string = '';
-  buttons=[['לוח אישי', 'selfbored', 'pi pi-question-circle'], ['יעדים', 'pupose', 'pi pi-send'], ['משימות', 'tasks', 'pi pi-send'], ['משובים', 'fidback', 'pi pi-send']];
+  buttons=[['לוח אישי', 'selfbored', 'pi pi-calendar'], ['יעדים', 'pupose', 'pi pi-send'], ['משימות', 'tasks', 'pi pi-pencil'], ['משובים', 'fidback', 'pi pi-question-circle']];
   constructor() { }
 
   navigateTo(route: string) {
