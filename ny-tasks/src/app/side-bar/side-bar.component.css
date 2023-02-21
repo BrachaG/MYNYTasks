@@ -11,15 +11,21 @@
     height: 15%;
 
 }
-/* .addTask{
+.addTaskButton{
     background-color:#2F81EF ;
-    top: 60%;
+    top: 100%;
     position: relative;
     border-radius:8px;
     border: none;
     width: 100%;
-    height: 20%;
+    height: 18%;
     color: white;
     font-family: 'Rubik';
-
-} */
+}
+.addTaskTaxt{
+font-size: 110%;
+}
+.content{
+    height: 100%;
+   
+}
