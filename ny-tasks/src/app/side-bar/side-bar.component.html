@@ -1,17 +1,17 @@
 <body>
-   <p-sidebar id="aa"  [visible]="true" [baseZIndex]="10000"
+   <p-sidebar id="aa" [visible]="true" [baseZIndex]="10000"
       [style]="{backgroundColor:'#16163A',border:'none',width:'15%',height:'100%','box-shadow': 'none','position':'absolute'}"
       [blockScroll]="false" [modal]="false" position="right" [showCloseIcon]="false">
-     
-
-      <img src="logo.png" alt="Image description" [style]="{width: '90%' ,'margin-right':'8%'}">
-
+      <img src="https://nefeshyehudi.co.il/wp-content/uploads/2018/07/logo.jpg" alt="Image description"
+         [style]="{width:'80%' ,'margin-right':'8%'}">
       <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
          (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
-
       <button class="addTaskButton">
-         <i class="pi pi-plus addTaskTaxt ">הוספת משימה</i>
+         <div class="addTask">
+            <i class="pi pi-plus iconPlus"></i>
+            הוספת משימה
+         </div>
       </button>
- 
    </p-sidebar>
+
 </body>
