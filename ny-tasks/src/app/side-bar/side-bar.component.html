@@ -1,11 +1,17 @@
+<body>
+   <p-sidebar id="aa"  [visible]="true" [baseZIndex]="10000"
+      [style]="{backgroundColor:'#16163A',border:'none',width:'15%',height:'100%','box-shadow': 'none','position':'absolute'}"
+      [blockScroll]="false" [modal]="false" position="right" [showCloseIcon]="false">
+     
 
+      <img src="logo.png" alt="Image description" [style]="{width: '90%' ,'margin-right':'8%'}">
 
-<p-sidebar [visible]="true"[style]="{backgroundColor:'#16163A',border:'none',width:'15%',height:'100%', 'box-shadow': 'none'}"
-   [blockScroll]="false" [modal]="false" position="right" [showCloseIcon]="false">
-   <div class="content"><img src="Untitled-3.png" alt="Image description" [style]="{width: '90%' ,'margin-right':'8%','padding-right':'10%'}">
-   <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
-      (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
-   <button class="addTaskButton" >
-      <i class="pi pi-plus addTaskTaxt"> הוספת משימה</i>
-   </button></div>
-</p-sidebar>
+      <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
+         (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
+
+      <button class="addTaskButton">
+         <i class="pi pi-plus addTaskTaxt ">הוספת משימה</i>
+      </button>
+ 
+   </p-sidebar>
+</body>
