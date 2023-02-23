@@ -1,0 +1,158 @@
+#background{
+    background-color: #F5F8FD;
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    overflow-y: scroll;
+}
+
+#title{
+width: 55px;
+height: 21px;
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+text-align: right;
+letter-spacing: -0.011em;
+color: #1E2959;
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+#sumSurveys{
+    width: 64px;
+    height: 17px;
+    color: #5F6388;
+}
+
+.h4{
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+text-align: right;
+letter-spacing: -0.011em;
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:baseline;
+    gap: 15%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    right:10%;
+    top:10%;
+}
+
+#surveysTable{
+    width: 70%;
+    position: relative;
+    top:20%;
+    right: 10%;
+}
+
+#up-border{
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    top: 2.06px;
+    border: 2px solid #2F81EF;
+    border-radius: 0px 0px 10px 10px;
+}
+.table-header{
+    background-color: #FFFFFF;
+    // border-radius: 0px 10px 10px;
+}
+.p-datatable .p-datatable-thead {
+    border-color: #1E2959;
+    // border-radius: 10px 10px 10px 10px;
+    border-style:inherit;
+}
+.p-datatable .p-datatable-thead > tr > th {
+    background-color: transparent;
+     border:unset;
+     color: #2F81EF;
+}
+.table-header {
+    .head{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #2F81EF;
+    // background-color: transparent;
+    /* identical to box height *
+   
+    text-align: right;
+    letter-spacing: -0.011em;
+    
+    /* 01 */
+    
+    
+
+}
+}
+.p-datatable .p-datatable-tbody > tr{
+    // margin: 2px;
+    // width: 50px;
+    // height: 47px;
+    // background: #FFFFFF;
+    // background-color: #2F81EF;
+    // border-radius: 50% !important;
+   // border: #1E2959;
+   // border-style: solid;
+
+    // border-radius: 50% !important;
+
+}
+.p-datatable .p-datatable-tbody > tr>td{
+//   border: unset;
+//   border-radius: unset;
+
+}
+// .table-row{
+//     margin: 2px;
+//     width: 1024.08px;
+//     height: 47px;
+//     background: #FFFFFF;
+//     background-color: #2F81EF;
+//     // border-radius: 50% !important;
+//     // border-radius: 8px;
+//     // border-radius: 50% !important;
+// }
+.table-row .tb-row{
+    // border-radius: 50% !important;
+    //background-color: #2F81EF;
+}
+.table-row{
+    // border-radius: 10px;
+    //background-color: red;
+}
+.table-header th:first-child { border-top-right-radius: 10px; }
+.table-header th:last-child { border-top-left-radius: 10px; }
+
+.table-header th:first-child { border-bottom-right-radius: 10px; }
+.table-header th:last-child { border-bottom-left-radius: 10px; }
+
+
+
+.table-row td:first-child { border-top-right-radius: 10px; }
+.table-row td:last-child { border-top-left-radius: 10px; }
+
+.table-row td:first-child { border-bottom-right-radius: 10px; }
+.table-row td:last-child { border-bottom-left-radius: 10px; }

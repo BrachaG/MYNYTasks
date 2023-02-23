@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LazyLoadEvent, SortEvent } from 'primeng/api';
 import { SurveysService } from 'src/app/services/surveys.service';
 import { Survey } from 'src/models/survey.model';
@@ -8,7 +8,9 @@ import { Survey } from 'src/models/survey.model';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  styleUrls: ['./survey.component.scss'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class SurveyComponent implements OnInit{
     surveys:Survey[]=[];
@@ -25,5 +27,6 @@ export class SurveyComponent implements OnInit{
             this.sum =this.surveys.length;
           })
          console.log(this.surveys);
+         new Date().toDateString
     }
 }

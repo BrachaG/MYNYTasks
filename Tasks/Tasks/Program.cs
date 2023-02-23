@@ -49,7 +49,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
 app.UseAuthentication();
 
 app.UseAuthorization();

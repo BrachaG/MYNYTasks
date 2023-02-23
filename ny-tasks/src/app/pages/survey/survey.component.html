@@ -5,9 +5,9 @@
     </div>
     <div id="surveysTable">
     <p-table  [value]="surveys" [tableStyle]="{'min-width': '50rem'}">
-        <ng-template   pTemplate="header" >
+        <ng-template pTemplate="header" >
             <div id="up-border"></div>
-            <tr id="header">
+            <tr class="table-header">
                 <th class="head">שם המשוב</th>
                 <th class="head">תאריך הפצה</th>
                 <th class="head">כמות משיבים</th>
@@ -17,12 +17,12 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>
-            <tr>
-                <td>{{surveys.nvSurveyName}}</td>
-                <td>{{surveys.nvSurveyName}}</td>
-                <td>{{surveys.iRespondentsCount}}</td>
-                <td>{{surveys.iQuestionCount}}</td>
-                <td>{{surveys.iSumReprisal}}</td>
+            <tr class="table-row">
+                <td class="tb-row">{{surveys.nvSurveyName}}</td>
+                <td class="tb-row">{{surveys.dtEndSurveyDate}}</td>
+                <td class="tb-row">{{surveys.iRespondentsCount}}</td>
+                <td class="tb-row">{{surveys.iQuestionCount}}</td>
+                <td class="tb-row">{{surveys.iSumReprisal}}</td>
                 <td><a href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
             </tr>
         </ng-template>
