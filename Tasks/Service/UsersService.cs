@@ -18,10 +18,10 @@ namespace Service
         IObjectGenerator<CodeTable> _codeTableGenerator;
         IConfiguration _Configuration;
         readonly string Issure;
-        readonly string Audience;
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, IConfiguration Configuration)
+        readonly string Audience; 
         ILogger<UsersService> _logger;
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger)
+  
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger, IConfiguration Configuration)
 
         {
             _userObjectGenerator = userObjectGenerator;

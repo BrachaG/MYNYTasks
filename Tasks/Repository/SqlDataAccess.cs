@@ -169,7 +169,7 @@ public class SqlDataAccess : ISqlDataAccess
             SqlTransaction transaction, CommandType commandType, string commandText,
             SqlParameter[] commandParameters, bool mustCloseConnection)
     {
-            "commandParameters is: {commandParameters} mustCloseConnection is: {mustCloseConnection} In PrepareCommand of sqlDataAccess returns void");
+
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
             throw new ArgumentNullException("commandText");
