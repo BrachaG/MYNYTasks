@@ -1,7 +1,7 @@
 ﻿namespace Entities
 {
-    public class User:IEntity
-    {   
+    public class User : IEntity
+    {
         public int iUserId { get; set; }
         public string nvUserName { get; set; }
         public string nvPassword { get; set; }
@@ -19,5 +19,7 @@
         public string nvUserMail { get; set; }
         public string nvUserPhone { get; set; }
         public int iActivityPermissionId { get; set; }
+        public string token { get; set; }
+
     }
 }

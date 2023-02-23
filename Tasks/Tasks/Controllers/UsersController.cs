@@ -16,7 +16,6 @@ namespace Tasks.Controllers
         {
             _logger = logger;
             _UsersService = UsersService;
-
         }
         [HttpGet("Get")]
         public async Task<User> GetById(string userName, string password)

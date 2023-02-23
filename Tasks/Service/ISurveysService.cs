@@ -4,6 +4,6 @@ namespace Service
 {
     public interface ISurveysService
     {
-        Task<List<Survey>> Get();
+        Task<List<Survey>> Get(string userId);
     }
 }

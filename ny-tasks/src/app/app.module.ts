@@ -18,7 +18,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule} from 'primeng/toast';
 import { StyleClassModule } from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './jwt.interceptor';
 
 
 
@@ -51,7 +52,12 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [
+   {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

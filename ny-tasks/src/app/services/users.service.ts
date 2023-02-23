@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { user } from 'src/models/users.model';
+import { userModel } from 'src/models/users.model';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
  constructor(private http: HttpClient) { }
-  getUserById(userName:string,code:string): Observable<user> {
+  getUserById(userName: string, code: string): Observable<userModel> {
     {
         let url: string = `api/Users/Get?userName=${userName}&password=${code}`;
-        return this.http.get<user>(url);
+      return this.http.get<userModel>(url);
 }}
 }

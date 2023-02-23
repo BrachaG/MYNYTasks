@@ -1,11 +1,13 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Service;
 
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
@@ -21,7 +23,11 @@ namespace Tasks.Controllers
         public async Task<List<Survey>> Get()
         {
             _logger.LogDebug("Get survey");
-            return await _SurveysService.Get();
+            string Type = JwtRegisteredClaimNames.Sub;
+            string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
+            return await _SurveysService.Get(userId);
+         
+           ;
         }
     }
 }

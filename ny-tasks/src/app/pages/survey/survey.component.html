@@ -3,25 +3,25 @@
         [rows]="10" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="name">שם סקר <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="questions">מספר שאלות <p-sortIcon field="questions"></p-sortIcon></th>
-                <th pSortableColumn="responders">מספר משיבים <p-sortIcon field="responders"></p-sortIcon></th>
-                <th pSortableColumn="retaliation">תגמול <p-sortIcon field="retaliation"></p-sortIcon></th>
+                <th pSortableColumn="nvSurveyName">שם סקר <p-sortIcon field="nvSurveyName"></p-sortIcon></th>
+                <th pSortableColumn="iQuestionCount">מספר שאלות <p-sortIcon field="iQuestionCount"></p-sortIcon></th>
+                <th pSortableColumn="iRespondentsCount">מספר משיבים <p-sortIcon field="iRespondentsCount"></p-sortIcon></th>
+                <th pSortableColumn="iSumReprisal">תגמול <p-sortIcon field="iSumReprisal"></p-sortIcon></th>
                 <th pSortableColumn="endDate">תאריך סיום<p-sortIcon field="endDate"></p-sortIcon></th>
                 <th pSortableColumn="surveyLink">קישור לסקר <p-sortIcon field="surveyLink"></p-sortIcon></th>
             </tr>
             <tr>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'name', 'contains')" [value]="$any(dt1.filters['name'])?.value"  placeholder="חיפוש" class="p-column-filter">
+                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'nvSurveyName', 'contains')" [value]="$any(dt1.filters['nvSurveyName'])?.value"  placeholder="חיפוש" class="p-column-filter">
                 </th>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'questions', 'contains')" [value]="$any(dt1.filters['questions'])?.value" placeholder="חיפוש" class="p-column-filter">
+                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'iQuestionCount', 'contains')" [value]="$any(dt1.filters['iQuestionCount'])?.value" placeholder="חיפוש" class="p-column-filter">
                 </th>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'responders', 'contains')" [value]="$any(dt1.filters['responders'])?.value" placeholder="חיפוש" class="p-column-filter">
+                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'iRespondentsCount', 'contains')" [value]="$any(dt1.filters['iRespondentsCount'])?.value" placeholder="חיפוש" class="p-column-filter">
                 </th>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'retaliation', 'contains')" [value]="$any(dt1.filters['retaliation'])?.value" placeholder="חיפוש" class="p-column-filter">
+                    <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'iSumReprisal', 'contains')" [value]="$any(dt1.filters['iSumReprisal'])?.value" placeholder="חיפוש" class="p-column-filter">
                 </th>
                 <th>
                     <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'endDate', 'contains')" [value]="$any(dt1.filters['endDate'])?.value" placeholder="חיפוש" class="p-column-filter">
@@ -36,23 +36,23 @@
             <tr >
                 <td >
                     <span class="p-column-title">שם סקר</span>
-                    <span>{{surveys.name}}</span>
+                    <span>{{surveys.nvSurveyName}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">מספר שאלות</span>
-                    <span class="image-text">{{surveys.questions}}</span>
+                    <span class="image-text">{{surveys.iQuestionCount}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">מספר משיבים</span>
-                    <span class="image-text">{{surveys.responders}}</span>
+                    <span class="image-text">{{surveys.iRespondentsCount}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">תגמול</span>
-                    <span class="image-text">{{surveys.retaliation}}</span>
+                    <span class="image-text">{{surveys.iSumReprisal}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">תאריך סיום</span>
-                    <span class="image-text">{{surveys.endDate.toLocaleDateString()}}</span>
+                    <span class="image-text">{{surveys.endDate}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">קישור לסקר</span>
