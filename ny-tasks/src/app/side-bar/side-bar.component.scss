@@ -1,0 +1,70 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+.addTaskButton {
+    z-index: 999;
+    background-color: #2F81EF;
+    margin-top: 170%;
+    right: 4%;
+    position: relative;
+
+    border: none;
+    width: 90%;
+    height: 3%;
+    color: white;
+    font-size: 2vmin;
+    font-family: 'Rubik';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13% 15%;
+    gap: 7%;
+
+}
+
+@media screen and (max-width: 600px) {
+    .addTaskButton {
+        height: 20%;
+        margin-top: 50%;
+        width: 100%;
+        right: 0%;
+        padding: 0% 0%;
+    }
+}
+
+body {
+    height: 100%;
+    font-size: 100%;
+    line-height: 150%;
+}
+
+.iconPlus {
+    font-size: 2.5vmin;
+}
+
+.addTask { 
+    .p-button:focus {
+        background-color: #2F81EF;
+        box-shadow: none;
+        outline: none;
+        outline-offset: none;
+    }
+    .p-button {
+        top: 115%; 
+        background-color: #2F81EF;
+        right: 7%;
+        width: 80%;
+        font-family: 'Rubik';
+        font-size: 2vmin;
+        position: relative;
+        border-radius: 8px;
+        height: 15%;
+
+    }
+    .p-button:hover {
+        background-color:#428def;
+        border-color: #428def;
+    }
+}

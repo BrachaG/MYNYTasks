@@ -1,10 +1,12 @@
+
 import { Component } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-bar-buttons',
   templateUrl: './bar-buttons.component.html',
-  styleUrls: ['./bar-buttons.component.css']
+  styleUrls: ['./bar-buttons.component.scss'],
+
 })
 export class BarButtonsComponent {
   @Input() label='';
