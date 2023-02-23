@@ -1,6 +1,5 @@
 ﻿using Entities;
 using Microsoft.Extensions.Logging;
-using NLog;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,7 +25,7 @@ namespace Service
         int result;
         public async Task<User> GetById(string userName, string password)
         {
-            _logger.LogDebug($"User name is: {userName} Password is: {password} Login, In GetById of UserService");
+            _logger.LogDebug("GetById", userName);
             List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
@@ -34,14 +33,14 @@ namespace Service
             try
             {
                 DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", parameters);
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"].ToString(),out result))
-            {
-                User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
-                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-                    user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                return user;
-            }
-            else return new User() { iUserId = -1 };
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.TryParse(ds.Tables[0].Rows[0]["iUserId"].ToString(), out result))
+                {
+                    User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+                    if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                        user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
+                    return user;
+                }
+                else return new User() { iUserId = -1 };
             }
             catch (Exception ex)
             {

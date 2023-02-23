@@ -21,19 +21,25 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
     {
-        _logger.LogDebug($"spName name is: {spName} SPParameters is: {SPParameters}  In ExecuteDatasetSP of sqlDataAccess returns DataSet");
+       
         // Create & open a SqlConnection, and dispose of it after we are done
+     
         using (SqlConnection connection = new SqlConnection())
         {
+            try {
             connection.ConnectionString = connectionString;
-            connection.Open();
+            connection.Open(); 
+            }
+            catch(Exception ex){
+                _logger.LogError(ex, "ExecuteDatasetSP failed opening connection", spName);
+            }
             return await ExecuteDatasetSP(connection, spName, SPParameters);
         }
     }
 
     private async Task<DataSet> ExecuteDatasetSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
-        _logger.LogDebug($"spName name is: {spName} SPParameters is: {SPParameters}  In ExecuteDatasetSP of sqlDataAccess returns DataSet");
+        
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution
@@ -63,8 +69,7 @@ public class SqlDataAccess : ISqlDataAccess
            SqlTransaction transaction, CommandType commandType, string commandText,
            List<SqlParameter> commandParameters, bool mustCloseConnection)
     {
-        _logger.LogDebug($"transaction is: {transaction} commandType is: {commandType} commandText is: {commandText}commandParameters is: {commandParameters} mustCloseConnection is: {mustCloseConnection} In PrepareCommand of sqlDataAccess returns void");
-           
+       
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
             throw new ArgumentNullException("commandText");
@@ -102,7 +107,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task AttachParameters(SqlCommand command, List<SqlParameter> commandParameters)
     {
-        _logger.LogDebug($"commandParameters is: {commandParameters}  In AttachParameters of sqlDataAccess returns void");
+        
         if (command == null) throw new ArgumentNullException("command");
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
@@ -122,14 +127,18 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteScalarSP
     public async Task<object> ExecuteScalarSP(string spName, params SqlParameter[] commandParameters)
     {
-        _logger.LogDebug($"spName is: {spName} commandParameters name is: {commandParameters} commandParameters is: {commandParameters}  In ExecuteScalarSP of sqlDataAccess returns Scalar");
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
+            try { 
             //connection.Open();
             connection.ConnectionString = connectionString;
             connection.Open();
-
+            }
+              catch (Exception ex)
+            {
+                _logger.LogError(ex, "ExecuteScalarSP failed opening connection", spName);
+            }
 
             // Call the overload that takes a connection in place of the connection string
             return await ExecuteScalarSP(connection, spName, commandParameters);
@@ -137,7 +146,6 @@ public class SqlDataAccess : ISqlDataAccess
     }
     private async Task<object> ExecuteScalarSP(SqlConnection connection, string spName, params SqlParameter[] commandParameters)
     {
-        _logger.LogDebug($"spName name is: {spName} commandParameters is: {commandParameters}  In ExecuteScalarSP of sqlDataAccess returns Scalar");
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution\\
@@ -161,7 +169,6 @@ public class SqlDataAccess : ISqlDataAccess
             SqlTransaction transaction, CommandType commandType, string commandText,
             SqlParameter[] commandParameters, bool mustCloseConnection)
     {
-        _logger.LogDebug($"connection is: {connection} transaction is: {transaction} commandType is: {commandType} commandText is: {commandText} " +
             "commandParameters is: {commandParameters} mustCloseConnection is: {mustCloseConnection} In PrepareCommand of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
@@ -199,7 +206,6 @@ public class SqlDataAccess : ISqlDataAccess
     }
     private async Task AttachParameters(SqlCommand command, SqlParameter[] commandParameters)
     {
-        _logger.LogDebug($"commandParameters name is: {commandParameters}  In AttachParameters of sqlDataAccess returns void");
         if (command == null) throw new ArgumentNullException("command");
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
@@ -218,16 +224,17 @@ public class SqlDataAccess : ISqlDataAccess
     #region ExecuteDatatableSP
     public async Task<DataTable> ExecuteDatatableSP(string spName, List<SqlParameter> SPParameters)
     {
-        _logger.LogDebug($"spName is: {spName} SPParameters name is: {SPParameters} In ExecuteDatatableSP of sqlDataAccess returns DataTable");
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-            //ConnectionOpen(connection);
-            //// SqlConnectDB.OpenDBConnection(connection, SqlConnectDB.SessionConnectionID);
-            ///_Configuration.GetSection("ConnectionStrings:DefaultConnection");
+            try { 
             connection.ConnectionString = connectionString;
             connection.Open();
-
+}
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ExecuteDatatableSP failed opening connection", spName);
+            }
             // Call the overload that takes a connection in place of the connection string
             return await ExecuteDatatableSP(connection, spName, SPParameters);
         }
@@ -235,7 +242,6 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task<DataTable> ExecuteDatatableSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
-        _logger.LogDebug($"spName name is: {spName} SPParameters is: {SPParameters} In ExecuteDatatableSP of sqlDataAccess returns DataTable");
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution

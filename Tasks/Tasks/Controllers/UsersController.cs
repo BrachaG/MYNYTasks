@@ -21,7 +21,7 @@ namespace Tasks.Controllers
         [HttpGet("Get")]
         public async Task<User> GetById(string userName, string password)
         {
-            _logger.LogDebug($"User name is: {userName} Password is: {password}  In login");
+            _logger.LogDebug($"User name is: {userName}  In login");
             return await _UsersService.GetById(userName, password);
         }
     }
