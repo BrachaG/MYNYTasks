@@ -1,29 +1,27 @@
 <div id="background">
     <div id="container">
     <h1 id="title">משובים</h1>
-    <h4 id="sumSurveys" class="h4">{{sum}} סך הכל</h4>
+    <h4 id="sumSurveys" class="h4-regular">{{sum}} סך הכל</h4>
     </div>
-    <div id="surveysTable">
+    <div class="surveysTable">
     <p-table  [value]="surveys" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header" >
-            <div id="up-border"></div>
+            <div class="up-border"></div>
             <tr class="table-header">
                 <th class="head">שם המשוב</th>
                 <th class="head">תאריך הפצה</th>
                 <th class="head">כמות משיבים</th>
                 <th class="head">מספר שאלות</th>
-                <th class="head">תגמול</th>
                 <th class="head">קישור</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>
             <tr class="table-row">
-                <td class="tb-row">{{surveys.nvSurveyName}}</td>
-                <td class="tb-row">{{surveys.dtEndSurveyDate}}</td>
-                <td class="tb-row">{{surveys.iRespondentsCount}}</td>
-                <td class="tb-row">{{surveys.iQuestionCount}}</td>
-                <td class="tb-row">{{surveys.iSumReprisal}}</td>
-                <td><a href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
+                <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
+                <td class="tb-row h4-regular">{{surveys.dtEndSurveyDate}}</td>
+                <td class="tb-row h4-regular">{{surveys.iRespondentsCount}}</td>
+                <td class="tb-row h4-regular">{{surveys.iQuestionCount}}</td>
+                <td><a class="tb-row h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
             </tr>
         </ng-template>
     </p-table>
