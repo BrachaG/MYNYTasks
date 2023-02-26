@@ -25,7 +25,7 @@ namespace Tasks.Controllers
             _logger.LogDebug("Get survey");
             string Type = JwtRegisteredClaimNames.Sub;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
-            return await _SurveysService.Get(userId);
+            return await _SurveysService.Get();
          
            ;
         }

@@ -36,7 +36,7 @@ namespace Service
         public async Task<User> GetById(string userName, string password)
         {
             _logger.LogDebug("GetById", userName);
-            List<SqlParameter> parameters = new List<SqlParameter> {
+            List<SqlParameter> p = new List<SqlParameter> {
             { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
                 };
