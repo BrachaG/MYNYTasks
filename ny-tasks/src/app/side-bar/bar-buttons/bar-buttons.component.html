@@ -1,6 +1,6 @@
 <!-- <button  label="Cancel" class="bar-button" > aaa</button> -->
 <div> <button (click)="handleClick()" [ngClass]="{'basis':true, 'active' :isActive , 'notactive':!isActive }">
     <div class = "{{icon}} icon" ></div>
-    {{ label }}
+   <span class="iconText">{{ label }}</span> 
   </button>
 </div>

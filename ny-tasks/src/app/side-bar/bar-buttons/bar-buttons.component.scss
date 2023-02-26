@@ -10,7 +10,7 @@ body {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 400%;
-    font-size: 2.4vmin;
+    font-size: 2vmin;
     text-align: right;
     padding-right: 22%;
     margin-right: -12px;
@@ -36,16 +36,35 @@ body {
 
 .icon {
     margin-left: 10%;
-    font-size: 2.5vmin;
+    font-size: 2vmin;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 992px) {
     .basis {
-        font-size: 0cm; 
         margin-top: 10%;
     }
     .icon {
         top: 10%;
-        font-size: 5.5vmin;
+        font-size: 3vmin;
+        margin-right: 25%;
     }
+    .iconText{
+        display: none;
+    }
+    
+}
+@media screen and (min-width: 992px) and (max-width:1200px ) {
+    .basis {
+     
+        margin-top: 12%;
+    }
+    .icon {
+        top: 10%;
+        font-size: 1.5vmin;
+        margin-left: 5%;
+    }
+    .iconText{
+        font-size: 1.8vmin;
+    }
+   
 }

@@ -10,7 +10,7 @@ export class SideBarComponent {
   currentRoute: string = '';
   buttons=
   
-  [['לוח אישי', 'selfbored', 'pi pi-calendar'], 
+  [['לוח אישי', 'selfbored', 'pi pi-table'], 
   ['יעדים', 'purpose', 'pi pi-send'], 
   ['משימות', 'tasks', 'pi pi-pencil'], 
   ['משובים', 'fidback', 'pi pi-question-circle']];

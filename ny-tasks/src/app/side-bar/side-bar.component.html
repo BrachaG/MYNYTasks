@@ -7,13 +7,10 @@
       <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
          (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
       
-         <!-- <button class="addTaskButton">
-         <div class="addTask">
-            <i class="pi pi-plus iconPlus"></i>
-         </div>
-
-      </button> -->
-      <p-button label="הוספת משימה" class="addTask" icon="pi pi-plus" iconPos="left"></p-button>
+      <p-button class="addTask">
+         <div class ="pi pi-plus iconPlus"></div>
+         <span class="TaskText"> הוספת משימה </span> 
+         </p-button>
    </p-sidebar>
 
 </body>
