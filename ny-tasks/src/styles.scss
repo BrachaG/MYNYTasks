@@ -35,7 +35,7 @@ $lightblue-gray:#5F6388;
   font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size:14px;
   line-height: 17px;
   text-align: right;
   letter-spacing: -0.011em;
@@ -102,7 +102,7 @@ padding-right: 2% ;
   border-spacing: 0 6px !important;
 }
 .table-style > tr > td{
-  color:$lightblue-gray;
+ // color:$lightblue-gray;
   
 }
 a{
@@ -128,3 +128,48 @@ a{
 
 .table-style tr td:first-child { border-bottom-right-radius: 10px ;}
 .table-style tr td:last-child { border-bottom-left-radius: 10px ; }
+
+@media screen and (max-width: 992px) {
+
+  .h4-regular{
+    font-size: 1.5vmin;
+  }
+  .h4-medium{
+    font-size: 1.5vmin;
+  }
+  .p-datatable .p-datatable-thead > tr > th{
+    font-size: 1.5vmin;
+    padding-top: 0.5vmin;
+    padding-bottom: 0.5vmin;
+    padding-right: 0.5vmin;  
+  }
+  .table-style >tr {
+    line-height: 1.5vmin;
+    width: 1.5vmin;
+  }
+
+.p-datatable .p-datatable-tbody > tr > td{
+  //width: 1.5vmin;
+  margin:0% ;
+
+  padding-top: 0.5vmin;
+  padding-bottom: 0.5vmin;
+  padding-right: 0.5vmin; 
+  padding-left:0px ;
+}
+}
+
+// }
+// @media screen and (min-width: 993px) and (max-width:1200px ) {
+//   .basis {
+//       margin-top: 12%;
+//   }
+//   .icon {
+//       top: 10%;
+//       font-size: 1.5vmin;
+//       margin-left: 5%;
+//   }
+//   .iconText{
+//       font-size: 1.8vmin;
+//   }
+  
