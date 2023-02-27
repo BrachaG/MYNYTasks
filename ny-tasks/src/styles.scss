@@ -10,5 +10,121 @@ body {
     direction: rtl;
     padding: 2em;
     font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
-    
+}
+
+$blue3:#1E2959;
+$lightblue-gray:#5F6388;
+
+.background{
+    background-color: #F5F8FD;
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    overflow-y: scroll;
+}
+.table-style{
+  width: 100%;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+  background-color: #FFFFFF;
+  
+}
+
+.h4-regular{
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: right;
+  letter-spacing: -0.011em;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
   }
+.up-border{
+  position: absolute;
+  width: 100%;
+  border: 2px solid #2F81EF;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.p-datatable .p-datatable-thead {
+  border-color: #1E2959;
+  border-style:inherit;
+  background-color: #FFFFFF;
+}
+
+.table-style > tr > th{
+  // font-family: 'Rubik';
+  // font-style: normal;
+  // font-weight: 400;
+  // font-size: 14px;
+  // line-height: 17px;
+  // color: #2F81EF;
+
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80%;
+  line-height: 100%;
+
+  color: #2F81EF;
+  background-color: transparent;
+  border:unset;
+  color: #2F81EF;
+  text-align: right;
+  padding-top: 1% ;
+  padding-bottom: 1% ;
+  padding-right: 2% ;
+}
+
+
+
+.p-datatable .p-datatable-tbody > tr > td{
+  @extend .h4-regular;
+border: unset;
+text-align: right;
+padding-top: 1% ;
+padding-bottom: 1% ;
+padding-right: 2% ;
+
+}
+
+
+.p-datatable-table {
+  border-collapse: separate;
+  border-spacing: 0 6px !important;
+}
+.table-style > tr > td{
+  color:$lightblue-gray;
+  
+}
+a{
+  color:$lightblue-gray;
+  text-decoration: none;
+}
+.h4-medium {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500  ;
+  font-size: 80%   ;
+  line-height: 100% ;
+  text-align: right ;
+}
+.sname{
+  color:$blue3 !important;
+}
+.table-style tr th:first-child { border-bottom-right-radius: 10px ; }
+.table-style tr th:last-child { border-bottom-left-radius: 10px ; }
+
+.table-style tr td:first-child { border-top-right-radius: 10px ;  @extend .h4-medium  }
+.table-style tr td:last-child { border-top-left-radius: 10px ;}  
+
+.table-style tr td:first-child { border-bottom-right-radius: 10px ;}
+.table-style tr td:last-child { border-bottom-left-radius: 10px ; }
