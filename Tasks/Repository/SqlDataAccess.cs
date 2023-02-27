@@ -16,14 +16,12 @@ public class SqlDataAccess : ISqlDataAccess
         _logger = logger;
         _Configuration = Configuration;
 
-        connectionString = _Configuration.GetConnectionString("DefaultConnection");
+        connectionString = _Configuration.GetConnectionString("Home");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
     {
-       
-        // Create & open a SqlConnection, and dispose of it after we are done
-     
+        // Create & open a SqlConnection, and dispose of it after we are done     
         using (SqlConnection connection = new SqlConnection())
         {
             try {
