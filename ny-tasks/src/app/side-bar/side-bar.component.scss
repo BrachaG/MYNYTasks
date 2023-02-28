@@ -29,10 +29,15 @@
 }
 
 .iconPlus {
-    margin-left: 6%;
+    margin-left: 12%;
     font-size: 1.7vmin;
-    margin-right: 8%;
+    right:9%;
     position: relative;
+}
+.TaskText {
+    margin-right: 6%;
+    position: relative;
+    font-size: 1.9vmin;
 }
 
 
@@ -51,7 +56,11 @@
         font-family: 'Rubik';
         font-size: 1.8vmin;
         border-radius: 8px;
-        letter-spacing: -0.5px;
+        // letter-spacing: -0.5px;
+        padding-right: 5%;
+        padding-right: 5%;
+        text-align: center;
+
     }
 
     .p-button:hover {
