@@ -1,27 +1,3 @@
-html {
-    min-height: 100%;
-    position: relative;
-}
-
-// .addTaskButton {
-//     z-index: 999;
-//     background-color: #2F81EF;
-//     margin-top: 500px;
-//     right: 4%;
-//     position: relative;
-//     border: none;
-//     width: 90%;
-//     height: 3%;
-//     color: white;
-//     font-size: 2vmin;
-//     font-family: 'Rubik';
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 13% 15%;
-//     gap: 7%;
-
-// }
 
 
 @media screen and (max-width: 992px) {
@@ -29,25 +5,22 @@ html {
         display: none;
     }
     .p-button {
-        margin-top: 700px !important;
-        margin-bottom: -600px;
+       // top:170%;
 
         .iconPlus {
-            font-size: 3vmin;
-            margin-right: 15%;
+            font-size: 2.4vmin;
+            padding-right: 30%;  
             width: 10%;
         }
     }
 }
 
-@media screen and (min-width: 992px) and (max-width:1200px) {
+@media screen and (min-width: 993px) and (max-width:1200px) {
     .TaskText {
         font-size: 1.8vmin;
     }
-
     .p-button {
-        margin-top: 700px !important;
-        margin-bottom: -500px;
+       // top:170%;
 
         .iconPlus {
             font-size: 1.5vmin;
@@ -55,16 +28,13 @@ html {
     }
 }
 
-body {
-    height: 100%;
-    font-size: 100%;
-    line-height: 150%;
+.iconPlus {
+    margin-left: 6%;
+    font-size: 1.7vmin;
+    margin-right: 8%;
+    position: relative;
 }
 
-.iconPlus {
-    margin-left: 10%;
-    font-size: 2.5vmin;
-}
 
 .addTask {
     .p-button:focus {
@@ -75,16 +45,13 @@ body {
     }
 
     .p-button {
-        margin-top: 540px ;
-        margin-bottom: -500px;
         background-color: #2F81EF;
         right: 7%;
         width: 80%;
         font-family: 'Rubik';
-        font-size: 2vmin;
-        position: relative;
+        font-size: 1.8vmin;
         border-radius: 8px;
-        height: 15%;
+        letter-spacing: -0.5px;
     }
 
     .p-button:hover {
