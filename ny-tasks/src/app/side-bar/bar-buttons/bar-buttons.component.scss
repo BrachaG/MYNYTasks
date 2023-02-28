@@ -1,11 +1,11 @@
 .basis {
     width:calc(100% + 30px) ;
-    margin-top: 15%;
+    margin-top: 9%;
     background-color: transparent;
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 400%;
-    font-size: 2.4vmin;
+    font-size: 2vmin;
     text-align: right;
     margin-right: -12px;
     padding-right: 20px;
@@ -23,16 +23,25 @@
     box-sizing: border-box;
     margin-right: -16px;
     overflow-y: inherit;
-       background-color: #1c1c4e;
-       height: 20%;
-       position: relative;
-
-  
+    height: 20%;
+    position: relative;
+    background-color: #1c1c4e;
+    
 }
-.design{
-   padding: 0px;
-   
-}
+// .design{
+//     border-width: 5px;
+//     color: #2F81EF;
+//     border-left: 0px;
+//     border-top: 0px;
+//     border-bottom: 0px;
+//     border-color: #2F81EF;
+//     border-style: solid;
+//    background-color: #1c1c4e;
+// }
+// .basisDesign{
+// padding-bottom: 30%;
+// height: 10%;
+// }
 
 .notactive {
     color: azure;
@@ -42,13 +51,20 @@
 .icon {
     margin-left: 10%;
     font-size: 2.4vmin;
+    padding-top:5%;
+    padding-bottom: 5%;
+}
+.iconText {
+    
 }
 
 @media screen and (max-width: 992px) {
     .basis {
-        margin-top: 10%;
-        margin-bottom: 20%;
-        padding-right: 34%;
+        margin-top: 40%;
+        // margin-bottom: 20%;
+        padding-right: 28%;
+        padding-top:8% ;
+        padding-bottom:8% ;
     }
 
     .icon {
@@ -64,18 +80,32 @@
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
-    .basis {
-        margin-top: 12%;
-    }
+    // .basis {
+    //     margin-top: 12%;
+    // }
 
+    // .icon {
+    //     top: 10%;
+    //     font-size: 1.5vmin;
+    //     margin-left: 5%;
+    // }
+
+    // .iconText {
+    //     font-size: 1.8vmin;
+    // }
+    .basis {
+        margin-top: 25%;
+        // margin-bottom: 20%;
+        padding-right: 28%;
+    }
     .icon {
-        top: 10%;
-        font-size: 1.5vmin;
-        margin-left: 5%;
+        font-size: 2.5vmin;
+        margin-right: 25%;
+        padding-top:10% ;
+        padding-bottom:10% ;
     }
 
     .iconText {
-        font-size: 1.8vmin;
+        display: none;
     }
-
 }

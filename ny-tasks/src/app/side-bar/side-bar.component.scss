@@ -5,39 +5,52 @@
         display: none;
     }
     .p-button {
-       // top:170%;
-
+     
         .iconPlus {
             font-size: 2.4vmin;
-            padding-right: 30%;  
-            width: 10%;
+            width: 100%;
+            right:0%;
         }
     }
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
-    .TaskText {
-        font-size: 1.8vmin;
-    }
-    .p-button {
-       // top:170%;
+//     .TaskText {
+//         font-size: 1.8vmin;
+//     }
+//     .p-button {
+//        // top:170%;
 
-        .iconPlus {
-            font-size: 1.5vmin;
-        }
+//         .iconPlus {
+//             font-size: 1.5vmin;
+//         }
+//     }
+.TaskText {
+    display: none;
+}
+.p-button {
+   // top:170%;
+
+    .iconPlus {
+        font-size: 2.4vmin;
+        width: 100%;
+        right:0%;
     }
 }
-
+}
 .iconPlus {
-    margin-left: 12%;
-    font-size: 1.7vmin;
+    margin-left: 6%;
+    font-size: 1.4vmin;
     right:9%;
     position: relative;
+    
 }
 .TaskText {
-    margin-right: 6%;
+    // margin-right: 5%;
     position: relative;
-    font-size: 1.9vmin;
+    font-size: 1.7vmin;
+    text-align: center;
+    width: 100%;
 }
 
 
@@ -51,16 +64,19 @@
 
     .p-button {
         background-color: #2F81EF;
-        right: 7%;
-        width: 80%;
+    right: 2%;
+        width: 95%;
         font-family: 'Rubik';
-        font-size: 1.8vmin;
+        font-size: 1.5vmin;
         border-radius: 8px;
         // letter-spacing: -0.5px;
         padding-right: 5%;
-        padding-right: 5%;
+        padding-left: 5%;
         text-align: center;
-
+       
+     .p-element{
+    padding:0px;
+}
     }
 
     .p-button:hover {

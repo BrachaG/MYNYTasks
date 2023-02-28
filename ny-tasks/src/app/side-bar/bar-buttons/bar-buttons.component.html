@@ -1,5 +1,5 @@
 <!-- <button  label="Cancel" class="bar-button" > aaa</button> -->
-<div [ngClass]="{ 'design':isActive}"> 
+<div  [ngClass]="{'basisDesign':true, 'design':isActive}"> 
   <button (click)="handleClick()" [ngClass]="{ 'basis':true, 'active' :isActive , 'notactive':!isActive }">
     <div class = "{{icon}} icon" ></div>
    <span class="iconText">{{ label }}</span> 
