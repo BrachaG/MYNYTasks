@@ -4,7 +4,7 @@
     <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
 <div class="cover">
-    <p-table class="table-style" [value]="surveys" [tableStyle]="{'min-width': '50rem'}">
+    <p-table class="table-style" [value]="surveys"  [tableStyle]="{'min-width': '0px'}">
         <ng-template pTemplate="header" >
             <div class="up-border"></div>
             <tr>
@@ -15,13 +15,13 @@
                 <th>קישור</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-surveys>
+        <ng-template class="tbody" pTemplate="body" let-surveys>
             <tr>
                 <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
                 <td >{{surveys.dtEndSurveyDate}}</td>
                 <td >{{surveys.iRespondentsCount}}</td>
                 <td >{{surveys.iQuestionCount}}</td>
-                <td><a class="h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
+                <td ><a class="h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
             </tr>
         </ng-template>
     </p-table>
