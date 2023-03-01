@@ -14,7 +14,7 @@ namespace Tasks.Controllers
         ILogger<SurveysController> _logger;
         public SurveysController(ISurveysService SurveysService, ILogger<SurveysController> logger)
         {
-             
+
             _SurveysService = SurveysService;
             _logger = logger;
 
@@ -26,8 +26,8 @@ namespace Tasks.Controllers
             string Type = JwtRegisteredClaimNames.Sub;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
             return await _SurveysService.Get();
-         
-           ;
+
+            ;
         }
     }
 }
