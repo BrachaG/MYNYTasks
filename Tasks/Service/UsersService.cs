@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,8 +18,11 @@ namespace Service
         IObjectGenerator<CodeTable> _codeTableGenerator;
         IConfiguration _Configuration;
         readonly string Issure;
-        readonly string Audience;
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, IConfiguration Configuration)
+        readonly string Audience; 
+        ILogger<UsersService> _logger;
+  
+        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger, IConfiguration Configuration)
+
         {
             _userObjectGenerator = userObjectGenerator;
             _codeTableGenerator = codeTableGenerator;
@@ -26,19 +30,19 @@ namespace Service
             _Configuration = Configuration;
             Issure = _Configuration["JWTParams:Issure"];
             Audience = _Configuration["JWTParams:Audience"];
+            _logger = logger;
+
         }
         public async Task<User> GetById(string userName, string password)
         {
-            SqlParameter[] parameters = {new SqlParameter("nvUserName",userName),
-                                             new SqlParameter("nvPassword",password),
-                                             new SqlParameter("nvAddress",""),
-                                             new SqlParameter("iPort",0)
-                                             };
+            _logger.LogDebug("GetById", userName);
             List<SqlParameter> p = new List<SqlParameter> {
-                                             { new SqlParameter("nvUserName",userName )},
+            { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
                 };
-            DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
+            try
+            {
+                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
             {
                 User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
@@ -50,6 +54,13 @@ namespace Service
                 return user;
             }
             else return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "in UserService, Login, Get, When trying to approach to Database");
+                return null;
+            }
+
         }
         private string GenarateToken(User user)
         {

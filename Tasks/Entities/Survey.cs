@@ -2,7 +2,6 @@
 {
     public class Survey
     {
-
         public int? iSurveyId { get; set; }
         public string nvSurveyName { get; set; }
         public DateTime? dtEndSurveyDate { get; set; }
@@ -14,7 +13,6 @@
         public string nvFinalMessage { get; set; }
         public int? iQuestionCount { get; set; }
         public int? iRespondentsCount { get; set; }
-        //public List<Pages> lPages { get; set; }
         public bool bFirstName { get; set; }
         public bool bLastName { get; set; }
         public bool bTz { get; set; }

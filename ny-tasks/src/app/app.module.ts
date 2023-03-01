@@ -25,6 +25,9 @@ import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
