@@ -1,23 +1,19 @@
-﻿using Entities;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Repository;
 
 public class SqlDataAccess : ISqlDataAccess
 {
-    static IConfiguration _Configuration;
-    static string connectionString = "Server=srv2\\pupils;Database=NefeshYehudi;Trusted_Connection=True;";
+    IConfiguration _Configuration;
+    readonly string connectionString;
     public SqlDataAccess(IConfiguration Configuration)
     {
         _Configuration = Configuration;
+
+        connectionString = _Configuration.GetConnectionString("DefaultConnection");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
@@ -25,15 +21,11 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-
             connection.ConnectionString = connectionString;
             connection.Open();
-
-            // Call the overload that takes a connection in place of the connection string
             return await ExecuteDatasetSP(connection, spName, SPParameters);
         }
     }
-
 
     private async Task<DataSet> ExecuteDatasetSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
@@ -62,10 +54,6 @@ public class SqlDataAccess : ISqlDataAccess
             return ds;
         }
     }
-
-
-
-    
     private async Task PrepareCommand(SqlCommand command, SqlConnection connection,
            SqlTransaction transaction, CommandType commandType, string commandText,
            List<SqlParameter> commandParameters, bool mustCloseConnection)
@@ -146,7 +134,7 @@ public class SqlDataAccess : ISqlDataAccess
         SqlCommand cmd = new SqlCommand();
 
         bool mustCloseConnection = false;
-      await  PrepareCommand(cmd, connection, (SqlTransaction)null, CommandType.StoredProcedure, spName, commandParameters,  mustCloseConnection);
+        await PrepareCommand(cmd, connection, (SqlTransaction)null, CommandType.StoredProcedure, spName, commandParameters, mustCloseConnection);
 
         // Execute the command & return the results
         object retval = cmd.ExecuteScalar();
@@ -161,7 +149,7 @@ public class SqlDataAccess : ISqlDataAccess
     }
     private async Task PrepareCommand(SqlCommand command, SqlConnection connection,
             SqlTransaction transaction, CommandType commandType, string commandText,
-            SqlParameter[] commandParameters,  bool mustCloseConnection)
+            SqlParameter[] commandParameters, bool mustCloseConnection)
     {
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
@@ -194,7 +182,7 @@ public class SqlDataAccess : ISqlDataAccess
 
         // Attach the command parameters if they are provided
         if (commandParameters != null)
-           await AttachParameters(command, commandParameters);
+            await AttachParameters(command, commandParameters);
         return;
     }
     private async Task AttachParameters(SqlCommand command, SqlParameter[] commandParameters)
@@ -204,6 +192,7 @@ public class SqlDataAccess : ISqlDataAccess
             foreach (SqlParameter p in commandParameters)
                 if (p != null)
                 {
+
                     // Check for derived output value with no value assigned
                     if ((p.Direction == ParameterDirection.InputOutput ||
                         p.Direction == ParameterDirection.Input) &&
@@ -229,7 +218,6 @@ public class SqlDataAccess : ISqlDataAccess
             return await ExecuteDatatableSP(connection, spName, SPParameters);
         }
     }
-
 
     private async Task<DataTable> ExecuteDatatableSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
@@ -258,12 +246,5 @@ public class SqlDataAccess : ISqlDataAccess
             return ds;
         }
     }
-
-
-
-
-   
-
-    
     #endregion  ExecuteDatasetSP
 }
