@@ -9,10 +9,10 @@ import { Input, Output, EventEmitter } from '@angular/core';
 
 })
 export class BarButtonsComponent {
-  @Input() label='';
+  @Input() label = '';
   @Output() clicked = new EventEmitter<void>();
   @Input() isActive = false;
-  @Input() icon='';
+  @Input() icon = '';
   handleClick() {
     this.clicked.emit();
   }

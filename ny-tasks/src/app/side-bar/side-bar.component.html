@@ -1,19 +1,15 @@
 <body>
-   <p-sidebar id="aa" [visible]="true" [baseZIndex]="10000"
-      [style]="{backgroundColor:'#16163A',border:'none',width:'15%',height:'100%','box-shadow': 'none','position':'absolute'}"
-      [blockScroll]="false" [modal]="false" position="right" [showCloseIcon]="false">
-      <ng-template pTemplate="header"><img src="assets/logoVector.png"
-            alt="Image description" [style]="{width:'60%' ,'margin-right':'17%','margin-top':'15px'}"></ng-template>
-      <ng-template pTemplate="content"><app-bar-buttons *ngFor="let button of buttons" [label]="button[0]"
-            [icon]="button[2]" (clicked)="navigateTo(button[1])"
-            [isActive]="button[1] === currentRoute"></app-bar-buttons></ng-template>
-
-
-      <ng-template pTemplate="footer"> <p-button class="addTask">
-            <div class="pi pi-plus iconPlus"></div>
-            <span class="TaskText"> הוספת משימה </span>
-         </p-button></ng-template>
-
-   </p-sidebar>
-
+      <p-sidebar [visible]="true" [baseZIndex]="10000" [blockScroll]="false" [modal]="false" position="right"
+            [showCloseIcon]="false">
+            <ng-template pTemplate="header">
+                  <img class="logo" src="assets/logoVector.png" alt="Image description">
+            </ng-template>
+            <ng-template pTemplate="content"><app-bar-buttons *ngFor="let button of buttons" [label]="button[0]"
+                        [icon]="button[2]" (clicked)="navigateTo(button[1])"
+                        [isActive]="button[1] === currentRoute"></app-bar-buttons></ng-template>
+            <ng-template pTemplate="footer"> <p-button class="addTask">
+                        <div class="pi pi-plus iconPlus"></div>
+                        <span class="TaskText"> הוספת משימה </span>
+                  </p-button></ng-template>
+      </p-sidebar>
 </body>
