@@ -1,4 +1,2 @@
-
-<app-login></app-login>
-<!-- <app-survey></app-survey> -->
-<!-- <router-outlet></router-outlet> -->
+<app-login *ngIf="currentRoute === '/login'"></app-login>
+<app-side-bar *ngIf="currentRoute !== '/login'"></app-side-bar>
