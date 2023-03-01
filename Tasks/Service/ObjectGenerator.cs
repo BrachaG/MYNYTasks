@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using System.Data;
 
 
@@ -9,7 +10,6 @@ namespace Service
         IMapper _mapper;
         public ObjectGenerator(IMapper mapper)
         {
-
             _mapper = mapper;
         }
         //return T object full data from DataRow
@@ -18,7 +18,6 @@ namespace Service
 
         public T GeneratFromDataRow(DataRow dr)
         {
-
             T obj = new T();
             obj = _mapper.Map<DataRow, T>(dr);
             return obj;
@@ -29,7 +28,6 @@ namespace Service
             List<T> rows = new List<T>();
             foreach (DataRow dr in dt.Rows)
             {
-
                 T obj = GeneratFromDataRow(dr);
                 rows.Add(obj);
             }
