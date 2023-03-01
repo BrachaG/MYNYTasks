@@ -1,4 +1,6 @@
 using AutoMapper;
+using NLog;
+using NLog.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Repository;
@@ -6,7 +8,14 @@ using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
+
+  
+
+try { 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseNLog();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -57,3 +66,20 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+}
+
+catch (Exception ex)
+{   
+    throw;
+}
+finally
+{
+    // Ensure to shout downon the NLog ( Disposing )
+    NLog.LogManager.Shutdown();
+}
+
+
+
+
+
+

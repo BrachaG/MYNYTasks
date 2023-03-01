@@ -21,11 +21,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -46,6 +50,7 @@ import { JwtInterceptor } from './jwt.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [
    {
