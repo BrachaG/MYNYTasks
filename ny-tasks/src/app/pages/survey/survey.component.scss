@@ -1,0 +1,76 @@
+$blue3:#1E2959;
+$lightblue-gray:#5F6388;
+
+.title-text{
+width: 55px;
+height: 21px;
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+text-align: right;
+letter-spacing: -0.011em;
+color: #1E2959;
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+.sumSurveys{
+    color: $lightblue-gray;
+}
+
+.cover{
+    position: relative;
+    top:20%;
+    right: 10%;
+    width: 80%;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:baseline;
+    gap: 15%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    right:10%;
+    top:15%;
+}
+
+@media screen and (max-width: 992px) {
+
+    .u{
+      font-size: 1.5vmin;
+    }
+    .h4-medium{
+      font-size: 1.5vmin;
+    }
+    .table-style .p-datatable .p-datatable-thead > tr > th{
+      font-size: 2vmin; 
+    }
+    .table-style >tr {
+      line-height: 1.5vmin;
+      width: 1.5vmin;
+    }
+  }
+  
+  
+   @media screen and (min-width: 993px) and (max-width:1200px ) {
+    .h4-regular{
+      font-size: 2vmin;
+    }
+    .h4-medium{
+      font-size: 2vmin;
+    }
+    .table-style .p-datatable .p-datatable-thead > tr > th{
+      font-size: 2vmin; 
+    }
+    .table-style >tr {
+      line-height: 2.5vmin;
+      width: 2.5vmin;
+    }
+   }

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.Json;
 
 namespace Repository;
 
@@ -10,13 +9,13 @@ public class SqlDataAccess : ISqlDataAccess
 {
     ILogger<SqlDataAccess> _logger;
     IConfiguration _Configuration;
-    readonly string connectionString; 
+    readonly string connectionString;
     public SqlDataAccess(IConfiguration Configuration, ILogger<SqlDataAccess> logger)
     {
         _logger = logger;
         _Configuration = Configuration;
 
-        connectionString = _Configuration.GetConnectionString("DefaultConnection");
+        connectionString = _Configuration.GetConnectionString("yaeli");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
@@ -24,11 +23,13 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done     
         using (SqlConnection connection = new SqlConnection())
         {
-            try {
-            connection.ConnectionString = connectionString;
-            connection.Open(); 
+            try
+            {
+                connection.ConnectionString = connectionString;
+                connection.Open();
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 _logger.LogError(ex, "ExecuteDatasetSP failed opening connection", spName);
             }
             return await ExecuteDatasetSP(connection, spName, SPParameters);
@@ -37,7 +38,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task<DataSet> ExecuteDatasetSP(SqlConnection connection, string spName, List<SqlParameter> SPParameters)
     {
-        
+
         if (connection == null) throw new ArgumentNullException("connection");
 
         // Create a command and prepare it for execution
@@ -67,7 +68,7 @@ public class SqlDataAccess : ISqlDataAccess
            SqlTransaction transaction, CommandType commandType, string commandText,
            List<SqlParameter> commandParameters, bool mustCloseConnection)
     {
-       
+
         if (command == null) throw new ArgumentNullException("command");
         if (commandText == null || commandText.Length == 0)
             throw new ArgumentNullException("commandText");
@@ -105,7 +106,7 @@ public class SqlDataAccess : ISqlDataAccess
 
     private async Task AttachParameters(SqlCommand command, List<SqlParameter> commandParameters)
     {
-        
+
         if (command == null) throw new ArgumentNullException("command");
         if (commandParameters != null)
             foreach (SqlParameter p in commandParameters)
@@ -128,12 +129,13 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-            try { 
-            //connection.Open();
-            connection.ConnectionString = connectionString;
-            connection.Open();
+            try
+            {
+                //connection.Open();
+                connection.ConnectionString = connectionString;
+                connection.Open();
             }
-              catch (Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "ExecuteScalarSP failed opening connection", spName);
             }
@@ -225,10 +227,11 @@ public class SqlDataAccess : ISqlDataAccess
         // Create & open a SqlConnection, and dispose of it after we are done
         using (SqlConnection connection = new SqlConnection())
         {
-            try { 
-            connection.ConnectionString = connectionString;
-            connection.Open();
-}
+            try
+            {
+                connection.ConnectionString = connectionString;
+                connection.Open();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "ExecuteDatatableSP failed opening connection", spName);

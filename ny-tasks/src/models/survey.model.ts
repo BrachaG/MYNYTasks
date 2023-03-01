@@ -16,4 +16,6 @@ export interface Survey {
   bEmail: boolean
   bPhone: boolean
   bGender: boolean
+  dtEndSurveyDate: Date
+
 }
