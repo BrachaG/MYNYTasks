@@ -61,7 +61,10 @@
         border-color: #428def;
     }
 }
-
+.confine{
+    width: 85%;
+    margin-right: 15%;
+}
 @media screen and (max-width: 992px) {
     .TaskText {
         display: none;

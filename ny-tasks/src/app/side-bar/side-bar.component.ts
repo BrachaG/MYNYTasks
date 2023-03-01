@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,14 +11,14 @@ export class SideBarComponent {
   currentRoute: string = '';
   buttons =
 
-    [['לוח אישי', 'selfbored', 'pi pi-table'],
+    [['לוח אישי','selfbored', 'pi pi-table'],
     ['יעדים', 'purpose', 'pi pi-send'],
     ['משימות', 'tasks', 'pi pi-pencil'],
-    ['משובים', 'fidback', 'pi pi-question-circle']];
-  constructor() { }
+    ['משובים', 'surveys', 'pi pi-question-circle']];
+  constructor(private router:Router) { }
 
   navigateTo(route: string) {
     this.currentRoute = route;
-    // this.router.navigateByUrl(route);
+    this.router.navigateByUrl(route);
   }
 }

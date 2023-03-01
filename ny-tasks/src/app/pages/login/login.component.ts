@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Sidebar } from 'primeng/sidebar';
 import { UsersService } from 'src/app/services/users.service';
 import { userModel } from 'src/models/users.model';
 
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
       console.log(this.user);
     })
 
-
+ this.router.navigateByUrl('Sidebar');
 
   }
 }
