@@ -32,14 +32,14 @@ export class LoginComponent implements OnInit {
       if (this.user != null) {
         localStorage.setItem("jwt-token", this.user.token)
         this.router.navigateByUrl("surveys");
-
+        // this.router.navigateByUrl('Sidebar');
       }
       else
         alert("not permission")
       console.log(this.user);
     })
 
- this.router.navigateByUrl('Sidebar');
+ 
 
   }
 }

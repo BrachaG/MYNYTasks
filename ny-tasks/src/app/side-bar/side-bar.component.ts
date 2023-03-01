@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,14 +12,28 @@ export class SideBarComponent {
   currentRoute: string = '';
   buttons =
 
-    [['לוח אישי','selfbored', 'pi pi-table'],
-    ['יעדים', 'purpose', 'pi pi-send'],
-    ['משימות', 'tasks', 'pi pi-pencil'],
-    ['משובים', 'surveys', 'pi pi-question-circle']];
-  constructor(private router:Router) { }
+    [['לוח אישי', '/selfbored', 'pi pi-table'],
+    ['יעדים', '/purpose', 'pi pi-send'],
+    ['משימות', '/tasks', 'pi pi-pencil'],
+    ['משובים', '/surveys', 'pi pi-question-circle']];
+
+  constructor(private router: Router) {
+
+    router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    )
+      .subscribe(event => {
+        this.currentRoute = ((event as NavigationEnd).urlAfterRedirects);
+        console.log(this.currentRoute);
+
+      });
+  }
+  ngOnInit() {
+      this.currentRoute='/surveys';
+  }
 
   navigateTo(route: string) {
-    this.currentRoute = route;
     this.router.navigateByUrl(route);
   }
+
 }
