@@ -3,11 +3,11 @@
     <h1 class="title-text">משובים</h1>
     <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
-<div class="cover">
-    <p-table class="table-style" [value]="surveys"  [tableStyle]="{'min-width': '0px'}">
+<div class="cover"> 
+     <!-- <span class="up-border"></span> -->
+    <p-table class="table-style" [value]="surveys">
         <ng-template pTemplate="header" >
-            <div class="up-border"></div>
-            <tr>
+            <tr >
                 <th>שם המשוב</th>
                 <th>תאריך הפצה</th>
                 <th>כמות משיבים</th>
@@ -15,7 +15,7 @@
                 <th>קישור</th>
             </tr>
         </ng-template>
-        <ng-template class="tbody" pTemplate="body" let-surveys>
+        <ng-template pTemplate="body" let-surveys>
             <tr>
                 <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
                 <td >{{surveys.dtEndSurveyDate}}</td>
