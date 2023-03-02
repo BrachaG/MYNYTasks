@@ -1,7 +1,9 @@
 ﻿using Entities;
+
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Service
 {
@@ -32,6 +34,25 @@ namespace Service
                 _logger.LogError(ex, "in SurveyService, get all survey, faild when trying to approach to database");
                 var b = ex.Message;
             }
+            return null;
+        }
+
+        public async Task<Survey> Get(int surveyId)
+        {
+            _logger.LogDebug("in Get one Survey");
+            List<SqlParameter> p = new List<SqlParameter>    { new SqlParameter("iSurveyId",surveyId )};
+                
+      /*      try
+            {
+                DataSet dt = await _SqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);
+                Survey survey = _surveyObjectGenerator.GeneratListFromDataSet(dt);
+                return survey;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "in SurveyService, get all survey, faild when trying to approach to database");
+                var b = ex.Message;
+            }*/
             return null;
         }
     }

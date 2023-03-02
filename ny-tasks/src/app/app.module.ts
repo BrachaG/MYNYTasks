@@ -20,15 +20,18 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
-
+import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
+    import {AccordionModule} from 'primeng/accordion';
 
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     SurveyComponent,
     LoginComponent,
+    SurveyResultsComponent,
     
   ],
   imports: [
@@ -49,7 +52,8 @@ import { JwtInterceptor } from './jwt.interceptor';
     StyleClassModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AccordionModule
     
   ],
   providers: [
