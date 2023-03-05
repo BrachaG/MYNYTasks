@@ -23,8 +23,6 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
     import {AccordionModule} from 'primeng/accordion';
 
-
-
 @NgModule({
   declarations: [
 
