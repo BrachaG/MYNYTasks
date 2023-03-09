@@ -31,6 +31,10 @@ namespace Service
              .ConvertUsing(row => MapDataRowToEntity<CodeTable>(row));
             CreateMap<DataRow, Survey>()
              .ConvertUsing(row => MapDataRowToEntity<Survey>(row));
+            CreateMap<DataRow, ResultsForSurvey>()
+             .ConvertUsing(row => MapDataRowToEntity<ResultsForSurvey>(row));
+            CreateMap<DataRow, ResultsForSurveyStudent>()
+           .ConvertUsing(row => MapDataRowToEntity<ResultsForSurveyStudent>(row));
         }
     }
 }
