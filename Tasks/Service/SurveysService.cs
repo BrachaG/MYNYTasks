@@ -60,7 +60,7 @@ namespace Service
                 }
                 foreach (DataRow answer in dtAnswers.Rows)
                 {
-                    ResultsForSurveyStudent student =students.Find(s => s.iStudentId == int.Parse(answer[0].ToString()));
+                    ResultsForSurveyStudent student = students.Find(s => s.iStudentId == int.Parse(answer[0].ToString()));
                     if (student != null)
                     {
                         student.lAnswers.Add(answer[2].ToString());

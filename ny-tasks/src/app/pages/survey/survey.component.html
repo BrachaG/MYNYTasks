@@ -3,7 +3,7 @@
     <h1 class="title-text">משובים</h1>
     <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
-<div class="cover"> 
+<div class="cover">
      <!-- <span class="up-border"></span> -->
     <p-table class="table-style" [value]="surveys">
         <ng-template pTemplate="header" >
@@ -16,7 +16,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>
-            <tr>
+            <tr (click)="selectSurvey(surveys.iSurveyId)">
                 <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
                 <td >{{surveys.dtEndSurveyDate}}</td>
                 <td >{{surveys.iRespondentsCount}}</td>

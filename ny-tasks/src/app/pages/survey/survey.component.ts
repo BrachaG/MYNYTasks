@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { LazyLoadEvent, SortEvent } from 'primeng/api';
 import { SurveysService } from 'src/app/services/surveys.service';
 import { Survey } from 'src/models/survey.model';
@@ -15,7 +16,7 @@ import { Survey } from 'src/models/survey.model';
 export class SurveyComponent implements OnInit{
     surveys:Survey[]=[];
     sum:number =0;
-    constructor(private surveyService:SurveysService) { }
+    constructor(private surveyService:SurveysService,private router:Router) { }
 
     ngOnInit() { 
        this.getSurveysByUserId();
@@ -28,5 +29,9 @@ export class SurveyComponent implements OnInit{
           })
          console.log(this.surveys);
          new Date().toDateString
+    }
+    selectSurvey(iSurveyId:number){
+
+      this.router.navigateByUrl(`surveys-results/${iSurveyId}`);
     }
 }
