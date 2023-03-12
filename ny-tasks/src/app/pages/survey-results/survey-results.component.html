@@ -1,12 +1,9 @@
-
 <p-accordion [multiple]="true">
-    <p-accordionTab header="Header 1">
-       Content 1
-    </p-accordionTab>
-    <p-accordionTab header="Header 2">
-        Content 2
-    </p-accordionTab>
-    <p-accordionTab header="Header 3">
-        Content 3    
+
+    <p-accordionTab *ngFor="let r of result.lQuestions; let i = index;" header="{{r}}">
+        <p *ngFor="let a of result.lResultsForSurveyStudent">
+                {{a.nvFullName}}
+                {{a.lAnswers[i]}}
+        </p>   
     </p-accordionTab>
 </p-accordion>

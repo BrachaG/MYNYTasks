@@ -12,7 +12,7 @@ import { SurveysService } from '../../services/surveys.service';
 export class SurveyResultsComponent implements OnInit {
 
   id: number = 0;
-  result:ResultsForSurvey |null=null;
+  result!: ResultsForSurvey;
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
   }
