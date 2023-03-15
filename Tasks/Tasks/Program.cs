@@ -7,9 +7,7 @@ using Repository;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
-
-  
+using Tasks.Middlewares;
 
 try { 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,33 +25,36 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddSingleton<ISurveysService, SurveysService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-    var Issure = MyConfig["JWTParams:Issure"];
-    var Audience = MyConfig["JWTParams:Audience"];
-    options.TokenValidationParameters = new TokenValidationParameters
+
+    builder.Services.AddAuthentication(opt =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = Issure,
-        ValidAudience = Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
-       
-    };
+        opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(options =>
+    {
+        var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        var Issure = MyConfig["JWTParams:Issure"];
+        var Audience = MyConfig["JWTParams:Audience"];
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = Issure,
+            ValidAudience = Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
 
-});
+        };
 
-var app = builder.Build();
+    });
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+    var app = builder.Build();
+
+    app.UseMiddleware<TokenRefreshMiddleware>();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

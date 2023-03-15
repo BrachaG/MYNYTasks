@@ -5,78 +5,82 @@ using System.Text;
 
 namespace Tasks.Middlewares
 {
-        public class TokenRefreshMiddleware
+    public class TokenRefreshMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public TokenRefreshMiddleware(RequestDelegate next)
         {
-            private readonly RequestDelegate _next;
+            _next = next;
+        }
 
-            public TokenRefreshMiddleware(RequestDelegate next)
+        public async Task Invoke(HttpContext context)
+        {
+            if (context.Request.Headers.ContainsKey("Authorization"))
             {
-                _next = next;
-            }
+                string token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            public async Task Invoke(HttpContext context)
-            {
-                if (context.Request.Headers.ContainsKey("Authorization"))
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                var Issure = MyConfig["JWTParams:Issure"];
+                var Audience = MyConfig["JWTParams:Audience"];
+
+                var validationParameters = new TokenValidationParameters
                 {
-                    string token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Issure,
+                    ValidAudience = Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
+                };
 
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                    var Issure = MyConfig["JWTParams:Issure"];
-                    var Audience = MyConfig["JWTParams:Audience"];
+                try
+                {
+                    var claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out var securityToken);
 
-                    var validationParameters = new TokenValidationParameters
+                    if (securityToken.ValidTo > DateTime.UtcNow)
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = Issure,
-                        ValidAudience = Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
-                    };
-
-                    try
-                    {
-                        var claimsPrincipal = tokenHandler.ValidateToken(token, validationParameters, out var securityToken);
-
-                        if (securityToken.ValidTo > DateTime.UtcNow)
+                        // Get the user id from the claims
+                        var userIdClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub);
+                        if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
                         {
                             // Reset the expiration time to 30 minutes from now
-                            var newToken = GenerateNewToken(claimsPrincipal.Identity.Name);
+                            var newToken = GenerateNewToken(userId);
                             context.Response.Headers.Add("Authorization", "Bearer " + newToken);
                         }
                     }
-                    catch (SecurityTokenException)
-                    {
-                        // Invalid token, do nothing
-                    }
                 }
-
-                await _next.Invoke(context);
-            }
-
-            private string GenerateNewToken(string username)
-            {
-                var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                var Issuer = MyConfig["JWTParams:Issuer"];
-                var Audience = MyConfig["JWTParams:Audience"];
-                var Key = MyConfig["JWTParams:Key"];
-
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenDescriptor = new SecurityTokenDescriptor
+                catch (SecurityTokenException)
                 {
-                    Subject = new ClaimsIdentity(new[]
-                    {
-                new Claim(ClaimTypes.Name, username)
-            }),
-                    Expires = DateTime.UtcNow.AddMinutes(30),
-                    Issuer = Issuer,
-                    Audience = Audience,
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
+                    // Invalid token, do nothing
+                }
             }
-          }
+
+            await _next.Invoke(context);
+        }
+
+        private string GenerateNewToken(int userId)
+        {
+            var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var Issure = MyConfig["JWTParams:Issure"];
+            var Audience = MyConfig["JWTParams:Audience"];
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            string jsonString = userId.ToString();
+            var claims = new List<Claim>
+             { 
+                new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
+            var token = new JwtSecurityToken(
+                issuer: Issure,
+                audience: Audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(1),
+                signingCredentials: credentials
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+    }
 }
