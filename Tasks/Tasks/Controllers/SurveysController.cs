@@ -7,7 +7,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]//, Authorize
+    [ApiController, Authorize]
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
