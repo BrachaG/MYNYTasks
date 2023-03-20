@@ -8,7 +8,6 @@ export class JwtInterceptor implements HttpInterceptor {
   
   constructor(private router: Router) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    localStorage.clear();
     // Get the JWT token from storage
     const token = localStorage.getItem('jwt-token');
     // If there is a token, add it to the authorization header
@@ -29,6 +28,8 @@ export class JwtInterceptor implements HttpInterceptor {
       // For example, if the token is an object containing other information in addition to the token value
       // You'll need to extract the token value from the object
       tap((event: HttpEvent<any>) => {
+        console.log(event);
+        
         if (event instanceof HttpResponse && event.headers.has('Authorization')) {
           var tokenToLocalStorage = event.headers.get('Authorization');
           if (tokenToLocalStorage) {
