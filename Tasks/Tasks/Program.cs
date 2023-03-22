@@ -42,7 +42,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             ValidIssuer = Issure,
             ValidAudience = Audience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
-
+            ClockSkew = TimeSpan.Zero
         };
 
     });
