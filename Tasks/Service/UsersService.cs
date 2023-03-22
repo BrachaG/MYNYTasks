@@ -64,35 +64,35 @@ namespace Service
         }
         private string GenarateToken(User user)
         {
-            //var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
-            //var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            //string jsonString = user.iUserId.ToString();
-            //var claims = new List<Claim>
-            // { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
-            //var token = new JwtSecurityToken(
-            //    issuer: Issure,
-            //    audience: Audience,
-            //    claims: claims,
-            //    expires: DateTime.UtcNow.AddMinutes(1),
-            //    signingCredentials: credentials
-            //);
-            //return new JwtSecurityTokenHandler().WriteToken(token);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            string jsonString = user.iUserId.ToString();
+            var claims = new List<Claim>
+             { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
+            var token = new JwtSecurityToken(
+                issuer: Issure,
+                audience: Audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(1),
+                signingCredentials: credentials
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
 
             // generate token that is valid for 7 days
 
-           
-                // generate token that is valid for 7 days
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+");
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new[] { new Claim("id", user.iUserId.ToString()) }),
-                    Expires = DateTime.UtcNow.AddMinutes(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
- 
+
+            // generate token that is valid for 7 days
+            //var tokenHandler = new JwtSecurityTokenHandler();
+            //var key = Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+");
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Subject = new ClaimsIdentity(new[] { new Claim("id", user.iUserId.ToString()) }),
+            //    Expires = DateTime.UtcNow.AddMinutes(1),
+            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            //};
+            //var token = tokenHandler.CreateToken(tokenDescriptor);
+            //return tokenHandler.WriteToken(token);
+
         }
     }
 }

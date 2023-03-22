@@ -24,41 +24,37 @@ builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddSingleton<ISurveysService, SurveysService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-    //builder.Services.AddAuthentication(opt =>
-    //{
-    //    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    //    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    //}).AddJwtBearer(options =>
-    //{
-    //    var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-    //    var Issure = MyConfig["JWTParams:Issure"];
-    //    var Audience = MyConfig["JWTParams:Audience"];
-    //    options.TokenValidationParameters = new TokenValidationParameters
-    //    {
-    //        ValidateIssuer = true,
-    //        ValidateAudience = true,
-    //        ValidateLifetime = true,
-    //        ValidateIssuerSigningKey = true,
-    //        ValidIssuer = Issure,
-    //        ValidAudience = Audience,
-    //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
-
-    //    };
-
-    //});
-    builder.Services.AddAuthorization();
-    builder.Services.AddAuthentication(options =>
+    builder.Services.AddAuthentication(opt =>
     {
-        options.DefaultAuthenticateScheme = "JwtBearer";
-        options.DefaultChallengeScheme = "JwtBearer";
-    })
-.AddJwtBearer("JwtBearer", jwtBearerOptions =>
-{
-    // configure your JWT authentication settings here
-});
+        opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(options =>
+    {
+        var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+        var Issure = MyConfig["JWTParams:Issure"];
+        var Audience = MyConfig["JWTParams:Audience"];
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = Issure,
+            ValidAudience = Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
+
+        };
+
+    });
+    //builder.Services.AddAuthorization();
+    //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    //.AddJwtBearer(options =>
+    //{
+    //    // configure your JWT authentication settings here
+    //});
 
     var app = builder.Build();
-    builder.Services.AddEndpointsApiExplorer();
+    //builder.Services.AddEndpointsApiExplorer();
     app.UseTokenRefreshMiddleware();
 
     // Configure the HTTP request pipeline.
