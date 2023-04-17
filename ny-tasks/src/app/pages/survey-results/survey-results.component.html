@@ -1,9 +1,15 @@
+<a href="surveys">➡️{{surveyName}}</a>
+
 <p-accordion [multiple]="true">
 
-    <p-accordionTab *ngFor="let r of result.lQuestions; let i = index;" header="{{r}}">
-        <p *ngFor="let a of result.lResultsForSurveyStudent">
-                {{a.nvFullName}}
-                {{a.lAnswers[i]}}
-        </p>   
+    <p-accordionTab *ngFor="let r of result.lQuestions;" header="{{r.nvQuestionText}}">
+        <div *ngFor="let student of result.lResultsForSurveyStudent">
+            <div *ngIf="student.lAnswers != null">
+            <p *ngFor="let answer of student.lAnswers">
+                <label *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}} .</label>
+                <label *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</label>
+            </p>
+        </div> 
+    </div>  
     </p-accordionTab>
 </p-accordion>

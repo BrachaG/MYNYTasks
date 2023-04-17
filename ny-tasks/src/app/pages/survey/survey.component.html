@@ -16,7 +16,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>
-            <tr (click)="selectSurvey(surveys.iSurveyId)">
+            <tr (click)="selectSurvey(surveys.iSurveyId , surveys.nvSurveyName)">
                 <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
                 <td >{{surveys.dtEndSurveyDate}}</td>
                 <td >{{surveys.iRespondentsCount}}</td>

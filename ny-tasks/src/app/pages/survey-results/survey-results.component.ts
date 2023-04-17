@@ -12,6 +12,7 @@ import { SurveysService } from '../../services/surveys.service';
 export class SurveyResultsComponent implements OnInit {
 
   id: number = 0;
+  surveyName: string='';
   result!: ResultsForSurvey;
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
@@ -19,6 +20,7 @@ export class SurveyResultsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((p: Params) => {
       this.id = p['id']
+      this.surveyName =p['name']
     });
     this.getResultForSurvey();
   }

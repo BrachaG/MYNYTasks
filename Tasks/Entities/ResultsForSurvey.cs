@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities
+﻿namespace Entities
 {
-    public class ResultsForSurvey
+    public class ResultsForSurvey : IEntity
     {
         public List<ResultsForSurveyStudent> lResultsForSurveyStudent { get; set; }
-        public List<string> lQuestions { get; set; }
+        public List<Question> lQuestions { get; set; }
     }
 }

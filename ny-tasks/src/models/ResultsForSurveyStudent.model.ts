@@ -1,3 +1,4 @@
+import { Answer } from "./Answer.model"
 
 export interface ResultsForSurveyStudent {
     iStudentId: number
@@ -8,5 +9,5 @@ export interface ResultsForSurveyStudent {
     nvMobileNumber: string
     nvEmail: string
     nvProgramName: string
-    lAnswers: string[]
+    lAnswers: Answer[]
 }

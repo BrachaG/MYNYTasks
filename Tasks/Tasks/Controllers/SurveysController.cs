@@ -29,7 +29,7 @@ namespace Tasks.Controllers
         public async Task<ResultsForSurvey> GetResultsForSurvey(int id)
         {
             _logger.LogDebug("Get ResultsForSurvey");
-           
+
             return await _SurveysService.Get(id);
         }
     }

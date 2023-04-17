@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class ResultsForSurveyStudent
+    public class ResultsForSurveyStudent : IEntity
     {
         public int iStudentId { get; set; } //הוספנו
         public DateTime? dtCreateDate { get; set; }
@@ -10,6 +10,6 @@
         public string nvMobileNumber { get; set; }
         public string nvEmail { get; set; }
         public string nvProgramName { get; set; }
-        public List<string> lAnswers { get; set; } = new List<string>(); //הוספנו אתחול
+        public List<Answer> lAnswers { get; set; } = new List<Answer>(); //הוספנו אתחול
     }
 }

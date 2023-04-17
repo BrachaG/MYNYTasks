@@ -5,7 +5,7 @@ import { SurveyComponent } from './pages/survey/survey.component';
 
 const routes: Routes = [
   { path: "surveys", component: SurveyComponent },
-  { path: "surveys-results/:id", component: SurveyResultsComponent }
+  { path: "surveys-results/:id/:name", component: SurveyResultsComponent }
 ];
 
 @NgModule({

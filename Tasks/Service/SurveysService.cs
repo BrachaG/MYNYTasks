@@ -1,5 +1,4 @@
 ﻿using Entities;
-
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
@@ -13,15 +12,19 @@ namespace Service
         IObjectGenerator<Survey> _surveyObjectGenerator;
         IObjectGenerator<ResultsForSurvey> _resultSurveyObjectGenerator;
         IObjectGenerator<ResultsForSurveyStudent> _resultSurveyStudentObjectGenerator;
+        IObjectGenerator<Question> _questionObjectGenerator;
+        IObjectGenerator<Answer> _answerObjectGenerator;
         ILogger<SurveysService> _logger;
 
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator)
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
             _logger = logger;
             _resultSurveyObjectGenerator = resultSurveyObjectGenerator;
             _resultSurveyStudentObjectGenerator = resultSurveyStudentObjectGenerator;
+            _questionObjectGenerator = questionObjectGenerator;
+            _answerObjectGenerator = answerObjectGenerator;
         }
 
         public async Task<List<Survey>> Get()
@@ -44,8 +47,8 @@ namespace Service
         public async Task<ResultsForSurvey> Get(int surveyId)
         {
             _logger.LogDebug("in Get Results For Survey");
-            List<SqlParameter> p = new List<SqlParameter>    { new SqlParameter("iSurveyId",surveyId )};
-                
+            List<SqlParameter> p = new List<SqlParameter> { new SqlParameter("iSurveyId", surveyId) };
+
             try
             {
                 DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);
@@ -53,17 +56,14 @@ namespace Service
                 DataTable dtQuestions = ds.Tables[1];
                 DataTable dtAnswers = ds.Tables[2];
                 List<ResultsForSurveyStudent> students = _resultSurveyStudentObjectGenerator.GeneratListFromDataTable(dtStudent);
-                List<string> questions=new List<string>();
-                foreach (DataRow question in dtQuestions.Rows)
+                List<Question> questions = _questionObjectGenerator.GeneratListFromDataTable(dtQuestions);
+                List<Answer> answers = _answerObjectGenerator.GeneratListFromDataTable(dtAnswers);
+                foreach (Answer answer in answers)
                 {
-                    questions.Add(question[0].ToString());
-                }
-                foreach (DataRow answer in dtAnswers.Rows)
-                {
-                    ResultsForSurveyStudent student = students.Find(s => s.iStudentId == int.Parse(answer[0].ToString()));
+                    ResultsForSurveyStudent student = students.Find(s => s.iStudentId == answer.iStudentId);
                     if (student != null)
                     {
-                        student.lAnswers.Add(answer[2].ToString());
+                        student.lAnswers.Add(answer);
                     }
                 }
                 ResultsForSurvey results = new ResultsForSurvey();

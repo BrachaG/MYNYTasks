@@ -30,8 +30,8 @@ export class SurveyComponent implements OnInit{
          console.log(this.surveys);
          new Date().toDateString
     }
-    selectSurvey(iSurveyId:number){
+    selectSurvey(iSurveyId:number,nvSurveyName:string){
 
-      this.router.navigateByUrl(`surveys-results/${iSurveyId}`);
+      this.router.navigateByUrl(`surveys-results/${iSurveyId}/${nvSurveyName}`);
     }
 }
