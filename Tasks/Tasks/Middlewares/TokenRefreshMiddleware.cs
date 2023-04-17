@@ -9,22 +9,21 @@ namespace Tasks.Middlewares
     {
         private readonly RequestDelegate _next;
         private ILogger<TokenRefreshMiddleware> _logger;
-        readonly string Issure;
-        readonly string Audience;
-        IConfiguration _Configuration;
-        public TokenRefreshMiddleware(RequestDelegate next, ILogger<TokenRefreshMiddleware> logger, IConfiguration Configuration)
+        readonly string _issure;
+        readonly string _audience;
+        IConfiguration _configuration;
+        public TokenRefreshMiddleware(RequestDelegate next, ILogger<TokenRefreshMiddleware> logger, IConfiguration configuration)
         {
-            _Configuration = Configuration;
-            Issure = _Configuration["JWTParams:Issure"];
-            Audience = _Configuration["JWTParams:Audience"];
+            _configuration = configuration;
+            _issure = _configuration["JWTParams:Issure"];
+            _audience = _configuration["JWTParams:Audience"];
             _next = next;
             _logger = logger;
-
         }
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation(Audience);
+            _logger.LogInformation(_audience);
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             _logger.LogInformation(context.ToString());
             if (token != null)
@@ -34,13 +33,9 @@ namespace Tasks.Middlewares
                 if (userId != -1)
                 {
                     JwtSecurityToken jwtSecurityToken;
-
                     jwtSecurityToken = new JwtSecurityToken(token);
-                    if (jwtSecurityToken.ValidTo > DateTime.UtcNow)
-                    {
-                        var newToken = GenerateNewToken(userId);
-                        context.Response.Headers.Add("Authorization", "Bearer " + newToken);
-                    }
+                    var newToken = GenerateNewToken(userId);
+                    context.Response.Headers.Add("Authorization", "Bearer " + newToken);
                 }
             }
             await _next(context);
@@ -77,9 +72,7 @@ namespace Tasks.Middlewares
                 // return null if validation fails
                 return -1;
             }
-
         }
-
         public string GenerateNewToken(int userId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
@@ -89,8 +82,8 @@ namespace Tasks.Middlewares
             var claims = new List<Claim>
              { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
             var token = new JwtSecurityToken(
-                issuer: Issure,
-                audience: Audience,
+                issuer: _issure,
+                audience: _audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(1),
                 signingCredentials: credentials
@@ -98,22 +91,7 @@ namespace Tasks.Middlewares
             _logger.LogInformation(tokenHandler.WriteToken(token));
             return tokenHandler.WriteToken(token);
         }
-        //    // generate token that is valid for 7 days
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+");
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(new[] { new Claim("id", userId.ToString()) }),
-        //        Expires = DateTime.UtcNow.AddMinutes(1),
-        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        //    };
-        //    var token = tokenHandler.CreateToken(tokenDescriptor);
-        //    _logger.LogInformation(tokenHandler.WriteToken(token));
-        //    return tokenHandler.WriteToken(token);
-        //}
-        //// Extension method used to add the middleware to the HTTP request pipeline.
-
-    }      
+    }
     public static class CacheMiddlewareExtensions
     {
         public static IApplicationBuilder UseTokenRefreshMiddleware(this IApplicationBuilder builder)
