@@ -14,6 +14,7 @@ export class SurveyResultsComponent implements OnInit {
   id: number = 0;
   surveyName: string='';
   result!: ResultsForSurvey;
+  sum:number=0;
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
   }
@@ -28,7 +29,7 @@ export class SurveyResultsComponent implements OnInit {
     this.surveyService.getResultsForSurvey(this.id).subscribe((res: any) => {
       this.result = res;
       console.log(this.result);
-      
+      this.sum=this.result.lQuestions.length;
     })
   }
 

@@ -1,5 +1,8 @@
-<a href="surveys">➡️{{surveyName}}</a>
-
+<div class="background">
+    <div class="title">
+<a style="text-decoration-line: none;" href="surveys"><h1 class="title-text">{{surveyName}}</h1></a>
+<h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
+    </div>
 <p-accordion [multiple]="true">
 
     <p-accordionTab *ngFor="let r of result.lQuestions;" header="{{r.nvQuestionText}}">
@@ -13,3 +16,4 @@
     </div>  
     </p-accordionTab>
 </p-accordion>
+</div>
