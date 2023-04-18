@@ -9,9 +9,11 @@
 .p-sidebar {
     background-Color: #16163A;
     border: 'none';
-    width: 15% !important;
     box-shadow: 0px 0px 0px 0px;
     position: 'absolute';
+}
+.ng-trigger.ng-trigger-panelState.ng-tns-c93-0.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted{
+    width: 15%;
 }
 
 .logo {
@@ -48,7 +50,6 @@
         background-color: #2F81EF;
         right: 2%;
         width: 95%;
-        font-family: 'Rubik';
         font-size: 1.5vmin;
         border-radius: 8px;
         padding-right: 5%;

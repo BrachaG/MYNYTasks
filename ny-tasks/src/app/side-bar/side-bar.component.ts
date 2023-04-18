@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class SideBarComponent {
     ['משימות', '/tasks', 'pi pi-pencil'],
     ['משובים', '/surveys', 'pi pi-question-circle']];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -28,8 +28,12 @@ export class SideBarComponent {
 
       });
   }
+  
   ngOnInit() {
       this.currentRoute='/surveys';
+      if(this.route.snapshot.url.join('')=='Sidebar'){
+        this.router.navigateByUrl('surveys');
+      }
   }
 
   navigateTo(route: string) {
