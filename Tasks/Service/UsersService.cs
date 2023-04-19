@@ -73,7 +73,7 @@ namespace Service
                 issuer: Issure,
                 audience: Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
+                expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
