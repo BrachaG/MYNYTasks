@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Entities;
-using Microsoft.Extensions.Logging;
 using System.Data;
 using System.Reflection;
 

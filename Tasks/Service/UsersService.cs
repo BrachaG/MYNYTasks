@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,9 +18,9 @@ namespace Service
         IObjectGenerator<CodeTable> _codeTableGenerator;
         IConfiguration _Configuration;
         readonly string Issure;
-        readonly string Audience; 
+        readonly string Audience;
         ILogger<UsersService> _logger;
-  
+
         public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger, IConfiguration Configuration)
 
         {
@@ -43,17 +43,17 @@ namespace Service
             try
             {
                 DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
-            {
-                User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
-                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-                    user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                string userToken = GenarateToken(user);
-                user.token = userToken;
-                user.iUserId = 0;
-                return user;
-            }
-            else return null;
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
+                {
+                    User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+                    if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                        user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
+                    string userToken = GenarateToken(user);
+                    user.token = userToken;
+                    user.iUserId = 0;
+                    return user;
+                }
+                else return null;
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace Service
                 issuer: Issure,
                 audience: Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
+                expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -26,9 +26,6 @@ import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.componen
 import { TasksComponent } from './tasks/tasks.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
