@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'surveys', component: SurveyComponent },
   { path: 'tasks', component: TasksComponent },
   { path: 'Sidebar', component: SideBarComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: "surveys-results/:id/:name", component: SurveyResultsComponent }
 ];
 

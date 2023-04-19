@@ -56,7 +56,7 @@ import {AccordionModule} from 'primeng/accordion';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AccordionModule
+    AccordionModule,
     SidebarModule,
   ],
   providers: [
