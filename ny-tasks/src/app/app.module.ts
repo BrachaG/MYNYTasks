@@ -10,18 +10,20 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SliderModule } from 'primeng/slider';
-import { DialogModule} from 'primeng/dialog';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { ContextMenuModule } from 'primeng/contextmenu';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { ToastModule} from 'primeng/toast';
-import { StyleClassModule } from 'primeng/styleclass';
+import {SliderModule} from 'primeng/slider';
+import {DialogModule} from 'primeng/dialog';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {ToastModule} from 'primeng/toast';
+import {StyleClassModule} from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
-
-
+import { SideBarComponent } from './side-bar/side-bar.component';
+import {SidebarModule} from 'primeng/sidebar';
+import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { JwtInterceptor } from './jwt.interceptor';
     AppComponent,
     SurveyComponent,
     LoginComponent,
-    
+    SideBarComponent,
+    BarButtonsComponent,
+    TasksComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -49,8 +53,8 @@ import { JwtInterceptor } from './jwt.interceptor';
     StyleClassModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    SidebarModule,
   ],
   providers: [
    {

@@ -53,8 +53,11 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
     app.UseHttpsRedirection();
+
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
     app.UseAuthentication();
 
     app.UseAuthorization();
