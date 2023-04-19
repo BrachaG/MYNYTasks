@@ -11,11 +11,13 @@
     border: 'none';
     box-shadow: 0px 0px 0px 0px;
     position: 'absolute';
+     
 }
-.ng-trigger.ng-trigger-panelState.ng-tns-c93-0.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted{
-    width: 15%;
+.ng-trigger.ng-trigger-panelState.ng-tns-c93-0.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted,
+.ng-trigger.ng-trigger-panelState.ng-tns-c93-1.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted
+{
+  width: 15%;
 }
-
 .logo {
     width: 50%;
     margin-right: 25%;
@@ -36,8 +38,6 @@
     text-align: center;
     width: 100%;
 }
-
-
 .addTask {
     .p-button:focus {
         background-color: #2F81EF;
