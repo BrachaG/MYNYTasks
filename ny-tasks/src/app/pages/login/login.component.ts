@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Sidebar } from 'primeng/sidebar';
 import { UsersService } from 'src/app/services/users.service';
 import { userModel } from 'src/models/users.model';
 
@@ -12,7 +13,7 @@ import { userModel } from 'src/models/users.model';
 })
 export class LoginComponent implements OnInit {
   user: any
-  constructor(private srv: UsersService,private router:Router) {
+  constructor(private srv: UsersService, private router: Router) {
   }
 
   frmUsers: FormGroup = new FormGroup({
@@ -30,15 +31,11 @@ export class LoginComponent implements OnInit {
       this.user = res;
       if (this.user != null) {
         localStorage.setItem("jwt-token", this.user.token)
-        this.router.navigateByUrl("surveys");
-        // this.router.navigateByUrl("surveys-results");
+        this.router.navigateByUrl('surveys');
       }
       else
         alert("not permission")
       console.log(this.user);
     })
-
-
-
   }
 }
