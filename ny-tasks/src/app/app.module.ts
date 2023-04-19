@@ -21,16 +21,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
-    import {AccordionModule} from 'primeng/accordion';
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   declarations: [
-
     AppComponent,
     SurveyComponent,
     LoginComponent,
     SurveyResultsComponent,
-    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +50,6 @@ import { SurveyResultsComponent } from './pages/survey-results/survey-results.co
     ReactiveFormsModule,
     HttpClientModule,
     AccordionModule
-    
   ],
   providers: [
    {

@@ -1,11 +1,12 @@
 <div class="background">
     <div class="title">
-<a style="text-decoration-line: none;" href="surveys"><h1 class="title-text">{{surveyName}}</h1></a>
+<a style="text-decoration-line: none;" href="surveys"><h1 class="title-text"><i class="pi pi-arrow-right"></i> {{surveyName}}</h1></a>
 <h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
     </div>
-<p-accordion [multiple]="true">
+    <div class="cover">
+<p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
 
-    <p-accordionTab *ngFor="let r of result.lQuestions;" header="{{r.nvQuestionText}}">
+    <p-accordionTab class="acc-line" *ngFor="let r of result.lQuestions;" header="{{r.nvQuestionText}}">
         <div *ngFor="let student of result.lResultsForSurveyStudent">
             <div *ngIf="student.lAnswers != null">
             <p *ngFor="let answer of student.lAnswers">
@@ -16,4 +17,5 @@
     </div>  
     </p-accordionTab>
 </p-accordion>
+</div>
 </div>

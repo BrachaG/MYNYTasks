@@ -2,25 +2,7 @@ $blue3:#1E2959;
 $lightblue-gray:#5F6388;
 
 
-.cover{
-    position: relative;
-    top:20%;
-    right: 10%;
-    width: 80%;
-}
 
-.title{
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items:baseline;
-    gap: 15%;
-    position: absolute;
-    width: 10%;
-    height: 10%;
-    right:10%;
-    top:15%;
-}
 
 @media screen and (max-width: 992px) {
 

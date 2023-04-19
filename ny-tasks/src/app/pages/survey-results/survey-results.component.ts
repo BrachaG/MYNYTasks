@@ -9,8 +9,10 @@ import { SurveysService } from '../../services/surveys.service';
   templateUrl: './survey-results.component.html',
   styleUrls: ['./survey-results.component.scss']
 })
-export class SurveyResultsComponent implements OnInit {
 
+export class SurveyResultsComponent implements OnInit {
+  expandIcon:string = 'pi pi-angle-down';
+  collapseIcon:string = 'pi pi-angle-up';
   id: number = 0;
   surveyName: string='';
   result!: ResultsForSurvey;
