@@ -85,7 +85,7 @@ namespace Tasks.Middlewares
                 issuer: _issure,
                 audience: _audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(1),
+                expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: credentials
             );
             _logger.LogInformation(tokenHandler.WriteToken(token));
