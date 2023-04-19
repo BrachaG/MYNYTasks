@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.user = res;
       if (this.user != null) {
         localStorage.setItem("jwt-token", this.user.token)
-        this.router.navigateByUrl('Sidebar');
+        this.router.navigateByUrl('surveys');
       }
       else
         alert("not permission")

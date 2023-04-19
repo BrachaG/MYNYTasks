@@ -31,9 +31,6 @@ export class SideBarComponent {
   
   ngOnInit() {
       this.currentRoute='/surveys';
-      if(this.route.snapshot.url.join('')=='Sidebar'){
-        this.router.navigateByUrl('surveys');
-      }
   }
 
   navigateTo(route: string) {
