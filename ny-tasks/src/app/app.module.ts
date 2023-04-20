@@ -26,6 +26,7 @@ import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.componen
 import { TasksComponent } from './tasks/tasks.component';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import {AccordionModule} from 'primeng/accordion';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {AccordionModule} from 'primeng/accordion';
     HttpClientModule,
     AccordionModule,
     SidebarModule,
+    PaginatorModule
   ],
   providers: [
    {

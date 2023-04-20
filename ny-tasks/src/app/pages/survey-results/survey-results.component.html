@@ -4,9 +4,10 @@
 <h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
     </div>
     <div class="cover">
+                
 <p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
 
-    <p-accordionTab class="acc-line" *ngFor="let r of result.lQuestions;" header="{{r.nvQuestionText}}">
+    <p-accordionTab class="acc-line" *ngFor="let r of result.lQuestions.slice(first,first+1)" header="{{r.nvQuestionText}}">
         <div *ngFor="let student of result.lResultsForSurveyStudent">
             <div *ngIf="student.lAnswers != null">
             <p *ngFor="let answer of student.lAnswers">
@@ -17,5 +18,10 @@
     </div>  
     </p-accordionTab>
 </p-accordion>
+<p-paginator [rows]="1" [totalRecords]="result.lQuestions.length" (onPageChange)="onPageChange($event)"></p-paginator>
+
 </div>
+
 </div>
+
+
