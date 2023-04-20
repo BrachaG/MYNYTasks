@@ -3,7 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AccordionModule } from 'primeng/accordion';
 import { ResultsForSurvey } from '../../../models/ResultsForSurvey.model';
 import { SurveysService } from '../../services/surveys.service';
-
+import { PaginatorModule } from 'primeng/paginator';
+import { Question } from '../../../models/Question.model';
 @Component({
   selector: 'app-survey-results',
   templateUrl: './survey-results.component.html',
@@ -17,6 +18,10 @@ export class SurveyResultsComponent implements OnInit {
   surveyName: string='';
   result!: ResultsForSurvey;
   sum:number=0;
+  currentPage : number = 0;
+  first:number =0;
+  rows: number = 10;
+  pages:any[]=[];
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
   }
@@ -26,7 +31,13 @@ export class SurveyResultsComponent implements OnInit {
       this.surveyName =p['name']
     });
     this.getResultForSurvey();
-  }
+
+  //   const questions = this.result.lQuestions;
+  // for (let i = 0; i < questions.length; i += 10) {
+  //   const page = questions.slice(i, i + 10);
+  //   this.pages.push(page);
+  // }
+}
   getResultForSurvey() {
     this.surveyService.getResultsForSurvey(this.id).subscribe((res: any) => {
       this.result = res;
@@ -34,5 +45,9 @@ export class SurveyResultsComponent implements OnInit {
       this.sum=this.result.lQuestions.length;
     })
   }
+ 
 
+  onPageChange(event:any) {
+      this.first  = event.first;
+  }
 }
