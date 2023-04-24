@@ -27,7 +27,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import {AccordionModule} from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomPaginatorIntlService } from './services/custom-paginator-intl.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,8 +66,13 @@ import { PaginatorModule } from 'primeng/paginator';
    {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
-    multi: true
-  }  ],
+    multi: true,
+    
+  } ,
+  {
+    provide: MatPaginatorIntl, useClass: CustomPaginatorIntlService
+  } 
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

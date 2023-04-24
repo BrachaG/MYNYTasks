@@ -1,27 +1,33 @@
 <div class="background">
     <div class="title">
-<a style="text-decoration-line: none;" href="surveys"><h1 class="title-text"><i class="pi pi-arrow-right"></i> {{surveyName}}</h1></a>
-<h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
+        <a style="text-decoration-line: none;" href="surveys">
+            <h1 class="title-text"><i class="pi pi-arrow-right"></i> {{surveyName}}</h1>
+        </a>
+        <h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
+        
     </div>
+    <div class="div-collapse">
+            <button class="button-collapse" (click)="openAllTabs()"><i class="pi pi-angle-up"></i><i class="pi pi-angle-down"></i>הרחב הכל</button>
+            <button class="button-collapse" (click)="closeAllTabs()">צמצם הכל</button>
+        </div>
     <div class="cover">
-                
-<p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
+        
+        <p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
 
-    <p-accordionTab class="acc-line" *ngFor="let r of result.lQuestions.slice(first,first+1)" header="{{r.nvQuestionText}}">
-        <div *ngFor="let student of result.lResultsForSurveyStudent">
-            <div *ngIf="student.lAnswers != null">
-            <p *ngFor="let answer of student.lAnswers">
-                <label *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}} .</label>
-                <label *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</label>
-            </p>
-        </div> 
-    </div>  
-    </p-accordionTab>
-</p-accordion>
-<p-paginator [rows]="1" [totalRecords]="result.lQuestions.length" (onPageChange)="onPageChange($event)"></p-paginator>
+            <p-accordionTab [selected]="collapsed" class="acc-line" *ngFor="let r of result.lQuestions"
+                header="{{r.nvQuestionText}}">
+                <div *ngFor="let student of result.lResultsForSurveyStudent">
+                    <div *ngIf="student.lAnswers != null">
+                        <p *ngFor="let answer of student.lAnswers">
+                            <label *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}} .</label>
+                            <label *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</label>
+                        </p>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+        <!-- <p-paginator [rows]="1" [totalRecords]="result.lQuestions.length" (onPageChange)="onPageChange($event)" > </p-paginator> -->
+        <!-- .slice(first,first+1) -->
+    </div>
 
 </div>
-
-</div>
-
-

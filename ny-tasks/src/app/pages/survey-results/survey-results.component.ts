@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AccordionModule } from 'primeng/accordion';
+import { Accordion, AccordionModule, AccordionTab } from 'primeng/accordion';
 import { ResultsForSurvey } from '../../../models/ResultsForSurvey.model';
 import { SurveysService } from '../../services/surveys.service';
 import { PaginatorModule } from 'primeng/paginator';
 import { Question } from '../../../models/Question.model';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-survey-results',
   templateUrl: './survey-results.component.html',
@@ -22,8 +24,15 @@ export class SurveyResultsComponent implements OnInit {
   first:number =0;
   rows: number = 10;
   pages:any[]=[];
-  constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
+  previousPage:string='prev';
+  nextPage:string='next';
+  activeIndex: number=0;
+  collapsed:boolean = false
+  constructor(public surveyService: SurveysService, private route: ActivatedRoute,private paginatorIntl: MatPaginatorIntl) {
 
+    this.paginatorIntl.itemsPerPageLabel = 'Items per page:';
+    this.paginatorIntl.nextPageLabel = 'Next page';
+    this.paginatorIntl.previousPageLabel = 'Previous page';
   }
   ngOnInit() {
     this.route.params.subscribe((p: Params) => {
@@ -31,12 +40,6 @@ export class SurveyResultsComponent implements OnInit {
       this.surveyName =p['name']
     });
     this.getResultForSurvey();
-
-  //   const questions = this.result.lQuestions;
-  // for (let i = 0; i < questions.length; i += 10) {
-  //   const page = questions.slice(i, i + 10);
-  //   this.pages.push(page);
-  // }
 }
   getResultForSurvey() {
     this.surveyService.getResultsForSurvey(this.id).subscribe((res: any) => {
@@ -49,5 +52,11 @@ export class SurveyResultsComponent implements OnInit {
 
   onPageChange(event:any) {
       this.first  = event.first;
+  }
+  openAllTabs() {
+    this.collapsed=true
+  }
+  closeAllTabs() {
+    this.collapsed=false
   }
 }
