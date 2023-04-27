@@ -1,0 +1,27 @@
+$blue3: #1E2959;
+
+.button-collapse {
+    color: $blue3;
+    background-color: rgba(227, 232, 238, 1);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Rubik';
+    font-size: 14.7626px;
+    line-height: 17px;
+    text-align: right;
+    line-height: 17px;
+    width: 96px;
+    height: 31px;
+    
+}
+.div-collapse{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 10px;
+    gap: 8px;
+    position: absolute;
+    right:73.5%;
+    top:13%;
+}
+
