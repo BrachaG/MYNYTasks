@@ -7,12 +7,17 @@ $blue3: #1E2959;
     border-radius: 8px;
     font-family: 'Rubik';
     font-size: 14.7626px;
+    font-weight: 500;
     line-height: 17px;
     text-align: right;
     line-height: 17px;
     width: 96px;
     height: 31px;
     
+}
+.button-collapse:disabled{
+    color: #BEBFC1;
+
 }
 .div-collapse{
     display: flex;
@@ -24,4 +29,46 @@ $blue3: #1E2959;
     right:73.5%;
     top:13%;
 }
-
+.pi.pi-angle-up.up{
+     position: relative;
+     right:10%;
+     top:-10%;
+    font-size: 0.6rem;
+}
+.pi.pi-angle-down.down{
+     position: relative;
+     left:1.6%;
+     top:10%;
+    font-size: 0.6rem;
+}
+.pi.pi-angle-up.up-close{
+    position: relative;
+    right:10%;
+    top:10%;
+    font-size: 0.6rem;
+}
+.pi.pi-angle-down.down-close{
+    position: relative;
+    left:1.5%;
+    top:-10%;
+    font-size: 0.6rem;
+}
+.answer{
+    display: flex;
+    flex-direction: row;
+    
+  //  padding: 10%;
+}
+.std-details{
+  //  margin-left: 10px;
+    width: 250px;
+}
+.std-name{
+    color: $blue3;
+}
+.branch-name{
+color: #5F6388;
+}
+.std-ans{
+color: $blue3;
+}
