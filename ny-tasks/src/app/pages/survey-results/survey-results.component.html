@@ -7,8 +7,8 @@
         
     </div>
     <div class="div-collapse">
-            <button class="button-collapse" (click)="openAllTabs()"><i class="pi pi-angle-up"></i><i class="pi pi-angle-down"></i>הרחב הכל</button>
-            <button class="button-collapse" (click)="closeAllTabs()">צמצם הכל</button>
+            <button [disabled]="collapsed" class="button-collapse" (click)="openAllTabs()">הרחב הכל<i class="pi pi-angle-up up"></i><i class="pi pi-angle-down down"></i></button>
+            <button [disabled]="!collapsed" class="button-collapse" (click)="closeAllTabs()">צמצם הכל<i class="pi pi-angle-up up-close"></i><i class="pi pi-angle-down down-close"></i></button>
         </div>
     <div class="cover">
         
@@ -18,10 +18,13 @@
                 header="{{r.nvQuestionText}}">
                 <div *ngFor="let student of result.lResultsForSurveyStudent">
                     <div *ngIf="student.lAnswers != null">
-                        <p *ngFor="let answer of student.lAnswers">
-                            <label *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}} .</label>
-                            <label *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</label>
-                        </p>
+                        <div class="answer" *ngFor="let answer of student.lAnswers">
+                            <div class="std-details">
+                            <div class="std-name h4-medium" *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}}</div>
+                            <div class="branch-name" *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvBranchName}}</div>
+                            </div>
+                            <div class="std-ans h4-regular" *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</div>
+                        </div>
                     </div>
                 </div>
             </p-accordionTab>
