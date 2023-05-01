@@ -18,15 +18,21 @@
                 header="{{r.nvQuestionText}}">
                 <div *ngFor="let student of result.lResultsForSurveyStudent">
                     <div *ngIf="student.lAnswers != null">
-                        <div class="answer" *ngFor="let answer of student.lAnswers">
+                        <div  *ngFor="let answer of student.lAnswers">
+                            <div *ngIf="answer.iQuestionId == r.iQuestionId && answer.iQuestionId == r.iQuestionId" class="answer">
                             <div class="std-details">
-                            <div class="std-name h4-medium" *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvFullName}}</div>
-                            <div class="branch-name" *ngIf="answer.iQuestionId == r.iQuestionId">{{student.nvBranchName}}</div>
+                            <div class="std-name h4-medium">{{student.nvFullName}}</div>
+                            <div class="branch-name" >{{student.nvBranchName}}</div>
                             </div>
-                            <p class="std-ans h4-regular" *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</p>
+                            <div class="std-ans h4-regular" *ngIf="answer.iQuestionId == r.iQuestionId">{{answer.nvAnswer}}</div>
+                             <!-- <div class="aaa"></div> -->
+                            </div>
                         </div>
-                    </div>
+
+                    </div> 
+                    
                 </div>
+              
             </p-accordionTab>
         </p-accordion>
         <!-- <p-paginator [rows]="1" [totalRecords]="result.lQuestions.length" (onPageChange)="onPageChange($event)" > </p-paginator> -->

@@ -153,20 +153,20 @@ $lightblue-gray:#5F6388;
 
 @media screen and (max-width: 992px) {
   .h4-regular{
-    font-size: 1.5vmin;
+    font-size: 2vmin;
   }
   .h4-medium{
-    font-size: 1.5vmin;
+    font-size: 2vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
-    font-size: 1.5vmin; 
+    font-size: 2vmin; 
     border-top: 2px solid #2F81EF;
   }
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px ) {
   .h4-regular{
-    font-size: 2.5vmin;
+    font-size: 1.5vmin;
   }
   .h4-medium{
     font-size: 3vmin;
@@ -179,10 +179,10 @@ $lightblue-gray:#5F6388;
 
 @media screen and (min-width: 1201px ) {
   .h4-regular{
-    font-size: 1.5vmin;
+    font-size: 2vmin;
   }
   .h4-medium{
-    font-size: 1.5vmin;
+    font-size: 2vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
     border-top: 4px solid #2F81EF;
