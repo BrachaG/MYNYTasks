@@ -8,6 +8,6 @@ namespace Service
 {
     public interface ITargetsService
     {
-         string GetTargetsByUserId(int UserId,int Status);
+        Task<string> GetTargetsByUserId(int UserId,int Status);
     }
 }

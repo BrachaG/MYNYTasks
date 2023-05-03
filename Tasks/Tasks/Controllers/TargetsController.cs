@@ -16,8 +16,8 @@ namespace Tasks.Controllers
             _logger = logger;
             _TargetsService = TargetsService;
         }
-        [HttpGet("{id}")]
-        public async string GetTargetsByUserId(int UserId, int Status)
+        [HttpGet()]
+        public async Task<string> GetTargetsByUserId(int UserId, int Status)
         {
             _logger.LogDebug($"User id is: {UserId} ,Status is: {Status} In GetTargetsByUserId");
 
