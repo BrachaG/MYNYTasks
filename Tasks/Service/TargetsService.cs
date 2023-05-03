@@ -18,9 +18,9 @@ namespace Service
             _SqlDataAccess= SqlDataAccess;
             _logger = logger;
         }
-        public async string GetTargetsByUserId(int UserId)
+        public async string GetTargetsByUserId(int UserId, int Status)
         {
-            _logger.LogDebug("GetTargetsByUserId", UserId);
+            _logger.LogDebug("GetTargetsByUserId", UserId, int Status);
 
             throw new NotImplementedException();
         }

@@ -17,13 +17,14 @@ namespace Tasks.Controllers
             _TargetsService = TargetsService;
         }
         [HttpGet("{id}")]
-        public async string GetTargetsByUserId(int UserId)
+        public async string GetTargetsByUserId(int UserId, int Status)
         {
-            _logger.LogDebug($"User id is: {UserId}  In GetTargetsByUserId");
+            _logger.LogDebug($"User id is: {UserId} ,Status is: {Status} In GetTargetsByUserId");
 
-            return await _TargetsService.GetTargetsByUserId(UserId);
+            return await _TargetsService.GetTargetsByUserId(UserId, Status);
         }
 
-     
+
+
     }
 }
