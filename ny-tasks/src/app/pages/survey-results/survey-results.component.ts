@@ -5,7 +5,7 @@ import { ResultsForSurvey } from '../../../models/ResultsForSurvey.model';
 import { SurveysService } from '../../services/surveys.service';
 import { PaginatorModule } from 'primeng/paginator';
 import { Question } from '../../../models/Question.model';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+// import { MatPaginatorIntl } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-survey-results',
@@ -28,11 +28,11 @@ export class SurveyResultsComponent implements OnInit {
   nextPage:string='next';
   activeIndex: number=0;
   collapsed:boolean = false
-  constructor(public surveyService: SurveysService, private route: ActivatedRoute,private paginatorIntl: MatPaginatorIntl) {
+  constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
-    this.paginatorIntl.itemsPerPageLabel = 'Items per page:';
-    this.paginatorIntl.nextPageLabel = 'Next page';
-    this.paginatorIntl.previousPageLabel = 'Previous page';
+    // this.paginatorIntl.itemsPerPageLabel = 'Items per page:';
+    // this.paginatorIntl.nextPageLabel = 'Next page';
+    // this.paginatorIntl.previousPageLabel = 'Previous page';
   }
   ngOnInit() {
     this.route.params.subscribe((p: Params) => {
