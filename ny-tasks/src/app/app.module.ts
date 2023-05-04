@@ -27,6 +27,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import {AccordionModule} from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
+import {AmericanQuestionComponent} from "./pages/survey-results/american-question/american-question.component";
+import {TextQuestionComponent} from "./pages/survey-results/text-question/text-question.component";
 // import { MatPaginatorIntl } from '@angular/material/paginator';
 // import { CustomPaginatorIntlService } from './services/custom-paginator-intl.service';
 @NgModule({
@@ -37,7 +39,10 @@ import { PaginatorModule } from 'primeng/paginator';
     SurveyResultsComponent,
     SideBarComponent,
     BarButtonsComponent,
-    TasksComponent
+    TasksComponent,
+    AmericanQuestionComponent,
+    TextQuestionComponent
+  
   ],
   imports: [
     BrowserAnimationsModule,
@@ -68,7 +73,7 @@ import { PaginatorModule } from 'primeng/paginator';
     useClass: JwtInterceptor,
     multi: true,
     
-  } ,
+  }// ,
   // {
   //   provide: MatPaginatorIntl, useClass: CustomPaginatorIntlService
   // } 

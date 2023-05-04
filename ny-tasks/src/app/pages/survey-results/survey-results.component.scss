@@ -23,35 +23,36 @@ $blue3: #1E2959;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-end;
     padding: 7px 10px;
     gap: 8px;
-    position: absolute;
-    right:73.5%;
-    top:13%;
+    position: relative;
+    //right:80%;
+   
 }
 .pi.pi-angle-up.up{
      position: relative;
      right:10%;
      top:-10%;
-    font-size: 0.6rem;
+     font-size: 0.6rem;
 }
 .pi.pi-angle-down.down{
      position: relative;
      left:1.5%;
      top:10%;
-    font-size: 0.6rem;
+     font-size: 0.6rem;
 }
 .pi.pi-angle-up.up-close{
     position: relative;
     right:10%;
     top:10%;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
 }
 .pi.pi-angle-down.down-close{
     position: relative;
     left:1.5%;
     top:-10%;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
 }
 .answer{
     display: flex;
