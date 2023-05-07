@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
 import { Question } from '../../../../models/Question.model';
 import { ResultsForSurvey } from '../../../../models/ResultsForSurvey.model';
 
@@ -18,6 +19,17 @@ export class TextQuestionComponent {
   nvQuestionText: '',
   nvQuestionTypeName: ''
 }
+answers: FilteredAnswers[] = [];
+ngOnInit(){
+  this.sortAnswers();
+}
+sortAnswers() {
+  this.result.lResultsForSurveyStudent.forEach(student => {
+    student.lAnswers.forEach(answer => {
+      if (answer.iQuestionId == this.question.iQuestionId)
+        this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer })
+     })
+  })
 
-
+}
 }

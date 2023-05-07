@@ -1,12 +1,5 @@
-<div *ngFor="let student of result.lResultsForSurveyStudent">
-    <div *ngIf="student.lAnswers != null">
-        <div *ngFor="let answer of student.lAnswers">
-            <div *ngIf="answer.iQuestionId == question.iQuestionId && answer.iQuestionId == question.iQuestionId"
-                class="answer"></div>
-        </div>
-
-    </div>
-
+<div class="chart-container">
+    <canvas  id="MyChart" >{{ chart }}</canvas>
 </div>
 
 
@@ -15,20 +8,4 @@
 
 
 
-
-
-
-<!-- <div *ngIf="answer.iQuestionId == question.iQuestionId && answer.iQuestionId == question.iQuestionId"
-                class="answer">
-
-                <div class="std-details">
-                    <div class="profile">{{student.nvFullName[0]}}</div>
-                    <div class="nameAndBranch">
-                        <div class="std-name h4-medium">{{student.nvFullName}}</div>
-                        <div class="branch-name">{{student.nvBranchName}}</div>
-                    </div>
-                </div>
-                <div class="std-ans h4-regular" *ngIf="answer.iQuestionId == question.iQuestionId">
-                    {{answer.nvAnswer}}</div> -->
-                <!-- <div class="aaa"></div> -->
-            <!-- </div> -->
+ 

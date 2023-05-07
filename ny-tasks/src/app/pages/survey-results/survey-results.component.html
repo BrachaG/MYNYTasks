@@ -18,11 +18,12 @@
 
             <p-accordionTab [selected]="collapsed" class="acc-line" *ngFor="let r of result.lQuestions"
                 header="{{r.nvQuestionText}}">
-<app-text-question [result]="result" [question]="r"></app-text-question>
+                <app-text-question *ngIf="r.nvQuestionTypeName!='אמריקאי'" [result]="result" [question]="r"></app-text-question>
+                <app-american-question *ngIf="r.nvQuestionTypeName=='אמריקאי'" [result]="result" [question]="r"></app-american-question>
             </p-accordionTab>
         </p-accordion>
-        <!-- <p-paginator [rows]="1" [totalRecords]="result.lQuestions.length" (onPageChange)="onPageChange($event)" > </p-paginator> -->
-        <!-- .slice(first,first+1) -->
+
     </div>
+
 
 </div>
