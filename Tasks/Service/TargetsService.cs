@@ -15,15 +15,15 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         ILogger<TargetsService> _logger;
-        IObjectGenerator<Target> _userObjectGenerator;
+        IObjectGenerator<Target> _targetObjectGenerator;
 
         public TargetsService(ISqlDataAccess SqlDataAccess, ILogger<TargetsService> logger, IObjectGenerator<Target> userObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
             _logger = logger;
-            _userObjectGenerator= userObjectGenerator;
+            _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<string> GetTargetsByUserId(int UserId, int Status)
+        public async Task<List<Target>> GetTargetsByUserId(int UserId, int Status)
         {
             _logger.LogDebug("GetTargetsByUserId", UserId, Status);
             List<SqlParameter> parameters = new List<SqlParameter> {
@@ -32,22 +32,36 @@ namespace Service
                 };
             try
             {
-
                 DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("Get_Targets", parameters);
-                if(targets.Rows.Count>0)
+                if (targets.Rows.Count > 0)
                 {
-                   Target t = _userObjectGenerator.GeneratListFromDataTable(targets);
-
+                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
+                    return t;
                 }
 
-
-
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 _logger.LogError("GetTargetsByUserId ", ex);
             }
-            return  "ok";
+            return null;
+        }
+        public async Task AddTarget(String Comment, int TargetId, int PersonId)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter> {
+            { new SqlParameter("Comment",Comment )},
+            { new SqlParameter("TargetId", TargetId)},
+            { new SqlParameter("PersonId", PersonId)}
+                };
+            try
+            {
+                await _SqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
             }
-     
+            catch (Exception ex)
+            {
+
+            }
+
+        }
     }
 }

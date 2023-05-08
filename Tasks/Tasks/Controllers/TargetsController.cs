@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,7 +18,7 @@ namespace Tasks.Controllers
             _TargetsService = TargetsService;
         }
         [HttpGet()]
-        public async Task<string> GetTargetsByUserId(int UserId, int Status)
+        public async Task<List<Target>> GetTargetsByUserId(int UserId, int Status)
         {
             _logger.LogDebug($"User id is: {UserId} ,Status is: {Status} In GetTargetsByUserId");
 
