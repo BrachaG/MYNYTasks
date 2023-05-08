@@ -1,5 +1,5 @@
 <p-sidebar [visible]="true" [baseZIndex]="10000" [blockScroll]="false" [modal]="false" position="right"
-      [showCloseIcon]="false">
+      [showCloseIcon]="false" >
       <ng-template pTemplate="header">
             <img class="logo" src="assets/logoVector.png" alt="Image description">
       </ng-template>
@@ -13,7 +13,7 @@
                   <span class="TaskText"> הוספת משימה </span>
             </p-button>
       </ng-template>
-<app-create-task [sidebarVisible]="sidebarVisible"></app-create-task>
+<app-create-task [(sidebarVisible)]="sidebarVisible"></app-create-task>
 </p-sidebar>
 <div class="confine">
       <router-outlet ></router-outlet>
