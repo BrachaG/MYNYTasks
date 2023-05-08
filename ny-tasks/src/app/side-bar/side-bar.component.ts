@@ -9,6 +9,7 @@ import { filter } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class SideBarComponent {
+  sidebarVisible:boolean=false;
   currentRoute: string = '';
   buttons =
 
