@@ -25,7 +25,14 @@ namespace Tasks.Controllers
             return await _TargetsService.GetTargetsByUserId(UserId, Status);
         }
 
+        [HttpPost()]
+        public async Task AddTarget(String Comment, int TargetId, int PersonId)
+        {
+            _logger.LogDebug($"Comment  is: {Comment} ,TargetId is: {TargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
+            await _TargetsService.AddTarget(Comment, TargetId, PersonId);
+        }
 
 
-    }
+
+        }
 }
