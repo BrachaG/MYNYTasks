@@ -14,9 +14,10 @@ namespace Service
         IObjectGenerator<ResultsForSurveyStudent> _resultSurveyStudentObjectGenerator;
         IObjectGenerator<Question> _questionObjectGenerator;
         IObjectGenerator<Answer> _answerObjectGenerator;
+        IObjectGenerator<Options> _optionsObjectGenerator;
         ILogger<SurveysService> _logger;
 
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator)
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator, IObjectGenerator<Options> optionsObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
@@ -25,6 +26,7 @@ namespace Service
             _resultSurveyStudentObjectGenerator = resultSurveyStudentObjectGenerator;
             _questionObjectGenerator = questionObjectGenerator;
             _answerObjectGenerator = answerObjectGenerator;
+            _optionsObjectGenerator = optionsObjectGenerator;
         }
 
         public async Task<List<Survey>> Get()
@@ -55,9 +57,11 @@ namespace Service
                 DataTable dtStudent = ds.Tables[0];
                 DataTable dtQuestions = ds.Tables[1];
                 DataTable dtAnswers = ds.Tables[2];
+                DataTable dtOptions = ds.Tables[3];
                 List<ResultsForSurveyStudent> students = _resultSurveyStudentObjectGenerator.GeneratListFromDataTable(dtStudent);
                 List<Question> questions = _questionObjectGenerator.GeneratListFromDataTable(dtQuestions);
                 List<Answer> answers = _answerObjectGenerator.GeneratListFromDataTable(dtAnswers);
+                List<Options> options = _optionsObjectGenerator.GeneratListFromDataTable(dtOptions);
                 foreach (Answer answer in answers)
                 {
                     ResultsForSurveyStudent student = students.Find(s => s.iStudentId == answer.iStudentId);
@@ -69,6 +73,7 @@ namespace Service
                 ResultsForSurvey results = new ResultsForSurvey();
                 results.lResultsForSurveyStudent = students;
                 results.lQuestions = questions;
+                results.lOptions = options;
                 return results;
             }
             catch (Exception ex)

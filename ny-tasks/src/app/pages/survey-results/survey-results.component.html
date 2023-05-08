@@ -18,10 +18,25 @@
 
             <p-accordionTab [selected]="collapsed" class="acc-line" *ngFor="let r of result.lQuestions"
                 header="{{r.nvQuestionText}}">
-                <app-text-question *ngIf="r.nvQuestionTypeName!='אמריקאי'" [result]="result" [question]="r"></app-text-question>
-                <app-american-question *ngIf="r.nvQuestionTypeName=='אמריקאי'" [result]="result" [question]="r"></app-american-question>
+
+                <app-text-question *ngIf="r.nvQuestionTypeName!='אמריקאי'" [result]="result"
+                    [question]="r"></app-text-question>
+                <app-american-question *ngIf="r.nvQuestionTypeName=='אמריקאי'" [result]="result"
+                    [question]="r"></app-american-question>
+
             </p-accordionTab>
-        </p-accordion>
+
+
+           <p-scroller [items]="result.lQuestions" [itemSize]="50" scrollHeight="200px" styleClass="border-1 surface-border"
+                [style]="{'width': '200px', 'height': '200px'}">
+                <ng-template pTemplate="item" let-item let-options="options">
+                    <div class="flex align-items-center p-2" [ngClass]="{ 'surface-ground': options.odd }"
+                        style="height: 50px;">{{ item }}</div>
+                </ng-template>
+            </p-scroller>  
+
+
+        </p-accordion> 
 
     </div>
 

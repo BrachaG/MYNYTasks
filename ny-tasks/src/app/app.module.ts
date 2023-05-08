@@ -29,6 +29,8 @@ import {AccordionModule} from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
 import {AmericanQuestionComponent} from "./pages/survey-results/american-question/american-question.component";
 import {TextQuestionComponent} from "./pages/survey-results/text-question/text-question.component";
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {ScrollerModule} from "primeng/scroller"
 // import { MatPaginatorIntl } from '@angular/material/paginator';
 // import { CustomPaginatorIntlService } from './services/custom-paginator-intl.service';
 @NgModule({
@@ -64,7 +66,9 @@ import {TextQuestionComponent} from "./pages/survey-results/text-question/text-q
     ReactiveFormsModule,
     HttpClientModule,
     AccordionModule,
-    SidebarModule
+    SidebarModule,
+    ScrollPanelModule,
+    ScrollerModule
     // PaginatorModule
   ],
   providers: [

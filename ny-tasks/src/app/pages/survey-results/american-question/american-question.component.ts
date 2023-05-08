@@ -2,8 +2,8 @@ import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '
 import { Question } from '../../../../models/Question.model';
 import { ResultsForSurvey } from '../../../../models/ResultsForSurvey.model';
 import Chart from 'chart.js/auto';
-import { ResultsForSurveyStudent } from '../../../../models/ResultsForSurveyStudent.model';
 import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
+
 
 
 @Component({
@@ -16,51 +16,60 @@ import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
 export class AmericanQuestionComponent {
   @Input() result: ResultsForSurvey = {
     lResultsForSurveyStudent: [],
-    lQuestions: []
+    lQuestions: [],
+    lOptions: []
   };
   @Input() question: Question = {
     iQuestionId: 0,
     nvQuestionText: '',
     nvQuestionTypeName: ''
   }
-  answers:FilteredAnswers[]= [];
-  a: number = 0;
-  b: number = 0;
-  c: number = 0;
+  answers: FilteredAnswers[] = [];
+  lables: string[] = [];
+  data: number[] = [];
+
   public chart: any;
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.sortAnswers();
+    this.optionsForAnswer();
     this.createChart();
-   
+
   }
 
   sortAnswers() {
     this.result.lResultsForSurveyStudent.forEach(student => {
       student.lAnswers.forEach(answer => {
-        if (answer.iQuestionId == this.question.iQuestionId){
+        if (answer.iQuestionId == this.question.iQuestionId) {
           this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer })
-        if (answer.nvAnswer == "כן")
-          this.a++;
-        if (answer.nvAnswer == "לא")
-          this.b++;
-        if (answer.nvAnswer == "אולי")
-          this.c++;
-        } })
+          let option = this.result.lOptions.find(o => o.nvAnswerName == answer.nvAnswer);
+          if (option)
+            option.sum++;
+        }
+      })
     })
 
   }
-
+  optionsForAnswer() {
+    this.result.lOptions.forEach(option => {
+      if (option.iQuestionId == this.question.iQuestionId)
+        this.lables.push(option.nvAnswerName)
+      this.data.push(option.sum)
+    });
+  }
+tooltip():string{
+  return ""
+}
   createChart() {
 
     this.chart = new Chart("MyChart", {
       type: 'pie',
 
-      data: {// values on X-Axis
-        labels: ['כן', 'לא', 'אולי'],
+      data: {
+        labels: this.lables,
         datasets: [{
-          label: 'My First Dataset',
-          data: [this.a, this.b, this.c],
+          label: this.tooltip(),
+          data: this.data,
           backgroundColor: [
             '#FFA600',
             '#FF59A4',
@@ -69,15 +78,15 @@ export class AmericanQuestionComponent {
           hoverOffset: 4
         }],
       },
+     
       options: {
-        aspectRatio: 2.5
+        aspectRatio: 2.5,
+        
       }
-
     });
   }
 
 }
-
 
 
 

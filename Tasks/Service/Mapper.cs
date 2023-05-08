@@ -39,6 +39,8 @@ namespace Service
          .ConvertUsing(row => MapDataRowToEntity<Question>(row));
             CreateMap<DataRow, Answer>()
          .ConvertUsing(row => MapDataRowToEntity<Answer>(row));
+            CreateMap<DataRow, Options>()
+        .ConvertUsing(row => MapDataRowToEntity<Options>(row));
         }
     }
 }

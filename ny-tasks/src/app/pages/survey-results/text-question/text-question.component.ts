@@ -12,7 +12,8 @@ export class TextQuestionComponent {
 
 @Input() result :ResultsForSurvey={
   lResultsForSurveyStudent: [],
-  lQuestions: []
+  lQuestions: [],
+  lOptions:[]
 };
 @Input() question : Question={
   iQuestionId: 0,
