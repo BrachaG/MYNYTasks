@@ -33,7 +33,7 @@ namespace Tasks.Middlewares
                 {
                     JwtSecurityToken jwtSecurityToken;
                     jwtSecurityToken = new JwtSecurityToken(token);
-                    var newToken = UsersService.GenarateToken(userId, _issure, _audience);
+                    var newToken = GenerateNewToken(userId);
                     _logger.LogInformation(newToken);
                     context.Response.Headers.Add("Authorization", "Bearer " + newToken);
                 }
@@ -73,7 +73,25 @@ namespace Tasks.Middlewares
                 return -1;
             }
         }
-        
+        public string GenerateNewToken(int userId)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            string jsonString = userId.ToString();
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var claims = new List<Claim>
+             { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
+            var token = new JwtSecurityToken(
+                issuer: _issure,
+                audience: _audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(30),
+                signingCredentials: credentials
+            );
+            _logger.LogInformation(tokenHandler.WriteToken(token));
+            return tokenHandler.WriteToken(token);
+        }
+    }
     public static class CacheMiddlewareExtensions
     {
         public static IApplicationBuilder UseTokenRefreshMiddleware(this IApplicationBuilder builder)
