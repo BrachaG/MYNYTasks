@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Service;
 
 namespace Tasks.Middlewares
 {
@@ -23,18 +24,17 @@ namespace Tasks.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation(_audience);
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            _logger.LogInformation(context.ToString());
             if (token != null)
             {
                 var userId = ValidateToken(token);
-                _logger.LogInformation(userId.ToString());
+                _logger.LogInformation("userId after decrypt", userId.ToString());
                 if (userId != -1)
                 {
                     JwtSecurityToken jwtSecurityToken;
                     jwtSecurityToken = new JwtSecurityToken(token);
-                    var newToken = GenerateNewToken(userId);
+                    var newToken = UsersService.GenarateToken(userId, _issure, _audience);
+                    _logger.LogInformation(newToken);
                     context.Response.Headers.Add("Authorization", "Bearer " + newToken);
                 }
             }
@@ -42,7 +42,7 @@ namespace Tasks.Middlewares
         }
         public int ValidateToken(string token)
         {
-            _logger.LogInformation(token);
+            _logger.LogInformation(token, "token before validation");
             if (token == null)
                 return -1;
 
@@ -73,25 +73,7 @@ namespace Tasks.Middlewares
                 return -1;
             }
         }
-        public string GenerateNewToken(int userId)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            string jsonString = userId.ToString();
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var claims = new List<Claim>
-             { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
-            var token = new JwtSecurityToken(
-                issuer: _issure,
-                audience: _audience,
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30),
-                signingCredentials: credentials
-            );
-            _logger.LogInformation(tokenHandler.WriteToken(token));
-            return tokenHandler.WriteToken(token);
-        }
-    }
+        
     public static class CacheMiddlewareExtensions
     {
         public static IApplicationBuilder UseTokenRefreshMiddleware(this IApplicationBuilder builder)
