@@ -15,11 +15,11 @@ $blue3: #1E2959;
     height: 31px;
 }
 
-.button-collapse:disabled{
+.button-collapse:disabled {
     color: #BEBFC1;
 }
 
-.div-collapse{
+.div-collapse {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,78 +28,121 @@ $blue3: #1E2959;
     gap: 8px;
     position: relative;
     //right:80%;
-   
+
 }
-.pi.pi-angle-up.up{
-     position: relative;
-     right:10%;
-     top:-10%;
-     font-size: 0.6rem;
-}
-.pi.pi-angle-down.down{
-     position: relative;
-     left:1.5%;
-     top:10%;
-     font-size: 0.6rem;
-}
-.pi.pi-angle-up.up-close{
+
+.pi.pi-angle-up.up {
     position: relative;
-    right:10%;
-    top:10%;
+    right: 10%;
+    top: -10%;
+    font-size: 0.6rem;
+}
+
+.pi.pi-angle-down.down {
+    position: relative;
+    left: 1.5%;
+    top: 10%;
+    font-size: 0.6rem;
+}
+
+.pi.pi-angle-up.up-close {
+    position: relative;
+    right: 10%;
+    top: 10%;
     font-size: 0.5rem;
 }
-.pi.pi-angle-down.down-close{
+
+.pi.pi-angle-down.down-close {
     position: relative;
-    left:1.5%;
-    top:-10%;
+    left: 1.5%;
+    top: -10%;
     font-size: 0.5rem;
 }
-.answer{
+
+.answer {
     display: flex;
     align-items: baseline;
     margin-bottom: 15px;
-    justify-content:inherit;
+    justify-content: inherit;
     border-bottom: 1px solid #D9D9D9;
     height: 60.22px;
     //padding: 10%;
 }
-.aaa{
+
+.aaa {
     width: 100%;
     height: 3px;
-    
-    background-color:  #D9D9D9;
+
+    background-color: #D9D9D9;
 }
 
-.std-details{
+.std-details {
     position: absolute;
     width: 200px;
 }
-.std-name{
+
+.std-name {
     color: $blue3;
 }
-.branch-name{
-color: #5F6388;
+
+.branch-name {
+    color: #5F6388;
 }
-.std-ans{
-color: $blue3;
-margin-right: 170px;
+
+.std-ans {
+    color: $blue3;
+    margin-right: 170px;
 }
-.profile{
-position: absolute;
-right: 0px;
-top: 10%;
-bottom: 0%;
-background: #F37A5C;
-border-radius: 50%;
-height: 38.2px;
-width: 37.4px;
-text-align: center;
+
+.profile {
+    position: absolute;
+    right: 0px;
+    top: 10%;
+    bottom: 0%;
+    background: #F37A5C;
+    border-radius: 50%;
+    height: 38.2px;
+    width: 37.4px;
+    text-align: center;
 
 }
-.nameAndBranch{
+
+.nameAndBranch {
     position: absolute;
     right: 60px;
-    //top:10px;
-    // width: 116px;
+}
 
+.scroll {
+    height: 50px;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #16163A;
+    border-radius: 6.55278px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7.64492px 4.36852px;
+    gap: 437px;
+    isolation: isolate;
+    position: absolute;
+    width: 7px;
+    height: 475px;
+    left: -31.23px;
+    top: -54.41px;
+    background-color: #E5E5E5;
+    border-radius: 9.28311px;
 }
