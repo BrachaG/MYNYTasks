@@ -12,6 +12,5 @@ namespace Entities
         public int iQuestionId { get; set; }
         public string nvAnswerName { get; set; }
         public int sum { get; set; }
-
     }
 }
