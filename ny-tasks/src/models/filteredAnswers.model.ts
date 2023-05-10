@@ -1,6 +1,6 @@
 export interface FilteredAnswers {
-    stdName:string,
-    stdBranch:string,
-    stdAnswer:string
+  stdName:string,
+  stdBranch:string,
+  stdAnswer:string,
   profil:string
 }
