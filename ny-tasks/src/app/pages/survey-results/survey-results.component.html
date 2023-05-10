@@ -14,16 +14,16 @@
             <button [disabled]="!collapsed" class="button-collapse" (click)="closeAllTabs()">צמצם הכל<i
                     class="pi pi-angle-up up-close"></i><i class="pi pi-angle-down down-close"></i></button>
         </div>
-        <p-accordion *ngIf="result&&result.lQuestions" class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
+        <p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
             <p-accordionTab [selected]="collapsed" class="acc-line" *ngFor="let r of result.lQuestions"
                 header="{{r.nvQuestionText}}">
-            
+                <cdk-virtual-scroll-viewport itemSize="50" class="scroll">
 
                 <app-text-question *ngIf="r.nvQuestionTypeName!='אמריקאי'" [result]="result"
                     [question]="r"></app-text-question>
                 <app-american-question *ngIf="r.nvQuestionTypeName=='אמריקאי'" [result]="result"
                     [question]="r"></app-american-question>
-                
+                </cdk-virtual-scroll-viewport>
             </p-accordionTab>
        
 

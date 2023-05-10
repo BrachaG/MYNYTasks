@@ -62,7 +62,7 @@ $lightblue-gray: #5F6388;
 
 .cover {
   position: relative;
-  top: 13%;
+  top:13%;
   right: 10%;
   width: 80%;
   height: 80%;
@@ -74,20 +74,8 @@ $lightblue-gray: #5F6388;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
   margin-top: 0;
   position: relative;
-  top: 5%;
-
-}
-
-.h2-medium {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  /* identical to box height */
-
-  text-align: right;
-  letter-spacing: -0.011em;
+  top:5%;
+  
 }
 
 .h4-regular {
@@ -245,7 +233,7 @@ $lightblue-gray: #5F6388;
 .p-accordion {
   padding: 1px;
   position: relative;
-  top: 1%;
+  top:1%;
 }
 
 .acc-line {
@@ -330,13 +318,5 @@ $lightblue-gray: #5F6388;
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
   color: #2F81EF;
 }
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
