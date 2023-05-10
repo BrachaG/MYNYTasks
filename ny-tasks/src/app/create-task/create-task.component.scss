@@ -1,0 +1,42 @@
+// .p-component-overlay .p-sidebar-mask .p-component-overlay-enter{
+//     background-color: white;
+:host ::ng-deep .p-sidebar {
+    background-color: white;
+   
+  }
+  .resize{
+    resize: none;
+  }
+//   .save{
+//     margin-right: 15%;
+// padding-left: 10%;
+// background-color: white;
+//   }
+//   .save{
+//     background-color: white;
+//   }
+
+.saveAndSend {
+  .button {
+    margin-right: 15%;
+    padding-left: 10%;
+    background-color: white;
+  }
+  .p-button:focus {
+      background-color: #2F81EF;
+      box-shadow: none;
+      outline: none;
+      outline-offset: none;
+  }
+
+  .p-button:hover {
+      background-color:blue;
+      border-color: #428def;
+  }
+}
+
+.p-element .saveAndSend{
+  margin-right: 15%;
+  padding-left: 10%;
+  background-color: white;
+}

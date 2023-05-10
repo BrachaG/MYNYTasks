@@ -24,8 +24,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { CreateTaskComponent } from './side-bar/create-task/create-task.component';
-
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -57,6 +57,7 @@ import { CreateTaskComponent } from './side-bar/create-task/create-task.componen
     ReactiveFormsModule,
     HttpClientModule,
     SidebarModule,
+    InputTextareaModule
   ],
   providers: [
    {

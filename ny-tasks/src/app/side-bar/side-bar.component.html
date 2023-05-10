@@ -8,12 +8,11 @@
                   (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
       </ng-template>
       <ng-template pTemplate="footer">
-            <p-button class="addTask" (click)="sidebarVisible = true">
+            <p-button class="addTask" (click)="outPutVisible()">
                   <div class="pi pi-plus iconPlus"></div>
                   <span class="TaskText"> הוספת משימה </span>
             </p-button>
       </ng-template>
-<app-create-task [(sidebarVisible)]="sidebarVisible"></app-create-task>
 </p-sidebar>
 <div class="confine">
       <router-outlet ></router-outlet>

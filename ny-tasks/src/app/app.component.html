@@ -1,4 +1,6 @@
 <app-login *ngIf="currentRoute === '/login'"></app-login>
-<app-side-bar *ngIf="currentRoute !== '/login'"></app-side-bar>
+<app-side-bar *ngIf="currentRoute !== '/login'" [sidebarVisible]="sidebarVisible" (OutputVisible)="onSideBarOutput($event)"></app-side-bar>
 <router-outlet></router-outlet>
+<app-create-task [sidebarVisible]="sidebarVisible" (OutputVisible)="onCreateTaskOutput($event)"></app-create-task>
+
 

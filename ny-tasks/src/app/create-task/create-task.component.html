@@ -1,0 +1,33 @@
+
+<p-sidebar [(visible)]="sidebarVisible" [modal]="true" [autoZIndex]=true
+    (onHide)="this.OutputVisible.emit(this.sidebarVisible)">
+
+
+   
+    <ng-template pTemplate="content">
+        <form>
+        <p>יצירת משימה חדשה</p>
+     
+            <p>קטגוריה</p>
+            <p-dropdown [options]="category"></p-dropdown>
+<p>נמען (פעיל)</p>
+            <input type="text" pInputText />
+        <p>נושא</p>
+            <input type="text" pInputText/>
+            <p>תיאור</p>
+            <textarea rows="3" cols="22" pInputTextarea [autoResize]="false" class="resize" maxlength="80"></textarea>
+            <p>יעד</p>
+            <p-dropdown [options]="category"></p-dropdown>
+            <p>תאריך</p>
+            <input type="date" pInputText />
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button class="saveAndSend" label="שמירה"></p-button>
+        <p-button class="saveAndSend" label="שליחה"></p-button>
+    </ng-template>
+
+
+
+</p-sidebar>
+<!-- <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button> -->
