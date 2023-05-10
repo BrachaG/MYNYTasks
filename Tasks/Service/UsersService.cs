@@ -48,7 +48,7 @@ namespace Service
                     User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                     if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
                         user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                    string userToken = GenarateToken(user.iUserId,Issure,Audience);
+                    string userToken = GenarateToken(user.iUserId);
                     user.token = userToken;
                     user.iUserId = 0;
                     return user;
@@ -62,7 +62,7 @@ namespace Service
             }
 
         }
-       public static string GenarateToken(int UserId, string iss, string aui)
+       public  string GenarateToken(int UserId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -70,8 +70,8 @@ namespace Service
             var claims = new List<Claim>
              { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
             var token = new JwtSecurityToken(
-                issuer: iss,
-                audience: aui,
+                issuer: Issure,
+                audience: Audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: credentials
