@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Microsoft.Extensions.Logging;
+using NLog;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -46,12 +47,13 @@ namespace Service
             }
             return null;
         }
-        public async Task AddTarget(String Comment, int TargetId, int PersonId)
+        public async Task AddTarget(String Comment, int TargetId, int PersonId,DateTime? TargetDate)
         {
             List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("Comment",Comment )},
             { new SqlParameter("TargetId", TargetId)},
-            { new SqlParameter("PersonId", PersonId)}
+            { new SqlParameter("PersonId", PersonId)},
+            { new SqlParameter("TargetDate",TargetDate)}
                 };
             try
             {
@@ -59,7 +61,7 @@ namespace Service
             }
             catch (Exception ex)
             {
-
+                _logger.LogError("faild to insert target",ex);
             }
 
         }

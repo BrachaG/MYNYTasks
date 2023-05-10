@@ -26,10 +26,10 @@ namespace Tasks.Controllers
         }
 
         [HttpPost()]
-        public async Task AddTarget(String Comment, int TargetId, int PersonId)
+        public async Task AddTarget(String Comment, int TargetId, int PersonId, DateTime? TargetDate)
         {
             _logger.LogDebug($"Comment  is: {Comment} ,TargetId is: {TargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
-            await _TargetsService.AddTarget(Comment, TargetId, PersonId);
+            await _TargetsService.AddTarget(Comment, TargetId, PersonId,TargetDate);
         }
 
 
