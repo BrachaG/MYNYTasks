@@ -23,5 +23,4 @@ console.log( this.currentRoute);
   }
   ngOnInit() {
     this.currentRoute = this.router.url;
-    
 }}

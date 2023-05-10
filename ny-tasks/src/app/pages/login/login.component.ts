@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     code: new FormControl(''),
   })
   ngOnInit(): void {
+    localStorage.clear()
     this.frmUsers = new FormGroup({
       userName: new FormControl(),
       code: new FormControl(),
