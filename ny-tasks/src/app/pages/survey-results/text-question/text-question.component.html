@@ -1,8 +1,7 @@
-<cdk-virtual-scroll-viewport itemSize="50" class="scroll">
 <div *ngFor="let answer of answers">
     <div class="answer">
         <div class="std-details">
-            <div class="profile h2-medium">{{answer.profil}}</div>
+            <div class="profile">{{answer.stdName[0]}}</div>
             <div class="nameAndBranch">
                 <div class="std-name h4-medium">{{answer.stdName}}</div>
                 <div class="branch-name">{{answer.stdBranch}}</div>
@@ -12,4 +11,3 @@
             {{answer.stdAnswer}}</div>
     </div>
 </div>
-</cdk-virtual-scroll-viewport>

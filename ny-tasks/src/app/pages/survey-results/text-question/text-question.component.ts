@@ -27,14 +27,9 @@ ngOnInit(){
 sortAnswers() {
   this.result.lResultsForSurveyStudent.forEach(student => {
     student.lAnswers.forEach(answer => {
-      if (answer.iQuestionId == this.question.iQuestionId){
-        let arrProfile= student.nvFullName.split(' ')
-        this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil:arrProfile[0][0]+''+arrProfile[1][0] })
-
-      }
-
+      if (answer.iQuestionId == this.question.iQuestionId)
+        this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer })
      })
-
   })
 
 }
