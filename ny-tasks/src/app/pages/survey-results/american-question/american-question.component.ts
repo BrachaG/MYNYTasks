@@ -4,8 +4,6 @@ import { ResultsForSurvey } from '../../../../models/ResultsForSurvey.model';
 import Chart from 'chart.js/auto';
 import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
 
-
-
 @Component({
   selector: 'app-american-question',
   template: '<canvas #myCanvas></canvas>',
@@ -47,8 +45,12 @@ export class AmericanQuestionComponent {
         if (answer.iQuestionId == this.question.iQuestionId) {
           this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
           let option = this.result.lOptions.find(o => o.nvAnswerName == answer.nvAnswer);
-          if (option)
+          if (option) {
+            if (!option.responders)
+              option.responders = []
             option.sum++;
+            option.responders.push(student.nvFullName + ' - ' + student.nvBranchName)
+          }
         }
       })
     })
@@ -56,21 +58,21 @@ export class AmericanQuestionComponent {
   }
   optionsForAnswer() {
     this.result.lOptions.forEach(option => {
-      if (option.iQuestionId == this.question.iQuestionId)
+      if (option.iQuestionId == this.question.iQuestionId) {
         this.lables.push(option.nvAnswerName)
+      }
       this.dataArr.push(option.sum)
     });
   }
 
   createChart() {
-
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-    const getBody = (bodyItem: any) => {
-      console.log(this.answers + "answers")
-      //const filterA=this.answers.filter()
-      const itemsHtml = this.answers.map(name => `<div>${name.stdName} ${name.stdBranch}</div>`).join('');
-      //const html = `<ul>${itemsHtml}</ul>`;
+    const getBody = (bodyItem: any, titleLines: any) => {
+      const b = this.result.lOptions.find(x => x.nvAnswerName == titleLines)?.responders
+      let itemsHtml: any
+      if (b)
+        itemsHtml = b.map(name => `<div>${name}</div>`).join('');
       return itemsHtml;
     }
     this.data = {
@@ -83,6 +85,7 @@ export class AmericanQuestionComponent {
             '#FF59A4',
             '#2F81EF'
           ],
+          
           hoverOffset: 4
         }
       ]
@@ -96,7 +99,7 @@ export class AmericanQuestionComponent {
             color: textColor
           }
         },
-
+        responsive: true,
         tooltip: {
           callbacks: {
 
@@ -108,7 +111,6 @@ export class AmericanQuestionComponent {
 
             // Create element on first render
             if (!tooltipEl) {
-
               tooltipEl = document.createElement('div');
               tooltipEl.id = 'chartjs-tooltip';
               document.body.appendChild(tooltipEl);
@@ -121,42 +123,31 @@ export class AmericanQuestionComponent {
               return;
             }
 
-
             // Set Text
             if (tooltipModel.body) {
               const titleLines = tooltipModel.title || [];
-              const bodyLines = tooltipModel.body.map(getBody);
-
+              const bodyLines = tooltipModel.body.map((bodyItem: any) => getBody(bodyItem, titleLines));
+              let color = tooltipModel.labelColors[0].backgroundColor
+              let style = 'background-color:' + color;
+              style += '; height: 8px; width:8px; border-radius:50%; margin-left:5px;';
               let innerHtml = '<div class="chartjs-tooltip-section">';
-              innerHtml += '<div class="chartjs-tooltip-title">' + titleLines[0] + '</div>';
-              innerHtml += '<ul class="chartjs-tooltip-list">';
+              innerHtml += '<div style="display:flex; align-items: center; position:relative; right: 23%; top:8px;"><div class="chartjs-tooltip-title" style="' + style + '"></div><span style="font-size:16px; font-weight:400" class="chartjs-tooltip-title">' + titleLines[0] + '</span></div>'
+              innerHtml += '<div style="position: absolute; width: 170px;height: 0px;left: 5px;top: 36px; border: 0.5px solid #E3E8EE;"> </div>'
+              innerHtml += '<ul style="position: relative; top:20px;font-size:12px; font-weight:500"class="chartjs-tooltip-list">';
+              innerHtml += '<cdk-virtual-scroll-viewport itemSize="1" class="scroll">'
               innerHtml += bodyLines.join('');
+              innerHtml += '</cdk-virtual-scroll-viewport>'
               innerHtml += '</ul></div>';
-
               tooltipEl.innerHTML = innerHtml;
-
-
-
-              bodyLines.forEach(function (body: any, i: number) {
-
-                const colors = tooltipModel.chart.config._config.data.datasets[0].backgroundColor[i];
-                let style = 'background-color:' + colors;
-                // style += '; border-color:' + colors.borderColor;
-                style += '; border-width: 2px';
-                style += '; height: 30px; width:30px'
-                const span = '<span style="' + style + '"></span>';
-                innerHtml += '<tr><td>' + span + '</td></tr>';
-              });
               innerHtml += '</tbody>';
             }
 
             const position = context.chart.canvas.getBoundingClientRect();
-            // const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
-
-            // Display, position, and set styles for font
             tooltipEl.style.backgroundColor = "white";
             tooltipEl.style.opacity = '1';
             tooltipEl.style.position = 'absolute';
+            tooltipEl.style.width = '180px'
+            tooltipEl.style.fontSize = '12px'
             tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
             tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
             tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
@@ -164,12 +155,10 @@ export class AmericanQuestionComponent {
             tooltipEl.style.color = '#1E2959';
             tooltipEl.style.boxShadow = '0px 0px 21px rgba(0, 0, 0, 0.25)';
             tooltipEl.style.borderRadius = '8px';
+            tooltipEl.style.minHeight = '70px'
           }
         }
       }
     }
   }
 }
-
-
-
