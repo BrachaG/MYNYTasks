@@ -27,25 +27,27 @@ namespace Tasks.Middlewares
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             if (token != null)
             {
-                var userId = ValidateToken(token);
+                var Details = ValidateToken(token);
+                var userId = Details.Item1;
+                var Status = Details.Item2;
 
                 _logger.LogInformation("userId after decrypt", userId.ToString());
-                if (userId != -1)
+                if (userId != -1 && Status!=-1)
                 {
                     JwtSecurityToken jwtSecurityToken;
                     jwtSecurityToken = new JwtSecurityToken(token);
-                    var newToken = GenerateNewToken(userId);
+                    var newToken = GenerateNewToken(userId, Status);
                     _logger.LogInformation(newToken);
                     context.Response.Headers.Add("Authorization", "Bearer " + newToken);
                 }
             }
             await _next(context);
         }
-        public int ValidateToken(string token)
+        public Tuple<int,int> ValidateToken(string token)
         {
             _logger.LogInformation(token, "token before validation");
             if (token == null)
-                return -1;
+                return Tuple.Create(-1,-1);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+");
@@ -62,17 +64,17 @@ namespace Tasks.Middlewares
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
+                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == JwtRegisteredClaimNames.NameId).Value);
                 var Status = int.Parse(jwtToken.Claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
 
 
                 // return user id from JWT token if validation successful
-                return userId;
+                return Tuple.Create(userId, Status);
             }
             catch
             {
                 // return null if validation fails
-                return -1;
+                return Tuple.Create(-1, -1);
             }
         }
         public string GenerateNewToken(int userId,int Status)
@@ -84,7 +86,7 @@ namespace Tasks.Middlewares
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var claims = new List<Claim>
-            {    new Claim(JwtRegisteredClaimNames.Sub, IdJsonString) ,
+            {    new Claim(JwtRegisteredClaimNames.NameId, IdJsonString) ,
              new Claim(JwtRegisteredClaimNames.Sub, StatusJsonString)  };
             var token = new JwtSecurityToken(
                 issuer: _issure,
@@ -97,6 +99,7 @@ namespace Tasks.Middlewares
             return tokenHandler.WriteToken(token);
         }
     }
+
     public static class CacheMiddlewareExtensions
     {
         public static IApplicationBuilder UseTokenRefreshMiddleware(this IApplicationBuilder builder)

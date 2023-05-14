@@ -69,7 +69,7 @@ namespace Service
             string IdjsonString = UserId.ToString();
             string StatusjsonString = Status.ToString();
             var claims = new List<Claim>
-            {    new Claim(JwtRegisteredClaimNames.Sub, IdjsonString) ,
+            {    new Claim(JwtRegisteredClaimNames.NameId, IdjsonString) ,
              new Claim(JwtRegisteredClaimNames.Sub, StatusjsonString)  };
             var token = new JwtSecurityToken(
                 issuer: Issure,
