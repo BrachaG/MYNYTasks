@@ -6,28 +6,22 @@ using Repository;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
-
-
+using Tasks.Middlewares;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
     builder.Host.UseNLog();
-
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
     builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
     builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator<>));
     builder.Services.AddScoped<IUsersService, UsersService>();
     builder.Services.AddScoped<ITargetsService, TargetsService>();
     builder.Services.AddSingleton<ISurveysService, SurveysService>();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
     builder.Services.AddAuthentication(opt =>
     {
         opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -45,11 +39,14 @@ try
             ValidateIssuerSigningKey = true,
             ValidIssuer = Issure,
             ValidAudience = Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+")),
+            ClockSkew = TimeSpan.Zero
         };
-    });
 
+    });
     var app = builder.Build();
+    //builder.Services.AddEndpointsApiExplorer();
+    app.UseTokenRefreshMiddleware();
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())

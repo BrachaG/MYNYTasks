@@ -5,8 +5,8 @@
     </div>
 <div class="cover"> 
      <!-- <span class="up-border"></span> -->
-    <p-table class="table-style" [value]="surveys">
-        <ng-template pTemplate="header" >
+    <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false" [value]="surveys" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,15,20]">
+        <ng-template pTemplate="header">
             <tr >
                 <th>שם המשוב</th>
                 <th>תאריך הפצה</th>
@@ -25,5 +25,8 @@
             </tr>
         </ng-template>
     </p-table>
+   
 </div>
-</div>
+
+</div> 
+ 
