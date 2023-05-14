@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Tasks.Middlewares
             if (token != null)
             {
                 var userId = ValidateToken(token);
+
                 _logger.LogInformation("userId after decrypt", userId.ToString());
                 if (userId != -1)
                 {
@@ -61,6 +63,7 @@ namespace Tasks.Middlewares
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
+                var Status = int.Parse(jwtToken.Claims.First(x => x.Type == JwtRegisteredClaimNames.Sub).Value);
 
 
                 // return user id from JWT token if validation successful
@@ -72,14 +75,17 @@ namespace Tasks.Middlewares
                 return -1;
             }
         }
-        public string GenerateNewToken(int userId)
+        public string GenerateNewToken(int userId,int Status)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            string jsonString = userId.ToString();
+            string IdJsonString = userId.ToString();
+            string StatusJsonString = Status.ToString();
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var claims = new List<Claim>
-             { new Claim(JwtRegisteredClaimNames.Sub, jsonString) };
+            {    new Claim(JwtRegisteredClaimNames.Sub, IdJsonString) ,
+             new Claim(JwtRegisteredClaimNames.Sub, StatusJsonString)  };
             var token = new JwtSecurityToken(
                 issuer: _issure,
                 audience: _audience,
