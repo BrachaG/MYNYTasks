@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -7,7 +8,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,Authorize]
     public class TargetsController : ControllerBase
     {
         ILogger<TargetsController> _logger;
@@ -17,12 +18,15 @@ namespace Tasks.Controllers
             _logger = logger;
             _TargetsService = TargetsService;
         }
-        [HttpGet()]
-        public async Task<List<Target>> GetTargetsByUserId(int UserId, int Status)
+        [HttpGet("Get")]
+        public async Task<List<Target>> GetTargetsByUserId()
         {
+            var Status = HttpContext.Items.TryGetValue("status", out var statusValue) && statusValue is int statusInt? statusInt : -1;
+            var UserId = HttpContext.Items.TryGetValue("status", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
+           
             _logger.LogDebug($"User id is: {UserId} ,Status is: {Status} In GetTargetsByUserId");
 
-            return await _TargetsService.GetTargetsByUserId(UserId, Status);
+            return await _TargetsService.GetTargetsByUserId(2, 1);
         }
 
         [HttpPost()]

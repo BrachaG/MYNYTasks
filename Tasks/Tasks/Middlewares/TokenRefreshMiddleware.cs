@@ -39,6 +39,8 @@ namespace Tasks.Middlewares
                     var newToken = GenerateNewToken(userId, Status);
                     _logger.LogInformation(newToken);
                     context.Response.Headers.Add("Authorization", "Bearer " + newToken);
+                    context.Items["userId"] = userId;
+                    context.Items["status"] = Status;
                 }
             }
             await _next(context);

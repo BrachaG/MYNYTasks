@@ -13,7 +13,7 @@ export class SideBarComponent {
   buttons =
 
     [['לוח אישי', '/selfbored', 'pi pi-table'],
-    ['יעדים', '/purpose', 'pi pi-send'],
+    ['יעדים', '/targets', 'pi pi-send'],
     ['משימות', '/tasks', 'pi pi-pencil'],
     ['משובים', '/surveys', 'pi pi-question-circle']];
 

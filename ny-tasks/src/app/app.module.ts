@@ -25,6 +25,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 import { TasksComponent } from './tasks/tasks.component';
 import {PaginatorModule } from 'primeng/paginator';
+import { TargetsComponent } from './targets/targets.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {PaginatorModule } from 'primeng/paginator';
     SideBarComponent,
     BarButtonsComponent,
     TasksComponent,
+    TargetsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
