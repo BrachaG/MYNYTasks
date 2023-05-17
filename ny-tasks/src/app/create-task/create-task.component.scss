@@ -2,11 +2,15 @@
 //     background-color: white;
 :host ::ng-deep .p-sidebar {
   background-color: white;
-width: 28%;
+width: 25%;
 }
 
 .resize {
   resize: none;
+  width: 17vw;
+  border-radius: 6px;
+border-color: #C2C9D1;
+display: flex;
 }
 
 
@@ -24,8 +28,6 @@ width: 28%;
   color: white;
   box-shadow: none;
   border-color: #1E2959;
-
-
 }
 
 :host ::ng-deep .p-button:hover {
@@ -36,26 +38,24 @@ width: 28%;
 
 
 }
-.content{
-  height: 75vh;
-}
+
 .textAbove{
   margin-bottom: 0;
   color: #1E2959;
+
 }
 .inputs{
 height: 6vh;
 border-radius: 6px;
 border-color: #C2C9D1;
 display: flex;
-width: 15vw;
-
+width: 17vw;
 }
-.inputs:hover{
+.inputs:hover,.resize:hover{
   border-color: #C2C9D1;
   border-width: 1px;
   }
-  .inputs:focus{
+  .inputs:focus,.resize:focus{
     border-color: #C2C9D1;
     box-shadow: 0 0 0 0.1rem #C2C9D1;
     }
@@ -65,21 +65,13 @@ width: 15vw;
 
 
 }
-// .saveAndSend {
-//   .button {
-//     margin-right: 15%;
-//     padding-left: 10%;
-//     background-color: white;
-//   }
-//   .p-button:focus {
-//       background-color: #2F81EF;
-//       box-shadow: none;
-//       outline: none;
-//       outline-offset: none;
-//   }
-
-//   .p-button:hover {
-//       background-color:blue;
-//       border-color: #428def;
-//   }
-// }
+.titleText{
+  margin-top:5vh;
+  font-size: 2.5vmin;
+  color:#1E2959;
+  font-weight: 500;
+  text-align: center;
+}
+.space{
+  margin-right: 3.5vw;
+}

@@ -1,27 +1,29 @@
-
 <p-sidebar [(visible)]="sidebarVisible" [modal]="true" [autoZIndex]=true
     (onHide)="this.OutputVisible.emit(this.sidebarVisible)">
 
 
-   
+
     <ng-template pTemplate="content">
-        <div class="content">
-        <form>
-        <p class="textAbove">יצירת משימה חדשה</p>
-            <p class="textAbove">קטגוריה</p>
-            <p-dropdown class="inputs" [options]="category"></p-dropdown>
-<p class="textAbove">נמען (פעיל)</p>
-            <input class="inputs" type="text" pInputText />
-        <p class="textAbove">נושא</p>
-            <input class="inputs" type="text" pInputText/>
-            <p class="textAbove">תיאור</p>
-            <textarea rows="3" cols="22" pInputTextarea [autoResize]="false" class="resize" maxlength="80"></textarea>
-            <p class="textAbove">יעד</p>
-            <p-dropdown class="inputs" [options]="category"></p-dropdown>
-            <p class="textAbove">תאריך</p>
-            <input class="inputs" type="date" pInputText />
-        </form>
-    </div>
+        
+            <form>
+                <p class="titleText">יצירת משימה חדשה</p>
+                <div class="space">
+                <p class="textAbove">קטגוריה</p>
+                <p-dropdown class="inputs" [options]="category"></p-dropdown>
+                <p class="textAbove">נמען (פעיל)</p>
+                <input class="inputs" type="text" pInputText />
+                <p class="textAbove">נושא</p>
+                <input class="inputs" type="text" pInputText />
+                <p class="textAbove">תיאור</p>
+                <textarea rows="3" cols="22" pInputTextarea [autoResize]="false" class="resize"
+                    maxlength="80"></textarea>
+                <p class="textAbove">יעד</p>
+                <p-dropdown class="inputs" [options]="category"></p-dropdown>
+                <p class="textAbove">תאריך</p>
+                <input class="inputs" type="date" pInputText />
+            </div>
+            </form>
+      
     </ng-template>
     <ng-template pTemplate="footer">
         <p-button class="saveAndSend" label="שמירה"></p-button>
