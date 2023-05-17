@@ -24,12 +24,12 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<List<Target>> GetTargetsByUserId(int UserId, int Status)
+        public async Task<List<Target>> GetTargetsByUserId(int UserId, int PermissionLevelId)
         {
-            _logger.LogDebug("GetTargetsByUserId", UserId, Status);
+            _logger.LogDebug("GetTargetsByUserId", UserId, PermissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("id",UserId )},
-            { new SqlParameter("status", Status)}
+            { new SqlParameter("PermissionLevelId", PermissionLevelId)}
                 };
             try
             {

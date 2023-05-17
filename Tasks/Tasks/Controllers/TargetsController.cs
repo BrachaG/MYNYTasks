@@ -8,7 +8,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController,Authorize]
+    [ApiController]
     public class TargetsController : ControllerBase
     {
         ILogger<TargetsController> _logger;
@@ -21,22 +21,24 @@ namespace Tasks.Controllers
         [HttpGet("Get")]
         public async Task<List<Target>> GetTargetsByUserId()
         {
-            var Status = HttpContext.Items.TryGetValue("status", out var statusValue) && statusValue is int statusInt? statusInt : -1;
-            var UserId = HttpContext.Items.TryGetValue("status", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
-           
-            _logger.LogDebug($"User id is: {UserId} ,Status is: {Status} In GetTargetsByUserId");
+            var PermissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var PermissionLevelIdValue) && PermissionLevelIdValue is int PermissionLevelIdInt ? PermissionLevelIdInt : -1;
+            var UserId = HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
 
-            return await _TargetsService.GetTargetsByUserId(2, 1);
+            _logger.LogDebug($"User id is: {UserId} ,PermissionLevelId is: {PermissionLevelId} In GetTargetsByUserId");
+
+            return await _TargetsService.GetTargetsByUserId(UserId, PermissionLevelId);
         }
 
         [HttpPost()]
         public async Task AddTarget(String Comment, int TargetId, int PersonId, DateTime? TargetDate)
         {
+            //if the user isn't manager 
+            if (PersonId == -1)
+            {
+                PersonId = (int)HttpContext.GetRouteData().Values["UserId"];
+            }
             _logger.LogDebug($"Comment  is: {Comment} ,TargetId is: {TargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
-            await _TargetsService.AddTarget(Comment, TargetId, PersonId,TargetDate);
+            await _TargetsService.AddTarget(Comment, TargetId, PersonId, TargetDate);
         }
-
-
-
-        }
+    }
 }

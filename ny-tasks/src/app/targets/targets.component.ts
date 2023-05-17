@@ -8,17 +8,17 @@ import { Targets } from 'src/models/Targets.model';
   styleUrls: ['./targets.component.scss']
 })
 export class TargetsComponent {
-  targets:any[]=[];
-  constructor(private targetsService:TargetsService ) {}
-    
-  ngOnInit(){
+  targets: Targets[]=[];
+  constructor(private srv: TargetsService) { }
+
+  ngOnInit() {
     this.getTargets()
   }
 
-  getTargets(){
-    this.targetsService.getTargets().subscribe((res: Targets[]) => {
-     this.targets = res;
-   })
-  console.log(this.targets.toString());
-}
+  getTargets() {
+    this.srv.getTargets().subscribe((res: any) => {
+      this.targets = res;
+      console.log(this.targets);
+    })
+  }
 }

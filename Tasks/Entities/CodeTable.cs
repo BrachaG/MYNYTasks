@@ -2,8 +2,8 @@
 {
     public class CodeTable : IEntity
     {
-        public int iId { get; set; }
-        public string nvName { get; set; }
+        public int iBranchId { get; set; }
+        public string nvBranchName { get; set; }
     }
 }
 

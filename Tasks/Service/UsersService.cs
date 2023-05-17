@@ -42,13 +42,13 @@ namespace Service
                 };
             try
             {
-                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
+                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_UserLogin_SLCT", p);
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
                 {
                     User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                     if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
                         user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                    string userToken = GenarateToken(user.iUserId,user.iUserStatus);
+                    string userToken = GenarateToken(user.iUserId,user.iPermissionLevelId);
                     user.token = userToken;
                     user.iUserId = 0;
                     return user;
@@ -62,15 +62,15 @@ namespace Service
             }
 
         }
-       public  string GenarateToken(int UserId, int Status)
+       public  string GenarateToken(int UserId, int PermissionLevelId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             string IdjsonString = UserId.ToString();
-            string StatusjsonString = Status.ToString();
+            string PermissionLevelIdJsonString = PermissionLevelId.ToString();
             var claims = new List<Claim>
             {    new Claim(JwtRegisteredClaimNames.NameId, IdjsonString) ,
-             new Claim(JwtRegisteredClaimNames.Sub, StatusjsonString)  };
+             new Claim(JwtRegisteredClaimNames.Sub, PermissionLevelIdJsonString)  };
             var token = new JwtSecurityToken(
                 issuer: Issure,
                 audience: Audience,
