@@ -1,3 +1,12 @@
-<div class="card flex justify-content-center chart-container">
-    <p-chart class="chart" type="pie" [data]="data" [options]="options"></p-chart>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+<div class="chart-container">
+    <canvas class="chart"  id="MyChart" >{{ chart }}</canvas>
 </div>
+
+<!-- <div class="card flex justify-content-center chart-container">
+    <p-chart class="chart" type="pie" [data]="data" [options]="options" [plugins]="plugin" ></p-chart>
+</div> -->

@@ -1,9 +1,24 @@
 .chart-container {
   border:none;
-}
-.chart{
-  height: 155px;
-  width: 155px;
+  height: 200px;
+  width: 200px;
   position: relative;
   right:40%;
+
 }
+// .chart{
+//   height: 155px;
+//   width: 155px;
+//   position: relative;
+//   right:40%;
+// }
+
+
+// .legend-point {
+//   display: inline-block;
+//   width: 2px; // Adjust the width and height to control the size
+//   height: 2px;
+//   border-radius: 50%;
+//   background-color: #FFA600; // Set the desired color
+//   margin-left: 5px; // Add spacing between the label and the point
+// }

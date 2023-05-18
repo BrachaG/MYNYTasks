@@ -30,7 +30,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import {AmericanQuestionComponent} from "./pages/survey-results/american-question/american-question.component";
 import {TextQuestionComponent} from "./pages/survey-results/text-question/text-question.component";
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChartModule } from 'primeng/chart';
+//import { ChartModule } from 'primeng/chart';
+import   { Chart }  from 'chart.js/auto';
 
 // import { MatPaginatorIntl } from '@angular/material/paginator';
 // import { CustomPaginatorIntlService } from './services/custom-paginator-intl.service';
@@ -69,7 +70,7 @@ import { ChartModule } from 'primeng/chart';
     AccordionModule,
     SidebarModule,
     ScrollingModule,
-   ChartModule
+   
     // PaginatorModule
   ],
   providers: [
