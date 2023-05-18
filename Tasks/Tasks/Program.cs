@@ -25,6 +25,7 @@ try
     builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator<>));
     builder.Services.AddScoped<IUsersService, UsersService>();
     builder.Services.AddSingleton<ISurveysService, SurveysService>();
+    builder.Services.AddSingleton<ITaskService, TaskService>();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     builder.Services.AddAuthentication(opt =>
