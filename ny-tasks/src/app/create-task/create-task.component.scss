@@ -2,15 +2,20 @@
 //     background-color: white;
 :host ::ng-deep .p-sidebar {
   background-color: white;
-width: 25%;
+width: 22%;
 }
 
+.p-sidebar .p-sidebar-header {
+ margin-top: 20vh;
+ color: #1E2959;
+}
 .resize {
   resize: none;
-  width: 17vw;
+  width: 15vw;
   border-radius: 6px;
 border-color: #C2C9D1;
 display: flex;
+
 }
 
 
@@ -42,14 +47,17 @@ display: flex;
 .textAbove{
   margin-bottom: 0;
   color: #1E2959;
+font-weight: 500;
+margin-top: 2vh;
+font-size: 1.9vmin;
 
 }
 .inputs{
-height: 6vh;
+height: 5vh;
 border-radius: 6px;
 border-color: #C2C9D1;
 display: flex;
-width: 17vw;
+width: 15vw;
 }
 .inputs:hover,.resize:hover{
   border-color: #C2C9D1;
@@ -66,12 +74,14 @@ width: 17vw;
 
 }
 .titleText{
-  margin-top:5vh;
-  font-size: 2.5vmin;
+  margin-top:2.5vh;
+  font-size: 2.2vmin;
   color:#1E2959;
   font-weight: 500;
   text-align: center;
+  margin-bottom: 3vh;
 }
 .space{
   margin-right: 3.5vw;
 }
+
