@@ -59,17 +59,17 @@ namespace Service
             }
 
             List<SqlParameter> parameters = new List<SqlParameter> {
-        new SqlParameter("Comment", Comment),
-        new SqlParameter("TargetId", TargetId),
-        new SqlParameter
-        {
-            ParameterName = "Ids",
-            SqlDbType = SqlDbType.Structured,
-            TypeName = "dbo.PersonIds",
-            Value = personIds
-        },
-        new SqlParameter("TargetDate", TargetDate)
-    };
+            new SqlParameter("Comment", Comment),
+            new SqlParameter("TargetId", TargetId),
+            new SqlParameter
+            {
+                ParameterName = "Ids",
+                SqlDbType = SqlDbType.Structured,
+                TypeName = "dbo.PersonIds",
+                Value = personIds
+            },
+            new SqlParameter("TargetDate", TargetDate)
+            };  
 
             try
             {
@@ -81,4 +81,4 @@ namespace Service
             }
         }
     }
-    }
+}
