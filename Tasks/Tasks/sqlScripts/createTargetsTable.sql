@@ -4,7 +4,7 @@ CREATE TABLE tbl_targets(
   iTargetId INT FOREIGN KEY REFERENCES tbl_code_targets(iTargetId) NOT NULL,
   iPersonId INT NOT NULL,
   iBranchId INT NOT NULL,
-  dtTargetDate DATE
+  dtTargetDate DATETIME
   CHECK (dtTargetDate > GETDATE()),
   iStatusId INT NOT NULL FOREIGN KEY REFERENCES Target_Status(iStatusId)
 
