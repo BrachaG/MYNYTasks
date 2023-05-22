@@ -21,7 +21,7 @@ namespace Service
             _logger = logger;
         }
 
-        public void Add(Tasks task, int iUserId)
+        public void Add(Tasks task, string iUserId)
         { 
             _logger.LogDebug("Add", task);
             SqlParameter[] p = new SqlParameter[]
@@ -38,6 +38,7 @@ namespace Service
              };
             _SqlDataAccess.ExecuteScalarSP("su_InsertNewTask_INS", p);
         }
+
 
         public Task<List<Tasks>> Get()
         {

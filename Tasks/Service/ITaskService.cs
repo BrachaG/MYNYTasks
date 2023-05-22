@@ -10,7 +10,7 @@ namespace Service
     public interface ITaskService
     {
        Task<List<Tasks>> Get();
-       void Add(Tasks task);
+       void Add(Tasks task, string iUserId);
        
 
     }
