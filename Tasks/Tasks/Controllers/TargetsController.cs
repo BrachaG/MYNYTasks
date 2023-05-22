@@ -30,7 +30,7 @@ namespace Tasks.Controllers
         }
 
         [HttpPost()]
-        public async Task AddTarget(String Comment, int TargetId, int[] ?PersonId, DateTime? TargetDate)
+        public async Task AddTarget(String? Comment, int TargetId, int[] ?PersonId, DateTime? TargetDate)
         {
             //if the user isn't manager 
             if (PersonId == null)
