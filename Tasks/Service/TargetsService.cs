@@ -47,23 +47,38 @@ namespace Service
             }
             return null;
         }
-        public async Task AddTarget(String Comment, int TargetId, int PersonId,DateTime? TargetDate)
+        public async Task AddTarget(string Comment, int TargetId, int[] PersonId, DateTime? TargetDate)
         {
+            DataTable personIds = new DataTable();
+            personIds.Columns.Add("Id", typeof(int));
+
+            // Populate the DataTable with the list of PersonId values
+            foreach (int id in PersonId)
+            {
+                personIds.Rows.Add(id);
+            }
+
             List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("Comment",Comment )},
-            { new SqlParameter("TargetId", TargetId)},
-            { new SqlParameter("PersonId", PersonId)},
-            { new SqlParameter("TargetDate",TargetDate)}
-                };
+        new SqlParameter("Comment", Comment),
+        new SqlParameter("TargetId", TargetId),
+        new SqlParameter
+        {
+            ParameterName = "Ids",
+            SqlDbType = SqlDbType.Structured,
+            TypeName = "dbo.PersonIds",
+            Value = personIds
+        },
+        new SqlParameter("TargetDate", TargetDate)
+    };
+
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
             }
             catch (Exception ex)
             {
-                _logger.LogError("faild to insert target",ex);
+                _logger.LogError("Failed to insert target", ex);
             }
-
         }
     }
-}
+    }
