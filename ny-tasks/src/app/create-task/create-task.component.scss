@@ -1,20 +1,19 @@
-// .p-component-overlay .p-sidebar-mask .p-component-overlay-enter{
-//     background-color: white;
 :host ::ng-deep .p-sidebar {
   background-color: white;
-width: 22%;
+  width: 22%;
 }
 
 .p-sidebar .p-sidebar-header {
- margin-top: 20vh;
- color: #1E2959;
+  margin-top: 20vh;
+  color: #1E2959;
 }
+
 .resize {
   resize: none;
   width: 15vw;
   border-radius: 6px;
-border-color: #C2C9D1;
-display: flex;
+  border-color: #C2C9D1;
+  display: flex;
 
 }
 
@@ -23,14 +22,17 @@ display: flex;
   text-align: center;
   font-size: 2vmin;
   margin: 2%;
-right: 1vw;
-  width: 40%;
+  right: 1.9vw;
+  width: 37%;
+  border-radius: 8px;
+  height: 5vh;
+  padding-left: 0%;
+  padding-right: 0%;
   background-color: white;
   color: #1E2959;
   border-color: #1E2959;
-  border-radius: 8px;
-  height: 5vh
 }
+
 
 
 :host ::ng-deep .p-button:focus {
@@ -47,48 +49,56 @@ right: 1vw;
   border-color: #1E2959;
 }
 
-.textAbove{
+.textAbove {
   margin-bottom: 0;
   color: #1E2959;
-font-weight: 500;
-margin-top: 1.5vh;
-font-size: 1.9vmin;
+  font-weight: 500;
+  margin-top: 1.5vh;
+  font-size: 1.9vmin;
 
 }
-.inputs{
-height: 5vh;
-border-radius: 6px;
-border-color: #C2C9D1;
-display: flex;
-width: 15vw;
+
+.inputs {
+  height: 5vh;
+  border-radius: 6px;
+  border-color: #C2C9D1;
+  display: flex;
+  width: 15vw;
 }
-.inputs:hover,.resize:hover{
+
+.inputs:hover,
+.resize:hover {
   border-color: #C2C9D1;
   border-width: 1px;
-  }
-  .inputs:focus,.resize:focus{
-    border-color: #C2C9D1;
-    box-shadow: 0 0 0 0.1rem #C2C9D1;
-    }
-.p-dropdown{
+}
+
+.inputs:focus,
+.resize:focus {
+  border-color: #C2C9D1;
+  box-shadow: 0 0 0 0.1rem #C2C9D1;
+}
+
+.p-dropdown {
   height: 6vh;
   display: flex;
 
 
 }
-.titleText{
-  margin-top:2.5vh;
+
+.titleText {
+  margin-top: 2.5vh;
   font-size: 2.2vmin;
-  color:#1E2959;
+  color: #1E2959;
   font-weight: 500;
   text-align: center;
   margin-bottom: 3vh;
 }
-.space{
+
+.space {
   margin-right: 3.5vw;
   height: 75vh;
 }
 
-.p-sidebar-footer.ng-tns-c93-0{
+.p-sidebar-footer.ng-tns-c93-0 {
   padding: none;
 }
