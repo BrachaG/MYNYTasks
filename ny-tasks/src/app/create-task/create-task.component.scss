@@ -20,13 +20,18 @@ display: flex;
 
 
 :host ::ng-deep .p-button {
+  text-align: center;
+  font-size: 2vmin;
+  margin: 2%;
+right: 1vw;
+  width: 40%;
   background-color: white;
   color: #1E2959;
   border-color: #1E2959;
   border-radius: 8px;
-
-
+  height: 5vh
 }
+
 
 :host ::ng-deep .p-button:focus {
   background-color: #1E2959;
@@ -36,19 +41,17 @@ display: flex;
 }
 
 :host ::ng-deep .p-button:hover {
-  background-color: #aeb2c4;
+  background-color: #1E2959;
   color: white;
   box-shadow: none;
   border-color: #1E2959;
-
-
 }
 
 .textAbove{
   margin-bottom: 0;
   color: #1E2959;
 font-weight: 500;
-margin-top: 2vh;
+margin-top: 1.5vh;
 font-size: 1.9vmin;
 
 }
@@ -83,5 +86,9 @@ width: 15vw;
 }
 .space{
   margin-right: 3.5vw;
+  height: 75vh;
 }
 
+.p-sidebar-footer.ng-tns-c93-0{
+  padding: none;
+}

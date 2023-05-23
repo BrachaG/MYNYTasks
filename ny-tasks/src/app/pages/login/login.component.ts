@@ -27,15 +27,15 @@ export class LoginComponent implements OnInit {
     })
   }
   login() {
-    this.srv.getUserById(this.frmUsers.controls['userName'].value, this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
-      this.user = res;
-      if (this.user != null) {
-        localStorage.setItem("jwt-token", this.user.token)
+    // this.srv.getUserById(this.frmUsers.controls['userName'].value, this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
+    //   this.user = res;
+    //   if (this.user != null) {
+    //     localStorage.setItem("jwt-token", this.user.token)
         this.router.navigateByUrl('surveys');
-      }
-      else
-        alert("not permission")
-      console.log(this.user);
-    })
+  //     }
+  //     else
+  //       alert("not permission")
+  //     console.log(this.user);
+  //   })
   }
 }
