@@ -12,6 +12,10 @@ export class CreateTaskComponent {
   OutputVisible: EventEmitter<boolean> = new EventEmitter<boolean>();
   category = ['1', '2', '3']
 
-
-
+  SaveData(){
+    this.sidebarVisible=false
+  }
+  SendData(){
+    this.sidebarVisible=false
+  }
 }

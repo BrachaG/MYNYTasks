@@ -3,68 +3,30 @@
   width: 22%;
 }
 
-.p-sidebar .p-sidebar-header {
-  margin-top: 20vh;
+:host ::ng-deep .p-sidebar .p-sidebar-header {
   color: #1E2959;
+  padding-top: 3%;
+  padding-right: 3%;
 }
 
-.resize {
-  resize: none;
-  width: 15vw;
-  border-radius: 6px;
-  border-color: #C2C9D1;
-  display: flex;
-
+:host ::ng-deep .p-sidebar .p-sidebar-header .p-sidebar-icon {
+  color: #1E2959;
+  box-shadow: none;
 }
-:host ::ng-deep .p-button {
+
+.titleText {
+
+  font-size: 2.2vmin;
+  color: #1E2959;
+  font-weight: 600;
   text-align: center;
-  font-size: 2vmin;
-  margin: 2%;
-  right: 1.9vw;
-  width: 37%;
-  border-radius: 8px;
-  height: 5vh;
-  padding-left: 0%;
-  padding-right: 0%;
-  background-color: white;
-  color: #1E2959;
-  border-color: #1E2959;
-
-}
-:host ::ng-deep .p-button:hover {
-  box-shadow: 0 4px 4px rgba(0.2, 0.2, 0.2, 0.2);
-}
-:host ::ng-deep .p-button:focus {
-  box-shadow: none;
+  margin-bottom: 3vh;
 }
 
-:host ::ng-deep .save .p-button{
-  background-color: #1E2959 ;
-  color: white;
+.space {
+  margin-right: 3.5vw;
+  height: 76vh;
 }
-:host ::ng-deep .save :hover  {
- border-color: #1E2959;
-}
-:host ::ng-deep .send .p-button{
-  background-color:white ;
-  color: #1E2959 ;
-}
-:host ::ng-deep .send :hover  {
-  border-color: #1E2959;
-}
-
-:host ::ng-deep .p-dropdown.p-component{
-  width:15vw;
-
-}
-:host ::ng-deep .p-dropdown.p-component:hover{
-outline: none;
-border-color: #C2C9D1;
-}
-:host ::ng-deep .p-dropdown.p-component:active{
-  box-shadow: none;
-  }
- 
 
 .textAbove {
   margin-bottom: 0;
@@ -81,6 +43,7 @@ border-color: #C2C9D1;
   border-color: #C2C9D1;
   display: flex;
   width: 15vw;
+  font-size: 1.9vmin;
 }
 
 .inputs:hover,
@@ -95,19 +58,75 @@ border-color: #C2C9D1;
   box-shadow: 0 0 0 0.1rem #C2C9D1;
 }
 
+.resize {
+  resize: none;
+  width: 15vw;
+  border-radius: 6px;
+  border-color: #C2C9D1;
+  display: flex;
+  font-size: 1.9vmin;
 
-.titleText {
-  margin-top: 2.5vh;
-  font-size: 2.2vmin;
-  color: #1E2959;
-  font-weight: 600;
+}
+
+
+:host ::ng-deep .p-button {
   text-align: center;
-  margin-bottom: 3vh;
+  font-size: 2vmin;
+  margin: 2%;
+  right: 1.9vw;
+  width: 37%;
+  border-radius: 8px;
+  height: 5vh;
+  padding-left: 0%;
+  padding-right: 0%;
+  background-color: white;
+  color: #1E2959;
+  border-color: #1E2959;
 }
 
-.space {
-  margin-right: 3.5vw;
-  height: 76vh;
+:host ::ng-deep .p-button:hover {
+  box-shadow: 0 4px 4px rgba(0.2, 0.2, 0.2, 0.2);
 }
 
+:host ::ng-deep .p-button:focus {
+  box-shadow: none;
+}
 
+:host ::ng-deep .send .p-button {
+  background-color: #1E2959;
+  color: white;
+}
+
+:host ::ng-deep .send :hover {
+  border-color: #1E2959;
+}
+
+:host ::ng-deep .save .p-button {
+  background-color: white;
+  color: #1E2959;
+}
+
+:host ::ng-deep .save :hover {
+  border-color: #1E2959;
+}
+
+:host ::ng-deep .p-dropdown.p-component {
+  width: 15vw;
+  border-radius: 6px;
+}
+
+:host ::ng-deep .p-dropdown.p-component:hover {
+  outline: none;
+  border-color: #C2C9D1;
+}
+
+:host ::ng-deep .p-dropdown.p-component.p-dropdown-open.p-focus,
+:host ::ng-deep .p-dropdown.p-component.p-focus {
+  border-color: #C2C9D1;
+  box-shadow: 0 0 0 0.1rem #C2C9D1;
+}
+
+:host ::ng-deep .p-dropdown.p-component.p-dropdown-open.p-focus:hover,
+:host ::ng-deep .p-dropdown.p-component.p-focus:hover {
+  border-color: #C2C9D1;
+}
