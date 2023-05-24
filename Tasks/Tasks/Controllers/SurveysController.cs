@@ -21,7 +21,7 @@ namespace Tasks.Controllers
         public async Task<List<Survey>> Get()
         {
             _logger.LogDebug("Get survey");
-            string Type = JwtRegisteredClaimNames.Sub;
+            string Type = JwtRegisteredClaimNames.NameId;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
             return await _SurveysService.Get();
         }

@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController ,Authorize]
+    [ApiController, Authorize]
     public class TaskController : ControllerBase
     {
         ILogger<TaskController> _logger;
@@ -19,12 +19,32 @@ namespace Tasks.Controllers
             _taskService = taskService;
         }
         [HttpPost("Add")]
-        public void Add(Entities.Tasks tasks)
+        public void Add(Entities.Tasks tasks, string targetType, string iCoordinatorId)
         {
-            string Type = JwtRegisteredClaimNames.Sub;
-            string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+
             _logger.LogDebug("Add Task");
-            _taskService.Add(tasks, userId);
+            _taskService.Add(tasks, permissionLevelId, targetType, iCoordinatorId);
         }
+        [HttpGet("Get")]
+        public async Task<List<Entities.Tasks>> Get()
+        {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            string Name = JwtRegisteredClaimNames.NameId;
+            string iUserId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
+            _logger.LogDebug("Get All Tasks");
+            return await _taskService.Get(int.Parse(iUserId), int.Parse(permissionLevelId));
+        }
+         [HttpGet("Get/{iTargetId}")]
+         public async Task<List<Entities.Tasks>> GetByTargetId(int iTargetId)
+        {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            _logger.LogDebug("Get All Tasks");
+            return await _taskService.GetByTargetId(iTargetId,int.Parse(permissionLevelId));
+        }
+
     }
 }

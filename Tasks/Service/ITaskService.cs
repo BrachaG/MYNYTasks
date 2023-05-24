@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Service
 {
     public interface ITaskService
     {
-       Task<List<Tasks>> Get();
-       void Add(Tasks task, string iUserId);
-       
+        Task<List<Tasks>> Get(int iUserId, int permissionLevelId);
+        Task<IActionResult> Add(Tasks task, string permissionLevel, string targetType, string iCoordinatorId);
+       Task<Tasks> GetByTargetId(int targetId, int permissionLevelId);
 
     }
 }
