@@ -44,6 +44,8 @@
   display: flex;
   width: 15vw;
   font-size: 1.9vmin;
+  color: #8a8d91;
+  font-weight: 400;
 }
 
 .inputs:hover,
@@ -113,6 +115,11 @@
 :host ::ng-deep .p-dropdown.p-component {
   width: 15vw;
   border-radius: 6px;
+  background-color: white;
+  padding: 0px;
+}
+:host ::ng-deep .p-inputwrapper-filled {
+  position: relative;
 }
 
 :host ::ng-deep .p-dropdown.p-component:hover {
@@ -129,4 +136,8 @@
 :host ::ng-deep .p-dropdown.p-component.p-dropdown-open.p-focus:hover,
 :host ::ng-deep .p-dropdown.p-component.p-focus:hover {
   border-color: #C2C9D1;
+}
+:host ::ng-deep .p-inputtext{
+  color: #8a8d91;
+  font-weight: 400;
 }

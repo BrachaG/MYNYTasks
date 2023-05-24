@@ -58,7 +58,7 @@ import {PaginatorModule } from 'primeng/paginator';
     ReactiveFormsModule,
     HttpClientModule,
     SidebarModule,
-    InputTextareaModule
+    InputTextareaModule,
     PaginatorModule
   ],
   providers: [
