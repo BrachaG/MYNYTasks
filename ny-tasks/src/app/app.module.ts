@@ -26,6 +26,7 @@ import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.componen
 import { TasksComponent } from './tasks/tasks.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     HttpClientModule,
     SidebarModule,
     InputTextareaModule
+    PaginatorModule
   ],
   providers: [
    {
