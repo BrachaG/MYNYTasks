@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -9,6 +9,10 @@ import { filter } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class SideBarComponent {
+ @Input()
+ sidebarVisible:boolean=false;
+ @Output()
+ OutputVisible=new EventEmitter<boolean>();
   currentRoute: string = '';
   buttons =
 
@@ -36,5 +40,8 @@ export class SideBarComponent {
   navigateTo(route: string) {
     this.router.navigateByUrl(route);
   }
-
+  outPutVisible(){
+    this.sidebarVisible=true;
+    this.OutputVisible.emit(this.sidebarVisible);
+  }
 }
