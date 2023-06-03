@@ -43,7 +43,8 @@ namespace Service
         .ConvertUsing(row => MapDataRowToEntity<Options>(row));
             CreateMap<DataRow, Tasks>()
        .ConvertUsing(row => MapDataRowToEntity<Tasks>(row));
-
+            CreateMap<DataRow, Target>()
+          .ConvertUsing(row => MapDataRowToEntity<Target>(row));
         }
     }
 }

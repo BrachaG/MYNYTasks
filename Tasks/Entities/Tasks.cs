@@ -9,8 +9,7 @@ namespace Entities
     public class Tasks :IEntity
     {
         public int iTaskId { get; set; }
-
-        public int iDestinationId { get; set; }
+        public int iTargetId { get; set; }
         public int iType { get; set; }
         public string nvCategory { get; set; }
         public DateTime dtEndDate { get; set; }
