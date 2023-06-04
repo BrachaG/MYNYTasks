@@ -33,7 +33,7 @@ namespace Service
                 };
             try
             {
-                DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("Get_Targets", parameters);
+                DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
                 if (targets.Rows.Count > 0)
                 {
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
@@ -47,7 +47,8 @@ namespace Service
             }
             return null;
         }
-        public async Task AddTarget(string Comment, int TargetId, int[] PersonId, DateTime? TargetDate)
+
+        public async Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate)
         {
             DataTable personIds = new DataTable();
             personIds.Columns.Add("Id", typeof(int));
@@ -60,7 +61,7 @@ namespace Service
 
             List<SqlParameter> parameters = new List<SqlParameter> {
             new SqlParameter("Comment", Comment),
-            new SqlParameter("TargetId", TargetId),
+            new SqlParameter("TypeTargetId", TypeTargetId),
             new SqlParameter
             {
                 ParameterName = "Ids",
@@ -73,7 +74,7 @@ namespace Service
 
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
+                await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
             }
             catch (Exception ex)
             {

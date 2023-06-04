@@ -1,4 +1,7 @@
 CREATE TABLE Target_Status (
-    iStatusId INT PRIMARY KEY NOT NULL,
-    nvStatusName NVARCHAR(50) NOT NULL
+     iTargetStatusId INT PRIMARY KEY NOT NULL,
+     nvStatusName NVARCHAR(50) NOT NULL,
+	 iLastUpdateUserId INT NOT NULL,
+     dtLastUpdateDate DATETIME NOT NULL,
+     iSysRowStatus BIT NOT NULL
 )

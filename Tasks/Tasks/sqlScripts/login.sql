@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[PRG_sys_UserLogin_SLCT]
+CREATE PROCEDURE [dbo].[PRG_su_sys_UserLogin_SLCT]
 	@nvUserName nvarchar(50) ,
 	@nvPassword nvarchar(50),
 	@iSysRowStatus int =1,

@@ -39,6 +39,8 @@ namespace Service
              .ConvertUsing(row => MapDataRowToEntity<Survey>(row));
             CreateMap<DataRow, Target>()
            .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+            CreateMap<DataRow, Branch>()
+          .ConvertUsing(row => MapDataRowToEntity<Branch>(row));
         }
     }
 }

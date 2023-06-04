@@ -29,15 +29,15 @@ namespace Tasks.Controllers
         }
 
         [HttpPost()]
-        public async Task AddTarget(String? Comment, int TargetId, int[]? PersonId, DateTime? TargetDate)
+        public async Task AddTarget(String? Comment, int TypeTargetId, int[]? PersonId, DateTime? TargetDate)
         {
             //if the user isn't manager 
             if (PersonId == null)
             {
                 PersonId[0] = (int)HttpContext.GetRouteData().Values["UserId"];
             }
-            _logger.LogDebug($"Comment  is: {Comment} ,TargetId is: {TargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
-            await _TargetsService.AddTarget(Comment, TargetId, PersonId, TargetDate);
+            _logger.LogDebug($"Comment  is: {Comment} ,TypeTargetId is: {TypeTargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
+            await _TargetsService.AddTarget(Comment, TypeTargetId, PersonId, TargetDate);
         }
     }
 }

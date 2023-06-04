@@ -10,7 +10,7 @@ namespace Service
     public interface ITargetsService
     {
         Task<List<Target>> GetTargetsByUserId(int UserId, int PermissionLevelId);
-        Task AddTarget(string Comment, int TargetId, int[] PersonId, DateTime? TargetDate);
+        Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate);
 
     }
 }
