@@ -12,6 +12,8 @@ namespace Service
     {
         Task<List<Tasks>> Get(int iUserId, int permissionLevelId);
         Task<IActionResult> Add(Tasks task, string permissionLevel, int targetType, string iCoordinatorId);
-       Task<Tasks> GetByTargetId(int targetId, int permissionLevelId);
+        Task<Tasks> GetByTargetId(int targetId, int permissionLevelId);
+        Task<IActionResult> Update(int permissionLevel, int? status = null, DateTime? endDate = null, string? comments = null);
+
     }
 }

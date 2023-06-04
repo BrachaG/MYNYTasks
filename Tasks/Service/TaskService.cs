@@ -94,7 +94,7 @@ namespace Service
             Tasks task= _taskObjectGenerator.GeneratFromDataRow((DataRow)dr);
             return task;
         }
-        public async Task Update(int? status=null, DateTime? endDate=null, string? comments=null, int permissionLevel)
+        public async Task<IActionResult> Update(int permissionLevel, int? status=null, DateTime? endDate=null, string? comments=null)
         {
           SqlParameter[] p = new SqlParameter[]
           {
@@ -103,7 +103,16 @@ namespace Service
                 new SqlParameter("iStutusId", status),
                 new SqlParameter("nvComments",comments)
           };
-           await _SqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
+            try
+            {
+                await _SqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
+                return new StatusCodeResult(200);
+            }
+            catch
+            {
+                return new StatusCodeResult(400);
+            }
+           
         }
     }
 }
