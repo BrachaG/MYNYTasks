@@ -5,6 +5,7 @@ import { Survey } from 'src/models/survey.model';
 
 
 
+
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -15,10 +16,14 @@ import { Survey } from 'src/models/survey.model';
 export class SurveyComponent implements OnInit{
     surveys:Survey[]=[];
     sum:number =0;
+    filterText: string = '';
+    filteredSurveys: Survey[] =[...this.surveys];
+
     constructor(private surveyService:SurveysService) { }
 
     ngOnInit() { 
        this.getSurveysByUserId();
+       this.applyFilter()
     }
 
      getSurveysByUserId(){
@@ -28,5 +33,17 @@ export class SurveyComponent implements OnInit{
           })
          console.log(this.surveys);
          new Date().toDateString
+    }
+    applyFilter() {
+      const filterValue = this.filterText.toLowerCase();
+      this.filteredSurveys = this.surveys.filter((survey) => {
+        // Apply your desired filtering logic based on the survey properties
+        return (
+          survey.nvSurveyName.toLowerCase().includes(filterValue) ||
+          survey.iRespondentsCount.toString().includes(filterValue) ||
+          survey.iQuestionCount.toString().includes(filterValue) ||
+          survey.nvLink.toLowerCase().includes(filterValue)
+        );
+      });
     }
 }

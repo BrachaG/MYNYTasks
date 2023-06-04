@@ -5,7 +5,8 @@
     </div>
 <div class="cover"> 
      <!-- <span class="up-border"></span> -->
-    <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false" [value]="surveys" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,15,20]">
+    <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false" [value]="filteredSurveys" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,15,20]"
+    [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
         <ng-template pTemplate="header">
             <tr >
                 <th>שם המשוב</th>
@@ -13,6 +14,23 @@
                 <th>כמות משיבים</th>
                 <th>מספר שאלות</th>
                 <th>קישור</th>
+            </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="nvSurveyName" (keyup)="applyFilter()"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="dtEndSurveyDate" (keyup)="applyFilter()"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="iRespondentsCount"(keyup)="applyFilter()"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="iQuestionCount" (keyup)="applyFilter()"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="nvLink" (keyup)="applyFilter()"></p-columnFilter>
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-surveys>

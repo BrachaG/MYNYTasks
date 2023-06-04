@@ -26,6 +26,7 @@ import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.componen
 import { TasksComponent } from './tasks/tasks.component';
 import {PaginatorModule } from 'primeng/paginator';
 
+
 @NgModule({
   declarations: [
     AppComponent,
