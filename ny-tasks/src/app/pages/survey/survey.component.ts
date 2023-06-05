@@ -17,18 +17,19 @@ export class SurveyComponent implements OnInit{
     surveys:Survey[]=[];
     sum:number =0;
     filterText: string = '';
-    filteredSurveys: Survey[] =[...this.surveys];
+    filteredSurveys: Survey[] =[];
 
     constructor(private surveyService:SurveysService) { }
 
     ngOnInit() { 
        this.getSurveysByUserId();
-       this.applyFilter()
+       this.applyFilter();
     }
 
      getSurveysByUserId(){
            this.surveyService.getSurveys().subscribe((res: any) => {
             this.surveys = res;
+            this.filteredSurveys = res;
             this.sum =this.surveys.length;
           })
          console.log(this.surveys);

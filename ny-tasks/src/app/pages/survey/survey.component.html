@@ -1,50 +1,52 @@
 <div class="background">
     <div class="title">
-    <h1 class="title-text">משובים</h1>
-    <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
+        <h1 class="title-text">משובים</h1>
+        <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
-<div class="cover"> 
-     <!-- <span class="up-border"></span> -->
-    <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false" [value]="filteredSurveys" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,15,20]"
-    [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
-        <ng-template pTemplate="header">
-            <tr >
-                <th>שם המשוב</th>
-                <th>תאריך הפצה</th>
-                <th>כמות משיבים</th>
-                <th>מספר שאלות</th>
-                <th>קישור</th>
-            </tr>
-            <tr>
-                <th>
-                    <p-columnFilter type="text" field="nvSurveyName" (keyup)="applyFilter()"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="dtEndSurveyDate" (keyup)="applyFilter()"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="iRespondentsCount"(keyup)="applyFilter()"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="iQuestionCount" (keyup)="applyFilter()"></p-columnFilter>
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="nvLink" (keyup)="applyFilter()"></p-columnFilter>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-surveys>
-            <tr>
-                <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
-                <td >{{surveys.dtEndSurveyDate}}</td>
-                <td >{{surveys.iRespondentsCount}}</td>
-                <td >{{surveys.iQuestionCount}}</td>
-                <td ><a class="h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
-            </tr>
-        </ng-template>
-    </p-table>
-   
-</div>
+    <div class="cover">
+        <!-- <span class="up-border"></span> -->
+        <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false"
+            [value]="filteredSurveys" [paginator]="true" [rows]="10" [totalRecords]="100"
+            [rowsPerPageOptions]="[5,10,15,20]"
+            [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>שם המשוב</th>
+                    <th>תאריך הפצה</th>
+                    <th>כמות משיבים</th>
+                    <th>מספר שאלות</th>
+                    <th>קישור</th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter type="text" field="nvSurveyName" (keyup)="applyFilter()"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="dtEndSurveyDate" (keyup)="applyFilter()"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="iRespondentsCount" (keyup)="applyFilter()"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="iQuestionCount" (keyup)="applyFilter()"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="nvLink" (keyup)="applyFilter()"></p-columnFilter>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-surveys>
 
-</div> 
- 
+                <tr>
+                    <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
+                    <td>{{surveys.dtEndSurveyDate}}</td>
+                    <td>{{surveys.iRespondentsCount}}</td>
+                    <td>{{surveys.iQuestionCount}}</td>
+                    <td><a class="h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+
+</div>
