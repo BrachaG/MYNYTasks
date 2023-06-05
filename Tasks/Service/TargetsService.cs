@@ -48,7 +48,7 @@ namespace Service
             return null;
         }
 
-        public async Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate)
+        public async Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate, int CreatorId)
         {
             DataTable personIds = new DataTable();
             personIds.Columns.Add("Id", typeof(int));
@@ -61,7 +61,7 @@ namespace Service
 
             List<SqlParameter> parameters = new List<SqlParameter> {
             new SqlParameter("Comment", Comment),
-            new SqlParameter("TypeTargetId", TypeTargetId),
+            new SqlParameter("typeTargetId", TypeTargetId),
             new SqlParameter
             {
                 ParameterName = "Ids",
@@ -70,8 +70,9 @@ namespace Service
                 Value = personIds
             },
             new SqlParameter("TargetDate", TargetDate)
-            };  
-
+            ,
+            new SqlParameter("CreatorId", CreatorId)};
+            
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
