@@ -11,11 +11,11 @@ namespace Tasks.Controllers
     public class TargetsController : ControllerBase
     {
         ILogger<TargetsController> _logger;
-        ITargetsService _TargetsService;
-        public TargetsController(ITargetsService TargetsService, ILogger<TargetsController> logger)
+        ITargetsService _targetsService;
+        public TargetsController(ITargetsService targetsService, ILogger<TargetsController> logger)
         {
             _logger = logger;
-            _TargetsService = TargetsService;
+            _targetsService = targetsService;
         }
         [HttpGet("Get")]
         public async Task<List<Target>> GetTargetsByUserId()
@@ -25,21 +25,23 @@ namespace Tasks.Controllers
 
             _logger.LogDebug($"User id is: {UserId} ,PermissionLevelId is: {PermissionLevelId} In GetTargetsByUserId");
 
-            return await _TargetsService.GetTargetsByUserId(UserId, PermissionLevelId);
+            return await _targetsService.GetTargetsByUserId(UserId, PermissionLevelId);
         }
 
         [HttpPost()]
-        public async Task AddTarget(String? Comment, int TypeTargetId, int[]? PersonId, DateTime? TargetDate)
+        public async Task AddTarget(String? comment, int typeTargetId, int[]? personId, DateTime? targetDate)
         {
-            int creator = 2;
-                //(int)HttpContext.GetRouteData().Values["UserId"];
+            int creator = (int)HttpContext.GetRouteData().Values["UserId"];
+            int PermissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var PermissionLevelIdValue) && PermissionLevelIdValue is int PermissionLevelIdInt ? PermissionLevelIdInt : -1;
+           
             //if the user isn't manager 
-            if (PersonId == null)
+            if (PermissionLevelId == 2)
             {
-                PersonId[0] = creator;
+                int[] coordinator = { creator };
+                personId = coordinator;
             }
-            _logger.LogDebug($"Comment  is: {Comment} ,TypeTargetId is: {TypeTargetId} ,PersonId is: {PersonId} In GetTargetsByUserId");
-            await _TargetsService.AddTarget(Comment, TypeTargetId, PersonId, TargetDate, creator);
+            _logger.LogDebug($"Comment  is: {comment} ,TypeTargetId is: {typeTargetId} ,PersonId is: {personId} In GetTargetsByUserId");
+            await _targetsService.AddTarget(comment, typeTargetId, personId, targetDate, creator);
         }
     }
 }

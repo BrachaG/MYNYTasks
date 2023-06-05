@@ -8,8 +8,6 @@ namespace Entities
 {
     public class Branch : IEntity
     {
-        public int iId { get; set; }
-        public string nvName { get; set; }
         public int iBranchId { get; set; }
         public string nvBranchName { get; set; }
     }

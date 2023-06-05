@@ -9,8 +9,8 @@ namespace Service
 {
     public interface ITargetsService
     {
-        Task<List<Target>> GetTargetsByUserId(int UserId, int PermissionLevelId);
-        Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate, int CreatorId);
+        Task<List<Target>> GetTargetsByUserId(int userId, int permissionLevelId);
+        Task AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId);
 
     }
 }

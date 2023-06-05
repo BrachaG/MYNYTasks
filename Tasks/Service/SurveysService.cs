@@ -7,13 +7,13 @@ namespace Service
 {
     public class SurveysService : ISurveysService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
         ILogger<SurveysService> _logger;
 
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger)
+        public SurveysService(ISqlDataAccess sqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
             _logger = logger;
         }
@@ -23,7 +23,7 @@ namespace Service
             _logger.LogDebug("in Get all Surveys");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return surveys;
             }

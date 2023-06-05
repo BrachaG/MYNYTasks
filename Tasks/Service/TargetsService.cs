@@ -24,12 +24,12 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<List<Target>> GetTargetsByUserId(int UserId, int PermissionLevelId)
+        public async Task<List<Target>> GetTargetsByUserId(int userId, int permissionLevelId)
         {
-            _logger.LogDebug("GetTargetsByUserId", UserId, PermissionLevelId);
+            _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("id",UserId )},
-            { new SqlParameter("PermissionLevelId", PermissionLevelId)}
+            { new SqlParameter("id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)}
                 };
             try
             {
@@ -48,20 +48,20 @@ namespace Service
             return null;
         }
 
-        public async Task AddTarget(string Comment, int TypeTargetId, int[] PersonId, DateTime? TargetDate, int CreatorId)
+        public async Task AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId)
         {
             DataTable personIds = new DataTable();
             personIds.Columns.Add("Id", typeof(int));
 
             // Populate the DataTable with the list of PersonId values
-            foreach (int id in PersonId)
+            foreach (int id in personId)
             {
                 personIds.Rows.Add(id);
             }
 
             List<SqlParameter> parameters = new List<SqlParameter> {
-            new SqlParameter("Comment", Comment),
-            new SqlParameter("typeTargetId", TypeTargetId),
+            new SqlParameter("Comment", comment),
+            new SqlParameter("typeTargetId", typeTargetId),
             new SqlParameter
             {
                 ParameterName = "Ids",
@@ -69,9 +69,9 @@ namespace Service
                 TypeName = "dbo.PersonIds",
                 Value = personIds
             },
-            new SqlParameter("TargetDate", TargetDate)
+            new SqlParameter("TargetDate", targetDate)
             ,
-            new SqlParameter("CreatorId", CreatorId)};
+            new SqlParameter("CreatorId", creatorId)};
             
             try
             {
@@ -80,6 +80,7 @@ namespace Service
             catch (Exception ex)
             {
                 _logger.LogError("Failed to insert target", ex);
+                HttpContext.Response.StatusCode = 400;
             }
         }
     }
