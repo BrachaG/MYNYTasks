@@ -69,7 +69,7 @@ namespace Service
             string IdjsonString = UserId.ToString();
             string PermissionLevelIdJsonString = PermissionLevelId.ToString();
             var claims = new List<Claim>
-            {    
+            {
                 new Claim(JwtRegisteredClaimNames.NameId, IdjsonString) ,
              new Claim(JwtRegisteredClaimNames.Sub, PermissionLevelIdJsonString)  };
             var token = new JwtSecurityToken(

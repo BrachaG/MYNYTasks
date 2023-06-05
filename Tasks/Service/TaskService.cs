@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
-    public class TaskService: ITaskService
+    public enum Permission
+    {
+        Manager = 1,
+        Coordinator = 2,
+        SystemAdministrator = 4
+    }
+    public class TaskService : ITaskService
     {
         ISqlDataAccess _SqlDataAccess;
         ILogger<TaskService> _logger;
@@ -25,32 +26,63 @@ namespace Service
             _taskObjectGenerator = taskObjectGenerator;
             _targetObjectGenerator = targetObjectGenerator;
         }
-
-        public async Task<IActionResult> Add( Tasks task ,string permissionLevel, int targetType, string iCoordinatorId)
-        { 
+        public async Task<IActionResult> Add(Tasks task, int permissionLevel, int targetType, string iCoordinatorId, string iUserId)
+        {
             _logger.LogDebug("Add", task);
-            if(permissionLevel!="1" && permissionLevel!= "2" && permissionLevel != "4")
+            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
             {
                 return new StatusCodeResult(403);
             }
-           if(task.iTargetId == 0)
+            if (task.iTargetId == 0)
             {
-                List<SqlParameter> sp = new List<SqlParameter> 
+                List<SqlParameter> sp = new List<SqlParameter>
                  {
                     new SqlParameter("iUserId", iCoordinatorId),
                     new SqlParameter("iPermissionLevelId",permissionLevel )
                  };
-               DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("Get_Targets",sp);
-               List<Target> targets = _targetObjectGenerator.GeneratListFromDataTable(dt);
-                Target target = targets.FirstOrDefault(t => t.iTargetId == targetType);
-                if (target != null)
+                try
                 {
-                    task.iTargetId = target.iId;
+                    DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("Get_Targets", sp);
+                    List<Target> targets = _targetObjectGenerator.GeneratListFromDataTable(dt);
+                    Target? target = targets.FirstOrDefault(t => t.iTargetId == targetType);
+                    if (target != null)
+                    {
+                        task.iTargetId = target.iId;
+                    }
+                    else
+                    {
+                        DataTable personIds = new DataTable();
+                        personIds.Columns.Add("Id", typeof(int));
+                        personIds.Rows.Add(iCoordinatorId); 
+
+                        List<SqlParameter> parameters = new List<SqlParameter>
+                         {
+                            new SqlParameter
+                            {
+                                ParameterName = "Ids",
+                                SqlDbType = SqlDbType.Structured,
+                                TypeName = "dbo.PersonIds",
+                                Value = personIds
+                            },                            
+                            new SqlParameter("CreatorId", iUserId),
+                            new SqlParameter("typeTargetId", targetType)
+                         };
+                        try
+                        {
+                            await _SqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError("Failed to insert target", ex);
+                        }
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //add new target....
+                    _logger.LogError("failed to get targets", ex);
+                    return new StatusCodeResult(400);
                 }
+
             }
             SqlParameter[] p = new SqlParameter[]
              {
@@ -63,46 +95,97 @@ namespace Service
                 new SqlParameter("nvOrigin", task.nvOrigin),
                 new SqlParameter("nvComments", task.nvComments)
              };
-            _SqlDataAccess.ExecuteScalarSP("su_InsertNewTask_INS", p);
+            try
+            {
+                await _SqlDataAccess.ExecuteScalarSP("su_InsertNewTask_INS", p);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("failed to insert task", ex);
+                return new StatusCodeResult(400);
+            }
             return new StatusCodeResult(200);
         }
 
-        public async Task<List<Tasks>> Get(int iUserId, int permissionLevelId)
+        public async Task<IActionResult> AddTaskType(int permissionLevelId, string typeName)
+        {
+            if ((Permission)permissionLevelId != Permission.Manager  && (Permission)permissionLevelId != Permission.SystemAdministrator)
+            {
+                return new StatusCodeResult(403);
+            }
+            SqlParameter[] p = new SqlParameter[]
+            {
+                new SqlParameter("iPermissionLevelId",permissionLevelId ),
+                new SqlParameter("nvTypeName", typeName)
+            };
+            try
+            {
+                await _SqlDataAccess.ExecuteScalarSP("su_AddTaskType_INS", p);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("failed to insert task type", ex);
+                return new StatusCodeResult(400);
+            }
+            return new StatusCodeResult(200);
+        }
+
+        public async Task<ActionResult<List<Tasks>>> Get(int iUserId, int permissionLevelId)
         {
             List<SqlParameter> sp = new List<SqlParameter>
                  {
                     new SqlParameter("iUserId", iUserId),
                     new SqlParameter("iPermissionLevelId",permissionLevelId )
                  };
-            DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
-            List<Tasks> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
-            return tasks;
+            try
+            {
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
+                List<Tasks> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("failed to get task", ex);
+                return new StatusCodeResult(400);
+            }
+
         }
 
-        public async Task<Tasks> GetByTargetId(int iTargetId, int iPermissionLevelId)
+        public async Task<ActionResult<List<Tasks>>> GetByTargetId(int iTargetId, int permissionLevel)
         {
-           if(iPermissionLevelId != 1 && iPermissionLevelId != 2 && iPermissionLevelId != 4)
+            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
             {
-                return null;
+                return new StatusCodeResult(403);
             }
-            SqlParameter [] sp = new SqlParameter[]
+            List<SqlParameter> sp = new List<SqlParameter>
                  {
                     new SqlParameter("iTargetId", iTargetId),
-                    new SqlParameter("iPermissionLevelId",iPermissionLevelId)
+                    new SqlParameter("iPermissionLevelId",permissionLevel)
                  };
-            Object dr = await _SqlDataAccess.ExecuteScalarSP("su_GetTaskByTargetId", sp);
-            Tasks task= _taskObjectGenerator.GeneratFromDataRow((DataRow)dr);
-            return task;
+            try
+            {
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTaskByTargetId", sp);
+                List<Tasks> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("failed to get task by tsrgetId", ex);
+                return new StatusCodeResult(400);
+            }
         }
-        public async Task<IActionResult> Update(int permissionLevel, int? status=null, DateTime? endDate=null, string? comments=null)
+        public async Task<IActionResult> Update(int permissionLevel, int? status = null, string? comments = null)
         {
-          SqlParameter[] p = new SqlParameter[]
-          {
-                new SqlParameter("iPermissionLevelId",permissionLevel),
-                new SqlParameter("dtEndDate", endDate),
-                new SqlParameter("iStutusId", status),
-                new SqlParameter("nvComments",comments)
-          };
+            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
+            {
+                return new StatusCodeResult(403);
+            }
+            SqlParameter[] p = new SqlParameter[]
+              {
+                    new SqlParameter("iPermissionLevelId",permissionLevel),
+                    new SqlParameter("iStutusId", status),
+                    new SqlParameter("nvComments",comments)
+              };
             try
             {
                 await _SqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
@@ -112,7 +195,7 @@ namespace Service
             {
                 return new StatusCodeResult(400);
             }
-           
+
         }
     }
 }
