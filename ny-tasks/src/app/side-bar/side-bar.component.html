@@ -1,5 +1,5 @@
-<p-sidebar class="sideBarW" [visible]="true" [baseZIndex]="10000" [blockScroll]="false" [modal]="false" position="right"
-      [showCloseIcon]="false">
+<p-sidebar [visible]="true" [baseZIndex]="10000" [blockScroll]="false" [modal]="false" position="right"
+      [showCloseIcon]="false" >
       <ng-template pTemplate="header">
             <img class="logo" src="assets/logoVector.png" alt="Image description">
       </ng-template>
@@ -8,7 +8,7 @@
                   (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
       </ng-template>
       <ng-template pTemplate="footer">
-            <p-button class="addTask">
+            <p-button class="addTask" (click)="outPutVisible()">
                   <div class="pi pi-plus iconPlus"></div>
                   <span class="TaskText"> הוספת משימה </span>
             </p-button>
@@ -17,3 +17,4 @@
 <div class="confine">
       <router-outlet ></router-outlet>
 </div>
+

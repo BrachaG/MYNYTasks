@@ -32,9 +32,10 @@ import {TextQuestionComponent} from "./pages/survey-results/text-question/text-q
 import { ScrollingModule } from '@angular/cdk/scrolling';
 //import { ChartModule } from 'primeng/chart';
 import   { Chart }  from 'chart.js/auto';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import {PaginatorModule } from 'primeng/paginator';
 
-// import { MatPaginatorIntl } from '@angular/material/paginator';
-// import { CustomPaginatorIntlService } from './services/custom-paginator-intl.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,7 @@ import   { Chart }  from 'chart.js/auto';
     TasksComponent,
     AmericanQuestionComponent,
     TextQuestionComponent
-  
+    CreateTaskComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -69,9 +70,9 @@ import   { Chart }  from 'chart.js/auto';
     HttpClientModule,
     AccordionModule,
     SidebarModule,
+    InputTextareaModule,
+    PaginatorModule
     ScrollingModule,
-   
-    // PaginatorModule
   ],
   providers: [
    {
