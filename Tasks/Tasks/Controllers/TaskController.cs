@@ -25,7 +25,7 @@ namespace Tasks.Controllers
             string iUserId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
 
             _logger.LogDebug("Add Task");
-            _taskService.Add(tasks, int.Parse(permissionLevelId), targetType, iCoordinatorId,iUserId);
+            _taskService.Add(tasks, int.Parse(permissionLevelId), targetType, iCoordinatorId, iUserId);
         }
         [HttpPost("AddTaskType")]
         public void AddTaskType(string typeName)
@@ -60,7 +60,7 @@ namespace Tasks.Controllers
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             _logger.LogDebug("Update Task");
-            return await _taskService.Update(int.Parse(permissionLevelId),status,comments);
+            return await _taskService.Update(int.Parse(permissionLevelId), status, comments);
         }
 
     }

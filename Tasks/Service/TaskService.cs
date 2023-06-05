@@ -53,7 +53,7 @@ namespace Service
                     {
                         DataTable personIds = new DataTable();
                         personIds.Columns.Add("Id", typeof(int));
-                        personIds.Rows.Add(iCoordinatorId); 
+                        personIds.Rows.Add(iCoordinatorId);
 
                         List<SqlParameter> parameters = new List<SqlParameter>
                          {
@@ -63,7 +63,7 @@ namespace Service
                                 SqlDbType = SqlDbType.Structured,
                                 TypeName = "dbo.PersonIds",
                                 Value = personIds
-                            },                            
+                            },
                             new SqlParameter("CreatorId", iUserId),
                             new SqlParameter("typeTargetId", targetType)
                          };
@@ -109,7 +109,7 @@ namespace Service
 
         public async Task<IActionResult> AddTaskType(int permissionLevelId, string typeName)
         {
-            if ((Permission)permissionLevelId != Permission.Manager  && (Permission)permissionLevelId != Permission.SystemAdministrator)
+            if ((Permission)permissionLevelId != Permission.Manager && (Permission)permissionLevelId != Permission.SystemAdministrator)
             {
                 return new StatusCodeResult(403);
             }
