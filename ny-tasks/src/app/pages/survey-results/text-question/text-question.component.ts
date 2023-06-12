@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
 import { Question } from '../../../../models/Question.model';
 import { ResultsForSurvey } from '../../../../models/ResultsForSurvey.model';
+import { SurveysService } from 'src/app/services/surveys.service';
 
 @Component({
   selector: 'app-text-question',
@@ -21,6 +22,9 @@ export class TextQuestionComponent {
   nvQuestionTypeName: ''
 }
 answers: FilteredAnswers[] = [];
+constructor(public surveyService: SurveysService) {
+
+}
 ngOnInit(){
   this.sortAnswers();
 }
@@ -29,8 +33,8 @@ sortAnswers() {
     student.lAnswers.forEach(answer => {
       if (answer.iQuestionId == this.question.iQuestionId){
         let arrProfile= student.nvFullName.split(' ')
-        this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil:arrProfile[0][0]+''+arrProfile[1][0] })
-
+        this.answers.push({stdId: student.image.Convert.ToBase64String(), stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil:arrProfile[0][0]+''+arrProfile[1][0] })
+        
       }
 
      })
@@ -38,4 +42,5 @@ sortAnswers() {
   })
 
 }
+
 }

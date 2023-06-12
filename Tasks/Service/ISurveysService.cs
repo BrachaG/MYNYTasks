@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service
 {
@@ -6,5 +7,7 @@ namespace Service
     {
         Task<List<Survey>> Get();
         Task<ResultsForSurvey> Get(int surveyId);
+        IActionResult GetImage(string imageName);
+
     }
 }

@@ -9,5 +9,6 @@ export interface ResultsForSurveyStudent {
     nvMobileNumber: string
     nvEmail: string
     nvProgramName: string
+    image: any
     lAnswers: Answer[]
 }

@@ -7,7 +7,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+    [ApiController]//, Authorize]
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
@@ -31,6 +31,13 @@ namespace Tasks.Controllers
             _logger.LogDebug("Get ResultsForSurvey");
 
             return await _SurveysService.Get(id);
+        }
+        [HttpGet("GetImage/{id}")]
+        public async Task<IActionResult> GetImage(string id)
+        {
+            _logger.LogDebug("Get Image By User Id");
+
+            return _SurveysService.GetImage(id);
         }
     }
 }

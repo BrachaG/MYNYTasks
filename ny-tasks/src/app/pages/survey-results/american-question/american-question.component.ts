@@ -45,7 +45,7 @@ export class AmericanQuestionComponent {
     this.result.lResultsForSurveyStudent.forEach(student => {
       student.lAnswers.forEach(answer => {
         if (answer.iQuestionId == this.question.iQuestionId) {
-          this.answers.push({ stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
+          this.answers.push({stdId: student.iStudentId.toString(), stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
           let option = this.result.lOptions.find(o => o.nvAnswerName == answer.nvAnswer);
           if (option) {
             if (!option.responders)

@@ -30,9 +30,6 @@ export class SurveyResultsComponent implements OnInit {
   collapsed:boolean = false
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
-    // this.paginatorIntl.itemsPerPageLabel = 'Items per page:';
-    // this.paginatorIntl.nextPageLabel = 'Next page';
-    // this.paginatorIntl.previousPageLabel = 'Previous page';
   }
   ngOnInit() {
     this.route.params.subscribe((p: Params) => {

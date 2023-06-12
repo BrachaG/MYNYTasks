@@ -104,10 +104,16 @@ $blue3: #1E2959;
     height: 38.2px;
     width: 37.4px;
     text-align: center;
-    padding-top:10px;
+    // padding-top:10px;
     color: white;
+    
 }
-
+.image{
+    width: 100%;
+  height: 100%;
+  object-fit:cover;
+  border-radius: inherit;
+}
 .nameAndBranch {
     position: absolute;
     right: 60px;

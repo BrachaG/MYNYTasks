@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
@@ -68,6 +69,8 @@ namespace Service
                     if (student != null)
                     {
                         student.lAnswers.Add(answer);
+                        FileContentResult f = (FileContentResult)GetImage(student.iStudentId.ToString() + ".png");
+                        student.image = f.FileContents;
                     }
                 }
                 ResultsForSurvey results = new ResultsForSurvey();
@@ -83,5 +86,53 @@ namespace Service
             }
             return null;
         }
+        public IActionResult GetImage(string imageName)
+        {
+            // Get the full path of the image file
+            string imagePath = Path.Combine("C:\\Users\\יעלי\\OneDrive\\מסמכים\\My Documents\\NY\\MYNYTasks\\Tasks\\images", imageName);
+
+            // Check if the image file exists
+            if (!File.Exists(imagePath))
+            {
+                // Return a 404 Not Found response if the image doesn't exist
+                return new StatusCodeResult(404);
+            }
+
+            // Read the image file data
+            byte[] imageData = File.ReadAllBytes(imagePath);
+
+            // Determine the content type based on the image file extension
+            string contentType = GetContentType(imageName);
+
+            // Return the image data as a file result with the appropriate content type
+            return new FileContentResult(imageData, contentType);
+        }
+
+        private string GetContentType(string fileName)
+        {
+            // Get the file extension
+            string fileExtension = Path.GetExtension(fileName)?.ToLowerInvariant();
+
+            // Set the content type based on the file extension
+            switch (fileExtension)
+            {
+                case ".jpg":
+                case ".jpeg":
+                    return "image/jpeg";
+                case ".png":
+                    return "image/png";
+                case ".gif":
+                    return "image/gif";
+                case ".bmp":
+                    return "image/bmp";
+                default:
+                    // If the file extension is not recognized, you can set a default content type
+                    return "application/octet-stream";
+            }
+        }
+
+     
     }
+
 }
+
