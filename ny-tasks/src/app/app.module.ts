@@ -34,7 +34,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import   { Chart }  from 'chart.js/auto';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,7 @@ import {PaginatorModule } from 'primeng/paginator';
     BarButtonsComponent,
     TasksComponent,
     AmericanQuestionComponent,
-    TextQuestionComponent
+    TextQuestionComponent,
     CreateTaskComponent
   ],
   imports: [
@@ -71,8 +70,8 @@ import {PaginatorModule } from 'primeng/paginator';
     AccordionModule,
     SidebarModule,
     InputTextareaModule,
-    PaginatorModule
-    ScrollingModule,
+    PaginatorModule,
+    ScrollingModule
   ],
   providers: [
    {
