@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Service
 {
     public interface ITargetsService
     {
-        Task<List<Target>> GetTargetsByUserId(int userId, int permissionLevelId);
-        Task AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId);
+        Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId);
+        Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId,int PermissionLevelId);
 
     }
 }

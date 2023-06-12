@@ -20,14 +20,13 @@ namespace Tasks.Controllers
 
         }
         [HttpGet("Get")]
-        public async Task<List<Survey>> Get()
+        public async Task<ActionResult<List<Survey>>> Get()
         {
             _logger.LogDebug("Get survey");
             string Type = JwtRegisteredClaimNames.Sub;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
             return await _surveysService.Get();
 
-            ;
         }
     }
 }

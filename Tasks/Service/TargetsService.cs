@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NLog;
 using Repository;
@@ -24,7 +25,7 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<List<Target>> GetTargetsByUserId(int userId, int permissionLevelId)
+        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
         {
             _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
@@ -37,19 +38,26 @@ namespace Service
                 if (targets.Rows.Count > 0)
                 {
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
-                    return t;
+                    return new ObjectResult(t) { StatusCode = 200 };
                 }
 
             }
             catch (Exception ex)
             {
                 _logger.LogError("GetTargetsByUserId ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
             }
             return null;
         }
 
-        public async Task AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId)
+        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId,int PermissionLevelId)
         {
+            if (PermissionLevelId==(int)PermissionLevelEnum.PermissionLevel.coordinator)
+            {
+                int[] coordinator = { creatorId };
+                personId = coordinator;
+            }
             DataTable personIds = new DataTable();
             personIds.Columns.Add("Id", typeof(int));
 
@@ -76,11 +84,13 @@ namespace Service
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
+
             }
             catch (Exception ex)
             {
                 _logger.LogError("Failed to insert target", ex);
-                HttpContext.Response.StatusCode = 400;
+                return new ObjectResult("Failed to insert target") { StatusCode = 500 };
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -33,7 +34,7 @@ namespace Service
             _logger = logger;
 
         }
-        public async Task<User> GetById(string userName, string password)
+        public async Task<ActionResult<User>> GetById(string userName, string password)
         {
             _logger.LogDebug("GetById", userName);
             List<SqlParameter> p = new List<SqlParameter> {
@@ -51,14 +52,14 @@ namespace Service
                     string userToken = GenarateToken(user.iUserId,user.iPermissionLevelId);
                     user.token = userToken;
                     user.iUserId = 0;
-                    return user;
+                    return new ObjectResult(user) { StatusCode = 200 };
                 }
                 else return null;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in UserService, Login, Get, When trying to approach to Database");
-                return null;
+                return new ObjectResult(null) { StatusCode = 500 };
             }
 
         }

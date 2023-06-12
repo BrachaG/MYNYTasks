@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
@@ -18,21 +19,21 @@ namespace Service
             _logger = logger;
         }
 
-        public async Task<List<Survey>> Get()
+        public async Task<ActionResult<List<Survey>>> Get()
         {
             _logger.LogDebug("in Get all Surveys");
             try
             {
                 DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
-                return surveys;
+                return new ObjectResult(surveys) { StatusCode = 200 };
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in SurveyService, get all survey, faild when trying to approach to database");
-                var b = ex.Message;
+               return new ObjectResult(null) { StatusCode = 500 };
             }
-            return null;
+
         }
     }
 }
