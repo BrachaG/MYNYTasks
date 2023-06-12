@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
-
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
@@ -17,7 +17,7 @@ namespace Tasks.Controllers
             _taskService = taskService;
         }
         [HttpPost("Add")]
-        public void Add(Entities.Tasks tasks, int targetType, string iCoordinatorId)
+        public void Add(TaskModel tasks, int targetType, string iCoordinatorId)
         {
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
@@ -36,7 +36,7 @@ namespace Tasks.Controllers
             _taskService.AddTaskType(int.Parse(permissionLevelId), typeName);
         }
         [HttpGet("Get")]
-        public async Task<ActionResult<List<Entities.Tasks>>> Get()
+        public async Task<ActionResult<List<TaskModel>>> Get()
         {
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
@@ -47,7 +47,7 @@ namespace Tasks.Controllers
 
         }
         [HttpGet("Get/{iTargetId}")]
-        public async Task<ActionResult<List<Entities.Tasks>>> GetByTargetId(int iTargetId)
+        public async Task<ActionResult<List<TaskModel>>> GetByTargetId(int iTargetId)
         {
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;

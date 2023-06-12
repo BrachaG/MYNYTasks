@@ -34,17 +34,17 @@ namespace Service
             CreateMap<DataRow, ResultsForSurvey>()
              .ConvertUsing(row => MapDataRowToEntity<ResultsForSurvey>(row));
             CreateMap<DataRow, ResultsForSurveyStudent>()
-           .ConvertUsing(row => MapDataRowToEntity<ResultsForSurveyStudent>(row));
+             .ConvertUsing(row => MapDataRowToEntity<ResultsForSurveyStudent>(row));
             CreateMap<DataRow, Question>()
-         .ConvertUsing(row => MapDataRowToEntity<Question>(row));
+             .ConvertUsing(row => MapDataRowToEntity<Question>(row));
             CreateMap<DataRow, Answer>()
-         .ConvertUsing(row => MapDataRowToEntity<Answer>(row));
+             .ConvertUsing(row => MapDataRowToEntity<Answer>(row));
             CreateMap<DataRow, Options>()
-        .ConvertUsing(row => MapDataRowToEntity<Options>(row));
-            CreateMap<DataRow, Tasks>()
-       .ConvertUsing(row => MapDataRowToEntity<Tasks>(row));
+             .ConvertUsing(row => MapDataRowToEntity<Options>(row));
+            CreateMap<DataRow, TaskModel>()
+             .ConvertUsing(row => MapDataRowToEntity<TaskModel>(row));
             CreateMap<DataRow, Target>()
-          .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+             .ConvertUsing(row => MapDataRowToEntity<Target>(row));
         }
     }
 }

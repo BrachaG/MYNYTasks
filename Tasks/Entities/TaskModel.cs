@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class Tasks : IEntity
+    public class TaskModel : IEntity
     {
         public int iTaskId { get; set; }
         public int iTargetId { get; set; }

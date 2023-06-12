@@ -17,16 +17,16 @@ namespace Service
     {
         ISqlDataAccess _SqlDataAccess;
         ILogger<TaskService> _logger;
-        ObjectGenerator<Tasks> _taskObjectGenerator;
-        ObjectGenerator<Target> _targetObjectGenerator;
-        public TaskService(ISqlDataAccess SqlDataAccess, ILogger<TaskService> logger, ObjectGenerator<Tasks> taskObjectGenerator, ObjectGenerator<Target> targetObjectGenerator)
+        IObjectGenerator<TaskModel> _taskObjectGenerator;
+        IObjectGenerator<Target> _targetObjectGenerator;
+        public TaskService(ISqlDataAccess SqlDataAccess, ILogger<TaskService> logger, IObjectGenerator<TaskModel> taskObjectGenerator, IObjectGenerator<Target> targetObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
             _logger = logger;
             _taskObjectGenerator = taskObjectGenerator;
             _targetObjectGenerator = targetObjectGenerator;
         }
-        public async Task<IActionResult> Add(Tasks task, int permissionLevel, int targetType, string iCoordinatorId, string iUserId)
+        public async Task<IActionResult> Add(TaskModel task, int permissionLevel, int targetType, string iCoordinatorId, string iUserId)
         {
             _logger.LogDebug("Add", task);
             if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
@@ -130,7 +130,7 @@ namespace Service
             return new StatusCodeResult(200);
         }
 
-        public async Task<ActionResult<List<Tasks>>> Get(int iUserId, int permissionLevelId)
+        public async Task<ActionResult<List<TaskModel>>> Get(int iUserId, int permissionLevelId)
         {
             List<SqlParameter> sp = new List<SqlParameter>
                  {
@@ -139,8 +139,8 @@ namespace Service
                  };
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
-                List<Tasks> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTaskModel_GET", sp);
+                List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
                 return tasks;
             }
             catch (Exception ex)
@@ -151,7 +151,7 @@ namespace Service
 
         }
 
-        public async Task<ActionResult<List<Tasks>>> GetByTargetId(int iTargetId, int permissionLevel)
+        public async Task<ActionResult<List<TaskModel>>> GetByTargetId(int iTargetId, int permissionLevel)
         {
             if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
             {
@@ -165,7 +165,7 @@ namespace Service
             try
             {
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTaskByTargetId", sp);
-                List<Tasks> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
+                List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
                 return tasks;
             }
             catch (Exception ex)

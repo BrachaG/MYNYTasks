@@ -7,7 +7,7 @@ using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Tasks.Middlewares;
-
+using Entities;
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -19,8 +19,9 @@ try
     builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
     builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator<>));
     builder.Services.AddScoped<IUsersService, UsersService>();
-    builder.Services.AddSingleton<ISurveysService, SurveysService>();
-    builder.Services.AddSingleton<ITaskService, TaskService>();
+    builder.Services.AddScoped<ISurveysService, SurveysService>();
+    builder.Services.AddScoped<ITaskService, TaskService>();
+    builder.Services.AddScoped<ITargetsService, TargetsService>();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     builder.Services.AddAuthentication(opt =>
     {
