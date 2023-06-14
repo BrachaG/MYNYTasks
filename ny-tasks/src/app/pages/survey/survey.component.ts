@@ -5,7 +5,6 @@ import { Survey } from 'src/models/survey.model';
 
 
 
-
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -25,7 +24,9 @@ export class SurveyComponent implements OnInit{
        this.getSurveysByUserId();
        this.applyFilter();
     }
-
+    clearfilter(){
+      
+    }
      getSurveysByUserId(){
            this.surveyService.getSurveys().subscribe((res: any) => {
             this.surveys = res;

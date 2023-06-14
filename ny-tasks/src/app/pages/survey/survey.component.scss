@@ -41,7 +41,14 @@ $lightblue-gray: #5F6388;
   right: 10%;
   top: 15%;
 }
-
+.pi-search:before{
+  background-color: none;
+  position: absolute;
+  z-index: 999;
+  color: #B3B3B3;
+  padding-right: 1%;
+  padding-top: 1%;
+}
 .p-paginator {
   direction: ltr;
   background: none;
@@ -64,6 +71,7 @@ $lightblue-gray: #5F6388;
 .p-inputtext{
   padding-top: 0.25rem;
   font-weight: 600;
+  border-radius: 10px;
 }
 .p-dropdown:not(.p-disabled).p-focus,
 .p-dropdown:not(.p-disabled):hover {
@@ -85,6 +93,11 @@ $lightblue-gray: #5F6388;
   border-radius: 50%;
   font-weight: 600;
   padding: 1%;
+}
+.tableTitle{
+  color: #1E2959;
+  font-size: 1.5vmin;
+  font-weight:500;
 }
 @media screen and (max-width: 992px) {
   .u {
