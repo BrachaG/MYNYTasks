@@ -51,7 +51,7 @@ namespace Service
             return null;
         }
 
-        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId,int PermissionLevelId)
+        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId,int PermissionLevelId)
         {
             if (PermissionLevelId==(int)PermissionLevelEnum.PermissionLevel.coordinator)
             {
@@ -77,6 +77,7 @@ namespace Service
                 TypeName = "dbo.PersonIds",
                 Value = personIds
             },
+             new SqlParameter("BranchId", BranchId),
             new SqlParameter("TargetDate", targetDate)
             ,
             new SqlParameter("CreatorId", creatorId)};
