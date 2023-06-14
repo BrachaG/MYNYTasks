@@ -116,7 +116,7 @@ $lightblue-gray: #5F6388;
   }
 
   .h4-medium {
-    font-size: 2vmin;
+    font-size: 20vmin;
   }
 
   .table-style {
@@ -129,7 +129,12 @@ $lightblue-gray: #5F6388;
   }
 
   .table-style>tr {
-    line-height: 2.5vmin;
+    line-height: 20.5vmin;
     width: 2.5vmin;
   }
+  .filters{
+    position: relative;
+  }
+  
+
 }

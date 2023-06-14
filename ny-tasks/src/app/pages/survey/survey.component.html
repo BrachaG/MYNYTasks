@@ -10,13 +10,13 @@
             [rowsPerPageOptions]="[5,10,15,20]"
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
-                <tr>
+                <!-- <tr>
                     <th>שם המשוב</th>
                     <th>תאריך הפצה</th>
                     <th>כמות משיבים</th>
                     <th>מספר שאלות</th>
                     <th>קישור</th>
-                </tr>
+                </tr> -->
                 <tr>
                     <th>
                         <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName" filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
