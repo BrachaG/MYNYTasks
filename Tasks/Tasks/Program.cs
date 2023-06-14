@@ -7,7 +7,6 @@ using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Tasks.Middlewares;
-using Entities;
 try
 {
     var builder = WebApplication.CreateBuilder(args);

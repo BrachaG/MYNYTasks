@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-namespace Entities
+﻿namespace Entities
 {
     public class ResultsForSurveyStudent : IEntity
     {

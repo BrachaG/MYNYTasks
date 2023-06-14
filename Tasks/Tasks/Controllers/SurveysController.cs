@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Service;
@@ -25,7 +24,7 @@ namespace Tasks.Controllers
             string permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             string Name = JwtRegisteredClaimNames.NameId;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
-            return await _SurveysService.GetByUserId(userId,permissionId);
+            return await _SurveysService.GetByUserId(userId, permissionId);
         }
         [HttpGet("Get/{id}")]
         public async Task<ResultsForSurvey> GetResultsForSurvey(int id)
