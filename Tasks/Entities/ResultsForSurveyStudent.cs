@@ -11,7 +11,7 @@ namespace Entities
         public string nvMobileNumber { get; set; }
         public string nvEmail { get; set; }
         public string nvProgramName { get; set; }
-        public byte[] image { get; set; }
+        public string image { get; set; }
         public List<Answer> lAnswers { get; set; } = new List<Answer>(); //הוספנו אתחול
     }
 }

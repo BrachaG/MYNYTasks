@@ -61,6 +61,7 @@ try
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
     app.UseAuthentication();
+    app.UseStaticFiles();
 
     app.UseAuthorization();
 

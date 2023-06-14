@@ -21,9 +21,11 @@ namespace Tasks.Controllers
         public async Task<List<Survey>> Get()
         {
             _logger.LogDebug("Get survey");
-            string Type = JwtRegisteredClaimNames.NameId;
-            string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
-            return await _SurveysService.Get();
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            string Name = JwtRegisteredClaimNames.NameId;
+            string userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
+            return await _SurveysService.GetByUserId(userId,permissionId);
         }
         [HttpGet("Get/{id}")]
         public async Task<ResultsForSurvey> GetResultsForSurvey(int id)
@@ -31,13 +33,6 @@ namespace Tasks.Controllers
             _logger.LogDebug("Get ResultsForSurvey");
 
             return await _SurveysService.Get(id);
-        }
-        [HttpGet("GetImage/{id}")]
-        public async Task<IActionResult> GetImage(string id)
-        {
-            _logger.LogDebug("Get Image By User Id");
-
-            return _SurveysService.GetImage(id);
         }
     }
 }

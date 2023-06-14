@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace Service
 {
@@ -17,8 +18,10 @@ namespace Service
         IObjectGenerator<Answer> _answerObjectGenerator;
         IObjectGenerator<Options> _optionsObjectGenerator;
         ILogger<SurveysService> _logger;
+        IConfiguration _configuration;
 
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator, IObjectGenerator<Options> optionsObjectGenerator)
+
+        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator, IObjectGenerator<Options> optionsObjectGenerator, IConfiguration configuration)
         {
             _SqlDataAccess = SqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
@@ -28,9 +31,10 @@ namespace Service
             _questionObjectGenerator = questionObjectGenerator;
             _answerObjectGenerator = answerObjectGenerator;
             _optionsObjectGenerator = optionsObjectGenerator;
+            _configuration = configuration;
         }
 
-        public async Task<List<Survey>> Get()
+        public async Task<List<Survey>> GetByUserId(string userId, string permissionId)
         {
             _logger.LogDebug("in Get all Surveys");
             try
@@ -69,8 +73,7 @@ namespace Service
                     if (student != null)
                     {
                         student.lAnswers.Add(answer);
-                        FileContentResult f = (FileContentResult)GetImage(student.iStudentId.ToString() + ".png");
-                        student.image = f.FileContents;
+                        student.image = _configuration["ImageUrl"] + student.iStudentId + ".png";
                     }
                 }
                 ResultsForSurvey results = new ResultsForSurvey();
@@ -86,50 +89,7 @@ namespace Service
             }
             return null;
         }
-        public IActionResult GetImage(string imageName)
-        {
-            // Get the full path of the image file
-            string imagePath = Path.Combine("C:\\Users\\יעלי\\OneDrive\\מסמכים\\My Documents\\NY\\MYNYTasks\\Tasks\\images", imageName);
-
-            // Check if the image file exists
-            if (!File.Exists(imagePath))
-            {
-                // Return a 404 Not Found response if the image doesn't exist
-                return new StatusCodeResult(404);
-            }
-
-            // Read the image file data
-            byte[] imageData = File.ReadAllBytes(imagePath);
-
-            // Determine the content type based on the image file extension
-            string contentType = GetContentType(imageName);
-
-            // Return the image data as a file result with the appropriate content type
-            return new FileContentResult(imageData, contentType);
-        }
-
-        private string GetContentType(string fileName)
-        {
-            // Get the file extension
-            string fileExtension = Path.GetExtension(fileName)?.ToLowerInvariant();
-
-            // Set the content type based on the file extension
-            switch (fileExtension)
-            {
-                case ".jpg":
-                case ".jpeg":
-                    return "image/jpeg";
-                case ".png":
-                    return "image/png";
-                case ".gif":
-                    return "image/gif";
-                case ".bmp":
-                    return "image/bmp";
-                default:
-                    // If the file extension is not recognized, you can set a default content type
-                    return "application/octet-stream";
-            }
-        }
+      
 
      
     }

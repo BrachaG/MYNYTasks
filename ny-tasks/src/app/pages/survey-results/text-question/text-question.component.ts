@@ -21,6 +21,8 @@ export class TextQuestionComponent {
   nvQuestionText: '',
   nvQuestionTypeName: ''
 }
+@Input() showImage:boolean=false;
+
 answers: FilteredAnswers[] = [];
 constructor(public surveyService: SurveysService) {
 
@@ -33,7 +35,7 @@ sortAnswers() {
     student.lAnswers.forEach(answer => {
       if (answer.iQuestionId == this.question.iQuestionId){
         let arrProfile= student.nvFullName.split(' ')
-        this.answers.push({stdId: student.image.Convert.ToBase64String(), stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil:arrProfile[0][0]+''+arrProfile[1][0] })
+        this.answers.push({stdImage: student.image, stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil:arrProfile[0][0]+''+arrProfile[1][0] })
         
       }
 

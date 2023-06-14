@@ -1,5 +1,5 @@
 export interface FilteredAnswers {
-  stdId:string,
+  stdImage:string,
   stdName:string,
   stdBranch:string,
   stdAnswer:string,

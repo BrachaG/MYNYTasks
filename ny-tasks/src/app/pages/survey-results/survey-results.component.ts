@@ -28,6 +28,7 @@ export class SurveyResultsComponent implements OnInit {
   nextPage:string='next';
   activeIndex: number=0;
   collapsed:boolean = false
+  showImage:boolean = false;
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
   }
