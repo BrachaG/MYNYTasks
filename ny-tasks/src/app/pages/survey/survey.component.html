@@ -10,13 +10,6 @@
             [rowsPerPageOptions]="[5,10,15,20]"
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
-                <!-- <tr>
-                    <th>שם המשוב</th>
-                    <th>תאריך הפצה</th>
-                    <th>כמות משיבים</th>
-                    <th>מספר שאלות</th>
-                    <th>קישור</th>
-                </tr> -->
                 <tr>
                     <th>
                         <i class="pi pi-search "></i>
@@ -43,17 +36,13 @@
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                        <i class="pi pi-search"></i>
-                        <span class="tableTitle">קישור </span>
-                        <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="nvLink"
-                            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
                 <tr>
                     <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
-                    <td>{{surveys.dtEndSurveyDate}}</td>
+                    <td>{{surveys.dtEndSurveyDate | date:'dd.MM.yy' }}</td>
                     <td>{{surveys.iRespondentsCount}}</td>
                     <td>{{surveys.iQuestionCount}}</td>
                     <td><a class="h4-regular" href="{{surveys.nvLink}}"><i class="pi pi-link"></i>

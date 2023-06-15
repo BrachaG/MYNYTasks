@@ -24,7 +24,7 @@ $lightblue-gray: #5F6388;
 
 .cover {
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 10%;
   width: 80%;
 }
@@ -39,11 +39,10 @@ $lightblue-gray: #5F6388;
   width: 10%;
   height: 10%;
   right: 10%;
-  top: 15%;
+  top: 9%;
 }
 .pi-search:before{
   position: absolute;
-  z-index: 999;
   color: #B3B3B3;
   padding-right: 1%;
   padding-top: 1.5%;
@@ -55,7 +54,7 @@ $lightblue-gray: #5F6388;
   position: relative;
 }
 .p-datatable-wrapper {
-  height: 70vh;
+  height: 75vh;
 }
 .p-inputwrapper-filled {
   right: 0%;
@@ -71,7 +70,11 @@ $lightblue-gray: #5F6388;
   padding-top: 0.25rem;
   font-weight: 600;
   border-radius: 10px;
-  padding-right: 2rem; 
+  padding-right: 2rem;
+}
+.p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
+  box-shadow:none;
+  border:none;
 }
 .p-dropdown:not(.p-disabled).p-focus,
 .p-dropdown:not(.p-disabled):hover {
@@ -96,9 +99,10 @@ $lightblue-gray: #5F6388;
 }
 .tableTitle{
   color: #1E2959;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
   font-weight:500;
-  margin-bottom: 4rem;
+  bottom: 94%;
+  position: absolute;
 }
 @media screen and (max-width: 992px) {
   .u {

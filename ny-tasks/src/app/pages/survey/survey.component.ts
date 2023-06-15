@@ -17,6 +17,7 @@ export class SurveyComponent implements OnInit{
     sum:number =0;
     filterText: string = '';
     filteredSurveys: Survey[] =[];
+    filterTimeout: any;
 
     constructor(private surveyService:SurveysService) { }
 
@@ -37,18 +38,20 @@ export class SurveyComponent implements OnInit{
          new Date().toDateString
     }
     applyFilter() {
-      console.log(this.filterText);
-      
-  const filterValue = this.filterText.toLowerCase();
-  this.filteredSurveys = this.surveys.filter((survey) => {
-    // Apply your desired filtering logic based on the survey properties
-    return (
-      survey.nvSurveyName.toLowerCase().includes(filterValue) ||
-      survey.iRespondentsCount.toString().includes(filterValue) ||
-      survey.iQuestionCount.toString().includes(filterValue) ||
-      survey.nvLink.toLowerCase().includes(filterValue)
-    );
-  });
-}
-
+      clearTimeout(this.filterTimeout); // Clear any existing timeout
+      this.filterTimeout = setTimeout(() => {
+        console.log(this.filterText);
+  
+        const filterValue = this.filterText.toLowerCase();
+        this.filteredSurveys = this.surveys.filter((survey) => {
+          // Apply your desired filtering logic based on the survey properties
+          return (
+            survey.nvSurveyName.toLowerCase().includes(filterValue) ||
+            survey.iRespondentsCount.toString().includes(filterValue) ||
+            survey.iQuestionCount.toString().includes(filterValue) ||
+            survey.nvLink.toLowerCase().includes(filterValue)
+          );
+        });
+      }, 1000);
+    }
 }
