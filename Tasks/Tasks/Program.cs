@@ -21,6 +21,7 @@ try
     builder.Services.AddScoped<ISurveysService, SurveysService>();
     builder.Services.AddScoped<ITaskService, TaskService>();
     builder.Services.AddScoped<ITargetsService, TargetsService>();
+    builder.Services.AddScoped<ISettingsService, SettingsService>();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     builder.Services.AddAuthentication(opt =>
     {

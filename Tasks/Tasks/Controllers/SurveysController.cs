@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Service;
@@ -6,7 +7,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]//, Authorize]
+    [ApiController, Authorize]
     public class SurveysController : ControllerBase
     {
         ISurveysService _SurveysService;
