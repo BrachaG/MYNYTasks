@@ -1,15 +1,9 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using NLog;
 using Repository;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -51,9 +45,9 @@ namespace Service
             return null;
         }
 
-        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId,int PermissionLevelId)
+        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int PermissionLevelId)
         {
-            if (PermissionLevelId==(int)PermissionLevelEnum.PermissionLevel.coordinator)
+            if (PermissionLevelId == (int)PermissionLevelEnum.PermissionLevel.coordinator)
             {
                 int[] coordinator = { creatorId };
                 personId = coordinator;
@@ -81,7 +75,7 @@ namespace Service
             new SqlParameter("TargetDate", targetDate)
             ,
             new SqlParameter("CreatorId", creatorId)};
-            
+
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
