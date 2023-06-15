@@ -6,6 +6,5 @@ namespace Service
     {
         public T GeneratFromDataRow(DataRow dr);
         public List<T> GeneratListFromDataTable(DataTable dt);
-
     }
 }

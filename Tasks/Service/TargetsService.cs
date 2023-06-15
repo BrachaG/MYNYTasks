@@ -33,7 +33,6 @@ namespace Service
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
                     return t;
                 }
-
             }
             catch (Exception ex)
             {
@@ -54,18 +53,18 @@ namespace Service
             }
 
             List<SqlParameter> parameters = new List<SqlParameter> {
-      new SqlParameter("Comment", comment),
-      new SqlParameter("typeTargetId", typeTargetId),
-      new SqlParameter
-      {
-        ParameterName = "Ids",
-        SqlDbType = SqlDbType.Structured,
-        TypeName = "dbo.PersonIds",
-        Value = personIds
-      },
-      new SqlParameter("TargetDate", targetDate)
-      ,
-      new SqlParameter("CreatorId", creatorId)};
+            new SqlParameter("Comment", comment),
+            new SqlParameter("typeTargetId", typeTargetId),
+            new SqlParameter
+            {
+            ParameterName = "Ids",
+            SqlDbType = SqlDbType.Structured,
+            TypeName = "dbo.PersonIds",
+            Value = personIds
+            },
+            new SqlParameter("TargetDate", targetDate)
+            ,
+            new SqlParameter("CreatorId", creatorId)};
 
             try
             {

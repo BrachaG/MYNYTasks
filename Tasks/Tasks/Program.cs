@@ -56,11 +56,11 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseStaticFiles();
 
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
     app.UseAuthentication();
-    app.UseStaticFiles();
 
     app.UseAuthorization();
 
