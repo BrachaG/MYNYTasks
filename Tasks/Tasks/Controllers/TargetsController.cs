@@ -34,7 +34,7 @@ namespace Tasks.Controllers
             int creator = (int)HttpContext.GetRouteData().Values["UserId"];
             int PermissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var PermissionLevelIdValue) && PermissionLevelIdValue is int PermissionLevelIdInt ? PermissionLevelIdInt : -1;
 
-            //if the user is not manager 
+            //in case taht the user is not manager 
 
             _logger.LogDebug($"Comment  is: {comment} ,TypeTargetId is: {typeTargetId} ,PersonId is: {personId} In GetTargetsByUserId");
             return await _targetsService.AddTarget(comment, typeTargetId, personId, BranchId, targetDate, creator, PermissionLevelId);
