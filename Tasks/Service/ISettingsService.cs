@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace Service
 {
     public interface ISettingsService
     {
-        Task<IActionResult> AddTargetType( string name);
+        Task<ActionResult<List<TargetType>>> GetTargetTypes();
+        Task<IActionResult> AddTargetType( string name, string permissionLevel, string userId);
+        Task<ActionResult<List<TaskType>>> GetTaskTypes();
         Task<IActionResult> AddTaskType( string name, string permissionLevel);
-        Task<IActionResult> CreateBranchGroup(string name);
-        Task<IActionResult> AddStatus(string name);
+        Task<ActionResult<List<BrancheGroup>>> GetBranchGroup();
+        Task<IActionResult> CreateBranchGroup(string name, string permissionLevel);
+        Task<ActionResult<List<TargetStatus>>> GetStatuses();
+        Task<IActionResult> AddStatus(string name, string permissionLevel, string userId);
     }
 }

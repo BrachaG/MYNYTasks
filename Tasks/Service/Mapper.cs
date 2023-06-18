@@ -45,6 +45,12 @@ namespace Service
              .ConvertUsing(row => MapDataRowToEntity<TaskModel>(row));
             CreateMap<DataRow, Target>()
              .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+            CreateMap<DataRow, TaskType>()
+             .ConvertUsing(row => MapDataRowToEntity<TaskType>(row));
+            CreateMap<DataRow, TargetType>()
+             .ConvertUsing(row => MapDataRowToEntity<TargetType>(row));
+            CreateMap<DataRow, TargetStatus>()
+           .ConvertUsing(row => MapDataRowToEntity<TargetStatus>(row));
         }
     }
 }

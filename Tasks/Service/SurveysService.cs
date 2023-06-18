@@ -45,7 +45,6 @@ namespace Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in SurveyService, get all survey, faild when trying to approach to database");
-                var b = ex.Message;
             }
             return null;
         }
