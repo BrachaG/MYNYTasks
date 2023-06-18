@@ -44,8 +44,9 @@ $lightblue-gray: #5F6388;
 .pi-search:before{
   position: absolute;
   color: #B3B3B3;
-  padding-right: 1%;
-  padding-top: 1%;
+  padding-right: 0.7%;
+  padding-top: 2.5%;
+  font-size: 2vmin;
 }
 .p-paginator {
   direction: ltr;
@@ -70,7 +71,10 @@ $lightblue-gray: #5F6388;
   padding-top: 0.25rem;
   font-weight: 600;
   border-radius: 10px;
-  padding-right: 2rem;
+  padding-right: 1.7vw;
+}
+.p-fluid .p-inputtext{
+  margin-top: 10%;
 }
 .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
   box-shadow:none;
@@ -101,10 +105,16 @@ $lightblue-gray: #5F6388;
   color: #1E2959;
   font-size: 2vmin;
   font-weight:500;
-  bottom: 94%;
-  position: absolute;
+  top:10%;
+   position: relative;
 }
 @media screen and (max-width: 992px) {
+  .tableTitle{
+font-size:1.7vmin ;
+  }
+  .pi-search:before{
+    font-size: 0vmin;
+  }
   .u {
     font-size: 1.5vmin;
   }
