@@ -45,7 +45,7 @@ $lightblue-gray: #5F6388;
   position: absolute;
   color: #B3B3B3;
   padding-right: 1%;
-  padding-top: 1.5%;
+  padding-top: 1%;
 }
 .p-paginator {
   direction: ltr;
@@ -74,7 +74,7 @@ $lightblue-gray: #5F6388;
 }
 .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
   box-shadow:none;
-  border:none;
+  border-color: #c1d5f0;
 }
 .p-dropdown:not(.p-disabled).p-focus,
 .p-dropdown:not(.p-disabled):hover {

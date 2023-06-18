@@ -14,7 +14,7 @@ public class SqlDataAccess : ISqlDataAccess
     {
         _logger = logger;
         _Configuration = Configuration;
-        connectionString = _Configuration.GetConnectionString("Home");
+        connectionString = _Configuration.GetConnectionString("DefaultConnection");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
