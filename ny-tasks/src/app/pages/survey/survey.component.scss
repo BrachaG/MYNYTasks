@@ -17,7 +17,6 @@ $lightblue-gray: #5F6388;
   flex-grow: 0;
 
 }
-
 .sumSurveys {
   color: $lightblue-gray;
 }
@@ -42,11 +41,11 @@ $lightblue-gray: #5F6388;
   top: 9%;
 }
 .pi-search:before{
-  // position: absolute;
   color: #B3B3B3;
   padding-right: 0.7%;
   // padding-top: 1.5%;
   font-size: 1.7vmin;
+  z-index: 999;
 }
 .p-paginator {
   direction: ltr;
@@ -75,7 +74,7 @@ $lightblue-gray: #5F6388;
 font-size: 2vmin;
 }
 .p-fluid .p-inputtext{
-  margin-top: 10%;
+  // margin-top: 10%;
 }
 .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
   box-shadow:none;
