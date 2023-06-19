@@ -4,7 +4,6 @@
         <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
     <div class="cover">
-        <!-- <span class="up-border"></span> -->
         <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false"
             [value]="filteredSurveys" [paginator]="true" [rows]="10" [totalRecords]="100"
             [rowsPerPageOptions]="[5,10,15,20]"
@@ -12,32 +11,26 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th>
-                        <!-- <i ></i> -->
                         <span class="tableTitle">שם המשוב</span>
                         <p-columnFilter class="pi pi-search " matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                        <!-- <i ></i> -->
                         <span class="tableTitle">תאריך הפצה </span>
                         <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                        <!-- <i ></i> -->
                         <span class="tableTitle">כמות משיבים</span>
                         <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                        <!-- <i ></i> -->
                         <span class="tableTitle">מספר שאלות</span>
                         <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                     </th>
-                    <th>
-                        <!-- <span class="tableTitle link">קישור</span> -->
-                    
+                    <th>                 
                     </th>
                 </tr>
             </ng-template>
@@ -56,4 +49,3 @@
     </div>
 
 </div>
-//pi-paperclips

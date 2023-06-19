@@ -47,9 +47,9 @@ export class SurveyComponent implements OnInit{
           // Apply your desired filtering logic based on the survey properties
           return (
             survey.nvSurveyName.toLowerCase().includes(filterValue) ||
+            survey.dtEndSurveyDate.toString().includes(filterValue) ||
             survey.iRespondentsCount.toString().includes(filterValue) ||
-            survey.iQuestionCount.toString().includes(filterValue) ||
-            survey.nvLink.toLowerCase().includes(filterValue)
+            survey.iQuestionCount.toString().includes(filterValue) 
           );
         });
       }, 1000);
