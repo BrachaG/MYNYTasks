@@ -23,7 +23,7 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';

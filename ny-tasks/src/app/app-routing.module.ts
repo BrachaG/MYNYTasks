@@ -4,7 +4,7 @@ import { Sidebar } from 'primeng/sidebar';
 import { LoginComponent } from './pages/login/login.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 
 const routes: Routes = [
    { path: 'login', component: LoginComponent },

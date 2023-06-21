@@ -1,0 +1,28 @@
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 15%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    right: 10%;
+    top: 9%;
+  }
+  .title-text {
+    width: 55px;
+    height: 21px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
+    letter-spacing: -0.011em;
+    color: #1E2959;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  
+  }
