@@ -40,12 +40,16 @@ $lightblue-gray: #5F6388;
   right: 10%;
   top: 9%;
 }
+.p-fluid .p-inputtext {
+// background-image:;
+}
 .pi-search:before{
   color: #B3B3B3;
   padding-right: 0.7%;
   padding-top: 2.5%;
   font-size: 1.7vmin;
   z-index: 999;
+  position: relative;
 }
 .p-paginator {
   direction: ltr;

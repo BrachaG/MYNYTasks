@@ -23,8 +23,8 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
-import { TasksComponent } from './tasks/tasks.component';
 import {PaginatorModule } from 'primeng/paginator';
+import { TaskComponent } from './pages/task/task.component'
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import {PaginatorModule } from 'primeng/paginator';
     LoginComponent,
     SideBarComponent,
     BarButtonsComponent,
-    TasksComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserAnimationsModule,
