@@ -1,28 +1,108 @@
 .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: baseline;
-    gap: 15%;
-    position: absolute;
-    width: 10%;
-    height: 10%;
-    right: 10%;
-    top: 9%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 15%;
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  right: 10%;
+  top: 9%;
+}
+
+.title-text {
+  width: 55px;
+  height: 21px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  letter-spacing: -0.011em;
+  color: #1E2959;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+
+.pi-search:before {
+  color: #B3B3B3;
+  padding-right: 0.7%;
+  padding-top: 2.5%;
+  font-size: 1.7vmin;
+  z-index: 999;
+  position: relative;
+}
+
+.p-inputtext {
+  padding-top: 0.25rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding-right: 2vw;
+  font-size: 2vmin;
+}
+
+/* .p-inputtext:enabled:focus {
+  box-shadow: none;
+  border-color: #c1d5f0;
+}
+
+.p-inputtext:enabled:hover {
+  border-color: #c1d5f0;
+} */
+
+.p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
+    box-shadow:none;
+    border-color: #c1d5f0;
   }
-  .title-text {
-    width: 55px;
-    height: 21px;
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: right;
-    letter-spacing: -0.011em;
-    color: #1E2959;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-  
+@media screen and (max-width: 992px) {
+
+  /* .tableTitle{
+  font-size:1.7vmin ;
+    }
+    .pi-search:before{
+      font-size: 0vmin;
+    }
+    .table-style {
+      height: 100px;
+      overflow-y: auto;
+    }
+   */
+  .table-style .p-datatable .p-datatable-thead>tr>th {
+    font-size: 2vmin;
   }
+
+  .table-style>tr {
+    line-height: 1.5vmin;
+    width: 1.5vmin;
+  }
+
+  .p-inputtext {
+    font-size: 1.7vmin;
+  }
+
+}
+
+@media screen and (min-width: 993px) and (max-width:1200px) {
+
+  /* .table-style {
+      height: 300px;
+      overflow-y: auto;
+    }
+   */
+  .table-style .p-datatable .p-datatable-thead>tr>th {
+    font-size: 2vmin;
+  }
+
+  .table-style>tr {
+    line-height: 20.5vmin;
+    width: 2.5vmin;
+  }
+
+  .p-inputtext {
+    font-size: 1.8vmin;
+  }
+}
