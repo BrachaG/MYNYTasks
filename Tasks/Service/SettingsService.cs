@@ -2,13 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -19,13 +14,17 @@ namespace Service
         IObjectGenerator<TaskType> _taskTypeObjectGenerator;
         IObjectGenerator<TargetType> _targetTypeObjectGenerator;
         IObjectGenerator<TargetStatus> _targetStatusObjectGenerator;
-        public SettingsService(ISqlDataAccess SqlDataAccess, ILogger<SettingsService> logger, IObjectGenerator<TaskType> taskTypeObjectGenerator, IObjectGenerator<TargetType> targetTypeObjectGenerator, IObjectGenerator<TargetStatus> targetStatusObjectGenerator)
+        IObjectGenerator<BranchGroup> _branchGroupObjectGenerator;
+        IObjectGenerator<Branch> _branchObjectGenerator;
+        public SettingsService(ISqlDataAccess SqlDataAccess, ILogger<SettingsService> logger, IObjectGenerator<TaskType> taskTypeObjectGenerator, IObjectGenerator<TargetType> targetTypeObjectGenerator, IObjectGenerator<TargetStatus> targetStatusObjectGenerator, IObjectGenerator<BranchGroup> branchGroupObjectGenerator, IObjectGenerator<Branch> branchObjectGenerator)
         {
             _SqlDataAccess = SqlDataAccess;
             _logger = logger;
             _taskTypeObjectGenerator = taskTypeObjectGenerator;
             _targetTypeObjectGenerator = targetTypeObjectGenerator;
             _targetStatusObjectGenerator = targetStatusObjectGenerator;
+            _branchGroupObjectGenerator = branchGroupObjectGenerator;
+            _branchObjectGenerator = branchObjectGenerator;
         }
 
         public async Task<IActionResult> AddStatus(string name, string permissionLevel, string userId)
@@ -73,7 +72,7 @@ namespace Service
         public async Task<IActionResult> AddTaskType(string name, string permissionLevel)
         {
             _logger.LogDebug("in Add Task Type");
-            SqlParameter [] sp = new SqlParameter[]
+            SqlParameter[] sp = new SqlParameter[]
                  {
                     new SqlParameter("nvTypeName", name),
                     new SqlParameter("iPermissionLevelId",permissionLevel )
@@ -83,16 +82,67 @@ namespace Service
                 await _SqlDataAccess.ExecuteScalarSP("su_AddTaskType_INS", sp);
                 return new StatusCodeResult(200);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "in SettingsService, add new Task Type, failed when trying to approach the database");
                 return new StatusCodeResult(400);
             }
         }
 
-        public Task<IActionResult> CreateBranchGroup(string name, string permissionLevel)
+        public async Task<IActionResult> CreateBranchGroup(string name, string permissionLevel, int[] branchesIds)
         {
-            throw new NotImplementedException();
+            DataTable branches = new DataTable();
+            branches.Columns.Add("branchesId", typeof(int));
+            foreach (int id in branchesIds)
+            {
+                branches.Rows.Add(id);
+            }
+
+            List<SqlParameter> parameters = new List<SqlParameter> {
+                    new SqlParameter("iPermissionId",permissionLevel ),
+                    new SqlParameter("GroupName", name),
+                    new SqlParameter
+                    {
+                    ParameterName = "Branches",
+                    SqlDbType = SqlDbType.Structured,
+                    TypeName = "dbo.BranchesIds",
+                    Value = branches
+                    }
+            };
+            try
+            {
+                await _SqlDataAccess.ExecuteDatatableSP("su_CreateBranchesGroup", parameters);
+                return new StatusCodeResult(200);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to create group", ex);
+                return new StatusCodeResult(400);
+            }
+        }
+        public async Task<ActionResult<List<BranchGroup>>> GetBranchGroup()
+        {
+            _logger.LogDebug("in Get Branches Group");
+            try
+            {
+                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("su_GetBranchesGruops_SLCT", null);
+                DataTable dtGroups = ds.Tables[0];
+                DataTable dtBranches = ds.Tables[1];
+                List<BranchGroup> branchGroups = _branchGroupObjectGenerator.GeneratListFromDataTable(dtGroups);
+                List<Branch> branches = _branchObjectGenerator.GeneratListFromDataTable(dtBranches);
+                foreach (Branch branch in branches)
+                {
+                    BranchGroup? branchGroup = branchGroups.Find(group => group.iGroupId == branch.iGroupId);
+                    if (branchGroup != null)
+                        branchGroup.lBranches.Add(branch);
+                }
+                return branchGroups;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to create group", ex);
+                return new StatusCodeResult(400);
+            }
         }
 
         public async Task<ActionResult<List<TargetStatus>>> GetStatuses()
@@ -116,16 +166,16 @@ namespace Service
             _logger.LogDebug("in Get Targets Type");
             try
             {
-                DataTable dt=await _SqlDataAccess.ExecuteDatatableSP("su_GetTargetType", null);
-                List<TargetType> targetsType= _targetTypeObjectGenerator.GeneratListFromDataTable(dt);
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTargetType", null);
+                List<TargetType> targetsType = _targetTypeObjectGenerator.GeneratListFromDataTable(dt);
                 return targetsType;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "in SettingsService,Get Target Type, failed when trying to approach the database");
                 return new StatusCodeResult(400);
             }
-           
+
         }
 
         public async Task<ActionResult<List<TaskType>>> GetTaskTypes()
@@ -137,7 +187,7 @@ namespace Service
                 List<TaskType> taskTypes = _taskTypeObjectGenerator.GeneratListFromDataTable(dt);
                 return taskTypes;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "in SettingsService, get all Task Types, failed when trying to approach the database");
                 return new StatusCodeResult(400);

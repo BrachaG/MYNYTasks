@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities
+﻿namespace Entities
 {
-    public class TaskType:IEntity
+    public class TaskType : IEntity
     {
         public int iTypeId { get; set; }
-        public string nvTypeName { get; set; }    
+        public string nvType { get; set; }
     }
 }

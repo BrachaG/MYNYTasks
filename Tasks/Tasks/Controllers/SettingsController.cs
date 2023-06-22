@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+    [ApiController]//, Authorize]
     public class SettingsController : ControllerBase
     {
         ISettingsService _settingsService;
@@ -37,23 +36,41 @@ namespace Tasks.Controllers
             _logger.LogDebug("Add Task Type");
             await _settingsService.AddTaskType(name, permissionId);
         }
+        [HttpGet("GetTargetsType")]
+        public async Task<ActionResult<List<TargetType>>> GetTargetsType()
+        {
+            _logger.LogDebug("get Target Type");
+            return await _settingsService.GetTargetTypes();
+        }
         [HttpPost("AddTargetType")]
         public async Task<IActionResult> AddTargetType(string name)
         {
             _logger.LogDebug("Add Target Type");
-            return await _settingsService.AddTargetType(name, permissionId,userId);
+            return await _settingsService.AddTargetType(name, permissionId, userId);
         }
         [HttpPost("CreateBranchGroup")]
-        public async Task<IActionResult> CreateBranchGroup(string name)
+        public async Task<IActionResult> CreateBranchGroup(string name, int[] branches)
         {
             _logger.LogDebug("Create Branch Group");
-            return await _settingsService.CreateBranchGroup(name, permissionId);
+            return await _settingsService.CreateBranchGroup(name, permissionId, branches);
+        }
+        [HttpGet("GetBranchGroup")]
+        public async Task<ActionResult<List<BranchGroup>>> GetBranchGroup()
+        {
+            _logger.LogDebug("Create Branch Group");
+            return await _settingsService.GetBranchGroup();
+        }
+        [HttpGet("GetStatauses")]
+        public async Task<ActionResult<List<TargetStatus>>> GetStatauses()
+        {
+            _logger.LogDebug("get Target Statuses");
+            return await _settingsService.GetStatuses();
         }
         [HttpPost("AddStatus")]
         public async Task<IActionResult> AddStatus(string name)
         {
             _logger.LogDebug("Add Status");
-            return await _settingsService.AddStatus(name, permissionId,userId);
+            return await _settingsService.AddStatus(name, permissionId, userId);
         }
 
     }
