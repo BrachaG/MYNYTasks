@@ -9,29 +9,50 @@
             [rowsPerPageOptions]="[5,10,15,20]"
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
-                <tr>
-                    <th>
+<tr>
+                <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false"
+                type="text" field="{{nvSurveyName}}" filterMatchMode="contains" (keyup)="applyFilter()">
+                <ng-template pTemplate="filter">
+                  <div class="filter-input-container">
+                    <span class="filter-icon pi pi-search"></span>
+                    <input type="text" (input)="applyFilter()" />
+                  </div>
+                </ng-template>
+    
+              </p-columnFilter>
+               
+               
+                <!-- <tr>
+                    <div class="filter-container">
+                        <span class="filter-icon pi pi-search"></span>
+                        <input type="text" pInputText pColumnFilter field="nvSurveyName" matchMode="contains" (keyup)="applyFilter()">
+                    </div> -->
+
+                    <!-- <th>
                         <span class="tableTitle">שם המשוב</span>
-                        <p-columnFilter class="pi pi-search"  matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
+                        <p-columnFilter  class="filter-icon pi pi-search"  matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
                             filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
-                    </th>
-                    <th>
+                    </th> -->
+                    <!-- <th>
                         <span class="tableTitle">תאריך הפצה </span>
-                        <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
-                            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        <p-columnFilter class=" pi pi-search" matchMode="contains" [showMenu]="false"
+                            type="text" field="dtEndSurveyDate" filterMatchMode="contains"
+                            (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                        <span class="tableTitle">כמות משיבים</span>
-                        <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
-                            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        <span class="tableTitle">כמות משיבים</span> 
+                         <p-columnFilter class=" pi pi-search" matchMode="contains" [showMenu]="false"
+                            type="text" field="iRespondentsCount" filterMatchMode="contains"
+                            (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
                         <span class="tableTitle">מספר שאלות</span>
-                        <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
-                            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        <p-columnFilter class=" pi pi-search" matchMode="contains" [showMenu]="false"
+                            type="text" field="iQuestionCount" filterMatchMode="contains"
+                            (keyup)="applyFilter()"></p-columnFilter>
                     </th>
-                    <th>                 
-                    </th>
+                    <th>
+                    </th> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
@@ -41,7 +62,7 @@
                     <td>{{surveys.iRespondentsCount}}</td>
                     <td>{{surveys.iQuestionCount}}</td>
                     <td><a class="h4-regular" href="{{surveys.nvLink}}"><i class="pi pi-link"></i>
-                    </a></td>
+                        </a></td>
                 </tr>
             </ng-template>
         </p-table>
