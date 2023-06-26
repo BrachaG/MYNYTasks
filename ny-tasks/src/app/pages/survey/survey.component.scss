@@ -43,27 +43,32 @@ $lightblue-gray: #5F6388;
 .p-fluid .p-inputtext {
 // background-image:;
 }
-.pi-search:before{
+.filter-icon{
   color: #B3B3B3;
   padding-right: 0.7%;
-  padding-top: 2.5%;
   font-size: 1.7vmin;
-  z-index: 999;
-  position: relative;
-// .pi-search:before{
-//   color: #B3B3B3;
-//   padding-right: 0.7%;
-//   font-size: 1.7vmin;
-//   // padding-top: 19%;
-//   // margin-top: 20%;
-//   // z-index: 999;
-// }
-.filter-icon{
-  position: absolute;
-top:10%;
-   color: #B3B3B3;
-
+  // padding-top: 19%;
+  // margin-top: 20%;
+  // z-index: 999;
 }
+// .allText{
+//   background-color:white ;
+//   padding-top: 10%;
+//   padding-right: 5%;
+//   height: 15%;
+//   width:70%;
+//   border-bottom-right-radius: 10px ;
+//   border-bottom-left-radius: 10px ;
+//   border-top-right-radius: 10px ;
+//   border-top-left-radius: 10px ;
+
+// }
+// .filter-icon{
+  
+// top:10%;
+//    color: #B3B3B3;
+
+//}
 .p-paginator {
   direction: ltr;
   background: none;
@@ -92,7 +97,8 @@ top:10%;
   border-radius: 10px;
   padding-right: 2vw;
 font-size: 2vmin;
-margin-top: 0%;
+margin: 0%;
+
 }
 .p-fluid .p-inputtext{
   // margin-top: 10%;
