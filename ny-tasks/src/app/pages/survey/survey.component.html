@@ -10,7 +10,7 @@
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
 <tr>
-                 <p-columnFilter  matchMode="contains" [showMenu]="false"
+                 <!-- <p-columnFilter  matchMode="contains" [showMenu]="false"
                 type="text" field="nvSurveyName" filterMatchMode="contains" (keyup)="applyFilter()">
                 <ng-template pTemplate="filter">
                   <div class="filter-input-container">
@@ -19,14 +19,14 @@
                   </div>
                 </ng-template>
               </p-columnFilter> 
-                
+                 -->
                 <!-- <tr>
                     <div class="filter-container">
                         <span class="filter-icon pi pi-search"></span>
                         <input type="text" pInputText pColumnFilter field="nvSurveyName" matchMode="contains" (keyup)="applyFilter()">
                     </div> -->
 
-                   <!--  <th>
+                 <th>
                          <span class="tableTitle">שם המשוב</span>
                          <p-columnFilter  class="filter-icon pi pi-search" matchMode="contains" [showMenu]="false" 
                          type="text" field="nvSurveyName"
@@ -51,7 +51,7 @@
                             (keyup)="applyFilter()"></p-columnFilter>
                     </th>
                     <th>
-                    </th> -->
+                    </th> 
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
