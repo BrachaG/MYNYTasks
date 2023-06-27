@@ -1,3 +1,6 @@
+$blue3: #1E2959;
+$lightblue-gray: #5F6388;
+
 .title {
   display: flex;
   flex-direction: row;
@@ -27,7 +30,20 @@
   flex-grow: 0;
 
 }
+.cover {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 80%;
+}
 
+.tableTitle{
+  color: #1E2959;
+  font-size: 2vmin;
+  font-weight:500;
+   position: relative;
+}
+:host ::ng-deep {
 .pi-search:before {
   color: #B3B3B3;
   padding-right: 0.7%;
@@ -37,29 +53,27 @@
   position: relative;
 }
 
-.p-inputtext {
-  padding-top: 0.25rem;
-  font-weight: 600;
-  border-radius: 10px;
-  padding-right: 2vw;
-  font-size: 2vmin;
-}
-
-/* .p-inputtext:enabled:focus {
-  box-shadow: none;
-  border-color: #c1d5f0;
-}
-
-.p-inputtext:enabled:hover {
-  border-color: #c1d5f0;
-} */
-
-.p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
-    box-shadow:none;
-    border-color: #c1d5f0;
+  .p-inputtext{
+    padding-top: 0.25rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding-right: 2vw;
+    font-size: 2vmin;
   }
-@media screen and (max-width: 992px) {
+  .pi-filter-slash:before{
+    font-size: 0px;
+  }
+  .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
+      box-shadow:none;
+      border-color: #c1d5f0;
+    }
+}
+ .visibleFilter{
+ border: none;
+ }
 
+@media screen and (max-width: 992px) {
+  :host ::ng-deep {
   /* .tableTitle{
   font-size:1.7vmin ;
     }
@@ -83,11 +97,11 @@
   .p-inputtext {
     font-size: 1.7vmin;
   }
-
+}
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
-
+  :host ::ng-deep {
   /* .table-style {
       height: 300px;
       overflow-y: auto;
@@ -105,4 +119,5 @@
   .p-inputtext {
     font-size: 1.8vmin;
   }
+}
 }

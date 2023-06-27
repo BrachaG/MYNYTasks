@@ -2,45 +2,46 @@
 <div class="background">
     <div class="title">
         <h1 class="title-text">משימות</h1>
-        <h4 class="sumSurveys h4-regular">- סך הכל</h4>
+        <h4 class="sumSurveys h4-regular">- סך הכל</h4>     
     </div>
-    <div class="cover">
+    <div class="cover">    
     <p-table [value]="tasks" class="table-style">
         <ng-template pTemplate="header">
-            <tr>
+        <button class="visibleFilter pi pi-circle-fill" (click)="toggleFilters()"></button>      
+            <tr >  
                 <th>
                     <span class="tableTitle">נושא </span>
-                    <p-columnFilter  class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle">קטגוריה  </span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle">שם הסטודנט </span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle"> פרוייקט</span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle"> סטטוס</span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle"> תאריך יעד</span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>
                     <span class="tableTitle"> סוג יעד</span>
-                    <p-columnFilter class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                    <p-columnFilter *ngIf="filterVisible" class="pi pi-search" matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                 </th>
                 <th>                 
@@ -58,5 +59,6 @@
         </ng-template>
     </p-table>
     </div>
+
     </div>
     

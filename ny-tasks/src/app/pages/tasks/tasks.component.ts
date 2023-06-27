@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent {
 tasks:any;
@@ -11,6 +11,7 @@ sum:number =0;
 filterText: string = '';
 filteredTasks:any;
 filterTimeout: any;
+filterVisible:boolean=true;
 
 applyFilter() {
   clearTimeout(this.filterTimeout); // Clear any existing timeout
@@ -28,6 +29,9 @@ applyFilter() {
     //   );
   //   // });
   // }, 1000);
+}
+toggleFilters(){
+  this.filterVisible = !this.filterVisible;
 }
 }
 
