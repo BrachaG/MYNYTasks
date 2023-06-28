@@ -44,21 +44,28 @@ $lightblue-gray: #5F6388;
    position: relative;
 }
 :host ::ng-deep {
-.pi-search:before {
-  color: #B3B3B3;
-  padding-right: 0.7%;
-  padding-top: 2.5%;
-  font-size: 1.7vmin;
-  z-index: 999;
-  position: relative;
+ 
+
+.pi-search:before{
+  z-index: 1000; 
 }
 
+.searchIcon{
+  z-index: 1000;
+  color: #B3B3B3;
+  font-size: 1.7vmin;
+  
+}
+  
   .p-inputtext{
     padding-top: 0.25rem;
     font-weight: 600;
     border-radius: 10px;
     padding-right: 2vw;
     font-size: 2vmin;
+    position: relative;
+    z-index: 999;
+    position: relative;
   }
   .pi-filter-slash:before{
     font-size: 0px;
@@ -70,6 +77,12 @@ $lightblue-gray: #5F6388;
 }
  .visibleFilter{
  border: none;
+ position: absolute;
+ margin-top: 2%;
+ margin-bottom: 2%;
+ margin-right: 95%;
+ background-color: transparent;
+
  }
 
 @media screen and (max-width: 992px) {
