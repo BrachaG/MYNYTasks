@@ -9,42 +9,43 @@
             [rowsPerPageOptions]="[5,10,15,20]"
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
-<tr>
-    
-    <th>
-        <span class="tableTitle">שם המשוב</span>
-        <span  class="p-input-icon-right ml-auto">
-            <i class="searchIcon pi pi-search"></i>
-             <p-columnFilter  class="filterArea" matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
-            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
-        </span>
-    </th>
-    <th>
-        <span class="tableTitle">תאריך הפצה</span>
-        <span  class="p-input-icon-right ml-auto">
-            <i class="searchIcon pi pi-search"></i>
-             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
-            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
-        </span>
-    </th>
-    <th>
-        <span class="tableTitle">כמות משיבים</span>
-        <span  class="p-input-icon-right ml-auto">
-            <i class="searchIcon pi pi-search"></i>
-             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
-            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
-        </span>
-    </th>
-    <th>
-        <span class="tableTitle">מספר שאלות</span>
-        <span   class="p-input-icon-right ml-auto">
-            <i class="searchIcon pi pi-search"></i>
-             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
-            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
-        </span>
-    </th>
-     <th> </th>
-    </tr>
+                <tr>
+                    <th>
+                        <span class="tableTitle">שם המשוב</span>
+                        <span class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter class="filterArea" matchMode="contains" [showMenu]="false" type="text"
+                                field="nvSurveyName" filterMatchMode="contains"
+                                (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">תאריך הפצה</span>
+                        <span class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">כמות משיבים</span>
+                        <span class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text"
+                                field="iRespondentsCount" filterMatchMode="contains"
+                                (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">מספר שאלות</span>
+                        <span class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th> </th>
+                </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
                 <tr>
@@ -54,7 +55,7 @@
                     <td>{{surveys.iQuestionCount}}</td>
                     <td><a class="h4-regular" href="{{surveys.nvLink}}"><i class="pi pi-link"></i>
                         </a></td>
-                </tr> 
+                </tr>
             </ng-template>
         </p-table>
 
