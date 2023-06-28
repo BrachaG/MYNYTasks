@@ -10,49 +10,41 @@
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
 <tr>
-                 <!-- <p-columnFilter  matchMode="contains" [showMenu]="false"
-                type="text" field="nvSurveyName" filterMatchMode="contains" (keyup)="applyFilter()">
-                <ng-template pTemplate="filter">
-                  <div class="filter-input-container">
-                    <span class="filter-icon pi pi-search"></span>
-                    <input pInputText type="text" />
-                  </div>
-                </ng-template>
-              </p-columnFilter> 
-                 -->
-                <!-- <tr>
-                    <div class="filter-container">
-                        <span class="filter-icon pi pi-search"></span>
-                        <input type="text" pInputText pColumnFilter field="nvSurveyName" matchMode="contains" (keyup)="applyFilter()">
-                    </div> -->
-
-                 <th>
-                         <span class="tableTitle">שם המשוב</span>
-                         <p-columnFilter  class="filter-icon pi pi-search" matchMode="contains" [showMenu]="false" 
-                         type="text" field="nvSurveyName"
-                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
-                    </th> 
-                     <th>
-                        <span class="tableTitle">תאריך הפצה </span>
-                        <p-columnFilter class="filter-icon pi pi-search" matchMode="contains" [showMenu]="false"
-                            type="text" field="dtEndSurveyDate" filterMatchMode="contains"
-                            (keyup)="applyFilter()"></p-columnFilter>
-                    </th>
-                    <th>
-                        <span class="tableTitle">כמות משיבים</span> 
-                         <p-columnFilter class="filter-icon pi pi-search" matchMode="contains" [showMenu]="false"
-                            type="text" field="iRespondentsCount" filterMatchMode="contains"
-                            (keyup)="applyFilter()"></p-columnFilter>
-                    </th>
-                    <th>
-                        <span class="tableTitle">מספר שאלות</span>
-                        <p-columnFilter class="filter-icon pi pi-search" matchMode="contains" [showMenu]="false"
-                            type="text" field="iQuestionCount" filterMatchMode="contains"
-                            (keyup)="applyFilter()"></p-columnFilter>
-                    </th>
-                    <th>
-                    </th> 
-                </tr>
+    
+    <th>
+        <span class="tableTitle">שם המשוב</span>
+        <span  class="p-input-icon-right ml-auto">
+            <i class="searchIcon pi pi-search"></i>
+             <p-columnFilter  class="filterArea" matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
+            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
+        </span>
+    </th>
+    <th>
+        <span class="tableTitle">תאריך הפצה</span>
+        <span  class="p-input-icon-right ml-auto">
+            <i class="searchIcon pi pi-search"></i>
+             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
+            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
+        </span>
+    </th>
+    <th>
+        <span class="tableTitle">כמות משיבים</span>
+        <span  class="p-input-icon-right ml-auto">
+            <i class="searchIcon pi pi-search"></i>
+             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="iRespondentsCount"
+            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
+        </span>
+    </th>
+    <th>
+        <span class="tableTitle">מספר שאלות</span>
+        <span   class="p-input-icon-right ml-auto">
+            <i class="searchIcon pi pi-search"></i>
+             <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+            filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
+        </span>
+    </th>
+     <th> </th>
+    </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
                 <tr>
