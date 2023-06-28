@@ -45,11 +45,6 @@ $lightblue-gray: #5F6388;
 }
 :host ::ng-deep {
  
-
-.pi-search:before{
-  z-index: 1000; 
-}
-
 .searchIcon{
   z-index: 1000;
   color: #B3B3B3;
