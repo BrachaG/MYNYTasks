@@ -59,7 +59,14 @@ $lightblue-gray: #5F6388;
   font-size: 1.7vmin;
 
 }
-
+.visibleFilter{
+  position: relative;
+  border: none;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  margin-right: 95%;
+  background-color: transparent;
+  }
 .p-paginator {
   direction: ltr;
   background: none;
@@ -84,7 +91,6 @@ $lightblue-gray: #5F6388;
 }
 
 .p-inputtext {
-  margin-top: 40px;
   font-weight: 600;
   border-radius: 10px;
   padding-right: 2vw;
@@ -134,6 +140,15 @@ $lightblue-gray: #5F6388;
 
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
+  
+  .h4-regular {
+    font-size: 2vmin;
+  }
+
+  .h4-medium {
+    font-size: 20vmin;
+  }
+
   .table-style {
     height: 300px;
     overflow-y: auto;
@@ -156,36 +171,4 @@ $lightblue-gray: #5F6388;
     font-size: 1.8vmin;
     padding-right: 2.2vw;
   }
-}
-@media screen and (max-width: 992px) {
-  .tableTitle {
-    font-size: 1.7vmin;
-  }
-
-  .pi-search:before {
-    font-size: 0vmin;
-  }
-
-  .u {
-    font-size: 1.5vmin;
-  }
-  .table-style {
-    height: 100px;
-    overflow-y: auto;
-  }
-
-  .table-style .p-datatable .p-datatable-thead>tr>th {
-    font-size: 2vmin;
-  }
-
-  .table-style>tr {
-    line-height: 1.5vmin;
-    width: 1.5vmin;
-  }
-
-  .p-inputtext {
-    font-size: 1.7vmin;
-    padding-right: 1vw;
-  }
-
 }

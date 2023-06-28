@@ -18,6 +18,7 @@ export class SurveyComponent implements OnInit{
     filterText: string = '';
     filteredSurveys: Survey[] =[];
     filterTimeout: any;
+    filterVisible:Boolean=true;
 
     constructor(private surveyService:SurveysService) { }
 
@@ -53,5 +54,8 @@ export class SurveyComponent implements OnInit{
           );
         });
       }, 1000);
+    }
+    toggleFilters(){
+      this.filterVisible = !this.filterVisible;
     }
 }

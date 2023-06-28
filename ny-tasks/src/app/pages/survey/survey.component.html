@@ -9,10 +9,11 @@
             [rowsPerPageOptions]="[5,10,15,20]"
             [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
             <ng-template pTemplate="header">
+                <div> <button class="visibleFilter pi pi-circle-fill" (click)="toggleFilters()"></button></div>
                 <tr>
                     <th>
-                        <span class="tableTitle">שם המשוב</span>
-                        <span class="p-input-icon-right ml-auto">
+                        <span  class="tableTitle">שם המשוב</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
                             <p-columnFilter class="filterArea" matchMode="contains" [showMenu]="false" type="text"
                                 field="nvSurveyName" filterMatchMode="contains"
@@ -20,16 +21,16 @@
                         </span>
                     </th>
                     <th>
-                        <span class="tableTitle">תאריך הפצה</span>
-                        <span class="p-input-icon-right ml-auto">
+                        <span  class="tableTitle">תאריך הפצה</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
                             <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
                                 filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                         </span>
                     </th>
                     <th>
-                        <span class="tableTitle">כמות משיבים</span>
-                        <span class="p-input-icon-right ml-auto">
+                        <span  class="tableTitle">כמות משיבים</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
                             <p-columnFilter matchMode="contains" [showMenu]="false" type="text"
                                 field="iRespondentsCount" filterMatchMode="contains"
@@ -38,7 +39,7 @@
                     </th>
                     <th>
                         <span class="tableTitle">מספר שאלות</span>
-                        <span class="p-input-icon-right ml-auto">
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
                             <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                                 filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
