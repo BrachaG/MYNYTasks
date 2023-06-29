@@ -12,32 +12,29 @@ namespace Tasks.Controllers
     {
         ILogger<TargetsController> _logger;
         ITargetsService _targetsService;
+        int creator;
+        int permissionLevelId;
+        int userId;
         public TargetsController(ITargetsService targetsService, ILogger<TargetsController> logger)
         {
             _logger = logger;
             _targetsService = targetsService;
+            creator = (int)HttpContext.GetRouteData().Values["UserId"];
+            permissionLevelId =  HttpContext.Items.TryGetValue("PermissionLevelId", out var permissionLevelIdValue) && permissionLevelIdValue is int permissionLevelIdInt ? permissionLevelIdInt : -1;
+            userId = HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
         }
         [HttpGet("Get")]
         public async Task<ActionResult<List<Target>>> GetTargetsByUserId()
         {
-            var PermissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var PermissionLevelIdValue) && PermissionLevelIdValue is int PermissionLevelIdInt ? PermissionLevelIdInt : -1;
-            var UserId = HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
-
-            _logger.LogDebug($"User id is: {UserId} ,PermissionLevelId is: {PermissionLevelId} In GetTargetsByUserId");
-
-            return await _targetsService.GetTargetsByUserId(UserId, PermissionLevelId);
+            _logger.LogDebug($"User id is: {userId} ,PermissionLevelId is: {permissionLevelId} In GetTargetsByUserId");
+            return await _targetsService.GetTargetsByUserId(userId, permissionLevelId);
         }
 
         [HttpPost()]
-        public async Task<ActionResult<string>> AddTarget(String? comment, int typeTargetId, int[]? personId, int BranchId, DateTime? targetDate)
+        public async Task<ActionResult<string>> AddTarget(String? comment, int typeTargetId, int[]? personId, int branchId, DateTime? targetDate)
         {
-            int creator = (int)HttpContext.GetRouteData().Values["UserId"];
-            int PermissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var PermissionLevelIdValue) && PermissionLevelIdValue is int PermissionLevelIdInt ? PermissionLevelIdInt : -1;
-
-            //in case taht the user is not manager 
-
             _logger.LogDebug($"Comment  is: {comment} ,TypeTargetId is: {typeTargetId} ,PersonId is: {personId} In GetTargetsByUserId");
-            return await _targetsService.AddTarget(comment, typeTargetId, personId, BranchId, targetDate, creator, PermissionLevelId);
+            return await _targetsService.AddTarget(comment, typeTargetId, personId, branchId, targetDate, creator, permissionLevelId);
         }
     }
 }

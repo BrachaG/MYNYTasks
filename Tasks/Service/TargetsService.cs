@@ -45,9 +45,9 @@ namespace Service
             return null;
         }
 
-        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int PermissionLevelId)
+        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int permissionLevelId)
         {
-            if (PermissionLevelId == (int)PermissionLevelEnum.PermissionLevel.coordinator)
+            if (permissionLevelId == (int)PermissionLevelEnum.PermissionLevel.coordinator)
             {
                 int[] coordinator = { creatorId };
                 personId = coordinator;
@@ -72,8 +72,7 @@ namespace Service
                 Value = personIds
             },
              new SqlParameter("BranchId", BranchId),
-            new SqlParameter("TargetDate", targetDate)
-            ,
+            new SqlParameter("TargetDate", targetDate),
             new SqlParameter("CreatorId", creatorId)};
 
             try

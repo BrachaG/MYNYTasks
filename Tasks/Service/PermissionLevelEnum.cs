@@ -2,7 +2,13 @@
 {
     public class PermissionLevelEnum
     {
-        public enum PermissionLevel { NYmanagar = 1, coordinator = 2, SystemManager = 3 };
+        public enum PermissionLevel
+        {
+            NYmanagar = 1,
+            coordinator = 2,
+            RegistrationSecretariat = 3,
+            SystemManager = 4
+        };
     }
 }
 
