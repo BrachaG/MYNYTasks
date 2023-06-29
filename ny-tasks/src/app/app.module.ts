@@ -36,6 +36,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -83,10 +84,8 @@ import { SelectBranchComponent } from './pages/select-branch/select-branch.compo
       useClass: JwtInterceptor,
       multi: true,
 
-    }// ,
-    // {
-    //   provide: MatPaginatorIntl, useClass: CustomPaginatorIntlService
-    // } 
+    },
+      AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,15 +7,16 @@ import { SurveyComponent } from './pages/survey/survey.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
    { path: 'login', component: LoginComponent },
-   {path: 'select-branch',component:SelectBranchComponent},
-  { path: 'surveys', component: SurveyComponent },
-  { path: 'tasks', component: TasksComponent },
-  { path: 'Sidebar', component: SideBarComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: "surveys-results/:id/:name", component: SurveyResultsComponent }
+   {path: 'select-branch', component:SelectBranchComponent, canActivate: [AuthGuardService] },
+  { path: 'surveys', component: SurveyComponent ,canActivate: [AuthGuardService] },
+  { path: 'tasks', component: TasksComponent ,canActivate: [AuthGuardService]},
+  { path: 'Sidebar', component: SideBarComponent,canActivate: [AuthGuardService] },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: "surveys-results/:id/:name", component: SurveyResultsComponent ,canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
