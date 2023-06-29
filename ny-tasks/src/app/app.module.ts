@@ -84,7 +84,8 @@ import { AuthGuardService } from './services/auth-guard.service';
       useClass: JwtInterceptor,
       multi: true,
 
-    },
+    }
+    ,
       AuthGuardService
   ],
   bootstrap: [AppComponent]

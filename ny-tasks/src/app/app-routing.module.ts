@@ -10,12 +10,12 @@ import { SelectBranchComponent } from './pages/select-branch/select-branch.compo
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-   { path: 'login', component: LoginComponent },
-   {path: 'select-branch', component:SelectBranchComponent, canActivate: [AuthGuardService] },
+  { path: 'login', component: LoginComponent },
+  { path: 'select-branch', component:SelectBranchComponent, canActivate: [AuthGuardService] },
   { path: 'surveys', component: SurveyComponent ,canActivate: [AuthGuardService] },
   { path: 'tasks', component: TasksComponent ,canActivate: [AuthGuardService]},
   { path: 'Sidebar', component: SideBarComponent,canActivate: [AuthGuardService] },
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'surveys', pathMatch: 'full'},
   { path: "surveys-results/:id/:name", component: SurveyResultsComponent ,canActivate: [AuthGuardService] }
 ];
 
