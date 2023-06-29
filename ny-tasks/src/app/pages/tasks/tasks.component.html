@@ -7,7 +7,6 @@
     <div class="cover">    
     <p-table [value]="tasks" class="table-style">
         <ng-template pTemplate="header">   
-            <button class="visibleFilter pi pi-circle-fill" (click)="toggleFilters()"></button>
             <tr > 
                 <th>
                     <span class="tableTitle">נושא </span>
@@ -64,6 +63,11 @@
                          <p-columnFilter   matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
                         filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter> 
                     </span>
+                </th>
+                <th class="thIcon">
+                    <div >
+                        <button class="visibleFilter pi pi-circle-fill" (click)="toggleFilters()"></button>
+                    </div>
                 </th>
                 <!-- <th>
                     <span class="tableTitle">קטגוריה  </span>
