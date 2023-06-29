@@ -60,19 +60,12 @@ $lightblue-gray: #5F6388;
   font-size: 1.7vmin;
 
 }
-
-.visibleDiv {
-  position: relative;
-  padding: 0%;
-  margin: 0%;
-
-}
-
 .visibleFilter {
   position: absolute;
   border: none;
-  left: 2%;
-  margin: 0%;
+  left: 12%;
+  margin-top: 3%;
+  top: 15%;
   background-color: transparent;
   z-index: 1000;
   font-size: 2vmin;
@@ -80,10 +73,7 @@ $lightblue-gray: #5F6388;
 
 .thIcon {
   position: relative;
-  padding-top: 0% !important;
-  position: relative;
-  margin-left: 0%;
-  margin-top: 1%;
+  padding-top: 2.2%;
 }
 
 .p-paginator {
