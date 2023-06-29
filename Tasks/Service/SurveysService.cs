@@ -33,12 +33,16 @@ namespace Service
             _configuration = configuration;
         }
 
-        public async Task<List<Survey>> GetByUserId(string userId, string permissionId)
+        public async Task<List<Survey>> GetByUserId(int permissionId, int? branchId = null)
         {
             _logger.LogDebug("in Get all Surveys");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
+                List<SqlParameter> p = new List<SqlParameter> {
+                new SqlParameter("iPermissionLevelId", permissionId),
+                new SqlParameter("iBranchId", branchId)
+            };
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", p);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return surveys;
             }
@@ -49,11 +53,14 @@ namespace Service
             return null;
         }
 
-        public async Task<ResultsForSurvey> Get(int surveyId)
+        public async Task<ResultsForSurvey> Get(int surveyId, int permissionId, int? branchId = null)
         {
             _logger.LogDebug("in Get Results For Survey");
-            List<SqlParameter> p = new List<SqlParameter> { new SqlParameter("iSurveyId", surveyId) };
-
+            List<SqlParameter> p = new List<SqlParameter> {
+                new SqlParameter("iSurveyId", surveyId) ,
+                new SqlParameter("iPermissionLevelId", permissionId),
+                new SqlParameter("iBranchId", branchId)
+            };
             try
             {
                 DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);

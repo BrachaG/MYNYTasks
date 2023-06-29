@@ -42,7 +42,7 @@ namespace Service
                 };
             try
             {
-                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_sys_User_SLCT", p);
+                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_su_sys_UserLogin_SLCT", p);
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
                 {
                     User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);

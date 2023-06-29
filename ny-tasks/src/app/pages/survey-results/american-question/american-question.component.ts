@@ -62,7 +62,11 @@ export class AmericanQuestionComponent {
       if (option.iQuestionId == this.question.iQuestionId) {
         this.lables.push(option.nvAnswerName)
       }
-      this.dataArr.push(option.responders.length)
+      if (option.responders!=null)
+        this.dataArr.push(option.responders.length)
+      else{
+        this.dataArr.push(0)
+      }
     });
   }
   createChart() {

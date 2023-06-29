@@ -10,14 +10,15 @@ import { ResultsForSurvey } from '../../models/ResultsForSurvey.model';
 export class SurveysService {
 
   constructor(private http:HttpClient) { }
-  getSurveys(): Observable<Survey[]> {
+  getSurveys( branch:string | null): Observable<Survey[]> {
     {
-        let url: string = `api/Surveys/Get`;
+        let url: string = `api/Surveys/Get?branchId=${branch}`;
         return this.http.get<Survey[]>(url);
-}}
+    }
+  }
 
-  getResultsForSurvey(id: number):Observable<ResultsForSurvey>{
-    let url: string = `api/Surveys/Get/${id}`;
+  getResultsForSurvey(id: number, branch:string | null):Observable<ResultsForSurvey>{
+    let url: string = `api/Surveys/Get/${id}?branchId=${branch}`;
     return this.http.get<ResultsForSurvey>(url);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Accordion, AccordionModule, AccordionTab } from 'primeng/accordion';
 import { ResultsForSurvey } from '../../../models/ResultsForSurvey.model';
@@ -27,7 +27,7 @@ export class SurveyResultsComponent implements OnInit {
   previousPage:string='prev';
   nextPage:string='next';
   activeIndex: number=0;
-  collapsed:boolean = false
+  collapsed:boolean = false;
   showImage:boolean = false;
   constructor(public surveyService: SurveysService, private route: ActivatedRoute) {
 
@@ -40,7 +40,10 @@ export class SurveyResultsComponent implements OnInit {
     this.getResultForSurvey();
 }
   getResultForSurvey() {
-    this.surveyService.getResultsForSurvey(this.id).subscribe((res: any) => {
+    let selectedBranch: string | null='0'; 
+    if(localStorage.getItem('selectedBranch'))
+      selectedBranch=localStorage.getItem('selectedBranch')
+    this.surveyService.getResultsForSurvey(this.id,selectedBranch).subscribe((res: any) => {
       this.result = res;
       console.log(this.result);
       this.sum=this.result.lQuestions.length;

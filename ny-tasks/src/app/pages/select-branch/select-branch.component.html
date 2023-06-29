@@ -1,0 +1,5 @@
+<select [(ngModel)]="selectedBranch">
+    <option *ngFor="let b of lBranches" [ngValue]="b">{{b.nvBranchName}}</option>
+</select>
+<br>
+<button [disabled]="!selectedBranch" (click)="continue()">המשך</button>

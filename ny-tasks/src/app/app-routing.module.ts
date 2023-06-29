@@ -6,9 +6,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
 
 const routes: Routes = [
    { path: 'login', component: LoginComponent },
+   {path: 'select-branch',component:SelectBranchComponent},
   { path: 'surveys', component: SurveyComponent },
   { path: 'tasks', component: TasksComponent },
   { path: 'Sidebar', component: SideBarComponent },
