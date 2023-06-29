@@ -6,7 +6,6 @@
         {
             NYmanagar = 1,
             coordinator = 2,
-            RegistrationSecretariat = 3,
             SystemManager = 4
         };
     }
