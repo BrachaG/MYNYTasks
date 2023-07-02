@@ -12,22 +12,25 @@ namespace Tasks.Controllers
     public class SettingsController : ControllerBase
     {
         ISettingsService _settingsService;
+        ITargetsService _targetsService;
         ILogger<SettingsController> _logger;
         readonly string permissionId;
         readonly string userId;
-        public SettingsController(ISettingsService settingsService, ILogger<SettingsController> logger)
+        public SettingsController(ISettingsService settingsService, ILogger<SettingsController> logger,ITargetsService targetsService)
         {
             _logger = logger;
             _settingsService = settingsService;
+            _targetsService = targetsService;
             string Sub = JwtRegisteredClaimNames.Sub;
-            permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            //permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             string Name = JwtRegisteredClaimNames.Name;
-            userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
+            //userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
         }
         [HttpGet("GetTasksType")]
         public async Task<ActionResult<List<TaskType>>> GetTasksType()
         {
             _logger.LogDebug("get Task Type");
+            //_targetsService.SendEmail("yaeligrilak@gmail.com", "Hello", "This is the body of the email.");
             return await _settingsService.GetTaskTypes();
         }
         [HttpPost("AddTaskType")]

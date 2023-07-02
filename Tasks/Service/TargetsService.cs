@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mail;
+
 
 namespace Service
 {
@@ -69,11 +71,39 @@ namespace Service
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                List<SqlParameter> p = new List<SqlParameter> {
+                    new SqlParameter
+                    {
+                    ParameterName = "Ids",
+                    SqlDbType = SqlDbType.Structured,
+                    TypeName = "dbo.PersonIds",
+                    Value = personIds
+                    }
+                };
+               DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetUserEmails_SLCT", p);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Failed to insert target", ex);
             }
         }
+        public void SendEmail(string recipient, string subject, string body)
+        {
+            var message = new MailMessage();
+            message.From = new MailAddress("36214085573@mby.co.il", "Nefesh Yehudi");
+            message.To.Add(new MailAddress(recipient));
+            message.Subject = subject;
+            message.Body = body;
+            message.IsBodyHtml = false;
+
+            using (var client = new SmtpClient("smtp.office365.com", 587))
+            {
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("36214085573@mby.co.il", "Student@264");
+                client.Send(message);
+            }
+        }
+
     }
 }
