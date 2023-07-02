@@ -23,6 +23,9 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';
 import { TaskComponent } from './pages/task/task.component'
 
@@ -34,7 +37,8 @@ import { TaskComponent } from './pages/task/task.component'
     LoginComponent,
     SideBarComponent,
     BarButtonsComponent,
-    TaskComponent,
+    TasksComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,6 +60,7 @@ import { TaskComponent } from './pages/task/task.component'
     ReactiveFormsModule,
     HttpClientModule,
     SidebarModule,
+    InputTextareaModule,
     PaginatorModule
   ],
   providers: [
