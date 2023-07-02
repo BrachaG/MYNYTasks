@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       this.user = res;
       if (this.user != null) {
         localStorage.setItem("jwt-token", this.user.token)
+        localStorage.setItem("user-permission", this.user.iPermissionLevelId)
         this.router.navigateByUrl('surveys');
       }
       else

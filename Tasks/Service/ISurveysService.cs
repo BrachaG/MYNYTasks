@@ -1,9 +1,10 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service
 {
     public interface ISurveysService
     {
-        Task<List<Survey>> Get();
+        Task<ActionResult<List<Survey>>> Get();
     }
 }
