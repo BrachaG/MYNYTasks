@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Service
 {
@@ -24,14 +25,17 @@ namespace Service
             _logger.LogDebug("in Get all Surveys");
             try
             {
-                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", null);
+                List<SqlParameter> p = new List<SqlParameter> {
+                new SqlParameter("iPermissionLevelId", 1) ,
+                new SqlParameter("iBranchId",null) };
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", p);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return new ObjectResult(surveys) { StatusCode = 200 };
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in SurveyService, get all survey, faild when trying to approach to database");
-               return new ObjectResult(null) { StatusCode = 500 };
+                return new ObjectResult(null) { StatusCode = 500 };
             }
 
         }

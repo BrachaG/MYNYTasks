@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities
+﻿namespace Entities
 {
     public class Target : IEntity
     {
@@ -15,7 +9,7 @@ namespace Entities
         public int iBranchId { get; set; }
         public DateTime? dtTargetDate { get; set; }
         public int iStatusId { get; set; }
-       public int iCreatorId { get; set; }
+        public int iCreatorId { get; set; }
         public DateTime dtCreation { get; set; }
-}
+    }
 }
