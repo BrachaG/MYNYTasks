@@ -18,7 +18,13 @@ namespace Service
                 if (row.Table.Columns.Contains(property.Name))
                 {
                     object value = row[property.Name];
+                    if (value == DBNull.Value)
+                    {
+                        property.SetValue(entity, null);
+                    }
+                    else { 
                     property.SetValue(entity, value);
+                }
                 }
             }
             return entity;
@@ -31,6 +37,10 @@ namespace Service
              .ConvertUsing(row => MapDataRowToEntity<CodeTable>(row));
             CreateMap<DataRow, Survey>()
              .ConvertUsing(row => MapDataRowToEntity<Survey>(row));
+            CreateMap<DataRow, Target>()
+           .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+            CreateMap<DataRow, Branch>()
+          .ConvertUsing(row => MapDataRowToEntity<Branch>(row));
         }
     }
 }

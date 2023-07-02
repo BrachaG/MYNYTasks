@@ -10,24 +10,23 @@ namespace Tasks.Controllers
     [ApiController, Authorize]
     public class SurveysController : ControllerBase
     {
-        ISurveysService _SurveysService;
+        ISurveysService _surveysService;
         ILogger<SurveysController> _logger;
-        public SurveysController(ISurveysService SurveysService, ILogger<SurveysController> logger)
+        public SurveysController(ISurveysService surveysService, ILogger<SurveysController> logger)
         {
 
-            _SurveysService = SurveysService;
+            _surveysService = surveysService;
             _logger = logger;
 
         }
         [HttpGet("Get")]
-        public async Task<List<Survey>> Get()
+        public async Task<ActionResult<List<Survey>>> Get()
         {
             _logger.LogDebug("Get survey");
             string Type = JwtRegisteredClaimNames.Sub;
             string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
-            return await _SurveysService.Get();
+            return await _surveysService.Get();
 
-            ;
         }
     }
 }
