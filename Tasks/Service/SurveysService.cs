@@ -1,6 +1,6 @@
 ﻿using Entities;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;

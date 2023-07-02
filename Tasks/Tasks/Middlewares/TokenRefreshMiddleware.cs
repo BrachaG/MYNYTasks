@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -45,11 +44,11 @@ namespace Tasks.Middlewares
             }
             await _next(context);
         }
-        public Tuple<int,int> ValidateToken(string token)
+        public Tuple<int, int> ValidateToken(string token)
         {
             _logger.LogInformation(token, "token before validation");
             if (token == null)
-                return Tuple.Create(-1,-1);
+                return Tuple.Create(-1, -1);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("ygrcuy3gcryh@$#^%*&^(_+");
@@ -79,7 +78,7 @@ namespace Tasks.Middlewares
                 return Tuple.Create(-1, -1);
             }
         }
-        public string GenerateNewToken(int userId,int PermissionLevelId)
+        public string GenerateNewToken(int userId, int PermissionLevelId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

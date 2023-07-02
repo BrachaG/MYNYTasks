@@ -49,7 +49,7 @@ namespace Service
                     User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                     if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
                         user.lBranches = _branchGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                    string userToken = GenarateToken(user.iUserId,user.iPermissionLevelId);
+                    string userToken = GenarateToken(user.iUserId, user.iPermissionLevelId);
                     user.token = userToken;
                     user.iUserId = 0;
                     return new ObjectResult(user) { StatusCode = 200 };
@@ -63,7 +63,7 @@ namespace Service
             }
 
         }
-       public  string GenarateToken(int userId, int permissionLevelId)
+        public string GenarateToken(int userId, int permissionLevelId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

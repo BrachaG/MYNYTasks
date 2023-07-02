@@ -22,9 +22,10 @@ namespace Service
                     {
                         property.SetValue(entity, null);
                     }
-                    else { 
-                    property.SetValue(entity, value);
-                }
+                    else
+                    {
+                        property.SetValue(entity, value);
+                    }
                 }
             }
             return entity;
