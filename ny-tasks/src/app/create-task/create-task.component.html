@@ -1,0 +1,38 @@
+<p-sidebar [(visible)]="sidebarVisible" [modal]="true" [autoZIndex]=true
+    (onHide)="this.OutputVisible.emit(this.sidebarVisible)">
+
+
+
+    <ng-template pTemplate="content">
+        
+            <form>
+                <p class="titleText">יצירת משימה חדשה</p>
+                <div class="space">
+                <p class="textAbove">קטגוריה</p>
+                <p-dropdown class="inputs" [options]="category"></p-dropdown>
+                <p class="textAbove">נמען (פעיל)</p>
+                <input class="inputs" type="text" pInputText />
+                <p class="textAbove">סטודנט</p>
+                <input class="inputs" type="text" pInputText />
+                <p class="textAbove">נושא</p>
+                <input class="inputs" type="text" pInputText />
+                <p class="textAbove">תיאור</p>
+                <textarea rows="2" cols="22" pInputTextarea [autoResize]="false" class="resize"
+                    maxlength="80"></textarea>
+                <p class="textAbove">יעד</p>
+                <p-dropdown class="inputs custom-dropdown" [options]="category"></p-dropdown>
+                <p class="textAbove">תאריך</p>
+                <input class="inputs" type="date" pInputText />
+            </div>
+            </form>
+      
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button class="save" label="שמירה" (click)="SaveData()"></p-button>
+        <p-button class="send" label="שליחה" (click)="SendData()"></p-button>
+    </ng-template>
+
+
+
+</p-sidebar>
+<!-- <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button> -->

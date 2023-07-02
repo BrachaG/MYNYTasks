@@ -24,6 +24,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';
 import { TargetsComponent } from './targets/targets.component';
 
@@ -36,6 +38,7 @@ import { TargetsComponent } from './targets/targets.component';
     BarButtonsComponent,
     TasksComponent,
     TargetsComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -57,6 +60,7 @@ import { TargetsComponent } from './targets/targets.component';
     ReactiveFormsModule,
     HttpClientModule,
     SidebarModule,
+    InputTextareaModule,
     PaginatorModule
   ],
   providers: [
