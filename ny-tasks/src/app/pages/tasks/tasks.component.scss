@@ -37,12 +37,15 @@ $lightblue-gray: #5F6388;
   width: 80%;
 }
 
-.tableTitle{
+.tableTitle {
+  display: flex;
+  width: 8vw;
   color: #1E2959;
   font-size: 2vmin;
-  font-weight:500;
-   position: relative;
+  font-weight: 500;
+  position: relative;
 }
+
 :host ::ng-deep {
  
 .searchIcon{
@@ -73,14 +76,14 @@ $lightblue-gray: #5F6388;
 .visibleFilter {
   position: absolute;
   border: none;
-  left: 12%;
-  margin-top: 1%;
-  top: 15%;
+  left: 15px;
+  margin-top: 3%;
+  top: 10px;
   background-color: transparent;
   z-index: 1000;
   font-size: 2vmin;
-  padding-bottom: 0%;
 }
+
 
 .thIcon {
   position: relative;
