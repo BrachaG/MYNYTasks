@@ -37,6 +37,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import {PaginatorModule } from 'primeng/paginator';
+import { TargetsComponent } from './targets/targets.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     CreateTaskComponent,
     HeaderComponent,
     SelectBranchComponent
+    TargetsComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserAnimationsModule,

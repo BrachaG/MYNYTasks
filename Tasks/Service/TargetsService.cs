@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
@@ -18,31 +19,39 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<List<Target>> GetTargetsByUserId(int userId, int permissionLevelId)
+        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
         {
             _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
-              { new SqlParameter("id",userId )},
-              { new SqlParameter("PermissionLevelId", permissionLevelId)}
-             };
+            { new SqlParameter("id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)}
+                };
             try
             {
                 DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
                 if (targets.Rows.Count > 0)
                 {
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
-                    return t;
+                    return new ObjectResult(t) { StatusCode = 200 };
                 }
+
             }
             catch (Exception ex)
             {
                 _logger.LogError("GetTargetsByUserId ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
             }
             return null;
         }
 
-        public async Task AddTarget(string comment, int typeTargetId, int[] personId, DateTime? targetDate, int creatorId)
+        public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int permissionLevelId)
         {
+            if (permissionLevelId == (int)PermissionLevelEnum.PermissionLevel.coordinator)
+            {
+                int[] coordinator = { creatorId };
+                personId = coordinator;
+            }
             DataTable personIds = new DataTable();
             personIds.Columns.Add("Id", typeof(int));
 
@@ -57,22 +66,25 @@ namespace Service
             new SqlParameter("typeTargetId", typeTargetId),
             new SqlParameter
             {
-            ParameterName = "Ids",
-            SqlDbType = SqlDbType.Structured,
-            TypeName = "dbo.PersonIds",
-            Value = personIds
+                ParameterName = "Ids",
+                SqlDbType = SqlDbType.Structured,
+                TypeName = "dbo.PersonIds",
+                Value = personIds
             },
-            new SqlParameter("TargetDate", targetDate)
-            ,
+             new SqlParameter("BranchId", BranchId),
+            new SqlParameter("TargetDate", targetDate),
             new SqlParameter("CreatorId", creatorId)};
 
             try
             {
                 await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
+
             }
             catch (Exception ex)
             {
                 _logger.LogError("Failed to insert target", ex);
+                return new ObjectResult("Failed to insert target") { StatusCode = 500 };
             }
         }
     }

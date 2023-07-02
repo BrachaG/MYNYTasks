@@ -10,11 +10,12 @@ namespace Tasks.Controllers
     [ApiController, Authorize]
     public class SurveysController : ControllerBase
     {
-        ISurveysService _SurveysService;
+        ISurveysService _surveysService;
         ILogger<SurveysController> _logger;
-        public SurveysController(ISurveysService SurveysService, ILogger<SurveysController> logger)
+        public SurveysController(ISurveysService surveysService, ILogger<SurveysController> logger)
         {
-            _SurveysService = SurveysService;
+
+            _surveysService = surveysService;
             _logger = logger;
         }
         [HttpGet("Get")]

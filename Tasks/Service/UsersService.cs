@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -13,27 +14,27 @@ namespace Service
 {
     public class UsersService : IUsersService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         IObjectGenerator<User> _userObjectGenerator;
-        IObjectGenerator<CodeTable> _codeTableGenerator;
-        IConfiguration _Configuration;
+        IObjectGenerator<Branch> _branchGenerator;
+        IConfiguration _configuration;
         readonly string Issure;
         readonly string Audience;
         ILogger<UsersService> _logger;
 
-        public UsersService(ISqlDataAccess SqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<CodeTable> codeTableGenerator, ILogger<UsersService> logger, IConfiguration Configuration)
+        public UsersService(ISqlDataAccess sqlDataAccess, IObjectGenerator<User> userObjectGenerator, IObjectGenerator<Branch> branchGenerator, ILogger<UsersService> logger, IConfiguration configuration)
 
         {
             _userObjectGenerator = userObjectGenerator;
-            _codeTableGenerator = codeTableGenerator;
-            _SqlDataAccess = SqlDataAccess;
-            _Configuration = Configuration;
-            Issure = _Configuration["JWTParams:Issure"];
-            Audience = _Configuration["JWTParams:Audience"];
+            _branchGenerator = branchGenerator;
+            _sqlDataAccess = sqlDataAccess;
+            _configuration = configuration;
+            Issure = _configuration["JWTParams:Issure"];
+            Audience = _configuration["JWTParams:Audience"];
             _logger = logger;
 
         }
-        public async Task<User> GetById(string userName, string password)
+        public async Task<ActionResult<User>> GetById(string userName, string password)
         {
             _logger.LogDebug("GetById", userName);
             List<SqlParameter> p = new List<SqlParameter> {
@@ -42,35 +43,34 @@ namespace Service
                 };
             try
             {
-                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("PRG_su_sys_UserLogin_SLCT", p);
+                DataSet ds = await _sqlDataAccess.ExecuteDatasetSP("PRG_su_sys_UserLogin_SLCT", p);
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && int.Parse(ds.Tables[0].Rows[0]["iUserId"].ToString()) > 0)
                 {
                     User user = _userObjectGenerator.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                     if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-                        user.lBranches = _codeTableGenerator.GeneratListFromDataTable(ds.Tables[1]);
-                    string userToken = GenarateToken(user.iUserId, user.iPermissionLevelId);
+                        user.lBranches = _branchGenerator.GeneratListFromDataTable(ds.Tables[1]);
+                    string userToken = GenarateToken(user.iUserId,user.iPermissionLevelId);
                     user.token = userToken;
                     user.iUserId = 0;
-                    return user;
+                    return new ObjectResult(user) { StatusCode = 200 };
                 }
                 else return null;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in UserService, Login, Get, When trying to approach to Database");
-                return null;
+                return new ObjectResult(null) { StatusCode = 500 };
             }
 
         }
-        public string GenarateToken(int UserId, int PermissionLevelId)
+       public  string GenarateToken(int userId, int permissionLevelId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ygrcuy3gcryh@$#^%*&^(_+"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            string IdjsonString = UserId.ToString();
-            string PermissionLevelIdJsonString = PermissionLevelId.ToString();
+            string IdjsonString = userId.ToString();
+            string PermissionLevelIdJsonString = permissionLevelId.ToString();
             var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.NameId, IdjsonString) ,
+            {    new Claim(JwtRegisteredClaimNames.NameId, IdjsonString) ,
              new Claim(JwtRegisteredClaimNames.Sub, PermissionLevelIdJsonString)  };
             var token = new JwtSecurityToken(
                 issuer: Issure,

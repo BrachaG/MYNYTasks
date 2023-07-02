@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
@@ -9,7 +10,7 @@ namespace Service
 {
     public class SurveysService : ISurveysService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         IObjectGenerator<Survey> _surveyObjectGenerator;
         IObjectGenerator<ResultsForSurvey> _resultSurveyObjectGenerator;
         IObjectGenerator<ResultsForSurveyStudent> _resultSurveyStudentObjectGenerator;
@@ -20,9 +21,9 @@ namespace Service
         IConfiguration _configuration;
 
 
-        public SurveysService(ISqlDataAccess SqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator, IObjectGenerator<Options> optionsObjectGenerator, IConfiguration configuration)
+        public SurveysService(ISqlDataAccess sqlDataAccess, IObjectGenerator<Survey> surveyObjectGenerator, ILogger<SurveysService> logger, IObjectGenerator<ResultsForSurvey> resultSurveyObjectGenerator, IObjectGenerator<ResultsForSurveyStudent> resultSurveyStudentObjectGenerator, IObjectGenerator<Question> questionObjectGenerator, IObjectGenerator<Answer> answerObjectGenerator, IObjectGenerator<Options> optionsObjectGenerator, IConfiguration configuration)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _surveyObjectGenerator = surveyObjectGenerator;
             _logger = logger;
             _resultSurveyObjectGenerator = resultSurveyObjectGenerator;
@@ -44,7 +45,7 @@ namespace Service
             };
                 DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", p);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
-                return surveys;
+                return new ObjectResult(surveys) { StatusCode = 200 };
             }
             catch (Exception ex)
             {
@@ -92,7 +93,7 @@ namespace Service
                 _logger.LogError(ex, "in SurveyService, get results for survey, faild when trying to approach to database");
                 var b = ex.Message;
             }
-            return null;
+
         }
 
 
