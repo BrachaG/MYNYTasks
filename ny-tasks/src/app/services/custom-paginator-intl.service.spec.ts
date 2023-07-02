@@ -14,3 +14,4 @@ describe('CustomPaginatorIntlService', () => {
     expect(service).toBeTruthy();
   });
 });
+

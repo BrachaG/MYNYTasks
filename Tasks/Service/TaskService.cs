@@ -47,7 +47,7 @@ namespace Service
                     Target? target = targets.FirstOrDefault(t => t.iTargetId == targetType);
                     if (target != null)
                     {
-                        task.iTargetId = target.iId;
+                        task.iTargetId = target.itypeTargetId;
                     }
                     else
                     {

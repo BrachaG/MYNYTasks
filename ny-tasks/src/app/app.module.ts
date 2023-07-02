@@ -37,7 +37,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import {PaginatorModule } from 'primeng/paginator';
 import { TargetsComponent } from './targets/targets.component';
 
 @NgModule({
@@ -53,7 +52,7 @@ import { TargetsComponent } from './targets/targets.component';
     TextQuestionComponent,
     CreateTaskComponent,
     HeaderComponent,
-    SelectBranchComponent
+    SelectBranchComponent,
     TargetsComponent,
     CreateTaskComponent
   ],

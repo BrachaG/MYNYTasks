@@ -34,7 +34,7 @@ namespace Service
             _configuration = configuration;
         }
 
-        public async Task<List<Survey>> GetByUserId(int permissionId, int? branchId = null)
+        public async Task<ActionResult<List<Survey>>> GetByUserId(int permissionId, int? branchId = null)
         {
             _logger.LogDebug("in Get all Surveys");
             try
@@ -43,7 +43,7 @@ namespace Service
                 new SqlParameter("iPermissionLevelId", permissionId),
                 new SqlParameter("iBranchId", branchId)
             };
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", p);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetSurveys_SLCT", p);
                 List<Survey> surveys = _surveyObjectGenerator.GeneratListFromDataTable(dt);
                 return new ObjectResult(surveys) { StatusCode = 200 };
             }
@@ -54,7 +54,7 @@ namespace Service
             return null;
         }
 
-        public async Task<ResultsForSurvey> Get(int surveyId, int permissionId, int? branchId = null)
+        public async Task<ActionResult<ResultsForSurvey>> Get(int surveyId, int permissionId, int? branchId = null)
         {
             _logger.LogDebug("in Get Results For Survey");
             List<SqlParameter> p = new List<SqlParameter> {
@@ -64,7 +64,7 @@ namespace Service
             };
             try
             {
-                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);
+                DataSet ds = await _sqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);
                 DataTable dtStudent = ds.Tables[0];
                 DataTable dtQuestions = ds.Tables[1];
                 DataTable dtAnswers = ds.Tables[2];
@@ -91,7 +91,7 @@ namespace Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "in SurveyService, get results for survey, faild when trying to approach to database");
-                var b = ex.Message;
+                return new StatusCodeResult(400);
             }
 
         }

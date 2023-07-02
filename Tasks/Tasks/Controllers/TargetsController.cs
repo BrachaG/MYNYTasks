@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -7,7 +8,7 @@ using Service;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class TargetsController : ControllerBase
     {
         ILogger<TargetsController> _logger;
@@ -21,7 +22,7 @@ namespace Tasks.Controllers
             _targetsService = targetsService;
             creator = (int)HttpContext.GetRouteData().Values["UserId"];
             permissionLevelId =  HttpContext.Items.TryGetValue("PermissionLevelId", out var permissionLevelIdValue) && permissionLevelIdValue is int permissionLevelIdInt ? permissionLevelIdInt : -1;
-            userId = HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
+            userId =  HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;
         }
         [HttpGet("Get")]
         public async Task<ActionResult<List<Target>>> GetTargetsByUserId()
