@@ -9,17 +9,22 @@ import { filter } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class SideBarComponent {
- @Input()
- sidebarVisible:boolean=false;
- @Output()
- OutputVisible=new EventEmitter<boolean>();
+  @Input()
+  sidebarVisible: boolean = false;
+  @Output()
+  OutputVisible = new EventEmitter<boolean>();
   currentRoute: string = '';
+  visibleTypes: boolean = false;
+  typesTarget =
+    [['שמירת שבת', '/selfbored', 'red'],
+    ['תפילין', '/selfbored', 'yellow'],
+    ['צניעות', '/selfbored', 'blue'],
+    ['תפילה', '/selfbored', 'pink']];
   buttons =
-
     [['לוח אישי', '/selfbored', 'pi pi-table'],
-    ['יעדים', '/targets', 'pi pi-send'],
     ['משימות', '/tasks', 'pi pi-pencil'],
-    ['משובים', '/surveys', 'pi pi-question-circle']];
+    ['משובים', '/surveys', 'pi pi-question-circle'],
+    ['סוג יעד', '/targets', 'pi pi-send']];
 
   constructor(private router: Router, private route: ActivatedRoute) {
 
@@ -32,16 +37,21 @@ export class SideBarComponent {
 
       });
   }
-  
+
   ngOnInit() {
-      this.currentRoute='/surveys';
+    this.currentRoute = '/surveys';
   }
 
   navigateTo(route: string) {
     this.router.navigateByUrl(route);
   }
-  outPutVisible(){
-    this.sidebarVisible=true;
+
+  visibleTypeButtons(){
+  this.visibleTypes = !this.visibleTypes;
+}
+
+  outPutVisible() {
+    this.sidebarVisible = true;
     this.OutputVisible.emit(this.sidebarVisible);
   }
 }
