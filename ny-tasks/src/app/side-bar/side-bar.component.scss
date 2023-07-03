@@ -34,14 +34,22 @@
 .divTypeButtons{
     position: relative;
 }
-// .inner-button{
-//     position: absolute;
-// }
+.inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
+    // position: absolute;
+    display: flex;
+    background:none;
+    border: none;
+    box-shadow: none;
+    font-size: 2vmin;
+    color:#2F81EF;
+    padding-right: 75%;
+}
 
 .red {
     .pi-stop:before {
         background-color: red;
         font-size: 1.4vmin;
+        color:red;
     }
 }
 
@@ -49,6 +57,7 @@
     .pi-stop:before {
         background-color: yellow;
         font-size: 1.4vmin;
+        color: yellow;
     }
 }
 
@@ -56,6 +65,7 @@
     .pi-stop:before {
         background-color: blue;
         font-size: 1.4vmin;
+        color: blue;
     }
 }
 
@@ -63,6 +73,7 @@
     .pi-stop:before {
         background-color: pink;
         font-size: 1.4vmin;
+        color:pink ;
     }
 }
 
@@ -124,6 +135,10 @@
             right: 0%;
         }
     }
+    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
+        padding-right: 65%;
+    }
+    
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
@@ -138,4 +153,8 @@
             right: 0%;
         }
     }
+    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
+        padding-right: 65%;
+    }
+    
 }

@@ -5,15 +5,17 @@
       </ng-template>
       <ng-template pTemplate="content">
             <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
-                  (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"></app-bar-buttons>
-            <ng-container class="innerButtons" *ngIf="visibleTypes">
-                  <app-bar-buttons class="typeButton" *ngFor="let type of typesTarget" [label]="type[0]"
-                        [icon]="'pi pi-stop'" [ngClass]="type[2]" (clicked)="navigateTo(type[1])"
-                        [isActive]="type[1] === currentRoute"></app-bar-buttons>
-            </ng-container>
+                  (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute">
+            </app-bar-buttons>
             <div class="divTypeButtons">
                   <button pButton class="inner-button pi pi-angle-down" (click)="visibleTypeButtons()"></button>
             </div>
+            <ng-container class="innerButtons" *ngIf="visibleTypes">
+                  <app-bar-buttons class="typeButton" *ngFor="let type of typesTarget" [label]="type[0]"
+                        [icon]="'pi pi-stop'" [ngClass]="type[2]" (clicked)="navigateTo(type[1])"
+                        [isActive]="type[1] === currentRoute">
+                  </app-bar-buttons>
+            </ng-container>
       </ng-template>
       <ng-template pTemplate="footer">
             <p-button class="addTask" (click)="outPutVisible()">
