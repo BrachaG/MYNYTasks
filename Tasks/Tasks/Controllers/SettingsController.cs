@@ -1,4 +1,6 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,22 +10,23 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]//, Authorize]
+    [ApiController, Authorize]
     public class SettingsController : ControllerBase
     {
         ISettingsService _settingsService;
         ILogger<SettingsController> _logger;
-        readonly string permissionId;
-        readonly string userId;
+        /*public string permissionId;
+        public string userId;*/
         public SettingsController(ISettingsService settingsService, ILogger<SettingsController> logger)
         {
             _logger = logger;
             _settingsService = settingsService;
-            string Sub = JwtRegisteredClaimNames.Sub;
+            /*string Sub = JwtRegisteredClaimNames.Sub;
             permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             string Name = JwtRegisteredClaimNames.Name;
-            userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
+            userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;*/
         }
+
         [HttpGet("GetTasksType")]
         public async Task<ActionResult<List<TaskType>>> GetTasksType()
         {
@@ -33,6 +36,8 @@ namespace Tasks.Controllers
         [HttpPost("AddTaskType")]
         public async Task AddTaskType(string name)
         {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            var permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             _logger.LogDebug("Add Task Type");
             await _settingsService.AddTaskType(name, permissionId);
         }
@@ -45,12 +50,18 @@ namespace Tasks.Controllers
         [HttpPost("AddTargetType")]
         public async Task<IActionResult> AddTargetType(string name)
         {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            var permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            string Name = JwtRegisteredClaimNames.NameId;
+            var userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
             _logger.LogDebug("Add Target Type");
             return await _settingsService.AddTargetType(name, permissionId, userId);
         }
         [HttpPost("CreateBranchGroup")]
         public async Task<IActionResult> CreateBranchGroup(string name, int[] branches)
         {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            var permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             _logger.LogDebug("Create Branch Group");
             return await _settingsService.CreateBranchGroup(name, permissionId, branches);
         }
@@ -60,8 +71,8 @@ namespace Tasks.Controllers
             _logger.LogDebug("Create Branch Group");
             return await _settingsService.GetBranchGroup();
         }
-        [HttpGet("GetStatauses")]
-        public async Task<ActionResult<List<TargetStatus>>> GetStatauses()
+        [HttpGet("GetStatuses")]
+        public async Task<ActionResult<List<TargetStatus>>> GetStatuses()
         {
             _logger.LogDebug("get Target Statuses");
             return await _settingsService.GetStatuses();
@@ -69,6 +80,10 @@ namespace Tasks.Controllers
         [HttpPost("AddStatus")]
         public async Task<IActionResult> AddStatus(string name)
         {
+            string Sub = JwtRegisteredClaimNames.Sub;
+            var permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            string Name = JwtRegisteredClaimNames.NameId;
+            var userId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
             _logger.LogDebug("Add Status");
             return await _settingsService.AddStatus(name, permissionId, userId);
         }

@@ -139,7 +139,7 @@ namespace Service
                  };
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTaskModel_GET", sp);
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
                 List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
                 return tasks;
             }
@@ -160,7 +160,6 @@ namespace Service
             List<SqlParameter> sp = new List<SqlParameter>
                  {
                     new SqlParameter("iTargetId", iTargetId),
-                    new SqlParameter("iPermissionLevelId",permissionLevel)
                  };
             try
             {
@@ -174,7 +173,7 @@ namespace Service
                 return new StatusCodeResult(400);
             }
         }
-        public async Task<IActionResult> Update(int permissionLevel, int? status = null, string? comments = null)
+        public async Task<IActionResult> Update(int permissionLevel, int taskId, int? status = null, string? comments = null)
         {
             if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
             {
@@ -183,7 +182,8 @@ namespace Service
             SqlParameter[] p = new SqlParameter[]
               {
                     new SqlParameter("iPermissionLevelId",permissionLevel),
-                    new SqlParameter("iStutusId", status),
+                    new SqlParameter("iTaskId", taskId),
+                    new SqlParameter("iStatusId", status),
                     new SqlParameter("nvComments",comments)
               };
             try
@@ -191,11 +191,14 @@ namespace Service
                 await _SqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
                 return new StatusCodeResult(200);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError("failed to update task", ex);
                 return new StatusCodeResult(400);
+            }
+            return new StatusCodeResult(400);
             }
 
         }
     }
-}
+

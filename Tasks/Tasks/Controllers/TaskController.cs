@@ -55,12 +55,12 @@ namespace Tasks.Controllers
             return await _taskService.GetByTargetId(iTargetId, int.Parse(permissionLevelId));
         }
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(int? status = null, string? comments = null)
+        public async Task<IActionResult> Update(int taskId, int? status = null, string? comments = null)
         {
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             _logger.LogDebug("Update Task");
-            return await _taskService.Update(int.Parse(permissionLevelId), status, comments);
+            return await _taskService.Update(int.Parse(permissionLevelId),taskId, status, comments);
         }
 
     }

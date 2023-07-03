@@ -23,7 +23,7 @@ namespace Service
         {
             _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("id",userId )},
+            { new SqlParameter("Id",userId )},
             { new SqlParameter("PermissionLevelId", permissionLevelId)}
                 };
             try

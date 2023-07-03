@@ -53,7 +53,7 @@ namespace Service
             _logger.LogDebug("in Add Target Type");
             SqlParameter[] sp = new SqlParameter[]
                  {
-                    new SqlParameter("nvTypeName", name),
+                    new SqlParameter("nvTargetName", name),
                     new SqlParameter("iUserId",userId),
                     new SqlParameter("iPermissionLevel",permissionLevel )
                  };
@@ -111,7 +111,7 @@ namespace Service
             };
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("su_CreateBranchesGroup", parameters);
+                await _SqlDataAccess.ExecuteDatatableSP("su_CreateBranchesGroup_INS", parameters);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)
@@ -150,7 +150,7 @@ namespace Service
             _logger.LogDebug("in Get Targets Status");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTargetType", null);
+                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTagetStatus", null);
                 List<TargetStatus> targetStatus = _targetStatusObjectGenerator.GeneratListFromDataTable(dt);
                 return targetStatus;
             }
