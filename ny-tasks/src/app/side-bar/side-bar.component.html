@@ -8,7 +8,8 @@
                   (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute">
             </app-bar-buttons>
             <div class="divTypeButtons">
-                  <button pButton class="inner-button pi pi-angle-down" (click)="visibleTypeButtons()"></button>
+                  <button pButton class="inner-button" [ngClass]="visibleTypes ? 'pi pi-angle-up' : 'pi pi-angle-down'"
+                  (click)="visibleTypeButtons()"></button>
             </div>
             <ng-container class="innerButtons" *ngIf="visibleTypes">
                   <app-bar-buttons class="typeButton" *ngFor="let type of typesTarget" [label]="type[0]"
