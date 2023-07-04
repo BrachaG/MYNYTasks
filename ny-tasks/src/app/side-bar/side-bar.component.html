@@ -11,7 +11,7 @@
                   <button pButton class="inner-button" [ngClass]="visibleTypes ? 'pi pi-angle-right' : 'pi pi-angle-down'"
                         (click)="visibleTypeButtons()"></button>
             </div> -->
-            <ng-container class="innerButtons" *ngIf="(visibleTypes)">
+            <ng-container class="innerButtons" *ngIf="(visibleTypes)&&currentRoute=='/targets'">
                   <app-target-buttons class="typeButton" *ngFor="let type of typesTarget" [label]="type[0]"
                         [color]="type[2]" (clicked)="navigateTo(type[1])">
                   </app-target-buttons>

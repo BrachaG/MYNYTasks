@@ -19,7 +19,8 @@ export class SideBarComponent {
     [['שמירת שבת', '/tasks', 'red'],
     ['תפילין', '/tasks', 'yellow'],
     ['צניעות', '/tasks', 'blue'],
-    ['תפילה', '/tasks', 'pink']];
+    ['תפילה', '/tasks', 'pink'],
+    ['פרוייקט חדש', '/tasks', 'white']];
   buttons =
     [['לוח אישי', '/selfbored', 'pi pi-table'],
     ['משימות', '/tasks', 'pi pi-pencil'],
@@ -43,12 +44,11 @@ export class SideBarComponent {
   }
 
   navigateTo(route: string) {
+    //updat also the son
+    // if(route=='/targets')
+    // this.visibleTypes=!this.visibleTypes
     this.router.navigateByUrl(route);
   }
-
-//   visibleTypeButtons(){
-//   this.visibleTypes = !this.visibleTypes;
-// }
 
   outPutVisible() {
     this.sidebarVisible = true;
