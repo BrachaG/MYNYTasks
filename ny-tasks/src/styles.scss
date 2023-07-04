@@ -25,6 +25,13 @@ $lightblue-gray:#5F6388;
     overflow-y: scroll;
     
 }
+.cover {
+  position: relative;
+  top: 13%;
+  right: 10%;
+  width: 80%;
+  height: 80%;
+}
 .table-style{
   width: 100%;
   background-color: #FFFFFF;
@@ -104,6 +111,7 @@ $lightblue-gray:#5F6388;
   color:$blue3 !important;
   font-size: 17px;
 }
+
 .table-style tr th:first-child { border-bottom-right-radius: 10px ;}
 .table-style tr th:last-child { border-bottom-left-radius: 10px ; }
 
@@ -150,4 +158,94 @@ $lightblue-gray:#5F6388;
 
     font-size: 2.2vmin; 
   }
+}
+.p-accordion {
+  padding: 1px;
+  position: relative;
+  top: 1%;
+  
+}
+
+.acc-line {
+  @extend .h4-regular;
+  color: $lightblue-gray;
+  border: unset;
+  text-align: right;
+  filter: drop-shadow(0 12px 4px rgba(0, 0, 0, 0.08));
+}
+
+.p-accordion p-accordiontab .p-accordion-header .p-accordion-header-link {
+  border-radius: 10px;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background-color: #FFFFFF;
+  border: none;
+  color: $blue3;
+  margin-top: 6px;
+}
+
+.p-accordion p-accordiontab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+.p-accordion p-accordiontab:first-child .p-accordion-header .p-accordion-header-link {
+  border-radius: 10px;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: #ffffff;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
+  background-color: #ffffff;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+  box-shadow: none
+}
+
+.p-accordion .p-accordion-content {
+  border-color: #FFFFFF;
+  filter: drop-shadow(0 12px 4px rgba(0, 0, 0, 0.08));
+
+}
+
+.p-accordion p-accordiontab .p-accordion-content {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.p-accordion p-accordiontab:last-child .p-accordion-content {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.acc-line .pi-angle-down:before {
+  position: absolute;
+  right: 95%;
+  top: 30%;
+}
+
+.acc-line .pi-angle-up:before {
+  color: $blue3;
+  position: absolute;
+  right: 95%;
+  top: 30%;
+}
+
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  color: #2F81EF;
+  margin-top: 6px;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
+  color: #2F81EF;
+}
+.table-style .p-datatable .p-datatable-tbody > tr > td.task-name{
+  color: $blue3;
+  font-weight: bold;
+  
 }

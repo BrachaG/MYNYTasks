@@ -1,0 +1,97 @@
+$blue3: #1E2959;
+.cover {
+    position: relative;
+    top: 5%;
+    right: 5%;
+    width: 90%;
+    height: 90%;
+  }
+.pi.pi-angle-up.up {
+    position: relative;
+    right: 10%;
+    top: -10%;
+    font-size: 0.6rem;
+}
+
+.pi.pi-angle-down.down {
+    position: relative;
+    left: 1.5%;
+    top: 10%;
+    font-size: 0.6rem;
+}
+
+.pi.pi-angle-up.up-close {
+    position: relative;
+    right: 10%;
+    top: 10%;
+    font-size: 0.5rem;
+}
+
+.pi.pi-angle-down.down-close {
+    position: relative;
+    left: 1.5%;
+    top: -10%;
+    font-size: 0.5rem;
+}
+
+.status {
+    background-color: #00B4E6;
+    color: white;
+    border-radius: 8px;
+    width: Fixed (54px);
+    height: Hug (19px); padding: 1px 8px 1px 8px ; gap: 10px
+}
+
+.btn-new-target{
+    background-color:transparent;
+    border-radius: 8px;
+    border-color: $blue3;
+    border-style:solid ;
+    padding:  2px 8px 2px 8px ;
+}
+
+.scroll {
+    height: 300px;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #16163A;
+    border-radius: 6.55278px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7.64492px 4.36852px;
+    gap: 437px;
+    isolation: isolate;
+    position: absolute;
+    width: 7px;
+    height: 475px;
+    left: -31.23px;
+    top: -54.41px;
+    background-color: #E5E5E5;
+    border-radius: 9.28311px;
+}
+:host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+    background-color: #2F81EF33;
+    box-shadow: (0 4px 4px rgba(0, 0, 0, 0.08));
+
+}
+:host ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+    background-color: #2F81EF33;
+    box-shadow: (0 4px 4px rgba(0, 0, 0, 0.08));
+    color: #16163A; 
+}
+

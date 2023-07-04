@@ -28,7 +28,8 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';
 import { TargetsComponent } from './targets/targets.component';
-
+import { AccordionModule } from 'primeng/accordion';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,9 @@ import { TargetsComponent } from './targets/targets.component';
     HttpClientModule,
     SidebarModule,
     InputTextareaModule,
-    PaginatorModule
+    PaginatorModule,
+    AccordionModule,
+    ScrollingModule
   ],
   providers: [
    {

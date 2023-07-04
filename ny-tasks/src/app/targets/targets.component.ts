@@ -9,6 +9,9 @@ import { Targets } from 'src/models/Targets.model';
 })
 export class TargetsComponent {
   targets: Targets[]=[];
+  collapsed:boolean = false;
+  collapseIcon:string = 'pi pi-angle-up';
+  expandIcon:string = 'pi pi-angle-down';
   constructor(private srv: TargetsService) { }
 
   ngOnInit() {
