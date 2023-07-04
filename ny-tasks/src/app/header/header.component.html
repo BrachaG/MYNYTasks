@@ -3,9 +3,9 @@
     <button *ngIf="userPermission==='2'" (click)="changeBranch()">change branch</button>
     <button *ngIf="userPermission!='2'">settings</button>
     <button (click)="logOut()">Exit</button>
-    <!-- <label class="switch">
-        <input type="checkbox" (change)="setShowImage()">
-        <span class="slider round"></span>
-    </label>
-    <label class="h4-regular">תמונות משתמשים</label> -->
+    <div *ngIf="change">
+    <select [(ngModel)]="selectedBranch" (change)="onBranchSelected()">
+        <option *ngFor="let b of lBranches" [ngValue]="b">{{b.nvBranchName}}</option>
+    </select>
+    </div>
 </div>
