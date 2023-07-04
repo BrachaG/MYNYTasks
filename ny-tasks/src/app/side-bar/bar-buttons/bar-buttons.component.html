@@ -2,5 +2,8 @@
   <button (click)="handleClick()" [ngClass]="{ 'basis':true, 'active' :isActive , 'notactive':!isActive }">
     <div class="{{icon}} icon"></div>
     <span class="iconText">{{ label }}</span>
+    <div *ngIf="isTarget" class="divTypeButtons">
+      <button  (click)="visibleTypeButtons()" pButton class="inner-button" [ngClass]="'pi pi-angle-down'"></button>
+    </div>
   </button>
 </div>

@@ -28,6 +28,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';
 import { TargetsComponent } from './targets/targets.component';
+import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TargetsComponent } from './targets/targets.component';
     BarButtonsComponent,
     TasksComponent,
     TargetsComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TargetButtonsComponent
   ],
   imports: [
     BrowserAnimationsModule,

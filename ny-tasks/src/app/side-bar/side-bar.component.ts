@@ -16,10 +16,10 @@ export class SideBarComponent {
   currentRoute: string = '';
   visibleTypes: boolean = false;
   typesTarget =
-    [['שמירת שבת', '/selfbored', 'red'],
-    ['תפילין', '/selfbored', 'yellow'],
-    ['צניעות', '/selfbored', 'blue'],
-    ['תפילה', '/selfbored', 'pink']];
+    [['שמירת שבת', '/tasks', 'red'],
+    ['תפילין', '/tasks', 'yellow'],
+    ['צניעות', '/tasks', 'blue'],
+    ['תפילה', '/tasks', 'pink']];
   buttons =
     [['לוח אישי', '/selfbored', 'pi pi-table'],
     ['משימות', '/tasks', 'pi pi-pencil'],
@@ -46,12 +46,15 @@ export class SideBarComponent {
     this.router.navigateByUrl(route);
   }
 
-  visibleTypeButtons(){
-  this.visibleTypes = !this.visibleTypes;
-}
+//   visibleTypeButtons(){
+//   this.visibleTypes = !this.visibleTypes;
+// }
 
   outPutVisible() {
     this.sidebarVisible = true;
     this.OutputVisible.emit(this.sidebarVisible);
+  }
+  visibleType(data :boolean){
+    this.visibleTypes=data;
   }
 }

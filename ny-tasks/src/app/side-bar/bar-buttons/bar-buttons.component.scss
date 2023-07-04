@@ -34,6 +34,14 @@
     padding-top: 5%;
     padding-bottom: 5%;
 }
+.inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
+    background:none;
+    border: none;
+    box-shadow: none;
+    font-size: 2vmin;
+    padding-right: 75%;
+    padding-top:0px ;
+}
 
 @media screen and (max-width: 992px) {
     .basis {
