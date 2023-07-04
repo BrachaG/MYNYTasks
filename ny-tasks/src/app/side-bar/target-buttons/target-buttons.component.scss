@@ -27,53 +27,35 @@
     padding-top: 5%;
     padding-bottom: 5%;
 }
-
-.red {
+.typeTargetButton {
     .pi-stop:before {
-        background-color: red;
+        background-color: var(--button-color);
         font-size: 1.4vmin;
-        color: red;
+        color: var(--button-color);
     }
+}
+.red {
+    --button-color: red;
 }
 
 .orange {
-    .pi-stop:before {
-        background-color: orange;
-        font-size: 1.4vmin;
-        color: orange;
-    }
+    --button-color: orange;
 }
 
 .yellow {
-    .pi-stop:before {
-        background-color: yellow;
-        font-size: 1.4vmin;
-        color: yellow;
-    }
+    --button-color: yellow;
 }
 
 .blue {
-    .pi-stop:before {
-        background-color: blue;
-        font-size: 1.4vmin;
-        color: blue;
-    }
+    --button-color: blue;
 }
 
 .aqua {
-    .pi-stop:before {
-        background-color: aqua;
-        font-size: 1.4vmin;
-        color: aqua;
-    }
+    --button-color: aqua;
 }
 
 .pink {
-    .pi-stop:before {
-        background-color: pink;
-        font-size: 1.4vmin;
-        color: pink;
-    }
+    --button-color: pink;
 }
 
 .white {
