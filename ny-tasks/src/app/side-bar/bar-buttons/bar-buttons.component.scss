@@ -21,7 +21,11 @@
     border-color: #2F81EF;
     height: 20%;
     position: relative;
-    background-color: #1F1F42
+    background-color: #1F1F42;
+    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
+color: #2F81EF;
+    }
+    
 }
 
 .notactive {
@@ -39,9 +43,10 @@
     border: none;
     box-shadow: none;
     font-size: 2vmin;
-    padding-right: 75%;
+    right: 4vw;
     padding-top:0px ;
 }
+
 
 @media screen and (max-width: 992px) {
     .basis {
