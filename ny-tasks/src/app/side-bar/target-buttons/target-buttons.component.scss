@@ -16,7 +16,8 @@
     box-sizing: border-box;
     color: white;
 }
-.TypeText{
+
+.TypeText {
     font-size: 1.8vmin;
 }
 
@@ -26,11 +27,20 @@
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
 .red {
     .pi-stop:before {
         background-color: red;
         font-size: 1.4vmin;
         color: red;
+    }
+}
+
+.orange {
+    .pi-stop:before {
+        background-color: orange;
+        font-size: 1.4vmin;
+        color: orange;
     }
 }
 
@@ -50,6 +60,14 @@
     }
 }
 
+.aqua {
+    .pi-stop:before {
+        background-color: aqua;
+        font-size: 1.4vmin;
+        color: aqua;
+    }
+}
+
 .pink {
     .pi-stop:before {
         background-color: pink;
@@ -57,22 +75,56 @@
         color: pink;
     }
 }
-.white{
-    content: "+";
+
+.white {
+    .pi-stop {
+        position: relative;
+        font-size: 1.4vmin;
+        text-align: center;
+
+        &::after {
+            content: "+";
+            position: absolute;
+            right: 0.15vw;
+            top: 0.55vw;
+        }
+    }
 }
+
 @media screen and (max-width: 992px) {
-  
+
     .icon {
         top: 10%;
         font-size: 3vmin;
         margin-right: 10%;
-    }  
-    .TypeText{
-        font-size: 1.2vmin;  
+    }
+
+    .TypeText {
+        font-size: 1.2vmin;
+    }
+
+    .white {
+        .pi-stop {
+            &::after {
+                right: 0.28vw;
+                top: 0.53vw;
+                font-size: 1.2vmin;
+            }
+        }
     }
 }
+
 @media screen and (min-width: 993px) and (max-width:1200px) {
-    .TypeText{
-        font-size: 1.5vmin;  
-    }  
+    .TypeText {
+        font-size: 1.5vmin;
+    }
+
+    .white {
+        .pi-stop {
+            &::after {
+                right: 0.2vw;
+                top: 0.52vw;
+            }
+        }
+    }
 }

@@ -22,10 +22,12 @@
     height: 20%;
     position: relative;
     background-color: #1F1F42;
-    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
-color: #2F81EF;
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        color: #2F81EF;
     }
-    
 }
 
 .notactive {
@@ -38,15 +40,17 @@ color: #2F81EF;
     padding-top: 5%;
     padding-bottom: 5%;
 }
-.inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
-    background:none;
+
+.inner-button,
+.inner-button:enabled:hover,
+.inner-button:enabled:focus {
+    background: none;
     border: none;
     box-shadow: none;
     font-size: 2vmin;
-    padding-right:3.3vw;
-    padding-top:0px ;
+    padding-right: 3.3vw;
+    padding-top: 0px;
 }
-
 
 @media screen and (max-width: 992px) {
     .basis {
@@ -65,8 +69,11 @@ color: #2F81EF;
     .iconText {
         display: none;
     }
-    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
-        padding-right:0.3vw;
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 0.3vw;
     }
 
 }
@@ -87,7 +94,10 @@ color: #2F81EF;
     .iconText {
         display: none;
     }
-    .inner-button,.inner-button:enabled:hover,.inner-button:enabled:focus{
-        padding-right:2vw;
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 2vw;
     }
 }
