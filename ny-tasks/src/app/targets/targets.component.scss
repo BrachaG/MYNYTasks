@@ -49,7 +49,17 @@ $blue3: #1E2959;
     border-style:solid ;
     padding:  2px 8px 2px 8px ;
 }
-
+.btn-new-task{
+    background-color:transparent;
+    border-radius: 8px;
+    border-color: transparent;
+    border-style:solid ;
+    padding:  2px 8px 2px 8px ;
+    width: 100%;
+    background-color: #eeeeee;
+    height: 50px;
+    text-align: right;
+}
 .scroll {
     height: 300px;
 }
@@ -94,4 +104,17 @@ $blue3: #1E2959;
     box-shadow: (0 4px 4px rgba(0, 0, 0, 0.08));
     color: #16163A; 
 }
+:host ::ng-deep .table-style .p-datatable .p-datatable-thead > tr > th{
+    border: none;
+    background-color: #eeeeee;
+    color: rgb(162, 162, 162);
+}
+.table-style{
+    filter: none;
+}
+.table-style tr th:first-child { border-radius:0 }
+.table-style tr th:last-child {border-radius: 0; }
 
+.table-style tr td:first-child { border-color: #c8c8c8;border-width: 1px;border-style: solid; border-left: none;} 
+.table-style tr td:last-child {border-color: #c8c8c8;border-width: 1px;border-style: solid; border-right: none; }
+.table-style tr td {border-color: #c8c8c8; border-width: 1px;border-style: solid;border-left: none; border-right: none;}

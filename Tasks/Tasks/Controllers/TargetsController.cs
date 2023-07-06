@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 namespace Tasks.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,Authorize]
     public class TargetsController : ControllerBase
     {
         ILogger<TargetsController> _logger;
