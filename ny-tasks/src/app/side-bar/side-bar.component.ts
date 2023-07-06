@@ -14,21 +14,22 @@ export class SideBarComponent {
   @Output()
   OutputVisible = new EventEmitter<boolean>();
   currentRoute: string = '';
+  @Input()
   visibleTypes: boolean = false;
   typesTarget =
-    [['שמירת שבת', '/selfbored', 'red'],
-    ['מסע אלול', '/selfbored', 'orange'],
-    ['טהרת המשפחה', '/selfbored', 'yellow'],
-    ['תפילין', '/selfbored', 'aqua'],
-    ['צניעות', '/selfbored', 'blue'],
-    ['תפילה', '/selfbored', 'pink'],
-    ['פרוייקט חדש', '/selfbored', 'white']];
+    [['שמירת שבת', '/selfbored'],
+    ['מסע אלול', '/selfbored'],
+    ['טהרת המשפחה', '/selfbored'],
+    ['תפילין', '/selfbored'],
+    ['צניעות', '/selfbored'],
+    ['תפילה', '/selfbored'],
+    ['פרוייקט חדש', '/selfbored']];
   buttons =
     [['לוח אישי', '/selfbored', 'pi pi-table'],
     ['משימות', '/tasks', 'pi pi-pencil'],
     ['משובים', '/surveys', 'pi pi-question-circle'],
     ['סוג יעד', '/targets', 'pi pi-send']];
-
+  colors = ['red', 'orange', 'yellow', 'aqua', 'blue', 'pink'];
   constructor(private router: Router, private route: ActivatedRoute) {
 
     router.events.pipe(
@@ -46,16 +47,16 @@ export class SideBarComponent {
   }
 
   navigateTo(route: string) {
-    if (route != '/targets')
-      this.visibleTypes = false;
     this.router.navigateByUrl(route);
+    if (route == '/selfbored' || route == '/tasks' || route == '/surveys')
+      this.visibleTypes = false;
+    else
+      if (route == '/targets')
+        this.visibleTypes = !this.visibleTypes;
   }
 
   outPutVisible() {
     this.sidebarVisible = true;
     this.OutputVisible.emit(this.sidebarVisible);
-  }
-  visibleType(data: boolean) {
-    this.visibleTypes = data;
   }
 }

@@ -13,16 +13,9 @@ export class BarButtonsComponent {
   @Input() isActive = false;
   @Input() icon = '';
   @Input() isTarget = false
-  @Output() visibleTypesOutput = new EventEmitter<boolean>();
   @Input() visibleTypes: boolean = false;
 
   handleClick() {
     this.clicked.emit();
   }
-
-  visibleTypeButtons() {
-    this.visibleTypes = !this.visibleTypes
-    this.visibleTypesOutput.emit(this.visibleTypes);
-  }
-
 }

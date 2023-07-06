@@ -4,14 +4,14 @@
             <img class="logo" src="assets/logoVector.png" alt="Image description">
       </ng-template>
       <ng-template pTemplate="content">
-            <app-bar-buttons (visibleTypesOutput)="visibleType($event)" *ngFor="let button of buttons"
-                  [label]="button[0]" [icon]="button[2]" (clicked)="navigateTo(button[1])"
-                  [isActive]="button[1] === currentRoute" [isTarget]="button[1]=='/targets'"
-                  [visibleTypes]="visibleTypes">
+            <app-bar-buttons *ngFor="let button of buttons" [label]="button[0]" [icon]="button[2]"
+                  (clicked)="navigateTo(button[1])" [isActive]="button[1] === currentRoute"
+                  [isTarget]="button[1]=='/targets'" [visibleTypes]="visibleTypes">
             </app-bar-buttons>
-            <ng-container class="innerButtons" *ngIf="(visibleTypes)">
-                  <app-target-buttons class="typeButton" *ngFor="let type of typesTarget" [label]="type[0]"
-                        [color]="type[2]" (clicked)="navigateTo(type[1])">
+            <ng-container class="innerButtons" *ngIf="visibleTypes">
+                  <app-target-buttons class="typeButton" *ngFor="let type of typesTarget; let i = index"
+                        [label]="type[0]" [color]="i == typesTarget.length-1 ? 'white' : colors[i % 6]"
+                        (clicked)="navigateTo(type[1])">
                   </app-target-buttons>
             </ng-container>
       </ng-template>
