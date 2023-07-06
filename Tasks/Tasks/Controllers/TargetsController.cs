@@ -16,9 +16,6 @@ namespace Tasks.Controllers
         {
             _logger = logger;
             _targetsService = targetsService;
-           
-          
-          
         }
         [HttpGet("Get")]
         public async Task<ActionResult<List<Target>>> GetTargetsByUserId()
