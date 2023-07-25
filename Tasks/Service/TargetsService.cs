@@ -9,13 +9,13 @@ namespace Service
 {
     public class TargetsService : ITargetsService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         ILogger<TargetsService> _logger;
         IObjectGenerator<Target> _targetObjectGenerator;
 
-        public TargetsService(ISqlDataAccess SqlDataAccess, ILogger<TargetsService> logger, IObjectGenerator<Target> userObjectGenerator)
+        public TargetsService(ISqlDataAccess sqlDataAccess, ILogger<TargetsService> logger, IObjectGenerator<Target> userObjectGenerator)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
@@ -28,7 +28,7 @@ namespace Service
                 };
             try
             {
-                DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
                 if (targets.Rows.Count > 0)
                 {
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
@@ -77,7 +77,7 @@ namespace Service
 
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                await _sqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
                 return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
 
             }

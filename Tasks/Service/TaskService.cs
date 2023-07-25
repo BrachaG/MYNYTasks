@@ -4,24 +4,19 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using static Service.PermissionLevelEnum;
 
 namespace Service
 {
-    public enum Permission
-    {
-        Manager = 1,
-        Coordinator = 2,
-        SystemAdministrator = 4
-    }
     public class TaskService : ITaskService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         ILogger<TaskService> _logger;
         IObjectGenerator<TaskModel> _taskObjectGenerator;
         IObjectGenerator<Target> _targetObjectGenerator;
-        public TaskService(ISqlDataAccess SqlDataAccess, ILogger<TaskService> logger, IObjectGenerator<TaskModel> taskObjectGenerator, IObjectGenerator<Target> targetObjectGenerator)
+        public TaskService(ISqlDataAccess sqlDataAccess, ILogger<TaskService> logger, IObjectGenerator<TaskModel> taskObjectGenerator, IObjectGenerator<Target> targetObjectGenerator)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _logger = logger;
             _taskObjectGenerator = taskObjectGenerator;
             _targetObjectGenerator = targetObjectGenerator;
@@ -29,7 +24,7 @@ namespace Service
         public async Task<IActionResult> Add(TaskModel task, int permissionLevel, int targetType, string iCoordinatorId, string iUserId)
         {
             _logger.LogDebug("Add", task);
-            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
+            if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
             {
                 return new StatusCodeResult(403);
             }
@@ -42,12 +37,12 @@ namespace Service
                  };
                 try
                 {
-                    DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("Get_Targets", sp);
+                    DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("Get_Targets", sp);
                     List<Target> targets = _targetObjectGenerator.GeneratListFromDataTable(dt);
                     Target? target = targets.FirstOrDefault(t => t.iTargetId == targetType);
                     if (target != null)
                     {
-                        task.iTargetId = target.itypeTargetId;
+                        task.iTargetId = target.iTypeTargetId;
                     }
                     else
                     {
@@ -69,7 +64,7 @@ namespace Service
                          };
                         try
                         {
-                            await _SqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
+                            await _sqlDataAccess.ExecuteDatatableSP("Insert_Target", parameters);
                         }
                         catch (Exception ex)
                         {
@@ -97,34 +92,11 @@ namespace Service
              };
             try
             {
-                await _SqlDataAccess.ExecuteScalarSP("su_InsertNewTask_INS", p);
+                await _sqlDataAccess.ExecuteScalarSP("su_InsertNewTask_INS", p);
             }
             catch (Exception ex)
             {
                 _logger.LogError("failed to insert task", ex);
-                return new StatusCodeResult(400);
-            }
-            return new StatusCodeResult(200);
-        }
-
-        public async Task<IActionResult> AddTaskType(int permissionLevelId, string typeName)
-        {
-            if ((Permission)permissionLevelId != Permission.Manager && (Permission)permissionLevelId != Permission.SystemAdministrator)
-            {
-                return new StatusCodeResult(403);
-            }
-            SqlParameter[] p = new SqlParameter[]
-            {
-                new SqlParameter("iPermissionLevelId",permissionLevelId ),
-                new SqlParameter("nvTypeName", typeName)
-            };
-            try
-            {
-                await _SqlDataAccess.ExecuteScalarSP("su_AddTaskType_INS", p);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("failed to insert task type", ex);
                 return new StatusCodeResult(400);
             }
             return new StatusCodeResult(200);
@@ -139,7 +111,7 @@ namespace Service
                  };
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
                 List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
                 return tasks;
             }
@@ -153,7 +125,7 @@ namespace Service
 
         public async Task<ActionResult<List<TaskModel>>> GetByTargetId(int iTargetId, int permissionLevel)
         {
-            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
+            if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
             {
                 return new StatusCodeResult(403);
             }
@@ -163,7 +135,7 @@ namespace Service
                  };
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTaskByTargetId", sp);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetTaskByTargetId", sp);
                 List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
                 return tasks;
             }
@@ -175,7 +147,7 @@ namespace Service
         }
         public async Task<IActionResult> Update(int permissionLevel, int taskId, int? status = null, string? comments = null)
         {
-            if ((Permission)permissionLevel != Permission.Manager && (Permission)permissionLevel != Permission.Coordinator && (Permission)permissionLevel != Permission.SystemAdministrator)
+            if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
             {
                 return new StatusCodeResult(403);
             }
@@ -188,7 +160,7 @@ namespace Service
               };
             try
             {
-                await _SqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
+                await _sqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)

@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     this.showImageParent.emit(this.showImage);
   }
   logOut() {
-    localStorage.removeItem("jwt-token");
+    localStorage.clear();
     this.router.navigate(["login"])
   }
   changeBranch(){

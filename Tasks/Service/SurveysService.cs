@@ -65,28 +65,33 @@ namespace Service
             try
             {
                 DataSet ds = await _sqlDataAccess.ExecuteDatasetSP("su_GetResultsForSurvey_SLCT", p);
-                DataTable dtStudent = ds.Tables[0];
-                DataTable dtQuestions = ds.Tables[1];
-                DataTable dtAnswers = ds.Tables[2];
-                DataTable dtOptions = ds.Tables[3];
-                List<ResultsForSurveyStudent> students = _resultSurveyStudentObjectGenerator.GeneratListFromDataTable(dtStudent);
-                List<Question> questions = _questionObjectGenerator.GeneratListFromDataTable(dtQuestions);
-                List<Answer> answers = _answerObjectGenerator.GeneratListFromDataTable(dtAnswers);
-                List<Options> options = _optionsObjectGenerator.GeneratListFromDataTable(dtOptions);
-                foreach (Answer answer in answers)
+                if (ds.Tables[0] != null && ds.Tables[1] != null && ds.Tables[2] != null && ds.Tables[3] != null)
                 {
-                    ResultsForSurveyStudent student = students.Find(s => s.iStudentId == answer.iStudentId);
-                    if (student != null)
+                    DataTable dtStudent = ds.Tables[0];
+                    DataTable dtQuestions = ds.Tables[1];
+                    DataTable dtAnswers = ds.Tables[2];
+                    DataTable dtOptions = ds.Tables[3];
+
+                    List<ResultsForSurveyStudent> students = _resultSurveyStudentObjectGenerator.GeneratListFromDataTable(dtStudent);
+                    List<Question> questions = _questionObjectGenerator.GeneratListFromDataTable(dtQuestions);
+                    List<Answer> answers = _answerObjectGenerator.GeneratListFromDataTable(dtAnswers);
+                    List<Options> options = _optionsObjectGenerator.GeneratListFromDataTable(dtOptions);
+                    foreach (Answer answer in answers)
                     {
-                        student.lAnswers.Add(answer);
-                        student.image = _configuration["ImageUrl"] + student.iStudentId + ".png";
+                        ResultsForSurveyStudent student = students.Find(s => s.iStudentId == answer.iStudentId);
+                        if (student != null)
+                        {
+                            student.lAnswers.Add(answer);
+                            student.image = _configuration["ImageUrl"] + student.iStudentId + ".png";
+                        }
                     }
+                    ResultsForSurvey results = new ResultsForSurvey();
+                    results.lResultsForSurveyStudent = students;
+                    results.lQuestions = questions;
+                    results.lOptions = options;
+                    return results;
                 }
-                ResultsForSurvey results = new ResultsForSurvey();
-                results.lResultsForSurveyStudent = students;
-                results.lQuestions = questions;
-                results.lOptions = options;
-                return results;
+                return null;
             }
             catch (Exception ex)
             {

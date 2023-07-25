@@ -27,14 +27,6 @@ namespace Tasks.Controllers
             _logger.LogDebug("Add Task");
             _taskService.Add(tasks, int.Parse(permissionLevelId), targetType, iCoordinatorId, iUserId);
         }
-        [HttpPost("AddTaskType")]
-        public void AddTaskType(string typeName)
-        {
-            string Sub = JwtRegisteredClaimNames.Sub;
-            string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
-            _logger.LogDebug("Add Task Type");
-            _taskService.AddTaskType(int.Parse(permissionLevelId), typeName);
-        }
         [HttpGet("Get")]
         public async Task<ActionResult<List<TaskModel>>> Get()
         {

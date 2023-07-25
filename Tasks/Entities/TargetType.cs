@@ -2,7 +2,7 @@
 {
     public class TargetType : IEntity
     {
-        public int itypeTargetId { get; set; }
+        public int iTypeTargetId { get; set; }
         public string nvTargetName { get; set; }
     }
 }

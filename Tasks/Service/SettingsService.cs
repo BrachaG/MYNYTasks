@@ -9,16 +9,16 @@ namespace Service
 {
     public class SettingsService : ISettingsService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         ILogger<SettingsService> _logger;
         IObjectGenerator<TaskType> _taskTypeObjectGenerator;
         IObjectGenerator<TargetType> _targetTypeObjectGenerator;
         IObjectGenerator<TargetStatus> _targetStatusObjectGenerator;
         IObjectGenerator<BranchGroup> _branchGroupObjectGenerator;
         IObjectGenerator<Branch> _branchObjectGenerator;
-        public SettingsService(ISqlDataAccess SqlDataAccess, ILogger<SettingsService> logger, IObjectGenerator<TaskType> taskTypeObjectGenerator, IObjectGenerator<TargetType> targetTypeObjectGenerator, IObjectGenerator<TargetStatus> targetStatusObjectGenerator, IObjectGenerator<BranchGroup> branchGroupObjectGenerator, IObjectGenerator<Branch> branchObjectGenerator)
+        public SettingsService(ISqlDataAccess sqlDataAccess, ILogger<SettingsService> logger, IObjectGenerator<TaskType> taskTypeObjectGenerator, IObjectGenerator<TargetType> targetTypeObjectGenerator, IObjectGenerator<TargetStatus> targetStatusObjectGenerator, IObjectGenerator<BranchGroup> branchGroupObjectGenerator, IObjectGenerator<Branch> branchObjectGenerator)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _logger = logger;
             _taskTypeObjectGenerator = taskTypeObjectGenerator;
             _targetTypeObjectGenerator = targetTypeObjectGenerator;
@@ -38,7 +38,7 @@ namespace Service
                  };
             try
             {
-                await _SqlDataAccess.ExecuteScalarSP("su_AddStatus_INS", sp);
+                await _sqlDataAccess.ExecuteScalarSP("su_AddStatus_INS", sp);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace Service
                  };
             try
             {
-                await _SqlDataAccess.ExecuteScalarSP("su_AddTargetType_INS", sp);
+                await _sqlDataAccess.ExecuteScalarSP("su_AddTargetType_INS", sp);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace Service
                  };
             try
             {
-                await _SqlDataAccess.ExecuteScalarSP("su_AddTaskType_INS", sp);
+                await _sqlDataAccess.ExecuteScalarSP("su_AddTaskType_INS", sp);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace Service
             };
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("su_CreateBranchesGroup_INS", parameters);
+                await _sqlDataAccess.ExecuteDatatableSP("su_CreateBranchesGroup_INS", parameters);
                 return new StatusCodeResult(200);
             }
             catch (Exception ex)
@@ -123,13 +123,32 @@ namespace Service
         public async Task<ActionResult<List<BranchGroup>>> GetBranchGroup()
         {
             _logger.LogDebug("in Get Branches Group");
-            try
+            /*try
             {
-                DataSet ds = await _SqlDataAccess.ExecuteDatasetSP("su_GetBranchesGruops_SLCT", null);
+                DataSet ds = await _sqlDataAccess.ExecuteDatasetSP("su_GetBranchesGruops_SLCT", null);
                 DataTable dtGroups = ds.Tables[0];
                 DataTable dtBranches = ds.Tables[1];
                 List<BranchGroup> branchGroups = _branchGroupObjectGenerator.GeneratListFromDataTable(dtGroups);
                 List<Branch> branches = _branchObjectGenerator.GeneratListFromDataTable(dtBranches);
+                foreach (Branch branch in branches)
+                {
+                    BranchGroup? branchGroup = branchGroups.Find(group => group.iGroupId == branch.iGroupId);
+                    if (branchGroup != null)
+                        branchGroup.lBranches.Add(branch);
+                }
+                return branchGroups;
+            }*/
+            try
+            {
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetBranchesGruops_SLCT", null);
+                List<Branch> branches = _branchObjectGenerator.GeneratListFromDataTable(dt);
+                List<BranchGroup> branchGroups = new List<BranchGroup>();
+                foreach (DataRow dataRow in dt.Rows)
+                {
+                    BranchGroup? branchGroup = branchGroups.Find(group => group.iGroupId == int.Parse(dataRow[0]?.ToString()));
+                    if (branchGroup == null)
+                        branchGroups.Add(new BranchGroup() { iGroupId = int.Parse(dataRow[0]?.ToString()), nvGroupName = dataRow[3]?.ToString(), lBranches = new List<Branch>() });
+                }
                 foreach (Branch branch in branches)
                 {
                     BranchGroup? branchGroup = branchGroups.Find(group => group.iGroupId == branch.iGroupId);
@@ -150,7 +169,7 @@ namespace Service
             _logger.LogDebug("in Get Targets Status");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTagetStatus", null);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetTagetStatus", null);
                 List<TargetStatus> targetStatus = _targetStatusObjectGenerator.GeneratListFromDataTable(dt);
                 return targetStatus;
             }
@@ -166,7 +185,7 @@ namespace Service
             _logger.LogDebug("in Get Targets Type");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetTargetType", null);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetTargetType", null);
                 List<TargetType> targetsType = _targetTypeObjectGenerator.GeneratListFromDataTable(dt);
                 return targetsType;
             }
@@ -183,7 +202,7 @@ namespace Service
             _logger.LogDebug("in Get all Task Types");
             try
             {
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetAllTaskTypes", null);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetAllTaskTypes", null);
                 List<TaskType> taskTypes = _taskTypeObjectGenerator.GeneratListFromDataTable(dt);
                 return taskTypes;
             }
