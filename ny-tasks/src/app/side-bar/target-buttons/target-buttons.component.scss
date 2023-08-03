@@ -1,0 +1,117 @@
+.typeTargetButton {
+    width: 100%;
+    margin-top: 4%;
+    background-color: transparent;
+    font-style: normal;
+    font-weight: 400%;
+    font-size: 2vmin;
+    text-align: right;
+    padding-right: 20px;
+    border-width: 7px;
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-color: #16163A;
+    border-style: solid;
+    box-sizing: border-box;
+    color: white;
+}
+
+.TypeText {
+    font-size: 1.8vmin;
+}
+
+.icon {
+    margin-left: 10%;
+    font-size: 1.4vmin;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.typeTargetButton {
+    .pi-stop:before {
+        background-color: var(--button-color);
+        font-size: 1.4vmin;
+        color: var(--button-color);
+    }
+}
+
+.red {
+    --button-color: red;
+}
+
+.orange {
+    --button-color: orange;
+}
+
+.yellow {
+    --button-color: yellow;
+}
+
+.blue {
+    --button-color: blue;
+}
+
+.aqua {
+    --button-color: aqua;
+}
+
+.pink {
+    --button-color: pink;
+}
+
+.white {
+    .pi-stop {
+        position: relative;
+        font-size: 1.4vmin;
+        text-align: center;
+
+        &::after {
+            content: "+";
+            position: absolute;
+            right: 0.15vw;
+            top: 0.55vw;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .typeTargetButton {
+        padding-right: 7px;
+    }
+
+    .icon {
+        top: 10%;
+        font-size: 3vmin;
+        margin-right: 10%;
+    }
+
+    .TypeText {
+        font-size: 1.2vmin;
+    }
+
+    .white {
+        .pi-stop {
+            &::after {
+                right: 0.28vw;
+                top: 0.53vw;
+                font-size: 1.2vmin;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 993px) and (max-width:1200px) {
+    .TypeText {
+        font-size: 1.5vmin;
+    }
+
+    .white {
+        .pi-stop {
+            &::after {
+                right: 0.2vw;
+                top: 0.52vw;
+            }
+        }
+    }
+}
