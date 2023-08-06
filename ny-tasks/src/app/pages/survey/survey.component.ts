@@ -22,7 +22,11 @@ export class SurveyComponent implements OnInit{
     }
 
      getSurveysByUserId(){
-           this.surveyService.getSurveys().subscribe((res: any) => {
+      let selectedBranch: string | null='0'; 
+      if(localStorage.getItem('selectedBranch'))
+        selectedBranch=localStorage.getItem('selectedBranch')
+        debugger
+           this.surveyService.getSurveys(selectedBranch).subscribe((res: any) => {
             this.surveys = res;
             this.sum =this.surveys.length;
           })

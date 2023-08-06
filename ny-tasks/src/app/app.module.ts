@@ -28,6 +28,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {PaginatorModule } from 'primeng/paginator';
 import { TargetsComponent } from './targets/targets.component';
+import { AppProxy } from './app-proxy.service';
 
 @NgModule({
   declarations: [
@@ -64,11 +65,16 @@ import { TargetsComponent } from './targets/targets.component';
     PaginatorModule
   ],
   providers: [
-   {
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true
-  }  ],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+
+    },
+    AppProxy
+    ,
+      // AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

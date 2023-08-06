@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
