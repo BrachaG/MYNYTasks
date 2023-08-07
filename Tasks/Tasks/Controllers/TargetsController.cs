@@ -31,7 +31,7 @@ namespace Tasks.Controllers
         {
             var permissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var permissionLevelIdValue) && permissionLevelIdValue is int permissionLevelIdInt ? permissionLevelIdInt : -1;
             var creator = (int)HttpContext.GetRouteData().Values["UserId"];
-            _logger.LogDebug($"Comment  is: {comment} ,TypeTargetId is: {typeTargetId} ,PersonId is: {personId} In GetTargetsByUserId");
+            _logger.LogDebug($"Comment  is: {comment} ,TypeTargetId is: {typeTargetId} ,PersonId is: {personId} In GetTargetsByUserId");
             return await _targetsService.AddTarget(comment, typeTargetId, personId, branchId, targetDate, creator, permissionLevelId);
         }
     }

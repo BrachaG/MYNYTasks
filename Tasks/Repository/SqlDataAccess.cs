@@ -14,7 +14,7 @@ public class SqlDataAccess : ISqlDataAccess
     {
         _logger = logger;
         _Configuration = Configuration;
-        connectionString = _Configuration.GetConnectionString("Home");
+        connectionString = _Configuration.GetConnectionString("yaeli");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)
@@ -45,7 +45,6 @@ public class SqlDataAccess : ISqlDataAccess
         bool mustCloseConnection = false;
         await PrepareCommand(cmd, connection, (SqlTransaction)null, CommandType.StoredProcedure, spName, SPParameters, mustCloseConnection);
 
-        // Create the DataAdapter & DataSet
         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
         {
             DataSet ds = new DataSet();

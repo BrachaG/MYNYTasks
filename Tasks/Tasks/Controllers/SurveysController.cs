@@ -17,16 +17,22 @@ namespace Tasks.Controllers
 
             _surveysService = surveysService;
             _logger = logger;
-
         }
         [HttpGet("Get")]
-        public async Task<ActionResult<List<Survey>>> Get()
+        public async Task<ActionResult<List<Survey>>> Get(string? branchId = null)
         {
             _logger.LogDebug("Get survey");
-            string Type = JwtRegisteredClaimNames.Sub;
-            string userId = User.Claims.FirstOrDefault(c => c.Type == Type).Value;
-            return await _surveysService.Get();
-
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            return await _surveysService.GetByUserId(int.Parse(permissionId), int.Parse(branchId));
+        }
+        [HttpGet("Get/{id}")]
+        public async Task<ActionResult<ResultsForSurvey>> GetResultsForSurvey(int id, string? branchId = null)
+        {
+            _logger.LogDebug("Get ResultsForSurvey");
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            return await _surveysService.Get(id, int.Parse(permissionId), int.Parse(branchId));
         }
     }
 }

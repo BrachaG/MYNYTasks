@@ -29,11 +29,17 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.srv.getUserById(this.frmUsers.controls['userName'].value, this.frmUsers.controls['code'].value).subscribe((res: userModel) => {
-      this.user = res;
+      this.user = res; 
       if (this.user != null) {
-        localStorage.setItem("jwt-token", this.user.token)
-        localStorage.setItem("user-permission", this.user.iPermissionLevelId)
-        this.router.navigateByUrl('surveys');
+        localStorage.setItem('userName',this.user.nvUserName);
+        localStorage.setItem('userPermission',this.user.iPermissionLevelId);
+        localStorage.setItem("jwt-token", this.user.token);
+        if (this.user.iPermissionLevelId==2 && this.user.lBranches.length>1) {
+          localStorage.setItem('userBranches',JSON.stringify(this.user.lBranches))
+          this.router.navigateByUrl('select-branch');
+        }
+        else
+          this.router.navigateByUrl('surveys');
       }
       else
         alert("not permission")

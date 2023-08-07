@@ -1,7 +1,9 @@
 <div class="background">
+    <div class="title-wrap">
     <div class="title">
-        <h1 class="title-text">משובים</h1>
-        <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
+    <h1 class="title-text">משובים</h1>
+    <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
+    </div>
     </div>
     <div class="cover">
         <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false"
@@ -53,7 +55,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-surveys>
-                <tr>
+                <tr class="res" (click)="selectSurvey(surveys.iSurveyId , surveys.nvSurveyName)">
                     <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
                     <td>{{surveys.dtEndSurveyDate | date:'dd.MM.yy' }}</td>
                     <td>{{surveys.iRespondentsCount}}</td>
@@ -66,4 +68,5 @@
 
     </div>
 
-</div>
+</div> 
+ 
