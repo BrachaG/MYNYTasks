@@ -78,7 +78,7 @@ namespace Service
 
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                await _sqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
                 List<SqlParameter> p = new List<SqlParameter> {
                     new SqlParameter
                     {
@@ -88,7 +88,7 @@ namespace Service
                     Value = personIds
                     }
                 };
-                DataTable dt = await _SqlDataAccess.ExecuteDatatableSP("su_GetUserEmails_SLCT", p);
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetUserEmails_SLCT", p);
                 foreach (DataRow row in dt.Rows)
                 {
                     string email = row["nvUserMail"].ToString();
