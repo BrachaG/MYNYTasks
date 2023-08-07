@@ -10,35 +10,54 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {SliderModule} from 'primeng/slider';
-import {DialogModule} from 'primeng/dialog';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {ContextMenuModule} from 'primeng/contextmenu';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {ToastModule} from 'primeng/toast';
-import {StyleClassModule} from 'primeng/styleclass';
+import { SliderModule } from 'primeng/slider';
+import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
+import { StyleClassModule } from 'primeng/styleclass';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import {SidebarModule} from 'primeng/sidebar';
+import { SidebarModule } from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
+import { AccordionModule } from 'primeng/accordion';
+import { PaginatorModule } from 'primeng/paginator';
+import { AmericanQuestionComponent } from "./pages/survey-results/american-question/american-question.component";
+import { TextQuestionComponent } from "./pages/survey-results/text-question/text-question.component";
+import { ScrollingModule } from '@angular/cdk/scrolling';
+//import { ChartModule } from 'primeng/chart';
+import { Chart } from 'chart.js/auto';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {PaginatorModule } from 'primeng/paginator';
+import { HeaderComponent } from './header/header.component';
+import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { TaskComponent } from './pages/task/task.component'
 import { TargetsComponent } from './targets/targets.component';
+import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
     LoginComponent,
+    SurveyResultsComponent,
     SideBarComponent,
     BarButtonsComponent,
-    TasksComponent,
+    AmericanQuestionComponent,
+    TextQuestionComponent,
+    CreateTaskComponent,
+    HeaderComponent,
+    SelectBranchComponent,
     TargetsComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TaskComponent,
+    TargetButtonsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -46,29 +65,35 @@ import { TargetsComponent } from './targets/targets.component';
     AppRoutingModule,
     TableModule,
     CalendarModule,
-		SliderModule,
-		DialogModule,
-		MultiSelectModule,
-		ContextMenuModule,
-		DropdownModule,
-		ButtonModule,
-		ToastModule,
+    SliderModule,
+    DialogModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    DropdownModule,
+    ButtonModule,
+    ToastModule,
     InputTextModule,
     ProgressBarModule,
     StyleClassModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AccordionModule,
     SidebarModule,
     InputTextareaModule,
-    PaginatorModule
+    PaginatorModule,
+    ScrollingModule
   ],
   providers: [
-   {
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true
-  }  ],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+
+    }
+    ,
+      AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

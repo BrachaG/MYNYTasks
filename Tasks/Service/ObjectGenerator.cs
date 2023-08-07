@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System.Data;
 
-
 namespace Service
 {
     public class ObjectGenerator<T> : IObjectGenerator<T> where T : new()

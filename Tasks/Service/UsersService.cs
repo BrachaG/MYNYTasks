@@ -38,7 +38,7 @@ namespace Service
         {
             _logger.LogDebug("GetById", userName);
             List<SqlParameter> p = new List<SqlParameter> {
-            { new SqlParameter("nvUserName",userName )},
+                                     { new SqlParameter("nvUserName",userName )},
                                              { new SqlParameter("nvPassword", password)}
                 };
             try

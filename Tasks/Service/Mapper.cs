@@ -38,10 +38,30 @@ namespace Service
              .ConvertUsing(row => MapDataRowToEntity<CodeTable>(row));
             CreateMap<DataRow, Survey>()
              .ConvertUsing(row => MapDataRowToEntity<Survey>(row));
+            CreateMap<DataRow, ResultsForSurvey>()
+             .ConvertUsing(row => MapDataRowToEntity<ResultsForSurvey>(row));
+            CreateMap<DataRow, ResultsForSurveyStudent>()
+             .ConvertUsing(row => MapDataRowToEntity<ResultsForSurveyStudent>(row));
+            CreateMap<DataRow, Question>()
+             .ConvertUsing(row => MapDataRowToEntity<Question>(row));
+            CreateMap<DataRow, Answer>()
+             .ConvertUsing(row => MapDataRowToEntity<Answer>(row));
+            CreateMap<DataRow, Options>()
+             .ConvertUsing(row => MapDataRowToEntity<Options>(row));
+            CreateMap<DataRow, TaskModel>()
+             .ConvertUsing(row => MapDataRowToEntity<TaskModel>(row));
             CreateMap<DataRow, Target>()
-           .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+             .ConvertUsing(row => MapDataRowToEntity<Target>(row));
+            CreateMap<DataRow, TaskType>()
+             .ConvertUsing(row => MapDataRowToEntity<TaskType>(row));
+            CreateMap<DataRow, TargetType>()
+             .ConvertUsing(row => MapDataRowToEntity<TargetType>(row));
+            CreateMap<DataRow, TargetStatus>()
+           .ConvertUsing(row => MapDataRowToEntity<TargetStatus>(row));
             CreateMap<DataRow, Branch>()
           .ConvertUsing(row => MapDataRowToEntity<Branch>(row));
+            CreateMap<DataRow, BranchGroup>()
+          .ConvertUsing(row => MapDataRowToEntity<BranchGroup>(row));
         }
     }
 }

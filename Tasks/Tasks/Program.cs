@@ -8,7 +8,6 @@ using Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Tasks.Middlewares;
-
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -50,8 +49,10 @@ try
     builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
     builder.Services.AddTransient(typeof(IObjectGenerator<>), typeof(ObjectGenerator<>));
     builder.Services.AddScoped<IUsersService, UsersService>();
+    builder.Services.AddScoped<ISurveysService, SurveysService>();
+    builder.Services.AddScoped<ITaskService, TaskService>();
     builder.Services.AddScoped<ITargetsService, TargetsService>();
-    builder.Services.AddSingleton<ISurveysService, SurveysService>();
+    builder.Services.AddScoped<ISettingsService, SettingsService>();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     builder.Services.AddAuthentication(opt =>
     {
@@ -87,6 +88,7 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseStaticFiles();
 
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 

@@ -1,7 +1,6 @@
 ﻿namespace Entities
 {
     public class Survey : IEntity
-
     {
         public int? iSurveyId { get; set; }
         public string nvSurveyName { get; set; }
