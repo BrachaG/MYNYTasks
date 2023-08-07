@@ -4,32 +4,69 @@
     <h1 class="title-text">משובים</h1>
     <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
     </div>
-    <!-- <app-header></app-header> -->
-</div>
-<div class="cover">
-     <!-- <span class="up-border"></span> -->
-    <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false" [value]="surveys" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,15,20]">
-        <ng-template pTemplate="header">
-            <tr >
-                <th>שם המשוב</th>
-                <th>תאריך הפצה</th>
-                <th>כמות משיבים</th>
-                <th>מספר שאלות</th>
-                <th>קישור</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-surveys>
-            <tr (click)="selectSurvey(surveys.iSurveyId , surveys.nvSurveyName)">
-                <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
-                <td >{{surveys.dtEndSurveyDate}}</td>
-                <td >{{surveys.iRespondentsCount}}</td>
-                <td >{{surveys.iQuestionCount}}</td>
-                <td ><a class="h4-regular" href="{{surveys.nvLink}}">{{surveys.nvLink}}</a></td>
-            </tr>
-        </ng-template>
-    </p-table>
-   
-</div>
+    </div>
+    <div class="cover">
+        <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false"
+            [value]="filteredSurveys" [paginator]="true" [rows]="10" [totalRecords]="100"
+            [rowsPerPageOptions]="[5,10,15,20]"
+            [globalFilterFields]="['nvSurveyName', 'dtEndSurveyDate', 'iRespondentsCount', 'iQuestionCount','nvLink']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+                        <span class="tableTitle">שם המשוב</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter class="filterArea" matchMode="contains" [showMenu]="false" type="text"
+                                field="nvSurveyName" filterMatchMode="contains"
+                                (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">תאריך הפצה</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="dtEndSurveyDate"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">כמות משיבים</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text"
+                                field="iRespondentsCount" filterMatchMode="contains"
+                                (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">מספר שאלות</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="iQuestionCount"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th class="thIcon">
+                        <div >
+                            <button class="visibleFilter pi pi-sort-alt" (click)="toggleFilters()"></button>
+                        </div>
+                    </th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-surveys>
+                <tr class="res" (click)="selectSurvey(surveys.iSurveyId , surveys.nvSurveyName)">
+                    <td class="h4-medium sname">{{surveys.nvSurveyName}}</td>
+                    <td>{{surveys.dtEndSurveyDate | date:'dd.MM.yy' }}</td>
+                    <td>{{surveys.iRespondentsCount}}</td>
+                    <td>{{surveys.iQuestionCount}}</td>
+                    <td><a class="h4-regular" href="{{surveys.nvLink}}"><i class="pi pi-link"></i>
+                        </a></td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
 
 </div> 
  

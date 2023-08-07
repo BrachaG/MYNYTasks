@@ -23,7 +23,6 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
@@ -37,7 +36,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { TaskComponent } from './pages/task/task.component'
 import { TargetsComponent } from './targets/targets.component';
+import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
+
 
 @NgModule({
   declarations: [
@@ -47,14 +49,15 @@ import { TargetsComponent } from './targets/targets.component';
     SurveyResultsComponent,
     SideBarComponent,
     BarButtonsComponent,
-    TasksComponent,
     AmericanQuestionComponent,
     TextQuestionComponent,
     CreateTaskComponent,
     HeaderComponent,
     SelectBranchComponent,
     TargetsComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    TaskComponent,
+    TargetButtonsComponent
   ],
   imports: [
     BrowserAnimationsModule,
