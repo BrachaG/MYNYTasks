@@ -34,6 +34,7 @@ export class SurveyComponent implements OnInit{
       let selectedBranch: string | null='0'; 
       if(localStorage.getItem('selectedBranch'))
         selectedBranch=localStorage.getItem('selectedBranch')
+
            this.surveyService.getSurveys(selectedBranch).subscribe((res: any) => {
             this.surveys = res;
             this.filteredSurveys = res;

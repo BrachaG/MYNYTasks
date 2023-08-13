@@ -40,8 +40,7 @@ import { SelectBranchComponent } from './pages/select-branch/select-branch.compo
 import { AuthGuardService } from './services/auth-guard.service';
 import { TaskComponent } from './pages/task/task.component'
 import { TargetsComponent } from './targets/targets.component';
-import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
-
+import { AppProxy } from './app-proxy.service';
 
 @NgModule({
   declarations: [
@@ -92,9 +91,10 @@ import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons
       useClass: JwtInterceptor,
       multi: true,
 
-    }
+    },
+    AppProxy
     ,
-      AuthGuardService
+      // AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
