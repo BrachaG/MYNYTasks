@@ -23,6 +23,7 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
+
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
 import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
@@ -31,6 +32,7 @@ import { TextQuestionComponent } from "./pages/survey-results/text-question/text
 import { ScrollingModule } from '@angular/cdk/scrolling';
 //import { ChartModule } from 'primeng/chart';
 import { Chart } from 'chart.js/auto';
+
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
