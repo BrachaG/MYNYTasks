@@ -1,0 +1,19 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="scroll">
+    <div *ngFor="let answer of answers">
+        <div class="answer">
+            <div class="std-details">
+                <div class="profile h2-medium">
+                    <label *ngIf="!showImage" style="padding-top: 10px;">{{answer.profil}}</label>
+                    <img *ngIf="showImage" class="image" src={{answer.stdImage}} alt="image" />
+                </div>
+                <div class="nameAndBranch">
+                    <div class="std-name h4-medium">{{answer.stdName}}</div>
+                    <div class="branch-name">{{answer.stdBranch}}</div>
+                </div>
+            </div>
+            <div class="std-ans h4-regular">
+                {{answer.stdAnswer}}</div>
+        </div>
+
+    </div>
+</cdk-virtual-scroll-viewport>

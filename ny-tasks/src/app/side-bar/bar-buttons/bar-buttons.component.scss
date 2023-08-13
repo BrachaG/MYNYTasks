@@ -21,7 +21,13 @@
     border-color: #2F81EF;
     height: 20%;
     position: relative;
-    background-color: #1F1F42
+    background-color: #1F1F42;
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        color: #2F81EF;
+    }
 }
 
 .notactive {
@@ -35,11 +41,22 @@
     padding-bottom: 5%;
 }
 
+.inner-button,
+.inner-button:enabled:hover,
+.inner-button:enabled:focus {
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-size: 2vmin;
+    padding-right: 3.3vw;
+    padding-top: 0px;
+}
+
 @media screen and (max-width: 992px) {
     .basis {
-        margin-top: 40%;
+        margin-top: 20%;
         padding-right: 28%;
-        padding-top: 8%;
+        padding-top: 5%;
         padding-bottom: 8%;
     }
 
@@ -51,6 +68,13 @@
 
     .iconText {
         display: none;
+    }
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 0.3vw;
+        font-size:1.5vmin;
     }
 
 }
@@ -70,5 +94,11 @@
 
     .iconText {
         display: none;
+    }
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 2vw;
     }
 }

@@ -1,9 +1,10 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service
 {
     public interface IUsersService
     {
-        Task<User> GetById(string userName, string password);
+        Task<ActionResult<User>> GetById(string userName, string password);
     }
 }

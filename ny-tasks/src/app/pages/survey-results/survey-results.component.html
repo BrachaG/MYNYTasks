@@ -1,0 +1,43 @@
+<div class="background">
+    <div class="title-wrap">
+        <div class="title">
+            <a style="text-decoration-line: none;" href="surveys">
+                <h1 class="title-text"><i class="pi pi-arrow-right"></i> {{surveyName}}</h1>
+            </a>
+            <h4 class="sumSurveys h4-regular">{{sum}} שאלות</h4>
+        </div>
+        <div class="title">
+            <label class="switch">
+                <input type="checkbox" (change)="showImage=!showImage">
+                <span class="slider round"></span>
+            </label>
+            <label class="h4-regular">תמונות משתמשים</label>
+        </div>
+        <!-- <app-header (showImageParent)="showImage=$event"></app-header> -->
+    </div>
+    <div class="cover">
+        <div class="div-collapse">
+            <button [disabled]="collapsed" class="button-collapse" (click)="openAllTabs()">הרחב הכל<i
+                    class="pi pi-angle-up up"></i><i class="pi pi-angle-down down"></i></button>
+            <button [disabled]="!collapsed" class="button-collapse" (click)="closeAllTabs()">צמצם הכל<i
+                    class="pi pi-angle-up up-close"></i><i class="pi pi-angle-down down-close"></i></button>
+        </div>
+        <p-accordion *ngIf="result&&result.lQuestions" class="accordion" [multiple]="true" [expandIcon]="expandIcon"
+            [collapseIcon]="collapseIcon">
+            <p-accordionTab [selected]="collapsed" class="acc-line" *ngFor="let r of result.lQuestions"
+                header="{{r.nvQuestionText}}">
+
+
+                <app-text-question *ngIf="r.nvQuestionTypeName!='אמריקאי'" [result]="result" [question]="r"
+                    [showImage]="showImage"></app-text-question>
+                <app-american-question *ngIf="r.nvQuestionTypeName=='אמריקאי'" [result]="result"
+                    [question]="r"></app-american-question>
+
+            </p-accordionTab>
+
+        </p-accordion>
+
+    </div>
+
+
+</div>
