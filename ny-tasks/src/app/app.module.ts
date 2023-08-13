@@ -38,10 +38,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { TaskComponent } from './pages/task/task.component'
+import { TasksComponent } from './pages/tasks/tasks.component'
 import { TargetsComponent } from './targets/targets.component';
+import { AppProxy } from './app-proxy.service';
 import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
-
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons
     SelectBranchComponent,
     TargetsComponent,
     CreateTaskComponent,
-    TaskComponent,
+    TasksComponent,
     TargetButtonsComponent
   ],
   imports: [
@@ -92,9 +92,10 @@ import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons
       useClass: JwtInterceptor,
       multi: true,
 
-    }
+    },
+    AppProxy
     ,
-      AuthGuardService
+      // AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,9 @@ try
     var builder = WebApplication.CreateBuilder(args);
     builder.Host.UseNLog();
     builder.Services.AddControllers();
+    var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+    builder.Services.AddCors(options => { options.AddPolicy(name: MyAllowSpecificOrigins, policy => { policy.AllowAnyHeader(); policy.AllowAnyMethod(); policy.AllowAnyOrigin(); }); });
+
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     //builder.Services.AddSwaggerGen();
@@ -91,6 +94,7 @@ try
     app.UseStaticFiles();
 
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+    app.UseCors(MyAllowSpecificOrigins);
 
     app.UseAuthentication();
 
