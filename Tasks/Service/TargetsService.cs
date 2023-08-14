@@ -4,18 +4,19 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace Service
 {
     public class TargetsService : ITargetsService
     {
-        ISqlDataAccess _SqlDataAccess;
+        ISqlDataAccess _sqlDataAccess;
         ILogger<TargetsService> _logger;
         IObjectGenerator<Target> _targetObjectGenerator;
 
-        public TargetsService(ISqlDataAccess SqlDataAccess, ILogger<TargetsService> logger, IObjectGenerator<Target> userObjectGenerator)
+        public TargetsService(ISqlDataAccess sqlDataAccess, ILogger<TargetsService> logger, IObjectGenerator<Target> userObjectGenerator)
         {
-            _SqlDataAccess = SqlDataAccess;
+            _sqlDataAccess = sqlDataAccess;
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
@@ -23,12 +24,12 @@ namespace Service
         {
             _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
             List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("id",userId )},
+            { new SqlParameter("Id",userId )},
             { new SqlParameter("PermissionLevelId", permissionLevelId)}
                 };
             try
             {
-                DataTable targets = await _SqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
                 if (targets.Rows.Count > 0)
                 {
                     List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
@@ -77,7 +78,22 @@ namespace Service
 
             try
             {
-                await _SqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                await _sqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                List<SqlParameter> p = new List<SqlParameter> {
+                    new SqlParameter
+                    {
+                    ParameterName = "Ids",
+                    SqlDbType = SqlDbType.Structured,
+                    TypeName = "dbo.PersonIds",
+                    Value = personIds
+                    }
+                };
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetUserEmails_SLCT", p);
+                foreach (DataRow row in dt.Rows)
+                {
+                    string email = row["nvUserMail"].ToString();
+                    SendEmail(email);
+                }
                 return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
 
             }
@@ -85,6 +101,23 @@ namespace Service
             {
                 _logger.LogError("Failed to insert target", ex);
                 return new ObjectResult("Failed to insert target") { StatusCode = 500 };
+            }
+        }
+        public void SendEmail(string recipient)
+        {
+            var message = new MailMessage();
+            message.From = new MailAddress("36214085573@mby.co.il", "Nefesh Yehudi");
+            message.To.Add(new MailAddress(recipient));
+            message.Subject = "יעד חדש";
+            message.Body = "נוסף לך יעד חדש במערכת!";
+            message.IsBodyHtml = false;
+
+            using (var client = new SmtpClient("smtp.office365.com", 587))
+            {
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("36214085573@mby.co.il", "Student@264");
+                client.Send(message);
             }
         }
     }

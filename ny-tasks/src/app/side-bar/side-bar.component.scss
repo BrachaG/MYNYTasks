@@ -11,16 +11,22 @@
     border: 'none';
     box-shadow: 0px 0px 0px 0px;
     position: 'absolute';
-     
+
 }
-.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted
-{
-  width: 15%;
+
+.p-sidebar.p-sidebar-active.p-sidebar-right.ng-star-inserted {
+    width: 15%;
 }
+
 .logo {
     width: 50%;
     margin-right: 25%;
     margin-top: 15px;
+}
+
+.divTypeButtons {
+    position: relative;
+    display: flex;
 }
 
 .iconPlus {
@@ -37,6 +43,7 @@
     text-align: center;
     width: 100%;
 }
+
 .addTask {
     .p-button:focus {
         background-color: #2F81EF;
@@ -61,10 +68,12 @@
         border-color: #428def;
     }
 }
-.confine{
+
+.confine {
     width: 85%;
     margin-right: 15%;
 }
+
 @media screen and (max-width: 992px) {
     .TaskText {
         display: none;
@@ -78,6 +87,13 @@
             right: 0%;
         }
     }
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 65%;
+    }
+
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
@@ -92,4 +108,11 @@
             right: 0%;
         }
     }
+
+    .inner-button,
+    .inner-button:enabled:hover,
+    .inner-button:enabled:focus {
+        padding-right: 65%;
+    }
+
 }

@@ -1,0 +1,143 @@
+$blue3: #1E2959;
+$lightblue-gray: #5F6388;
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 15%;
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  right: 10%;
+  top: 9%;
+}
+
+.title-text {
+  width: 55px;
+  height: 21px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  letter-spacing: -0.011em;
+  color: #1E2959;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+.cover {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 80%;
+}
+
+.tableTitle {
+  display: flex;
+  width: 8vw;
+  color: #1E2959;
+  font-size: 2vmin;
+  font-weight: 500;
+  position: relative;
+}
+
+:host ::ng-deep {
+ 
+.searchIcon{
+  z-index: 1000;
+  color: #B3B3B3;
+  font-size: 1.7vmin;
+  
+}
+  
+  .p-inputtext{
+    padding-top: 0.25rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding-right: 2vw;
+    font-size: 2vmin;
+    position: relative;
+    z-index: 999;
+    position: relative;
+  }
+  .pi-filter-slash:before{
+    font-size: 0px;
+  }
+  .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
+      box-shadow:none;
+      border-color: #c1d5f0;
+    }
+}
+.visibleFilter {
+  position: absolute;
+  border: none;
+  left: 15px;
+  margin-top: 3%;
+  top: 10px;
+  background-color: transparent;
+  z-index: 1000;
+  font-size: 2vmin;
+}
+
+
+.thIcon {
+  position: relative;
+  padding-top: 2%;
+  padding-bottom: 0%;
+  margin-bottom: 1%;
+}
+
+@media screen and (max-width: 992px) {
+  :host ::ng-deep {
+  /* .tableTitle{
+  font-size:1.7vmin ;
+    }
+    .pi-search:before{
+      font-size: 0vmin;
+    }
+    .table-style {
+      height: 100px;
+      overflow-y: auto;
+    }
+   */
+  .table-style .p-datatable .p-datatable-thead>tr>th {
+    font-size: 2vmin;
+  }
+
+  .table-style>tr {
+    line-height: 1.5vmin;
+    width: 1.5vmin;
+  }
+
+  .p-inputtext {
+    font-size: 1.7vmin;
+  }
+}
+}
+
+@media screen and (min-width: 993px) and (max-width:1200px) {
+  :host ::ng-deep {
+  /* .table-style {
+      height: 300px;
+      overflow-y: auto;
+    }
+   */
+  .table-style .p-datatable .p-datatable-thead>tr>th {
+    font-size: 2vmin;
+  }
+
+  .table-style>tr {
+    line-height: 20.5vmin;
+    width: 2.5vmin;
+  }
+
+  .p-inputtext {
+    font-size: 1.8vmin;
+  }
+}
+}

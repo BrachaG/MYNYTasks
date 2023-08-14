@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
@@ -13,6 +12,9 @@ export class BarButtonsComponent {
   @Output() clicked = new EventEmitter<void>();
   @Input() isActive = false;
   @Input() icon = '';
+  @Input() isTarget = false
+  @Input() visibleTypes: boolean = false;
+
   handleClick() {
     this.clicked.emit();
   }
