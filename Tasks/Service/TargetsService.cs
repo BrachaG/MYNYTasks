@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace Service
 {
@@ -78,6 +79,21 @@ namespace Service
             try
             {
                 await _sqlDataAccess.ExecuteDatatableSP("su_Insert_Target", parameters);
+                List<SqlParameter> p = new List<SqlParameter> {
+                    new SqlParameter
+                    {
+                    ParameterName = "Ids",
+                    SqlDbType = SqlDbType.Structured,
+                    TypeName = "dbo.PersonIds",
+                    Value = personIds
+                    }
+                };
+                DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetUserEmails_SLCT", p);
+                foreach (DataRow row in dt.Rows)
+                {
+                    string email = row["nvUserMail"].ToString();
+                    SendEmail(email);
+                }
                 return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
 
             }
@@ -85,6 +101,23 @@ namespace Service
             {
                 _logger.LogError("Failed to insert target", ex);
                 return new ObjectResult("Failed to insert target") { StatusCode = 500 };
+            }
+        }
+        public void SendEmail(string recipient)
+        {
+            var message = new MailMessage();
+            message.From = new MailAddress("36214085573@mby.co.il", "Nefesh Yehudi");
+            message.To.Add(new MailAddress(recipient));
+            message.Subject = "יעד חדש";
+            message.Body = "נוסף לך יעד חדש במערכת!";
+            message.IsBodyHtml = false;
+
+            using (var client = new SmtpClient("smtp.office365.com", 587))
+            {
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("36214085573@mby.co.il", "Student@264");
+                client.Send(message);
             }
         }
     }
