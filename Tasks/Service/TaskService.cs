@@ -168,7 +168,7 @@ namespace Service
                 _logger.LogError("failed to update task", ex);
                 return new StatusCodeResult(400);
             }
-            return new StatusCodeResult(400);
+            
             }
 
         }

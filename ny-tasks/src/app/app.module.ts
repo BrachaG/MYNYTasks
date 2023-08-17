@@ -25,11 +25,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
-import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
 import { AmericanQuestionComponent } from "./pages/survey-results/american-question/american-question.component";
 import { TextQuestionComponent } from "./pages/survey-results/text-question/text-question.component";
-import { ScrollingModule } from '@angular/cdk/scrolling';
 //import { ChartModule } from 'primeng/chart';
 import { Chart } from 'chart.js/auto';
 

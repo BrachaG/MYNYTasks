@@ -6,7 +6,7 @@ namespace Service
 {
     public interface ITargetsService
     {
-        Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId);
+        Task<ActionResult<List<Target>>> GetTargetsByTargetType(int userId, int permissionLevelId, int targetType);
         Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int permissionLevelId);
 
     }

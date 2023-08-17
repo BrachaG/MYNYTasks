@@ -12,14 +12,15 @@ export class TargetsComponent {
   collapsed:boolean = false;
   collapseIcon:string = 'pi pi-angle-up';
   expandIcon:string = 'pi pi-angle-down';
+  targetType:number=2;
   constructor(private srv: TargetsService) { }
 
   ngOnInit() {
-    this.getTargets()
+    this.getTargets(this.targetType)
   }
 
-  getTargets() {
-    this.srv.getTargets().subscribe((res: any) => {
+  getTargets(tagetType:number) {
+    this.srv.getTargets(tagetType).subscribe((res: any) => {
       this.targets = res;
       console.log(this.targets);
     })
