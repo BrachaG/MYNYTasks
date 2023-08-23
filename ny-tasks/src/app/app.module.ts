@@ -29,8 +29,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
 import { AmericanQuestionComponent } from "./pages/survey-results/american-question/american-question.component";
 import { TextQuestionComponent } from "./pages/survey-results/text-question/text-question.component";
-import { ScrollingModule } from '@angular/cdk/scrolling';
-//import { ChartModule } from 'primeng/chart';
+import { ScrollingModule } from '@angular/cdk/scrolling'
+import { ChartModule } from 'primeng/chart';
 import { Chart } from 'chart.js/auto';
 
 import { CreateTaskComponent } from './create-task/create-task.component';
