@@ -35,7 +35,7 @@ namespace Tasks.Controllers
             string Name = JwtRegisteredClaimNames.NameId;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
             _logger.LogDebug($"User id is: {userId} ,PermissionLevelId is: {permissionLevelId} In GetTargetsByUserId");
-            return await _targetsService.GetTargetsByTargetType(int.Parse(userId), int.Parse(permissionLevelId), targetType);
+            return await _targetsService.GetTargetsByTargetType(int.Parse(userId), int.Parse(permissionLevelId), 1);
         }
 
         [HttpPost()]

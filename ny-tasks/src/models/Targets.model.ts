@@ -1,7 +1,7 @@
 export interface Targets {
-      iId: number
+      iTargetId: number
       nvComment: string
-      iTargetId: Number
+      iTypeTargetId: Number
       iPersonId: Number
       iBranchId: Number
       dtTargetDate: Date | null;
