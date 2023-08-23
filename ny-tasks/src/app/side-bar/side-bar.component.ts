@@ -27,8 +27,9 @@ export class SideBarComponent {
   buttons =
     [['לוח אישי', '/selfbored', 'pi pi-table'],
     ['משימות', '/tasks', 'pi pi-pencil'],
-    ['משובים', '/surveys', 'pi pi-question-circle'],
-    ['סוג יעד', '/targets', 'pi pi-send']];
+    // ['משובים', '/surveys', 'pi pi-question-circle'],
+    // ['סוג יעד', '/targets', 'pi pi-send']
+  ];
   colors = ['red', 'orange', 'yellow', 'aqua', 'blue', 'pink'];
   constructor(private router: Router, private route: ActivatedRoute) {
 
