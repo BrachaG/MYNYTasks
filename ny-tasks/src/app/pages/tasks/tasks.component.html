@@ -2,7 +2,7 @@
 <div class="background">
     <div class="title">
         <h1 class="title-text">משימות</h1>
-        <h4 class="sumSurveys h4-regular">- סך הכל</h4>     
+        <h4 class="sumSurveys h4-regular">{{sum}}סך הכל</h4>     
     </div>
     <div class="cover">    
     <p-table [value]="tasks" class="table-style">
@@ -71,14 +71,18 @@
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" >
-            <tr>
-                <td>{{tasks}}</td>
-                <td>{{tasks}}</td>
-                <td>{{tasks}}</td>
-                <td>{{tasks}}</td>
-            </tr>
-        </ng-template>
+        <ng-template pTemplate="body" let-task>
+        <tr>
+            <td>{{ task.nvComments }}</td>
+            <td>{{ task.nvCategory }}</td>
+            <td>{{ task.iStudentId }}</td>
+            <td>{{ task.nvOrigin }}</td>
+            <td>{{ task.nvOrigin }}</td>
+            <td>{{ task.nvOrigin }}</td>
+            <td>{{ task.nvOrigin }}</td>
+            <td></td>
+        </tr>
+    </ng-template>
     </p-table>
     </div>
 
