@@ -190,18 +190,13 @@ $lightblue-gray: #5F6388;
     font-size: 2vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
+    color: #1E2959;
+    font-weight: 500;
     font-size: 2vmin; 
     background-color: #c1d5f0;
     padding-top: 1%;
 
   }
-
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        font-size: 2vmin;
-        border-top: 2px solid #2F81EF;
-        background-color: #c1d5f0;
-        padding-top: 1%;
-    }
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
@@ -213,6 +208,8 @@ $lightblue-gray: #5F6388;
     font-size: 3vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
+    color: #1E2959;
+    font-weight: 500;
     font-size: 3vmin; 
     background-color: #c1d5f0;
     padding-top: 1%;
@@ -220,12 +217,11 @@ $lightblue-gray: #5F6388;
  }
 
 
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        border-top: 2px solid #2F81EF;
-        font-size: 3vmin;
-        background-color: #c1d5f0;
-        padding-top: 1%;
-    }
+    // .table-style .p-datatable .p-datatable-thead > tr > th {
+    //     font-size: 3vmin;
+    //     background-color: #c1d5f0;
+    //     padding-top: 1%;
+    // }
 
 @media screen and (min-width: 1201px) {
   .h4-regular {
@@ -237,17 +233,18 @@ $lightblue-gray: #5F6388;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
     // border-top: 4px solid #2F81EF;
+    color: #1E2959;
+    font-weight: 500;
     font-size: 2.2vmin; 
     background-color: #c1d5f0;
    padding-top: 1%;
   }
 }
 
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        border-top: 4px solid #2F81EF;
-        background-color: #c1d5f0;
-        font-size: 2.2vmin;
-    }
+    // .table-style .p-datatable .p-datatable-thead > tr > th {
+    //     background-color: #c1d5f0;
+    //     font-size: 2.2vmin;
+    // }
 
 
 .p-accordion {

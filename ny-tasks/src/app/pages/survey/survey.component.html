@@ -1,9 +1,9 @@
 <div class="background">
     <div class="title-wrap">
-    <div class="title">
-    <h1 class="title-text">משובים</h1>
-    <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
-    </div>
+        <div class="title">
+            <h1 class="title-text">משובים</h1>
+            <h4 class="sumSurveys h4-regular">{{sum}} סך הכל</h4>
+        </div>
     </div>
     <div class="cover">
         <p-table class="table-style" paginatorDropdownAppendTo="body" [showFirstLastIcon]="false"
@@ -16,9 +16,8 @@
                         <span class="tableTitle">שם המשוב</span>
                         <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
-                            <p-columnFilter class="filterArea" matchMode="contains" [showMenu]="false" type="text"
-                                field="nvSurveyName" filterMatchMode="contains"
-                                (keyup)="applyFilter()"></p-columnFilter>
+                            <p-columnFilter matchMode="contains" [showMenu]="false" type="text" field="nvSurveyName"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                         </span>
                     </th>
                     <th>
@@ -47,7 +46,7 @@
                         </span>
                     </th>
                     <th class="thIcon">
-                        <div >
+                        <div>
                             <button class="visibleFilter pi pi-sort-alt" (click)="toggleFilters()"></button>
                         </div>
                     </th>
@@ -68,5 +67,4 @@
 
     </div>
 
-</div> 
- 
+</div>

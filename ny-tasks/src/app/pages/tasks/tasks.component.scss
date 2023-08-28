@@ -1,143 +1,230 @@
 $blue3: #1E2959;
 $lightblue-gray: #5F6388;
 
-.title {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
-  gap: 15%;
-  position: absolute;
-  width: 10%;
-  height: 10%;
-  right: 10%;
-  top: 9%;
+.p-input-icon-right>i:last-of-type {
+  color: #B3B3B3;
+  margin-top: 1%;
 }
 
-.title-text {
-  width: 55px;
-  height: 21px;
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: right;
-  letter-spacing: -0.011em;
-  color: #1E2959;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-}
-.cover {
-  position: absolute;
-  top: 15%;
-  right: 10%;
-  width: 80%;
-}
-
-.tableTitle {
-  display: flex;
-  width: 8vw;
-  color: #1E2959;
-  font-size: 2vmin;
-  font-weight: 500;
-  position: relative;
-}
+// .p-fluid .p-inputtext {
+//   margin-top: 10%;
+// }
 
 :host ::ng-deep {
- 
-.searchIcon{
-  z-index: 1000;
-  color: #B3B3B3;
-  font-size: 1.7vmin;
-  
-}
-  
-  .p-inputtext{
-    padding-top: 0.25rem;
+
+  .p-inputwrapper-filled {
+    right: 0%;
+    position: absolute;
+  }
+
+  .searchIcon {
+    z-index: 1000;
+    font-size: 1.7vmin;
+
+  }
+
+  .p-inputtext {
     font-weight: 600;
     border-radius: 10px;
     padding-right: 2vw;
     font-size: 2vmin;
-    position: relative;
-    z-index: 999;
-    position: relative;
   }
-  .pi-filter-slash:before{
+  
+
+  .p-fluid .p-inputtext {
+    margin-top: 10%;
+  }
+
+  .pi-filter-slash:before {
     font-size: 0px;
   }
-  .p-inputtext:enabled:focus,.p-inputtext:enabled:hover{
-      box-shadow:none;
-      border-color: #c1d5f0;
-    }
-}
-.visibleFilter {
-  position: absolute;
-  border: none;
-  left: 15px;
-  margin-top: 3%;
-  top: 10px;
-  background-color: transparent;
-  z-index: 1000;
-  font-size: 2vmin;
-}
+
+  .p-inputtext:enabled:focus,
+  .p-inputtext:enabled:hover {
+    box-shadow: none;
+    border-color: #c1d5f0;
+  }
+
+  .visibleFilter {
+    position: absolute;
+    border: none;
+    left: 15px;
+    margin-top: 3%;
+    top: 10px;
+    background-color: transparent;
+    z-index: 1000;
+    font-size: 2vmin;
+  }
 
 
-.thIcon {
-  position: relative;
-  padding-top: 2%;
-  padding-bottom: 0%;
-  margin-bottom: 1%;
+  .thIcon {
+    position: relative;
+    padding-top: 2.2%;
+  }
+
+  .p-paginator {
+    direction: ltr;
+    background: none;
+    border: none;
+    position: relative;
+  }
+
+  .p-datatable-wrapper {
+    height: 75vh;
+  }
+
+  .p-inputwrapper-filled {
+    right: 0%;
+    position: absolute;
+  }
+  .p-dropdown {
+    border-radius: 10%;
+    color: black;
+    background-color: #F5F8FD;
+    padding: 0px;
+  }
+  .p-inputtext:enabled:focus,
+  .p-inputtext:enabled:hover {
+    box-shadow: none;
+    border-color: #c1d5f0;
+  }
+  
+  .p-dropdown:not(.p-disabled).p-focus,
+  .p-dropdown:not(.p-disabled):hover {
+    box-shadow: none;
+    border-color: gray;
+  }
+
+  .p-paginator .p-dropdown {
+    height: 2rem;
+  }
+  .p-link:focus {
+    box-shadow: none;
+  }
+  
+  
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    height: 1.7rem;
+    min-width: 1.7rem;
+  }
+  
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #D9D9D9;
+    border-radius: 50%;
+    font-weight: 600;
+    padding: 1%;
+  }
+  
+  .pi-filter-slash:before {
+    font-size: 0;
+  }
+  
 }
 
 @media screen and (max-width: 992px) {
   :host ::ng-deep {
-  /* .tableTitle{
-  font-size:1.7vmin ;
+    .tableTitle {
+      font-size: 1.7vmin;
     }
-    .pi-search:before{
+
+    .pi-search:before {
       font-size: 0vmin;
     }
+
     .table-style {
       height: 100px;
       overflow-y: auto;
     }
-   */
-  .table-style .p-datatable .p-datatable-thead>tr>th {
-    font-size: 2vmin;
-  }
 
-  .table-style>tr {
-    line-height: 1.5vmin;
-    width: 1.5vmin;
-  }
+    .table-style .p-datatable .p-datatable-thead>tr>th {
+      font-size: 2vmin;
+    }
 
-  .p-inputtext {
-    font-size: 1.7vmin;
+    .table-style>tr {
+      line-height: 1.5vmin;
+      width: 1.5vmin;
+    }
+
+    .p-inputtext {
+      font-size: 1.7vmin;
+    }
   }
-}
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
   :host ::ng-deep {
-  /* .table-style {
+
+    // .table-style .p-datatable .p-datatable-thead>tr>th {
+    //   font-size: 2vmin;
+
+    // }
+
+    // .table-style {
+    //   height: 300px;
+    //   overflow-y: auto;
+    // }
+
+    // .h4-regular {
+    //   font-size: 2vmin;
+    // }
+
+    // .table-style {
+    //   height: 300px;
+    //   overflow-y: auto;
+    // }
+
+    // .table-style .p-datatable .p-datatable-thead>tr>th {
+    //   font-size: 2vmin;
+
+    // }
+
+    // .table-style>tr {
+    //   line-height: 20.5vmin;
+    //   width: 2.5vmin;
+    // }
+
+    // .filters {
+    //   position: relative;
+    // }
+
+    // .p-inputtext {
+    //   font-size: 1.8vmin;
+    //   padding-right: 2.2vw;
+    // }
+
+    // .visibleFilter {
+    //   font-size: 1.7vmin;
+    //   margin-top: 2%;
+    // }
+    .table-style {
       height: 300px;
       overflow-y: auto;
     }
-   */
-  .table-style .p-datatable .p-datatable-thead>tr>th {
-    font-size: 2vmin;
-  }
+  
+    .table-style .p-datatable .p-datatable-thead>tr>th {
+      font-size: 2vmin;
+   
+    }
+  
+    .table-style>tr {
+      line-height: 20.5vmin;
+      width: 2.5vmin;
+    }
+  
+    .filters {
+      position: relative;
+    }
+  
+    .p-inputtext {
+      font-size: 1.8vmin;
+      padding-right: 2.2vw;
+    }
+  
+    .visibleFilter {
+      font-size: 1.7vmin;
+      margin-top: 2%;
+    }
 
-  .table-style>tr {
-    line-height: 20.5vmin;
-    width: 2.5vmin;
-  }
 
-  .p-inputtext {
-    font-size: 1.8vmin;
   }
-}
 }
