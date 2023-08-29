@@ -10,8 +10,8 @@
             </app-bar-buttons>
             <ng-container class="innerButtons" *ngIf="visibleTypes">
                   <app-target-buttons class="typeButton" *ngFor="let type of typesTarget; let i = index"
-                        [label]="type.nvTargetName" [color]="i == typesTarget.length-1 ? 'white' : colors[i % 6]"
-                        (clicked)="navigateTo(type.iTypeTargetId.toString())" (click)="navigateTo(type.iTypeTargetId.toString())">
+                        [label]="type.nvTypeTargetName" [color]=" colors[i % 6]"
+                        [type]="type.iTypeTargetId">
                   </app-target-buttons>
             </ng-container>
       </ng-template>

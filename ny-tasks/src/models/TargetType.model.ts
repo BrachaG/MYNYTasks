@@ -1,5 +1,5 @@
 export interface TargetType {
     iTypeTargetId: number
-    nvTargetName: string
+    nvTypeTargetName: string
 
 }

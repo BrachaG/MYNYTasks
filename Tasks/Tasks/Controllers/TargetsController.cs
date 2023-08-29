@@ -27,7 +27,7 @@ namespace Tasks.Controllers
             permissionLevelId =  HttpContext.Items.TryGetValue("PermissionLevelId", out var permissionLevelIdValue) && permissionLevelIdValue is int permissionLevelIdInt ? permissionLevelIdInt : -1;
             userId = HttpContext.Items.TryGetValue("UserId", out var UserIdValue) && UserIdValue is int UserIdInt ? UserIdInt : -1;*/
         }
-        [HttpGet("Get/{iTargetType}")]
+        [HttpGet("Get/{TargetType}")]
         public async Task<ActionResult<List<Target>>> GetTargetsByTargetType(int targetType)
         {
             string Type = JwtRegisteredClaimNames.Sub;
@@ -35,7 +35,7 @@ namespace Tasks.Controllers
             string Name = JwtRegisteredClaimNames.NameId;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
             _logger.LogDebug($"User id is: {userId} ,PermissionLevelId is: {permissionLevelId} In GetTargetsByUserId");
-            return await _targetsService.GetTargetsByTargetType(int.Parse(userId), int.Parse(permissionLevelId), 1);
+            return await _targetsService.GetTargetsByTargetType(int.Parse(userId), int.Parse(permissionLevelId), targetType);
         }
 
         [HttpPost()]

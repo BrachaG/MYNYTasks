@@ -19,14 +19,14 @@ export class SideBarComponent {
   currentRoute: string = '';
   @Input()
   visibleTypes: boolean = false;
-  typesTarget :TargetType[]=[];
-    // [['שמירת שבת', '/selfbored'],
-    // ['מסע אלול', '/selfbored'],
-    // ['טהרת המשפחה', '/selfbored'],
-    // ['תפילין', '/selfbored'],
-    // ['צניעות', '/selfbored'],
-    // ['תפילה', '/selfbored'],
-    // ['פרוייקט חדש', '/selfbored']];
+  typesTarget: TargetType[] = [];
+  // [['שמירת שבת', '/selfbored'],
+  // ['מסע אלול', '/selfbored'],
+  // ['טהרת המשפחה', '/selfbored'],
+  // ['תפילין', '/selfbored'],
+  // ['צניעות', '/selfbored'],
+  // ['תפילה', '/selfbored'],
+  // ['פרוייקט חדש', '/selfbored']];
   buttons =
     [['לוח אישי', '/selfbored', 'pi pi-table'],
     ['משימות', '/tasks', 'pi pi-pencil'],
@@ -44,7 +44,12 @@ export class SideBarComponent {
 
       });
 
-      this.settingsSrv.getTargetsType().subscribe((res: TargetType[])=>this.typesTarget=res)
+    this.settingsSrv.getTargetsType().subscribe((res: TargetType[]) => {
+      this.typesTarget = res
+      console.log(this.typesTarget);
+    })
+
+
   }
 
   ngOnInit() {
@@ -52,12 +57,20 @@ export class SideBarComponent {
   }
 
   navigateTo(route: string) {
-    this.router.navigateByUrl(route);
-    if (route == '/selfbored' || route == '/tasks' || route == '/surveys')
+    if (route == '/selfbored' || route == '/tasks' || route == '/surveys') {
+      this.router.navigateByUrl(route);
       this.visibleTypes = false;
-    else
-      if (route == '/targets')
+    }
+
+    else {
+      if (route == '/targets') {
         this.visibleTypes = !this.visibleTypes;
+      }
+      else
+      this.router.navigateByUrl(`/targets/${route}`)
+    }
+
+
   }
 
   outPutVisible() {
