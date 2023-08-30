@@ -11,5 +11,6 @@
         public int iStudentId { get; set; }
         public string nvOrigin { get; set; }
         public string nvComments { get; set; }
+        public string? nvStatus { get; set; }
     }
 }

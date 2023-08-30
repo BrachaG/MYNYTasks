@@ -37,7 +37,7 @@
                         </span>
                     </th>
                     <th>
-                        <span class="tableTitle">פרוייקט </span>
+                        <span class="tableTitle">סוג יעד </span>
                         <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
                             <p-columnFilter class="textFilterArea" matchMode="contains" [showMenu]="false" type="text" field="iTargetId"
@@ -47,7 +47,7 @@
                     <th>
                         <span class="tableTitle">סטטוס </span>
                         <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
-                            <i class="searchIcon pi pi-search"></i>
+                            <i class="searchIcon pi pi-search "></i>
                             <p-columnFilter class="textFilterArea" matchMode="contains" [showMenu]="false" type="text" field="iStatus"
                                 filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
                         </span>
@@ -81,7 +81,7 @@
                     <td>{{ task.nvCategory }}</td>
                     <td>{{ task.iStudentId }}</td>
                     <td>{{ task.iTargetId }}</td>
-                    <td>{{ task.iStatus }}</td>
+                    <td class="taskStatus">{{ task.nvStatus }}</td>
                     <td>{{ task.dtEndDate| date:'dd.MM.yy' }}</td>
                     <td>{{ task.nvOrigin}}</td>
                     <td></td>

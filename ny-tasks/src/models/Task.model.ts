@@ -8,4 +8,5 @@ export interface Task {
  iStudentId:number;
  nvOrigin:string;
  nvComments :string;
+ nvStatus:string;
 }
