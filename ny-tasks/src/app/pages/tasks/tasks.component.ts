@@ -53,6 +53,18 @@ export class TasksComponent {
     console.log(this.tasks);
 
   }
+  getStatusColor(iStatus: number): string {
+    if (iStatus === 1)
+      return '#00B4E6';
+    else if (iStatus === 2)
+      return '#ED4D9A';
+    else if (iStatus === 3)
+      return '#828282';
+    else {
+      return '#57BC83';
+
+    }
+  }
   toggleFilters() {
     this.filterVisible = !this.filterVisible;
   }

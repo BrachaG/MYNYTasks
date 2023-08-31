@@ -113,6 +113,10 @@ namespace Service
             {
                 DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetTasks_GET", sp);
                 List<TaskModel> tasks = _taskObjectGenerator.GeneratListFromDataTable(dt);
+                foreach (DataColumn column in dt.Columns)
+                {
+                    Console.WriteLine(column.ColumnName);
+                }
                 return tasks;
             }
             catch (Exception ex)

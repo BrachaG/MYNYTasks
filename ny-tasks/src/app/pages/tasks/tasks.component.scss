@@ -120,7 +120,19 @@ $lightblue-gray: #5F6388;
   }
   
 }
+.status{
+  width: 3.5vw;
+  height: 1.5vw;
+  margin-right: 10%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  color: white;
+ text-align: center;
+ padding-top: 3%;
 
+}
 @media screen and (max-width: 992px) {
   :host ::ng-deep {
     .tableTitle {

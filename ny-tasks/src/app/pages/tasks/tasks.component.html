@@ -81,7 +81,7 @@
                     <td>{{ task.nvCategory }}</td>
                     <td>{{ task.iStudentId }}</td>
                     <td>{{ task.iTargetId }}</td>
-                    <td class="taskStatus">{{ task.nvStatus }}</td>
+                    <td ><div class="status" [ngStyle]="{'background-color': getStatusColor(task.iStatus)}">{{ task.nvStatus }}</div></td>
                     <td>{{ task.dtEndDate| date:'dd.MM.yy' }}</td>
                     <td>{{ task.nvOrigin}}</td>
                     <td></td>
