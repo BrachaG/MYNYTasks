@@ -6,9 +6,6 @@ $lightblue-gray: #5F6388;
   margin-top: 1%;
 }
 
-// .p-fluid .p-inputtext {
-//   margin-top: 10%;
-// }
 
 :host ::ng-deep {
 
@@ -28,8 +25,9 @@ $lightblue-gray: #5F6388;
     border-radius: 10px;
     padding-right: 2vw;
     font-size: 2vmin;
+    margin-right: 1%;
+
   }
-  
 
   .p-fluid .p-inputtext {
     margin-top: 10%;
@@ -77,18 +75,20 @@ $lightblue-gray: #5F6388;
     right: 0%;
     position: absolute;
   }
+
   .p-dropdown {
     border-radius: 10%;
     color: black;
     background-color: #F5F8FD;
     padding: 0px;
   }
+
   .p-inputtext:enabled:focus,
   .p-inputtext:enabled:hover {
     box-shadow: none;
     border-color: #c1d5f0;
   }
-  
+
   .p-dropdown:not(.p-disabled).p-focus,
   .p-dropdown:not(.p-disabled):hover {
     box-shadow: none;
@@ -98,45 +98,63 @@ $lightblue-gray: #5F6388;
   .p-paginator .p-dropdown {
     height: 2rem;
   }
+
   .p-link:focus {
     box-shadow: none;
   }
-  
-  
+
+
   .p-paginator .p-paginator-pages .p-paginator-page {
     height: 1.7rem;
     min-width: 1.7rem;
   }
-  
+
   .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
     background: #D9D9D9;
     border-radius: 50%;
     font-weight: 600;
     padding: 1%;
   }
-  
+
   .pi-filter-slash:before {
     font-size: 0;
   }
-  
+
+  .table-style .p-datatable .p-datatable-tbody>tr>td {
+    white-space: nowrap;
+  }
+
+  .p-column-filter-clear-button {
+    display: none;
+  }
 }
-.status{
+
+.status {
   width: 3.5vw;
   height: 1.5vw;
-  margin-right: 10%;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
   color: white;
- text-align: center;
- padding-top: 3%;
+  text-align: center;
+  padding-top: 3%;
+  font-size: 1.7vmin;
 
 }
+
+.tableTitle {
+  font-size: 2vmin;
+}
+.subject{
+  font-weight: 500;
+}
+
+
 @media screen and (max-width: 992px) {
   :host ::ng-deep {
     .tableTitle {
-      font-size: 1.7vmin;
+      font-size: 1.3vmin;
     }
 
     .pi-search:before {
@@ -159,6 +177,11 @@ $lightblue-gray: #5F6388;
 
     .p-inputtext {
       font-size: 1.7vmin;
+    }
+
+    .status {
+      font-size: 1.3vmin;
+      padding-top: 0%;
     }
   }
 }
@@ -212,31 +235,38 @@ $lightblue-gray: #5F6388;
       height: 300px;
       overflow-y: auto;
     }
-  
+
+    .tableTitle {
+      font-size: 1.6vmin;
+    }
+
     .table-style .p-datatable .p-datatable-thead>tr>th {
       font-size: 2vmin;
-   
     }
-  
+
     .table-style>tr {
       line-height: 20.5vmin;
       width: 2.5vmin;
     }
-  
+
     .filters {
       position: relative;
     }
-  
+
     .p-inputtext {
       font-size: 1.8vmin;
       padding-right: 2.2vw;
     }
-  
+
     .visibleFilter {
       font-size: 1.7vmin;
       margin-top: 2%;
     }
 
+    .status {
+      font-size: 1.5vmin;
+      padding-top: 0%;
+    }
 
   }
 }

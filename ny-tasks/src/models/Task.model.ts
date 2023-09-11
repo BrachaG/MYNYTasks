@@ -9,4 +9,6 @@ export interface Task {
  nvOrigin:string;
  nvComments :string;
  nvStatus:string;
+ nvType:string;
+ nvFirstName:string;
 }

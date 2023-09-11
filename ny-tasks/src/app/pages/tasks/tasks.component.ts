@@ -32,13 +32,13 @@ export class TasksComponent {
       this.filteredTasks = this.tasks.filter((task) => {
         // Apply your desired filtering logic based on the survey properties
         return (
-          task.iType.toString().includes(filterValue) ||
+          task.nvType.toLowerCase().includes(filterValue) ||
           task.nvCategory.toLowerCase().includes(filterValue) ||
-          task.iStudentId.toString().includes(filterValue) ||
-          task.iStatus.toString().includes(filterValue) ||
+          task.nvFirstName.toLowerCase().includes(filterValue) ||
+          task.nvStatus.toLowerCase().includes(filterValue) ||
           task.iTargetId.toString().includes(filterValue) ||
-          task.nvOrigin.toLowerCase().includes(filterValue) ||
-          task.dtEndDate.toString().includes(filterValue)
+          task.dtEndDate.toString().includes(filterValue) ||
+          task.nvOrigin.toLowerCase().includes(filterValue)
         );
       });
     }, 1000);

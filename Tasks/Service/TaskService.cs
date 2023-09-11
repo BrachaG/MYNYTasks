@@ -117,6 +117,8 @@ namespace Service
                 {
                     Console.WriteLine(column.ColumnName);
                 }
+
+                Console.WriteLine("Row count: " + dt.Rows.Count);
                 return tasks;
             }
             catch (Exception ex)

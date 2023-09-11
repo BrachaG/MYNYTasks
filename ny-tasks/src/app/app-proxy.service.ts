@@ -69,7 +69,7 @@ export class AppProxy {
       .get(`${AppProxy.baseUrl}${url}`)
       .pipe(
         tap(data => {
-          debugger
+          // debugger
             this.res = data;	
               return this.convertData(data, false);
           }))
