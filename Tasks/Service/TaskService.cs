@@ -30,6 +30,11 @@ namespace Service
             {
                 return new StatusCodeResult(403);
             }
+            if(task.nvCategory=="חינוכית" && task.iStudentId==null)
+            {
+                return new StatusCodeResult(403);
+
+            }
             if (task.iTargetId == 0)
             {
                 List<SqlParameter> sp = new List<SqlParameter>
