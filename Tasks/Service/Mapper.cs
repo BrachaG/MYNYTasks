@@ -62,6 +62,11 @@ namespace Service
           .ConvertUsing(row => MapDataRowToEntity<Branch>(row));
             CreateMap<DataRow, BranchGroup>()
           .ConvertUsing(row => MapDataRowToEntity<BranchGroup>(row));
+            CreateMap<DataRow, StudentForTask>()
+    .ForMember(dest => dest.iPersonId, opt => opt.MapFrom(src => src.Field<int>("iPersonId")))
+    .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Field<string>("FullName")))
+    .ForMember(dest => dest.iBranchId, opt => opt.MapFrom(src => src.Field<int>("iBranchId")))
+    .ForMember(dest => dest.nvBranchName, opt => opt.MapFrom(src => src.Field<string>("nvBranchName")));
         }
     }
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { LoginComponent } from '../pages/login/login.component';
 import { CodeTable } from '../../models/CodeTable.model';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { CodeTable } from '../../models/CodeTable.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public router:Router) {}
+  constructor(public router:Router,public _settingsService: SettingsService ) {}
  
   @Output() showImageParent: EventEmitter<any> = new EventEmitter();
   @Input() showImage: any
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
     this.showImage = !this.showImage
     this.showImageParent.emit(this.showImage);
   }
+
   logOut() {
     localStorage.clear();
     this.router.navigate(["login"])

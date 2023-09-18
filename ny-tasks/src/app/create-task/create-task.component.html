@@ -4,35 +4,68 @@
 
 
     <ng-template pTemplate="content">
-        
-            <form>
-                <p class="titleText">יצירת משימה חדשה</p>
-                <div class="space">
+
+        <form [formGroup]='taskForm'>
+            <p class="titleText">יצירת משימה חדשה</p>
+            <div class="space">
+                <!-- <mat-form-field appearance="fill">
+                        <mat-label>Select Status</mat-label>
+                        <mat-select formControlName="statuses" class="mat-form-field-infix-S">
+                            <mat-option >  </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
                 <p class="textAbove">קטגוריה</p>
-                <p-dropdown class="inputs" [options]="category"></p-dropdown>
-                <p class="textAbove">נמען (פעיל)</p>
-                <input class="inputs" type="text" pInputText />
-                <p class="textAbove">סטודנט</p>
-                <input class="inputs" type="text" pInputText />
+                <p-dropdown  formControlName="category" [ngClass]="{'p-invalid': isInvalid('category')}" class="inputs" [options]="category"></p-dropdown>
+
+                <!-- <p class="textAbove">נמען (פעיל)</p>
+                <input formControlName="addressee"  class="inputs" type="text" pInputText /> -->
+
+                <p class="textAbove" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'">סטודנט</p>
+
+                <!-- <p-dropdown formControlName="student"class="inputs custom-dropdown" [options]="students" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'"></p-dropdown> -->
+
+
+                <p-dropdown  [options]="students" [ngClass]="{'p-invalid': isInvalid('typeTask')}" formControlName="student"  optionLabel="label" [filter]="true"
+                    filterBy="label" [showClear]="false" placeholder="" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'">
+                    
+                    <ng-template  pTemplate="selectedItem">
+                        <div class=" align-items-center gap-2" *ngIf="taskForm.get('student')?.value">
+                            <div>{{ taskForm.get('student')?.value.label}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-student pTemplate="item">
+                        <div class="">
+                            <div>{{ student.label }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+
                 <p class="textAbove">נושא</p>
-                <input class="inputs" type="text" pInputText />
+                <p-dropdown formControlName="typeTask" class="inputs custom-dropdown"
+                    [options]="tasksTypesNames" [ngClass]="{'p-invalid': isInvalid('typeTask')}"></p-dropdown>
+
                 <p class="textAbove">תיאור</p>
-                <textarea rows="2" cols="22" pInputTextarea [autoResize]="false" class="resize"
-                    maxlength="80"></textarea>
+                <textarea formControlName="comments" rows="2" cols="22" pInputTextarea [autoResize]="false"
+                    class="resize" maxlength="80"></textarea>
+
                 <p class="textAbove">יעד</p>
-                <p-dropdown class="inputs custom-dropdown" [options]="category"></p-dropdown>
+                <p-dropdown formControlName="target" [ngClass]="{'p-invalid': isInvalid('target')}" class="inputs custom-dropdown"
+                    [options]="targetsNames"></p-dropdown>
+                    
+
                 <p class="textAbove">תאריך</p>
-                <input class="inputs" type="date" pInputText />
+                <input formControlName="endDate"  class="inputs" type="date" pInputText  [ngClass]="{'p-invalid': isInvalid('endDate')}"  />
+                <div class="error-message" *ngIf="taskForm.get('endDate')?.hasError('dateOutOfRange') && taskForm.get('endDate')?.touched">
+                    יש להכניס תאריך חוקי
+                  </div>
             </div>
-            </form>
-      
+        </form>
+
     </ng-template>
     <ng-template pTemplate="footer">
-        <p-button class="save" label="שמירה" (click)="SaveData()"></p-button>
-        <p-button class="send" label="שליחה" (click)="SendData()"></p-button>
+        <p-button class="send" label="שליחה" (click)="SendData()" [disabled]="taskForm.invalid"></p-button>
     </ng-template>
 
 
 
 </p-sidebar>
-<!-- <p-button (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button> -->
