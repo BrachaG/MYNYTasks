@@ -25,10 +25,9 @@
                 <!-- <p-dropdown formControlName="student"class="inputs custom-dropdown" [options]="students" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'"></p-dropdown> -->
 
 
-                <p-dropdown  [options]="students" [ngClass]="{'p-invalid': isInvalid('typeTask')}" formControlName="student"  optionLabel="label" [filter]="true"
-                    filterBy="label" [showClear]="false" placeholder="" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'">
-                    
-                    <ng-template  pTemplate="selectedItem">
+                <p-dropdown  [options]="students" [ngClass]="{'p-invalid': isInvalid('student')}" formControlName="student"  optionLabel="label" [filter]="true"
+                    filterBy="label" [showClear]="false" placeholder="" class="inputs custom-dropdown" *ngIf="taskForm.get('category')?.value== 'משימה חינוכית'">
+                    <!-- <ng-template  pTemplate="selectedItem">
                         <div class=" align-items-center gap-2" *ngIf="taskForm.get('student')?.value">
                             <div>{{ taskForm.get('student')?.value.label}}</div>
                         </div>
@@ -37,7 +36,7 @@
                         <div class="">
                             <div>{{ student.label }}</div>
                         </div>
-                    </ng-template>
+                    </ng-template> -->
                 </p-dropdown>
 
                 <p class="textAbove">נושא</p>

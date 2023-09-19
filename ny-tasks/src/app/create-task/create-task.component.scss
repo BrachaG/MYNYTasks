@@ -13,6 +13,14 @@
   color: #1E2959;
   box-shadow: none;
 }
+:host ::ng-deep .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+  // padding-right: 56.5rem;
+  margin-right: 0rem;
+}
+:host ::ng-deep.p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {
+  right: 0.3rem;
+  color: #6c757d;
+}
 
 .titleText {
 
@@ -141,37 +149,13 @@
   color: #8a8d91;
   font-weight: 400;
 }
-// .ng-invalid {
-//   border: 1px solid red;
-// }
 
-// /* Style for focused input */
-// input:focus.ng-touched {
-//   border: 1px solid blue; /* Change to your desired focused state style */
-// }
-
-// /* Style for invalid input */
-// .ng-invalid.ng-touched {
-//   border: 1px solid red;
-// }
-
-// /* Style for valid input */
-// .ng-valid.ng-touched {
-//   border: 1px solid green; /* Change to your desired valid state style */
-// }
-
-// /* Style for error message */
-// .error-message {
-//   color: red;
-//   font-size: 12px;
-// }
 input:focus:invalid {
   border: 1px solid red;
 }
 .p-invalid {
   border: 1px solid red;
 }
-/* Style for the error message */
 .error-message {
   color: red;
   font-size: 12px;
