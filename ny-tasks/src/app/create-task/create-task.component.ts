@@ -44,6 +44,7 @@ export class CreateTaskComponent {
       let task: Task = this.makeTaskObject(this.taskForm);
       this._tasksService.addTask(task, this.taskForm.value.target).subscribe({
         next: (response: any) => {
+          alert("success")
         },
         error: (error) => {
 
@@ -94,7 +95,7 @@ export class CreateTaskComponent {
       task.iStudentId = null;
     }
     else {
-      task.iStudentId = taskForm.value.student.value;
+      task.iStudentId = taskForm.value.student?.value;
     }
 
     return task;
@@ -150,7 +151,6 @@ export class CreateTaskComponent {
               label: item.nvTargetName,
               value: item.iTypeTargetId,
             }))];
-          console.log("this.targetsTypesNames", this.targetsTypesNames)
           this._targetsService.getTargets().subscribe({
             next: (response: any[]) => {
               if (response && response.length > 0) {
@@ -161,7 +161,6 @@ export class CreateTaskComponent {
                     label: this.targetsTypesNames[item.iTypeTargetId].label,
                     value: item.iTargetId,
                   }))];
-                console.log(this.targetsNames);
               } else {
                 console.error('Empty or unexpected response:', response);
               }
@@ -191,17 +190,6 @@ export class CreateTaskComponent {
       }
     });
     
-    // this.taskForm.get('category')?.valueChanges.subscribe(val => {
-    //   if (this.taskForm.value.category == "משימה חינוכית") {
-    //     this.taskForm.controls['student'].setValidators([Validators.required]);
-    //     this.taskForm.controls['student'].updateValueAndValidity();
-    //     this.cdr.detectChanges();
-    //   }
-    //   else {
-    //     this.taskForm.controls['student'].clearValidators();
-    //     this.taskForm.controls['student'].updateValueAndValidity();
-    //     this.cdr.detectChanges();
-    //   }})
 
   }
 }

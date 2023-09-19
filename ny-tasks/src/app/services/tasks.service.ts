@@ -11,7 +11,6 @@ export class TasksService {
         { let url: string = `api/Task/Get`; return this.appProxy.get(url) }
     }
     addTask(taskData: any, targetType: number): Observable<void> {
-        debugger;
         const url = `${AppProxy.baseUrl}api/Task/Add?targetType=${targetType}`;
         return this.http.post<void>(url, taskData);
     }
