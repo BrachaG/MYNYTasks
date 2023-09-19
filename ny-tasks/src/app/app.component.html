@@ -2,6 +2,6 @@
 <app-side-bar *ngIf="currentRoute !== '/login'" [sidebarVisible]="sidebarVisible" (OutputVisible)="onSideBarOutput($event)"></app-side-bar>
 <app-header *ngIf="currentRoute !== '/login' && currentRoute !== '/select-branch' "></app-header>
 <router-outlet></router-outlet>
-<app-create-task  *ngIf="isLoggedIn" [sidebarVisible]="sidebarVisible" (OutputVisible)="onCreateTaskOutput($event)"></app-create-task>
+<app-create-task  *ngIf="isLoggedIn" [sidebarVisible]="sidebarVisible" [originTask]="originTask" (OutputVisible)="onCreateTaskOutput($event)"></app-create-task>
 
 

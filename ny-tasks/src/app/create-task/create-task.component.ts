@@ -26,7 +26,7 @@ export class CreateTaskComponent {
   selectedStudent: { label: string; value: number; } = { label: "", value: 0 };
   isFormSubmitted = false;
 
-
+  @Input() originTask!: string;
   taskForm: FormGroup = new FormGroup({
     category: new FormControl("", [Validators.required]),
     student: new FormControl(null),
@@ -96,6 +96,9 @@ export class CreateTaskComponent {
     }
     else {
       task.iStudentId = taskForm.value.student?.value;
+    }
+    if(this.originTask="button"){
+      task.nvOrigin = "עצמית";
     }
 
     return task;

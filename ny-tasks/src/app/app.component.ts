@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   chartJs = Chart;
   chartLabelPlugin = ChartDataLabels;
   sidebarVisible: boolean = false;
+  originTask:string="button";
   isLoggedIn = false;
 
   constructor(private router: Router) {
