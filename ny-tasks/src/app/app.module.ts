@@ -44,6 +44,9 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateTaskComponent } from './create-task/create-task.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -91,6 +94,10 @@ import { CreateTaskComponent } from './create-task/create-task.component';
     ScrollingModule,
     MatFormFieldModule,
     MatSelectModule,
+    PanelMenuModule,
+    MatButtonModule,
+    MatMenuModule,
+    
   ],
   providers: [
     {

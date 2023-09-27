@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
         this.loginStatusChange.emit(true);
         
 
-        if (this.user.iPermissionLevelId==2 && this.user.lBranches.length>1) {
+        if (this.user.iPermissionLevelId==2 && this.user.lBranches.length>=1) 
+        {//הוספתי את ה = 1
           localStorage.setItem('userBranches',JSON.stringify(this.user.lBranches))
           this.router.navigateByUrl('select-branch');
           

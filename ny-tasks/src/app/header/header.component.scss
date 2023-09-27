@@ -1,23 +1,102 @@
-
-.title{
+.title {
   position: absolute;
-  right:80%;
+  right: 80%;
 }
 
+::ng-deep .custom-panel-menu {
+  background-color: transparent !important;
+  /* Remove background color */
+  border: none !important;
+  /* Remove border */
+  box-shadow: none !important;
+  /* Remove shadow */
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header>a {
+  border-top-right-radius: none;
+  border-top-left-radius: none;
+}
+
+.p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled)>a:hover {
+  border-color: none !important;
+  background: none !important;
+  color: none !important;
+}
+
+::ng-deep .mat-mdc-menu-content {
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  list-style-type: none !important;
+  width: 189px !important;
+  padding-left: 16px !important;
+  direction: rtl !important;
+  margin-right: 20px !important;
+}
+
+::ng-deep .mat-mdc-button.mat-mdc-button-base,
+.mat-mdc-raised-button.mat-mdc-button-base,
+.mat-mdc-unelevated-button.mat-mdc-button-base,
+.mat-mdc-outlined-button.mat-mdc-button-base {
+  height: 36px;
+  margin-left: 50px !important;
+}
+
+.popup-button-container {
+  display: inline-block;
+}
+
+.popup-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: inherit;
+  /* Inherit font from parent element (body) */
+}
+
+/* Rest of your button styles */
+
+::ng-deep .mat-menu-panel {
+  font-family: inherit !important;
+  /* Inherit font from parent element (body) */
+}
+
+::ng-deep .mat-menu-panel {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+p {
+
+  font-family: 'Rubik', sans-serif !important;
+}
+.bold{
+  font-weight: bold;
+}
+.auto-size-button {
+  width: auto;
+  height: auto;
+  /* You can add other styling as needed */
+}
 // .switch {
 //     position: relative;
 //     display: inline-block;
 //     width: 40px;
 //     height: 19px;
 //   }
-  
+
 //   /* Hide default HTML checkbox */
 //   .switch input {
 //     opacity: 0;
 //     width: 0;
 //     height: 0;
 //   }
-  
+
 //   /* The slider */
 //   .slider {
 //     position: absolute;
@@ -30,7 +109,7 @@
 //     -webkit-transition: .4s;
 //     transition: .4s;
 //   }
-  
+
 //   .slider:before {
 //     position: absolute;
 //     content: "";
@@ -43,22 +122,22 @@
 //     -webkit-transition: .4s;
 //     transition: .4s;
 //   }
-  
+
 //   input:checked + .slider {
 //     background-color: #2196F3;
 //   }
-   
+
 //   input:checked + .slider:before {
 //     -webkit-transform: translateX(18px);
 //     -ms-transform: translateX(18px);
 //     transform: translateX(18px);
 //   }
-  
+
 //   /* Rounded sliders */
 //   .slider.round {
 //     border-radius: 34px;
 //   }
-  
+
 //   .slider.round:before {
 //     border-radius: 50%;
 //   }
