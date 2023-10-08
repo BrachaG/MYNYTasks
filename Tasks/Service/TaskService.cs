@@ -13,13 +13,15 @@ namespace Service
         ISqlDataAccess _sqlDataAccess;
         ILogger<TaskService> _logger;
         IObjectGenerator<TaskModel> _taskObjectGenerator;
+        IObjectGenerator<StudentForTask> _studentObjectGenerator;
         IObjectGenerator<Target> _targetObjectGenerator;
-        public TaskService(ISqlDataAccess sqlDataAccess, ILogger<TaskService> logger, IObjectGenerator<TaskModel> taskObjectGenerator, IObjectGenerator<Target> targetObjectGenerator)
+        public TaskService(ISqlDataAccess sqlDataAccess, ILogger<TaskService> logger, IObjectGenerator<TaskModel> taskObjectGenerator, IObjectGenerator<Target> targetObjectGenerator, IObjectGenerator<StudentForTask> studentObjectGenerator)
         {
             _sqlDataAccess = sqlDataAccess;
             _logger = logger;
             _taskObjectGenerator = taskObjectGenerator;
             _targetObjectGenerator = targetObjectGenerator;
+            _studentObjectGenerator = studentObjectGenerator;
         }
         public async Task<IActionResult> Add(TaskModel task, int permissionLevel, int targetType, string iCoordinatorId, string iUserId)
         {
@@ -27,6 +29,11 @@ namespace Service
             if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
             {
                 return new StatusCodeResult(403);
+            }
+            if(task.nvCategory=="חינוכית" && task.iStudentId==null)
+            {
+                return new StatusCodeResult(403);
+
             }
             if (task.iTargetId == 0)
             {
@@ -145,30 +152,53 @@ namespace Service
                 return new StatusCodeResult(400);
             }
         }
-        public async Task<IActionResult> Update(int permissionLevel, int taskId, int? status = null, string? comments = null)
-        {
-            if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
+
+        public async Task<ActionResult<List<StudentForTask>>> GetStudentForTask(int iBranchId, int iUserId, int permissionLevel) 
             {
-                return new StatusCodeResult(403);
+                if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
+                {
+                    return new StatusCodeResult(403);
+                }
+                List<SqlParameter> sp = new List<SqlParameter>
+                 { new SqlParameter("iPermissionLevelId", 2),//permissionLevel לשנות לפרמטר האמיתי 
+                    new SqlParameter("iBranchId", iBranchId),
+                    new SqlParameter("iUserId", 1), };//iUserId לשנות לפרמטר האמיתי 
+            try
+                {
+                    DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetStudentForTask_SLCT", sp);
+                    List<StudentForTask> students = _studentObjectGenerator.GeneratListFromDataTable(dt);
+                    return students;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("failed to get task by tsrgetId", ex);
+                    return new StatusCodeResult(400);
+                }
             }
-            SqlParameter[] p = new SqlParameter[]
-              {
+            public async Task<IActionResult> Update(int permissionLevel, int taskId, int? status = null, string? comments = null)
+            {
+                if ((PermissionLevel)permissionLevel != PermissionLevel.NYmanagar && (PermissionLevel)permissionLevel != PermissionLevel.coordinator && (PermissionLevel)permissionLevel != PermissionLevel.SystemManager)
+                {
+                    return new StatusCodeResult(403);
+                }
+                SqlParameter[] p = new SqlParameter[]
+                  {
                     new SqlParameter("iPermissionLevelId",permissionLevel),
                     new SqlParameter("iTaskId", taskId),
                     new SqlParameter("iStatusId", status),
                     new SqlParameter("nvComments",comments)
-              };
-            try
-            {
-                await _sqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
-                return new StatusCodeResult(200);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("failed to update task", ex);
+                  };
+                try
+                {
+                    await _sqlDataAccess.ExecuteScalarSP("su_UpdateTask_UPD", p);
+                    return new StatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("failed to update task", ex);
+                    return new StatusCodeResult(400);
+                }
                 return new StatusCodeResult(400);
-            }
-            return new StatusCodeResult(400);
             }
 
         }

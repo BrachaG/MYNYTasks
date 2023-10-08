@@ -6,12 +6,15 @@
 @import "node_modules/primeicons/primeicons.css";
 @import "node_modules/quill/dist/quill.snow.css";
 
+body { 
+  font-family: 'Rubik', sans-serif;
+}
 
 
 body {
   direction: rtl;
   padding: 2em;
-  font-family: 'Rubik';
+  font-family: 'Rubik', sans-serif;
 }
 
 $blue3: #1E2959;
@@ -154,7 +157,7 @@ $lightblue-gray: #5F6388;
 
 .table-style .p-datatable-table {
   border-collapse: separate;
-  border-spacing: 0 6px !important;
+  border-spacing: 0 4px !important;
 }
 
 .table-style a {

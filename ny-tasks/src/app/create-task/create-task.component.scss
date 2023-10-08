@@ -13,6 +13,14 @@
   color: #1E2959;
   box-shadow: none;
 }
+:host ::ng-deep .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+  // padding-right: 56.5rem;
+  margin-right: 0rem;
+}
+:host ::ng-deep.p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {
+  right: 0.3rem;
+  color: #6c757d;
+}
 
 .titleText {
 
@@ -76,7 +84,7 @@
   font-size: 2vmin;
   margin: 2%;
   right: 1.9vw;
-  width: 37%;
+  width: 75%;
   border-radius: 8px;
   height: 5vh;
   padding-left: 0%;
@@ -140,4 +148,19 @@
 :host ::ng-deep .p-inputtext{
   color: #8a8d91;
   font-weight: 400;
+}
+
+input:focus:invalid {
+  border: 1px solid red;
+}
+.p-invalid {
+  border: 1px solid red;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+:host ::ng-deep .p-dropdown-label{
+  height:36px !important;
 }

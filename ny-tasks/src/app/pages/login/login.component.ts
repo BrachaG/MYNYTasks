@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Sidebar } from 'primeng/sidebar';
 import { UsersService } from 'src/app/services/users.service';
 import { userModel } from 'src/models/users.model';
-
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { userModel } from 'src/models/users.model';
 })
 export class LoginComponent implements OnInit {
   user: any
+  @Output() loginStatusChange = new EventEmitter<boolean>();
   constructor(private srv: UsersService, private router: Router) {
   }
 
@@ -21,6 +22,10 @@ export class LoginComponent implements OnInit {
     code: new FormControl(''),
   })
   ngOnInit(): void {
+    const loginStatus = localStorage.getItem('isLoggedIn');
+    if (loginStatus && loginStatus === 'true') {
+      this.loginStatusChange.emit(true);
+    }
     localStorage.clear()
     this.frmUsers = new FormGroup({
       userName: new FormControl(),
@@ -34,9 +39,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userName',this.user.nvUserName);
         localStorage.setItem('userPermission',this.user.iPermissionLevelId);
         localStorage.setItem("jwt-token", this.user.token);
-        if (this.user.iPermissionLevelId==2 && this.user.lBranches.length>1) {
+        this.loginStatusChange.emit(true);
+        
+
+        if (this.user.iPermissionLevelId==2 && this.user.lBranches.length>=1) 
+        {//הוספתי את ה = 1
           localStorage.setItem('userBranches',JSON.stringify(this.user.lBranches))
           this.router.navigateByUrl('select-branch');
+          
         }
         else
           this.router.navigateByUrl('surveys');
