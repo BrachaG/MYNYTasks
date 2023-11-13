@@ -26,11 +26,11 @@ $lightblue-gray: #5F6388;
     padding-right: 2vw;
     font-size: 2vmin;
     margin-right: 1%;
-
   }
 
   .p-fluid .p-inputtext {
     margin-top: 10%;
+    
   }
 
   .pi-filter-slash:before {
@@ -166,8 +166,8 @@ $lightblue-gray: #5F6388;
       overflow-y: auto;
     }
 
-    .table-style .p-datatable .p-datatable-thead>tr>th {
-      font-size: 2vmin;
+    .table-style .p-datatable .p-datatable-thead > tr > th{
+      font-size: 1vmin;
     }
 
     .table-style>tr {
