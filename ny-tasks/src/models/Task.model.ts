@@ -5,7 +5,7 @@ export interface Task {
  nvCategory :string;
  dtEndDate: Date;
  iStatus:number;
- iStudentId:number;
+ iStudentId:number|null;
  nvOrigin:string;
  nvComments :string;
  nvStatus:string;
