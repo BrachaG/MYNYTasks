@@ -28,11 +28,10 @@ export class AppProxy {
 
 
   public post(url: string, data: any = {}): Observable<any> {    
-    let a=this.convertData(data, true);
     this.isLoad = true;
     console.log(url+":",data);
     console.log(JSON.stringify(data));
-    return this.http.post(`${AppProxy.baseUrl}${url}`, this.convertData(data, true))
+    return this.http.post(`${AppProxy.baseUrl}${url}`, "55")
     .pipe(
       tap(data => {
           this.res = data;	
@@ -46,7 +45,7 @@ export class AppProxy {
     this.isLoad = true;
     console.log(url+":",data);
     console.log(JSON.stringify(data));
-    return this.http.put(`${AppProxy.baseUrl}${url}`, this.convertData(data, true))
+    return this.http.put(`${AppProxy.baseUrl}${url}`,    Object.values(this.convertData(data, true)))
     .pipe(
       tap(data => {
           this.res = data;	
@@ -69,7 +68,7 @@ export class AppProxy {
       .get(`${AppProxy.baseUrl}${url}`)
       .pipe(
         tap(data => {
-          // debugger
+          
             this.res = data;	
               return this.convertData(data, false);
           }))

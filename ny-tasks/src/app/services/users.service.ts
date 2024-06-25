@@ -15,8 +15,12 @@ export class UsersService {
     {
       let url: string = `api/Users/Get?userName=${userName}&password=${code}`;
        return this.appProxy.get(url)
-
     }
-
   }
+
+  getEmailById(): Observable<string> {
+    let url: string = `api/Users/GetEmailById`;
+    return this.appProxy.get(url);
+  }
+  
 }

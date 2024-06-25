@@ -32,8 +32,6 @@ import { TextQuestionComponent } from "./pages/survey-results/text-question/text
 import { ScrollingModule } from '@angular/cdk/scrolling'
 import { ChartModule } from 'primeng/chart';
 import { Chart } from 'chart.js/auto';
-
-import { CreateTaskComponent } from './create-task/create-task.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HeaderComponent } from './header/header.component';
 import { SelectBranchComponent } from './pages/select-branch/select-branch.component';
@@ -42,6 +40,14 @@ import { TasksComponent } from './pages/tasks/tasks.component'
 import { TargetsComponent } from './targets/targets.component';
 import { AppProxy } from './app-proxy.service';
 import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
+import { SettingsComponent } from './settings/settings.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -57,9 +63,10 @@ import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons
     HeaderComponent,
     SelectBranchComponent,
     TargetsComponent,
-    CreateTaskComponent,
     TasksComponent,
-    TargetButtonsComponent
+    TargetButtonsComponent,
+    SettingsComponent,
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -84,7 +91,13 @@ import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons
     SidebarModule,
     InputTextareaModule,
     PaginatorModule,
-    ScrollingModule
+    ScrollingModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    PanelMenuModule,
+    MatButtonModule,
+    MatMenuModule,
+    
   ],
   providers: [
     {

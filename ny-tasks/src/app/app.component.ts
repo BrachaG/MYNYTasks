@@ -15,8 +15,9 @@ export class AppComponent implements OnInit {
   currentRoute: any;
   chartJs = Chart;
   chartLabelPlugin = ChartDataLabels;
-
   sidebarVisible: boolean = false;
+  originTask:string="button";
+  isLoggedIn = false;
 
   constructor(private router: Router) {
     router.events.pipe(
@@ -30,6 +31,10 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.currentRoute = this.router.url;
+       // Check if the user is logged in by reading from localStorage
+       const loginStatus = localStorage.getItem('isLoggedIn');
+       if (loginStatus && loginStatus === 'true') {
+         this.isLoggedIn = true;}
 
   }
   onSideBarOutput(data: boolean) {
@@ -37,5 +42,12 @@ export class AppComponent implements OnInit {
   }
   onCreateTaskOutput(data: boolean) {
     this.sidebarVisible = data;
+  }
+
+
+  
+  setUserLoggedIn(status: boolean) {
+    this.isLoggedIn = status;
+    localStorage.setItem('isLoggedIn', status.toString());
   }
 }

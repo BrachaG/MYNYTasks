@@ -8,9 +8,9 @@
         public string nvCategory { get; set; }
         public DateTime dtEndDate { get; set; }
         public int iStatus { get; set; }
-        public int iStudentId { get; set; }
+        public int? iStudentId { get; set; }
         public string nvOrigin { get; set; }
-        public string nvComments { get; set; }
+        public string? nvComments { get; set; }
         public string? nvStatus { get; set; }
         public string? nvType { get; set; }
         public string? nvFirstName { get; set; }

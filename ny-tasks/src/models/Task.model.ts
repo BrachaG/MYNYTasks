@@ -10,5 +10,6 @@ export interface Task {
  nvComments :string;
  nvStatus:string;
  nvType:string;
+ //לא היה בmain
  nvFirstName:string;
 }

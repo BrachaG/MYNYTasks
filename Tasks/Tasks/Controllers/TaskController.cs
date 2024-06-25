@@ -1,7 +1,9 @@
 ﻿using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Service;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 namespace Tasks.Controllers
 {
@@ -17,15 +19,14 @@ namespace Tasks.Controllers
             _taskService = taskService;
         }
         [HttpPost("Add")]
-        public void Add(TaskModel tasks, int targetType, string iCoordinatorId)
+        public void Add(TaskModel tasks, int targetType)
         {
             string Sub = JwtRegisteredClaimNames.Sub;
             string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
             string Name = JwtRegisteredClaimNames.NameId;
             string iUserId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
-
             _logger.LogDebug("Add Task");
-            _taskService.Add(tasks, int.Parse(permissionLevelId), targetType, iCoordinatorId, iUserId);
+            _taskService.Add(tasks, int.Parse(permissionLevelId), targetType, iUserId, iUserId);
         }
         [HttpGet("Get")]
         public async Task<ActionResult<List<TaskModel>>> Get()
@@ -54,6 +55,26 @@ namespace Tasks.Controllers
             _logger.LogDebug("Update Task");
             return await _taskService.Update(int.Parse(permissionLevelId),taskId, status, comments);
         }
+
+        //[HttpGet("code/{code}")]
+        //[HttpGet("GetStudentForTask")]
+        //public async Task<ActionResult<List<StudentForTask>>> GetStudentForTask(int iBranchId)
+
+            [HttpGet("GetStudentForTask/{iBranchId}")]
+        public async Task<ActionResult<List<StudentForTask>>> GetStudentForTask(int iBranchId)
+ 
+
+        {
+            //Task < ActionResult < List < StudentForTask >>>
+            string Sub = JwtRegisteredClaimNames.Sub;
+            string permissionLevelId = User.Claims.FirstOrDefault(c => c.Type == Sub).Value;
+            string Name = JwtRegisteredClaimNames.NameId;
+            string iUserId = User.Claims.FirstOrDefault(c => c.Type == Name).Value;
+            _logger.LogDebug("Get Student For Task");
+            return await _taskService.GetStudentForTask(iBranchId, int.Parse(iUserId), int.Parse(permissionLevelId));
+            
+        }
+
 
     }
 }
