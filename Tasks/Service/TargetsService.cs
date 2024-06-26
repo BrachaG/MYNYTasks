@@ -102,7 +102,7 @@ namespace Service
             List<SqlParameter> parameters = new List<SqlParameter> {
             { new SqlParameter("Id",userId )},
             { new SqlParameter("PermissionLevelId", permissionLevelId)},
-            { new SqlParameter("TargetType", targetType)}
+            //{ new SqlParameter("TargetType", targetType)}
                 };
             try
             {
@@ -117,6 +117,32 @@ namespace Service
             catch (Exception ex)
             {
                 _logger.LogError("GetTargetsByTargetType ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
+            }
+            return null;
+        }
+
+        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
+        {
+            _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
+            List<SqlParameter> parameters = new List<SqlParameter> {
+            { new SqlParameter("Id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)}
+                };
+            try
+            {
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                if (targets.Rows.Count > 0)
+                {
+                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
+                    return new ObjectResult(t) { StatusCode = 200 };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("GetTargetsByUserId ", ex);
                 return new ObjectResult(null) { StatusCode = 500 };
 
             }

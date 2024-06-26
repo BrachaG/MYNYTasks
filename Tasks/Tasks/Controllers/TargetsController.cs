@@ -38,6 +38,16 @@ namespace Tasks.Controllers
             return await _targetsService.GetTargetsByTargetType(int.Parse(userId), int.Parse(permissionLevelId), targetType);
         }
 
+        [HttpGet("GetTargetsByUserId")]
+        public async Task<ActionResult<List<Target>>> GetTargetsByUserId()
+        {
+            string Name = JwtRegisteredClaimNames.NameId;
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == Name).Value);
+            var permissionLevelId = HttpContext.Items.TryGetValue("PermissionLevelId", out var permissionLevelIdValue) && permissionLevelIdValue is int permissionLevelIdInt ? permissionLevelIdInt : -1;
+            _logger.LogDebug($"User id is: {userId} ,PermissionLevelId is: {permissionLevelId} In GetTargetsByUserId");
+            return await _targetsService.GetTargetsByUserId(userId, permissionLevelId);
+        }
+
         [HttpPost()]
         public async Task<ActionResult<string>> AddTarget(String? comment, int typeTargetId, int[]? personId, int branchId, DateTime? targetDate)
         {
