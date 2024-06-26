@@ -154,7 +154,7 @@ export class CreateTaskComponent {
               label: item.nvTargetName,
               value: item.iTypeTargetId,
             }))];
-          this._targetsService.getTargets().subscribe({
+          this._targetsService.getTargets(0).subscribe({
             next: (response: any[]) => {
               if (response && response.length > 0) {
                 const emptyOption = { label: ' ', value: null };

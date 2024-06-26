@@ -30,6 +30,7 @@ export class SettingsService {
     );
   }
 
+  //main
   getTargetsType(): Observable<any> {
     
     return this.http.get(AppProxy.baseUrl+`api/Settings/GetTargetsType`)
