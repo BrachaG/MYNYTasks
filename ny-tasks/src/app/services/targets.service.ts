@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Targets } from 'src/models/Targets.model';
+import { Targets } from '../../models/Targets.model';
 import { AppProxy } from '../app-proxy.service';
 
 @Injectable({
@@ -10,11 +10,11 @@ import { AppProxy } from '../app-proxy.service';
 export class TargetsService {
 
   constructor(private http:HttpClient,private appProxy: AppProxy,) { }
-  getTargets(): Observable<Targets[]> {
+  getTargets(targetType:number): Observable<Targets[]> {
     {
-        let url: string = `api/Targets/Get`;
-        // return this.http.get<Targets[]>(url);
-        return this.appProxy.get(url)
+        let url: string = `api/Targets/Get/${targetType}`;
+        return this.http.get<Targets[]>(url);
+        //return this.appProxy.get(url)
 
 }}
 }

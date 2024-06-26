@@ -14,7 +14,7 @@ public class SqlDataAccess : ISqlDataAccess
     {
         _logger = logger;
         _Configuration = Configuration;
-        connectionString = _Configuration.GetConnectionString("qa");
+        connectionString = _Configuration.GetConnectionString("yaeli");
     }
     #region ExecuteDatasetSP
     public async Task<DataSet> ExecuteDatasetSP(string spName, List<SqlParameter> SPParameters)

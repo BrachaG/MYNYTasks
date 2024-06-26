@@ -11,5 +11,7 @@
         public int iStatusId { get; set; }
         public int iCreatorId { get; set; }
         public DateTime dtCreation { get; set; }
+        public string nvUserName { get; set; }
+        public string nvBranchName { get; set; }
     }
 }

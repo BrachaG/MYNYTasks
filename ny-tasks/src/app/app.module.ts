@@ -25,11 +25,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BarButtonsComponent } from './side-bar/bar-buttons/bar-buttons.component';
 
 import { SurveyResultsComponent } from './pages/survey-results/survey-results.component';
-import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule } from 'primeng/paginator';
 import { AmericanQuestionComponent } from "./pages/survey-results/american-question/american-question.component";
 import { TextQuestionComponent } from "./pages/survey-results/text-question/text-question.component";
-import { ScrollingModule } from '@angular/cdk/scrolling'
 import { ChartModule } from 'primeng/chart';
 import { Chart } from 'chart.js/auto';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -38,6 +36,8 @@ import { SelectBranchComponent } from './pages/select-branch/select-branch.compo
 import { AuthGuardService } from './services/auth-guard.service';
 import { TasksComponent } from './pages/tasks/tasks.component'
 import { TargetsComponent } from './targets/targets.component';
+import { AccordionModule } from 'primeng/accordion';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppProxy } from './app-proxy.service';
 import { TargetButtonsComponent } from './side-bar/target-buttons/target-buttons.component';
 import { SettingsComponent } from './settings/settings.component';

@@ -1,1 +1,56 @@
-<p>targets works!</p>
+<div class="background">
+    <div class="cover">
+        <div class="title">
+        <label class="target-title">שמירת שבת (8 אנשי צוות, 23 משימות)</label>
+        <br>
+        <button class="btn-new-target">+ צור יעד חדש</button>
+         </div>
+        <p-accordion class="accordion" [multiple]="true" [expandIcon]="expandIcon" [collapseIcon]="collapseIcon">
+            <p-accordionTab  [selected]="collapsed" class="acc-line" *ngFor="let t of targets"
+                header="{{t.nvBranchName}}, {{t.nvUserName}}">
+                <cdk-virtual-scroll-viewport itemSize="50" class="scroll">
+                    <div class="answer">
+                <p-table [value]="targets" class="table-style">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>
+                                <span class="tableTitle">שם המשימה</span>
+                            <th>
+                                <span class="tableTitle">סוג משימה </span>
+                            </th>
+                            <th>
+                                <span class="tableTitle">שם הסטודנט</span>
+                            </th>
+                            <th>
+                                <span class="tableTitle">סניף </span>
+                            </th>
+                            <th>
+                                <span class="tableTitle">סטטוס </span>
+                            </th>
+                            <th>
+                                <span class="tableTitle">תאריך יעד </span>
+                            </th>
+                            <th>
+                                <span class="tableTitle">הערות </span>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body">
+                        <tr>
+                            <td class="task-name">שיחה בנושא השבת</td>
+                            <td>חינוכית</td>
+                            <td>{{t.nvBranchName}}</td>
+                            <td>{{t.nvBranchName}}</td>
+                            <td><span class="status">חדש</span></td>
+                            <td>{{t.dtTargetDate | date:'dd.MM.yy'}}</td>
+                            <td>{{t.nvBranchName}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <button class="btn-new-task">+ משימה חדשה</button>
+            </div>
+            </cdk-virtual-scroll-viewport>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>

@@ -20,31 +20,6 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
-        {
-            _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
-            List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("Id",userId )},
-            { new SqlParameter("PermissionLevelId", permissionLevelId)}
-                };
-            try
-            {
-                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
-                if (targets.Rows.Count > 0)
-                {
-                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
-                    return new ObjectResult(t) { StatusCode = 200 };
-                }
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("GetTargetsByUserId ", ex);
-                return new ObjectResult(null) { StatusCode = 500 };
-
-            }
-            return null;
-        }
 
         public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int permissionLevelId)
         {
@@ -119,6 +94,33 @@ namespace Service
                 client.Credentials = new System.Net.NetworkCredential("36214085573@mby.co.il", "Student@264");
                 client.Send(message);
             }
+        }
+
+        public async Task<ActionResult<List<Target>>> GetTargetsByTargetType(int userId, int permissionLevelId, int targetType)
+        {
+            _logger.LogDebug("GetTargetsByTargetType", userId, permissionLevelId);
+            List<SqlParameter> parameters = new List<SqlParameter> {
+            { new SqlParameter("Id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)},
+            { new SqlParameter("TargetType", targetType)}
+                };
+            try
+            {
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                if (targets.Rows.Count > 0)
+                {
+                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
+                    return new ObjectResult(t) { StatusCode = 200 };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("GetTargetsByTargetType ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
+            }
+            return null;
         }
     }
 }

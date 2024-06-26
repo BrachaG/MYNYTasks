@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { SettingsService } from '../../services/settings.service';
+import { TargetsService } from '../../services/targets.service';
+
 
 @Component({
   selector: 'app-target-buttons',
@@ -10,7 +14,17 @@ export class TargetButtonsComponent {
   @Output() clicked = new EventEmitter<void>();
   @Input() isActive = false;
   @Input() color = '';
-  handleClick() {
-    this.clicked.emit();
+  @Input() type=0;
+ 
+  constructor(private router: Router) {}
+   
+  ngOnInit() {
+
+   
+  }
+  
+  handleClick(type:number) {
+   // this.clicked.emit();
+    this.router.navigateByUrl(`targets/${type}`)
   }
 }
