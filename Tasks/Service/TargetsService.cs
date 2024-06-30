@@ -67,7 +67,7 @@ namespace Service
                 foreach (DataRow row in dt.Rows)
                 {
                     string email = row["nvUserMail"].ToString();
-                    SendEmail(email);
+                    SendEmail(email, "יעד חדש", "נוסף לך יעד חדש במערכת");
                 }
                 return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
 
@@ -78,13 +78,14 @@ namespace Service
                 return new ObjectResult("Failed to insert target") { StatusCode = 500 };
             }
         }
-        public void SendEmail(string recipient)
+
+        public void SendEmail(string recipient, string subject, string body)
         {
             var message = new MailMessage();
             message.From = new MailAddress("36214085573@mby.co.il", "Nefesh Yehudi");
             message.To.Add(new MailAddress(recipient));
-            message.Subject = "יעד חדש";
-            message.Body = "נוסף לך יעד חדש במערכת!";
+            message.Subject = subject;
+            message.Body = body;
             message.IsBodyHtml = false;
 
             using (var client = new SmtpClient("smtp.office365.com", 587))
