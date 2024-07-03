@@ -44,9 +44,12 @@ export class SurveyResultsComponent implements OnInit {
     if(localStorage.getItem('selectedBranch'))
       selectedBranch=localStorage.getItem('selectedBranch')
     this.surveyService.getResultsForSurvey(this.id,selectedBranch).subscribe((res: any) => {
-      this.result = res;
-      console.log(this.result);
-      this.sum=this.result.lQuestions.length;
+      if(res){
+        this.result = res;
+        console.log(this.result);
+        this.sum=this.result.lQuestions.length;
+      }
+
     })
   }
  

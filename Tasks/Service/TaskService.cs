@@ -166,9 +166,9 @@ namespace Service
                     return new StatusCodeResult(403);
                 }
                 List<SqlParameter> sp = new List<SqlParameter>
-                 { new SqlParameter("iPermissionLevelId", 2),//permissionLevel לשנות לפרמטר האמיתי 
+                 { new SqlParameter("iPermissionLevelId", permissionLevel),//permissionLevel לשנות לפרמטר האמיתי 
                     new SqlParameter("iBranchId", iBranchId),
-                    new SqlParameter("iUserId", 1), };//iUserId לשנות לפרמטר האמיתי 
+                    new SqlParameter("iUserId", iUserId), };//iUserId לשנות לפרמטר האמיתי 
             try
                 {
                     DataTable dt = await _sqlDataAccess.ExecuteDatatableSP("su_GetStudentForTask_SLCT", sp);

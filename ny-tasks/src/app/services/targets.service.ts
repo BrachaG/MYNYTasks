@@ -9,12 +9,10 @@ import { AppProxy } from '../app-proxy.service';
 })
 export class TargetsService {
 
-  constructor(private http:HttpClient,private appProxy: AppProxy,) { }
-  getTargets(targetType:number): Observable<Targets[]> {
-    {
-        let url: string = `api/Targets/GetTargetsByUserId`;
-        // return this.http.get<Targets[]>(url);
-        return this.appProxy.get(url)
-
-}}
+  constructor(private http: HttpClient, private appProxy: AppProxy,) { }
+  getTargets(targetType: number): Observable<Targets[]> {
+    let url: string = `api/Targets/GetTargetsByUserId`;
+    // return this.http.get<Targets[]>(url);
+    return this.appProxy.get(url)
+  }
 }
