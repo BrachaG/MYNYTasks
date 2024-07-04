@@ -45,7 +45,7 @@ export class AmericanQuestionComponent {
       student.lAnswers.forEach(answer => {
         if (answer.iQuestionId == this.question.iQuestionId) {
           this.answers.push({ stdImage: student.image, stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
-          let option = this.result.lOptions.find(o => o.nvAnswerName == answer.nvAnswer);
+          let option = this.result.lOptions.find(o => o.iQuestionId == this.question.iQuestionId && o.nvAnswerName == answer.nvAnswer);
           if (option) {
             if (!option.responders)
               option.responders = []
@@ -54,20 +54,21 @@ export class AmericanQuestionComponent {
         }
       })
     })
-
   }
+
   optionsForAnswer() {
     this.result.lOptions.forEach(option => {
       if (option.iQuestionId == this.question.iQuestionId) {
-        this.lables.push(option.nvAnswerName)
+        this.lables.push(option.nvAnswerName);
       }
       if (option.responders != null)
-        this.dataArr.push(option.responders.length)
+        this.dataArr.push(option.responders.length);
       else {
-        this.dataArr.push(0)
+        this.dataArr.push(0);
       }
     });
   }
+
   createChart() {
 
     const documentStyle = getComputedStyle(document.documentElement);
@@ -91,7 +92,10 @@ export class AmericanQuestionComponent {
           backgroundColor: [
             '#FF59A4',
             '#2F81EF',
-            '#FFA600'
+            '#FFA600',
+            '#57BC83',
+            '#00B4E6',
+            '#F37A5C'
           ],
           borderWidth: 0,
           hoverOffset: 4
@@ -102,8 +106,8 @@ export class AmericanQuestionComponent {
           datalabels: {
             display: true,
             formatter: (value, ctx) => {
-              const datapoints = ctx.chart.data.datasets[0].data
-              const percentage = value / 3 * 100
+              const datapoints = ctx.chart.data.datasets[0].data;
+              const percentage = value / 3 * 100;
               return percentage.toFixed(2) + "%";
             },
             color: '#fff',
@@ -142,16 +146,16 @@ export class AmericanQuestionComponent {
               if (tooltipModel.body) {
                 const titleLines = tooltipModel.title || [];
                 const bodyLines = tooltipModel.body.map((bodyItem: any) => getBody(bodyItem, titleLines));
-                let color = tooltipModel.labelColors[0].backgroundColor
+                let color = tooltipModel.labelColors[0].backgroundColor;
                 let style = 'background-color:' + color;
                 style += '; height: 8px; width:8px; border-radius:50%; margin-left:5px;';
                 let innerHtml = '<div class="chartjs-tooltip-section">';
-                innerHtml += '<div style="display:flex; align-items: center; position:relative; right: 23%; top:8px;"><div class="chartjs-tooltip-title" style="' + style + '"></div><span style="font-size:16px; font-weight:400" class="chartjs-tooltip-title">' + titleLines[0] + '</span></div>'
-                innerHtml += '<div style="position: absolute; width: 170px;height: 0px;left: 5px;top: 36px; border: 0.5px solid #E3E8EE;"> </div>'
+                innerHtml += '<div style="display:flex; align-items: center; position:relative; right: 23%; top:8px;"><div class="chartjs-tooltip-title" style="' + style + '"></div><span style="font-size:16px; font-weight:400" class="chartjs-tooltip-title">' + titleLines[0] + '</span></div>';
+                innerHtml += '<div style="position: absolute; width: 170px;height: 0px;left: 5px;top: 36px; border: 0.5px solid #E3E8EE;"> </div>';
                 innerHtml += '<ul style="position: relative; top:20px;font-size:12px; font-weight:500"class="chartjs-tooltip-list">';
-                innerHtml += '<cdk-virtual-scroll-viewport itemSize="1" class="scroll">'
+                innerHtml += '<cdk-virtual-scroll-viewport itemSize="1" class="scroll">';
                 innerHtml += bodyLines.join('');
-                innerHtml += '</cdk-virtual-scroll-viewport>'
+                innerHtml += '</cdk-virtual-scroll-viewport>';
                 innerHtml += '</ul></div>';
                 tooltipEl.innerHTML = innerHtml;
                 innerHtml += '</tbody>';
@@ -161,8 +165,8 @@ export class AmericanQuestionComponent {
               tooltipEl.style.backgroundColor = "white";
               tooltipEl.style.opacity = '1';
               tooltipEl.style.position = 'absolute';
-              tooltipEl.style.width = '180px'
-              tooltipEl.style.fontSize = '12px'
+              tooltipEl.style.width = '180px';
+              tooltipEl.style.fontSize = '12px';
               tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
               tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
               tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
@@ -170,7 +174,7 @@ export class AmericanQuestionComponent {
               tooltipEl.style.color = '#1E2959';
               tooltipEl.style.boxShadow = '0px 0px 21px rgba(0, 0, 0, 0.25)';
               tooltipEl.style.borderRadius = '8px';
-              tooltipEl.style.minHeight = '70px'
+              tooltipEl.style.minHeight = '70px';
             }
           }
         }
