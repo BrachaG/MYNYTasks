@@ -3,7 +3,7 @@ import { Question } from '../../../../models/Question.model';
 import { ResultsForSurvey } from '../../../../models/ResultsForSurvey.model';
 import { FilteredAnswers } from '../../../../models/filteredAnswers.model';
 import * as ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Chart, PieController, registerables  } from 'chart.js';
+import { Chart, PieController, registerables } from 'chart.js';
 
 Chart.register(ChartDataLabels, PieController, ...registerables)
 @Component({
@@ -34,7 +34,6 @@ export class AmericanQuestionComponent {
   public chart: any;
 
   ngOnInit(): void {
-   
     this.sortAnswers();
     this.optionsForAnswer();
     this.createChart();
@@ -45,7 +44,7 @@ export class AmericanQuestionComponent {
     this.result.lResultsForSurveyStudent.forEach(student => {
       student.lAnswers.forEach(answer => {
         if (answer.iQuestionId == this.question.iQuestionId) {
-          this.answers.push({stdImage: student.image, stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
+          this.answers.push({ stdImage: student.image, stdName: student.nvFullName, stdBranch: student.nvBranchName, stdAnswer: answer.nvAnswer, profil: '' })
           let option = this.result.lOptions.find(o => o.nvAnswerName == answer.nvAnswer);
           if (option) {
             if (!option.responders)
@@ -62,9 +61,9 @@ export class AmericanQuestionComponent {
       if (option.iQuestionId == this.question.iQuestionId) {
         this.lables.push(option.nvAnswerName)
       }
-      if (option.responders!=null)
+      if (option.responders != null)
         this.dataArr.push(option.responders.length)
-      else{
+      else {
         this.dataArr.push(0)
       }
     });
@@ -80,66 +79,65 @@ export class AmericanQuestionComponent {
         itemsHtml = dataNum.map(name => `<div>${name}</div>`).join('');
       return itemsHtml;
     }
-  
-      this.chart = new Chart("MyChart", {
-         
-      type: 'pie', 
+    this.chart = new Chart("MyChart", {
+
+      type: 'pie',
 
       data: {
         labels: this.lables,
         datasets: [{
           label: 'My First Dataset',
-          data:this.dataArr,
+          data: this.dataArr,
           backgroundColor: [
             '#FF59A4',
             '#2F81EF',
             '#FFA600'
           ],
-          borderWidth:0,
+          borderWidth: 0,
           hoverOffset: 4
         }],
       },
-     options :{
+      options: {
         plugins: {
-          datalabels:{
+          datalabels: {
             display: true,
-              formatter: (value, ctx) => {
-                const datapoints = ctx.chart.data.datasets[0].data
-                const percentage = value / 3 * 100
-                return percentage.toFixed(2) + "%";
-              },
-              color: '#fff',
+            formatter: (value, ctx) => {
+              const datapoints = ctx.chart.data.datasets[0].data
+              const percentage = value / 3 * 100
+              return percentage.toFixed(2) + "%";
+            },
+            color: '#fff',
           },
           legend: {
-              position: 'right',
-              labels: {
+            position: 'right',
+            labels: {
               usePointStyle: true,
               color: textColor,
             }
           },
           tooltip: {
             enabled: false,
-            callbacks:{
-              
+            callbacks: {
+
             },
             external: function (context: any) {
               // Tooltip Element
               let tooltipEl = document.getElementById('chartjs-tooltip');
-  
+
               // Create element on first render
               if (!tooltipEl) {
                 tooltipEl = document.createElement('div');
                 tooltipEl.id = 'chartjs-tooltip';
                 document.body.appendChild(tooltipEl);
               }
-  
+
               // Hide if no tooltip
               const tooltipModel = context.tooltip;
               if (tooltipModel.opacity === 0) {
                 tooltipEl.style.opacity = '0%';
                 return;
               }
-  
+
               // Set Text
               if (tooltipModel.body) {
                 const titleLines = tooltipModel.title || [];
@@ -158,7 +156,7 @@ export class AmericanQuestionComponent {
                 tooltipEl.innerHTML = innerHtml;
                 innerHtml += '</tbody>';
               }
-  
+
               const position = context.chart.canvas.getBoundingClientRect();
               tooltipEl.style.backgroundColor = "white";
               tooltipEl.style.opacity = '1';
