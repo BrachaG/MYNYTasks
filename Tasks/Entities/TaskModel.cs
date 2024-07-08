@@ -14,5 +14,6 @@
         public string? nvStatus { get; set; }
         public string? nvType { get; set; }
         public string? nvFirstName { get; set; }
+        public string? nvTypeTargetName { get; set; }
     }
 }

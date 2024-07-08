@@ -12,4 +12,5 @@ export interface Task {
  nvType:string;
  //לא היה בmain
  nvFirstName:string;
+ nvTypeTargetName:string;
 }
