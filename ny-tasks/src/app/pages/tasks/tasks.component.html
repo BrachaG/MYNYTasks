@@ -29,6 +29,22 @@
                         </span>
                     </th>
                     <th>
+                        <span class="tableTitle">מקור משימה </span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter class="textFilterArea" matchMode="contains" [showMenu]="false" type="text" field="nvOrigin"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="tableTitle">שם איש צוות</span>
+                        <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
+                            <i class="searchIcon pi pi-search"></i>
+                            <p-columnFilter class="textFilterArea" matchMode="contains" [showMenu]="false" type="text" field="nvFirstName"
+                                filterMatchMode="contains" (keyup)="applyFilter()"></p-columnFilter>
+                        </span>
+                    </th>
+                    <th>
                         <span class="tableTitle">שם הסטודנט</span>
                         <span *ngIf="filterVisible" class="p-input-icon-right ml-auto">
                             <i class="searchIcon pi pi-search"></i>
@@ -79,6 +95,8 @@
                 <tr>
                     <td><div class="subject">{{ task.nvType }}</div></td>
                     <td>{{ task.nvCategory }}</td>
+                    <td>{{ task.nvOrigin }}</td>
+                    <td>{{ task.nvFirstName }}</td>
                     <td>{{ task.nvFirstName }}</td>
                     <td>{{ task.nvTypeTargetName }}</td>
                     <td ><div class="status" [ngStyle]="{'background-color': getStatusColor(task.iStatus)}">{{ task.nvStatus }}</div></td>

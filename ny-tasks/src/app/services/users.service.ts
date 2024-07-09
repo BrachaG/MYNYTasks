@@ -14,7 +14,7 @@ export class UsersService {
   getUserById(userName: string, code: string): Observable<userModel> {
     {
       let url: string = `api/Users/Get?userName=${userName}&password=${code}`;
-       return this.appProxy.get(url)
+      return this.appProxy.get(url)
     }
   }
 
