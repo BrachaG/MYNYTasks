@@ -20,6 +20,9 @@ export class AppProxy {
       case 'qa.webit-track.com':
         AppProxy.baseUrl = "http://qa.webit-track.com/MYNYNewWS/";
         break;
+      case 'tasks.rishum.today':
+          AppProxy.baseUrl = "http://tasksws.rishum.today/";
+          break;      
       case '10.0.0.230':
         AppProxy.baseUrl = "http://10.0.0.230/MYNY/Service/";
         break;
