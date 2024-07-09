@@ -46,9 +46,7 @@ export class HeaderComponent implements OnInit {
     this.change = false;
     window.location.reload()
   }
-  aa() {
-    debugger
-  }
+
   ngOnInit() {
     this.userName = localStorage.getItem('userName') ?? "";
     this.userPermission = localStorage.getItem('userPermission');
@@ -60,18 +58,19 @@ export class HeaderComponent implements OnInit {
     this.selectedBranchName = this.lBranches.find((obj) => {
       return obj.iBranchId === this.selectedBranchNumber;
     })?.nvBranchName;
-    this._usersService.getEmailById().subscribe({
-      next: (emailId: any) => {
-        this.userEmail=emailId.value
-        console.log('Email ID:', emailId);
-      },
-      error: (error: any) => {
-        console.error('Error:', error);
-      },
-      complete: () => {
-        // Handle completion if needed
-      },
-    });
+    //לא קיימת קריאה כזו בסרבר
+    // this._usersService.getEmailById().subscribe({
+    //   next: (emailId: any) => {
+    //     this.userEmail=emailId.value
+    //     console.log('Email ID:', emailId);
+    //   },
+    //   error: (error: any) => {
+    //     console.error('Error:', error);
+    //   },
+    //   complete: () => {
+    //     // Handle completion if needed
+    //   },
+    // });
     
   }
   changeBranch(b: CodeTable) {

@@ -3,6 +3,7 @@ import { AppProxy } from '../app-proxy.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { TargetType } from '../../models/TargetType.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class SettingsService {
     );
   }
 
+  //main
   getTargetsType(): Observable<any> {
     
     return this.http.get(AppProxy.baseUrl+`api/Settings/GetTargetsType`)
@@ -40,6 +42,11 @@ export class SettingsService {
     //   })
     // );
   }
+
+  // getTargetsType(): Observable<TargetType[]>{
+  //   let url: string = `api/Settings/GetTargetsType`;
+  //       return this.http.get<TargetType[]>(url);
+  // }
 
   addTargetType(name: string): Observable<any> {
     const payload = { name };

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TargetsService } from '../services/targets.service';
 import { Targets } from 'src/models/Targets.model';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-targets',
@@ -8,15 +9,25 @@ import { Targets } from 'src/models/Targets.model';
   styleUrls: ['./targets.component.scss']
 })
 export class TargetsComponent {
-  targets: Targets[]=[];
-  constructor(private srv: TargetsService) { }
+  targets: Targets[] = [];
+  collapsed: boolean = false;
+  collapseIcon: string = 'pi pi-angle-up';
+  expandIcon: string = 'pi pi-angle-down';
+  targetType: number = 0;
+
+  constructor(private srv: TargetsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getTargets()
+    this.route.params.subscribe((p: Params) => {
+      this.targetType = p['type'];
+      console.log(this.targetType + "!");
+      this.getTargets(this.targetType);
+    })
+    
   }
 
-  getTargets() {
-    this.srv.getTargets().subscribe((res: any) => {
+  getTargets(targetType: number) {
+    this.srv.getTargets(targetType).subscribe((res: any) => {
       this.targets = res;
       console.log(this.targets);
     })

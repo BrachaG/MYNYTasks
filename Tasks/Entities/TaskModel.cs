@@ -11,5 +11,9 @@
         public int? iStudentId { get; set; }
         public string nvOrigin { get; set; }
         public string? nvComments { get; set; }
+        public string? nvStatus { get; set; }
+        public string? nvType { get; set; }
+        public string? nvFirstName { get; set; }
+        public string? nvTypeTargetName { get; set; }
     }
 }

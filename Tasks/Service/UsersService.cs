@@ -52,7 +52,7 @@ namespace Service
                     string userToken = GenarateToken(user.iUserId, user.iPermissionLevelId);
                     user.token = userToken;
                     user.iUserId = 0;
-                    return new ObjectResult(user) { StatusCode = 200 };
+                   return new ObjectResult(user) { StatusCode = 200 };
                 }
                 else return null;
             }

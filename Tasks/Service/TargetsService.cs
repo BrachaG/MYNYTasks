@@ -20,31 +20,6 @@ namespace Service
             _logger = logger;
             _targetObjectGenerator = userObjectGenerator;
         }
-        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
-        {
-            _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
-            List<SqlParameter> parameters = new List<SqlParameter> {
-            { new SqlParameter("Id",userId )},
-            { new SqlParameter("PermissionLevelId", permissionLevelId)}
-                };
-            try
-            {
-                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
-                if (targets.Rows.Count > 0)
-                {
-                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
-                    return new ObjectResult(t) { StatusCode = 200 };
-                }
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("GetTargetsByUserId ", ex);
-                return new ObjectResult(null) { StatusCode = 500 };
-
-            }
-            return null;
-        }
 
         public async Task<ActionResult<string>> AddTarget(string comment, int typeTargetId, int[] personId, int BranchId, DateTime? targetDate, int creatorId, int permissionLevelId)
         {
@@ -92,7 +67,7 @@ namespace Service
                 foreach (DataRow row in dt.Rows)
                 {
                     string email = row["nvUserMail"].ToString();
-                    SendEmail(email);
+                    SendEmail(email, "יעד חדש", "נוסף לך יעד חדש במערכת");
                 }
                 return new ObjectResult("Target inserted successfully") { StatusCode = 200 };
 
@@ -103,13 +78,14 @@ namespace Service
                 return new ObjectResult("Failed to insert target") { StatusCode = 500 };
             }
         }
-        public void SendEmail(string recipient)
+
+        public void SendEmail(string recipient, string subject, string body)
         {
             var message = new MailMessage();
             message.From = new MailAddress("36214085573@mby.co.il", "Nefesh Yehudi");
             message.To.Add(new MailAddress(recipient));
-            message.Subject = "יעד חדש";
-            message.Body = "נוסף לך יעד חדש במערכת!";
+            message.Subject = subject;
+            message.Body = body;
             message.IsBodyHtml = false;
 
             using (var client = new SmtpClient("smtp.office365.com", 587))
@@ -119,6 +95,59 @@ namespace Service
                 client.Credentials = new System.Net.NetworkCredential("36214085573@mby.co.il", "Student@264");
                 client.Send(message);
             }
+        }
+
+        public async Task<ActionResult<List<Target>>> GetTargetsByTargetType(int userId, int permissionLevelId, int targetType)
+        {
+            _logger.LogDebug("GetTargetsByTargetType", userId, permissionLevelId);
+            List<SqlParameter> parameters = new List<SqlParameter> {
+            { new SqlParameter("Id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)},
+            //{ new SqlParameter("TargetType", targetType)}
+                };
+            try
+            {
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                if (targets.Rows.Count > 0)
+                {
+                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
+                    return new ObjectResult(t) { StatusCode = 200 };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("GetTargetsByTargetType ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
+            }
+            return null;
+        }
+
+        public async Task<ActionResult<List<Target>>> GetTargetsByUserId(int userId, int permissionLevelId)
+        {
+            _logger.LogDebug("GetTargetsByUserId", userId, permissionLevelId);
+            List<SqlParameter> parameters = new List<SqlParameter> {
+            { new SqlParameter("Id",userId )},
+            { new SqlParameter("PermissionLevelId", permissionLevelId)}
+                };
+            try
+            {
+                DataTable targets = await _sqlDataAccess.ExecuteDatatableSP("su_Get_Targets", parameters);
+                if (targets.Rows.Count > 0)
+                {
+                    List<Target> t = _targetObjectGenerator.GeneratListFromDataTable(targets);
+                    return new ObjectResult(t) { StatusCode = 200 };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("GetTargetsByUserId ", ex);
+                return new ObjectResult(null) { StatusCode = 500 };
+
+            }
+            return null;
         }
     }
 }

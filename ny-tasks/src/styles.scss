@@ -1,5 +1,5 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../node_modules/primeicons/primeicons.css";
+// @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
 @import "node_modules/primeng/resources/primeng.min.css";
 @import "node_modules/primeflex/primeflex.css";
@@ -75,8 +75,8 @@ $lightblue-gray: #5F6388;
 .cover {
   position: relative;
   top: 13%;
-  right: 10%;
-  width: 80%;
+  right: 5%;
+  width: 90%;
   height: 80%;
 }
 
@@ -142,7 +142,6 @@ $lightblue-gray: #5F6388;
   text-align: right;
   padding-bottom: 1% ;
   padding-right: 2% ;
-
 }
 
 .table-style .p-datatable .p-datatable-tbody>tr>td {
@@ -178,6 +177,7 @@ $lightblue-gray: #5F6388;
   color: $blue3 !important;
   font-size: 17px;
 }
+
 .table-style tr th:first-child { border-bottom-right-radius: 10px ;}
 .table-style tr th:last-child { border-bottom-left-radius: 10px ; }
 .table-style tr th:first-child { border-top-right-radius: 10px ;}
@@ -193,18 +193,13 @@ $lightblue-gray: #5F6388;
     font-size: 2vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
+    color: #1E2959;
+    font-weight: 500;
     font-size: 2vmin; 
     background-color: #c1d5f0;
     padding-top: 1%;
 
   }
-
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        font-size: 2vmin;
-        border-top: 2px solid #2F81EF;
-        background-color: #c1d5f0;
-        padding-top: 1%;
-    }
 }
 
 @media screen and (min-width: 993px) and (max-width:1200px) {
@@ -216,6 +211,8 @@ $lightblue-gray: #5F6388;
     font-size: 3vmin;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
+    color: #1E2959;
+    font-weight: 500;
     font-size: 3vmin; 
     background-color: #c1d5f0;
     padding-top: 1%;
@@ -223,12 +220,11 @@ $lightblue-gray: #5F6388;
  }
 
 
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        border-top: 2px solid #2F81EF;
-        font-size: 3vmin;
-        background-color: #c1d5f0;
-        padding-top: 1%;
-    }
+    // .table-style .p-datatable .p-datatable-thead > tr > th {
+    //     font-size: 3vmin;
+    //     background-color: #c1d5f0;
+    //     padding-top: 1%;
+    // }
 
 @media screen and (min-width: 1201px) {
   .h4-regular {
@@ -240,17 +236,18 @@ $lightblue-gray: #5F6388;
   }
   .table-style .p-datatable .p-datatable-thead > tr > th{
     // border-top: 4px solid #2F81EF;
+    color: #1E2959;
+    font-weight: 500;
     font-size: 2.2vmin; 
     background-color: #c1d5f0;
    padding-top: 1%;
   }
 }
 
-    .table-style .p-datatable .p-datatable-thead > tr > th {
-        border-top: 4px solid #2F81EF;
-        background-color: #c1d5f0;
-        font-size: 2.2vmin;
-    }
+    // .table-style .p-datatable .p-datatable-thead > tr > th {
+    //     background-color: #c1d5f0;
+    //     font-size: 2.2vmin;
+    // }
 
 
 .p-accordion {
@@ -315,6 +312,68 @@ $lightblue-gray: #5F6388;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.p-accordion {
+  padding: 1px;
+  position: relative;
+  top: 1%;
+  
+}
+
+.acc-line {
+  @extend .h4-regular;
+  color: $lightblue-gray;
+  border: unset;
+  text-align: right;
+  filter: drop-shadow(0 12px 4px rgba(0, 0, 0, 0.08));
+}
+
+.p-accordion p-accordiontab .p-accordion-header .p-accordion-header-link {
+  border-radius: 10px;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background-color: #FFFFFF;
+  border: none;
+  color: $blue3;
+  margin-top: 6px;
+}
+
+.p-accordion p-accordiontab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+.p-accordion p-accordiontab:first-child .p-accordion-header .p-accordion-header-link {
+  border-radius: 10px;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: #ffffff;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
+  background-color: #ffffff;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+  box-shadow: none
+}
+
+.p-accordion .p-accordion-content {
+  border-color: #FFFFFF;
+  filter: drop-shadow(0 12px 4px rgba(0, 0, 0, 0.08));
+
+}
+
+.p-accordion p-accordiontab .p-accordion-content {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.p-accordion p-accordiontab:last-child .p-accordion-content {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 .acc-line .pi-angle-down:before {
   position: absolute;
@@ -329,9 +388,6 @@ $lightblue-gray: #5F6388;
   top: 30%;
 }
 
-.p-accordion .p-accordion-header .p-accordion-header-link {
-  color: $blue3;
-}
 
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
   color: #2F81EF;
@@ -341,13 +397,8 @@ $lightblue-gray: #5F6388;
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
   color: #2F81EF;
 }
-
-// html,
-// body {
-//   height: 100%;
-// }
-
-// body {
-//   margin: 0;
-//   font-family: Rubik, "Helvetica Neue", sans-serif;
-// }
+.table-style .p-datatable .p-datatable-tbody > tr > td.task-name{
+  color: $blue3;
+  font-weight: bold;
+  
+}

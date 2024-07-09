@@ -122,8 +122,8 @@ export class CreateTaskComponent {
         console.error('Error getting tasks type:', error);
       },
     });
-    // let brunchNumber :number=Number(localStorage.getItem('selectedBranch'));
-    let brunchNumber = 3;
+    let brunchNumber :number=Number(localStorage.getItem('selectedBranch'));
+    // let brunchNumber = 3;
     this._settingsService.getStudentForTask(brunchNumber).subscribe({
       next: (response: any[]) => {
         if (response && response.length > 0) {
@@ -150,11 +150,11 @@ export class CreateTaskComponent {
           const emptyOption = { label: ' ', value: null };
           this.targetsTypesNames = [
             emptyOption,
-            ...response.map((item: { iTypeTargetId: any; nvTargetName: any; }) => ({
-              label: item.nvTargetName,
+            ...response.map((item: { iTypeTargetId: any; nvTypeTargetName: any; }) => ({
+              label: item.nvTypeTargetName,
               value: item.iTypeTargetId,
             }))];
-          this._targetsService.getTargets().subscribe({
+          this._targetsService.getTargets(0).subscribe({
             next: (response: any[]) => {
               if (response && response.length > 0) {
                 const emptyOption = { label: ' ', value: null };

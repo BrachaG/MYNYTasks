@@ -10,11 +10,11 @@ import { AppProxy } from '../app-proxy.service';
 export class UsersService {
   constructor(private appProxy: AppProxy, private http: HttpClient) { }
 
-  
+
   getUserById(userName: string, code: string): Observable<userModel> {
     {
       let url: string = `api/Users/Get?userName=${userName}&password=${code}`;
-       return this.appProxy.get(url)
+      return this.appProxy.get(url)
     }
   }
 
@@ -22,5 +22,5 @@ export class UsersService {
     let url: string = `api/Users/GetEmailById`;
     return this.appProxy.get(url);
   }
-  
+
 }

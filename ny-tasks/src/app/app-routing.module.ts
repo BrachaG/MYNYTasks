@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'surveys', component: SurveyComponent ,canActivate: [AuthGuardService] },
   { path: 'tasks', component: TasksComponent ,canActivate: [AuthGuardService]},
   { path: 'Sidebar', component: SideBarComponent, canActivate: [AuthGuardService] },
-  { path: 'targets', component: TargetsComponent, canActivate: [AuthGuardService]  },
+  { path: 'targets/:type', component: TargetsComponent, canActivate: [AuthGuardService]  },
   { path: '', redirectTo: 'surveys', pathMatch: 'full'},
   { path: "surveys-results/:id/:name", component: SurveyResultsComponent ,canActivate: [AuthGuardService] }
 ];
